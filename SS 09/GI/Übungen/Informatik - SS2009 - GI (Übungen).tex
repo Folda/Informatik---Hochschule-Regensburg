@@ -1,0 +1,35 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+
+%<Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=false,bookmarksnumbered=true,
+pdftitle={Lösung für 1. Übung der Grundlagen Informatik SS2009},
+pdfauthor={Thaller Alexander},
+pdfsubject={Lösung für 1. Übung der Grundlagen Informatik SS2009},pdfkeywords={lösung,studium,übung}}
+%</Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{00acronyms.tex}
+%\maketitle
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{3}
+%\tableofcontents
+%\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{kapitel/Uebung1.tex}
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Literaturverzeichnis
+\newpage
+\addcontentsline{toc}{part}{Literaturverzeichnis}
+\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}
+
+

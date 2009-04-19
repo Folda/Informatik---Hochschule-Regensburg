@@ -1,0 +1,111 @@
+\section{Übung 2}
+
+\begin{tikzpicture}[node distance = 2.5cm, auto]
+	\node[cloud] (start){Start};
+	\node[block, right of=start] (eingabe1){$JB$};
+	\node[block, right of=eingabe1] (eingabe2){$N = 1$};
+	\node[block, right of=eingabe2] (eingabe3){$I = J$};
+	\node[block, below of=eingabe3] (berechnung1){$K_N = I \% B$\\$I = I \div B$};
+	\node[block, below of=berechnung1] (berechnung2){$N = N + 1$};
+	\node[decision, below of=berechnung2] (decision1){$I \neq 0$};
+	\node[block, below of=decision1] (berechnung3){$N = N -1$};
+	\node[block, below of=berechnung3] (ausgabe1){Ausgabe $K_N$};
+	\node[decision, below of=ausgabe1] (decision2){$N > 1$};
+	\node[cloud, below of=decision2] (ende){Ende};
+
+	\path [line] (start.east) -- (eingabe1.west);
+	\path [line] (eingabe1.east) -- (eingabe2.west);
+	\path [line] (eingabe2.east) -- (eingabe3.west);
+	\path [line] (eingabe3.south) -- (berechnung1.north);
+	\path [line] (berechnung1.south) -- (berechnung2.north);
+	\path [line] (berechnung2.south) -- (decision1.north);
+	\path [line] (decision1.east) -| node[near start]{Ja} ++(2,0) |- (berechnung1.east);
+	\path [line] (decision1.south) -- node[near start]{Nein} (berechnung3.north);
+	\path [line] (berechnung3.south) -- (ausgabe1.north);
+	\path [line] (ausgabe1.south) -- (decision2.north);
+	\path [line] (decision2.west) -| node[near start]{Ja} ++(-2,0) |- (berechnung3.west);
+	\path [line] (decision2.south) -- node[near start]{Nein} (ende.north);
+\end{tikzpicture}
+\subsection{Lösung zu Aufgabe 2}
+\subsubsection{Lösungsbeschreibung}
+Genutzt wird die iterative Euklitische Methode mit Division die im Pseudocode wie folgt lautet:
+\begin{lstlisting}[language=pseud]
+EUCLID(a,b)
+   solange b != 0
+       h <- a mod b
+       a <- b
+       b <- h
+   return a
+\end{lstlisting}
+(Siehe \url{http://de.wikipedia.org/wiki/Euklidischer_Algorithmus#Iterative_Variante})\\
+In C würde der Pseudocode wie folgt aussehen:
+\begin{lstlisting}[language=c]
+#include <stdio.h>
+
+int main()
+{
+    int wert1, wert2, a, b, h;
+    
+    printf("Erste Zahl eingeben\n");
+    scanf("%d", &wert1);
+    printf("Zweite Zahl eingeben\n");
+    scanf("%d", &wert2);
+    a = wert1;
+    b = wert2;
+    
+    printf("Starte die Berechnung...\n");
+    while(b != 0)
+    {
+         h = a % b;
+         a = b;
+         b = h;
+    }
+    printf("Die Berechnung ist beendet...\n\n");
+    
+    printf("%d und %d haben %d als kleinsten gemeinsammen Teiler\n",
+            wert1, wert2, a);
+    
+    system("pause");
+    return 0;
+}
+\end{lstlisting}
+\subsubsection{Lösung}    
+\begin{tikzpicture}[node distance = 4cm, auto]
+	\node[cloud] (start){Start};
+	\node[block, right of=start] (setab) {$a = b$ und $b = h$};
+	\node[decision, below of=setab] (decide) {$b_n = 0$};
+	\node[block, below of=decide] (ausgabe) {Ausgabe von $a$};
+	\node[block, left of=decide] (eingabe){Eingabe $a \neq 0$ und $b$};
+	\node[block, right of=decide] (berechnung) {$h = a \% b$};
+
+	\path [line] (start.south) -- (eingabe.north);
+	\path [line] (eingabe.east) -- (decide.west);
+	\path [line] (decide.south) -- node[near start]{Ja} (ausgabe.north);
+	\path [line] (decide.east) -- node[near start]{Nein} (berechnung.west);
+	\path [line] (berechnung.north) |- (setab.east);
+	\path [line] (setab.south) -- (decide.north);
+\end{tikzpicture}
+\subsection{Lösung zu Aufgabe 3}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\renewcommand{\labelenumii}{\arabic{enumii}.}
+\begin{enumerate}
+\item Das Steuerwerk (englisch Control Unit, kurz CU) ist der Kern des Mikroprozessors. Seine Aufgabe ist die Abarbeitung des Programms, d.h. Befehl für Befehl eines Programms werden durch das Steuerwerk des Mikroprozessors ausgeführt.\\\\
+		Es bestehte aus:
+		\begin{itemize}
+		\item Befehlszähler
+		\item Befehlsregister
+		\item Decodiereinheit
+		\item Ablaufsteuerung
+		\end{itemize}
+		(Quelle: \url{http://de.wikipedia.org/wiki/Steuerwerk})
+\item \begin{enumerate}
+		\item Dekodierung des Befehls (\lstinline!DECODE!)
+		\item Laden der Operanden die auf den Befehl angewandt werden sollen (\lstinline!FETCH OPERANDS!)
+		\item Ausführung des Befehls (\lstinline!EXECUTE!)
+		\item Befehlszähler aktualisieren (\lstinline!UPDATE INSTRUCTION POINTER!)
+		\end{enumerate}
+		(Quelle: \url{http://de.wikipedia.org/wiki/Steuerwerk})
+\item Bei bedingten Sprungbefehlen wird zunächst die logische Bedingung (beispielsweise ein Test, ob der Akkumulatorinhalt größer, gleich oder kleiner null ist) aufgewertet. Falls die Bedingung erfüllt ist, wird der Befehlszähler mit einer ermittelten oder explizit angegebenen Sprungadresse aus dem Restanteil des Befehlsregisters in den Befehlszähler übertragen.
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\renewcommand{\labelenumii}{\alph{enumii})}

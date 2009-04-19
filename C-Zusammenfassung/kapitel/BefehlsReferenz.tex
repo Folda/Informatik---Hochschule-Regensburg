@@ -1,0 +1,48 @@
+\part{Befehls Referenz}
+\chapter{String Operationen}
+
+\section{strcpy - Kopieren eines Strings}
+\subsection{Beschreibung}
+Kopiert einen String in einen anderen (Quelle nach Ziel) und liefert Zeiger auf Ziel als Funktionswert.
+\index{string!Kopieren}
+\index{strcpy}
+
+\subsection{Anmerkung}
+Für eine Kopie eines Strings in einen anderen ist immer die Anweisung strcpy nötig, da eine Zeichenkette immer Zeichenweise kopiert werden muss.
+
+\subsection{Parameter}
+\lstinputlisting[frame=single]
+{sourcecodes/BefehlsReferenzen/parameter/strcpy.c}
+
+\subsection{Beispiel}
+\lstinputlisting[frame=single, firstnumber=auto, numbers=left, stepnumber=2, numbersep=10pt, emph={strcpy}, emphstyle={\color{blue}\bf}]
+{sourcecodes/BefehlsReferenzen/strcpy.c}
+
+\subsubsection{Ausgabe}
+\begin{lstlisting}[frame=single, numbers=left, stepnumber=1, numbersep=10pt]
+Hallo!
+Ja Du!
+\end{lstlisting}
+
+\section{strcmp - Vergleichen von Strings}
+\subsection{Beschreibung}
+Diese Stringfunktion ist für den Vergleich von zwei Strings zu verwenden. Die Strings werden Zeichen für Zeichen durchgegangen und ihre ASCII-Codes verglichen. Wenn die beiden Zeichenketten identisch sind, gibt die Funktion den Wert 0 zurück. Sind die Strings unterschiedlich, gibt die Funktion entweder einen Rückgabewert größer oder kleiner als 0 zurück: Ein Rückgabewert >0 (<0) bedeutet, der erste ungleiche Buchstabe in s1 hat einen größeren (kleineren) ASCII-Code als der in s2.
+\index{string!Verleichen}
+\index{strcmp}
+
+\subsection{Anmerkung}
+-
+
+\subsection{Parameter}
+\lstinputlisting[frame=single]
+{sourcecodes/BefehlsReferenzen/parameter/strcmp.c}
+
+\subsection{Beispiel}
+\lstinputlisting[frame=single, firstnumber=auto, numbers=left, stepnumber=2, numbersep=10pt, emph={strcpy}, emphstyle={\color{blue}\bf}]
+{sourcecodes/BefehlsReferenzen/strcmp.c}
+
+\subsubsection{Ausgabe}
+\begin{lstlisting}[frame=single, numbers=left, stepnumber=1, numbersep=10pt]
+Die beiden Zeichenketten Hello und World sind unterschiedlich.
+Die beiden Zeichenketten Hello und Hello sind identisch.
+\end{lstlisting}

@@ -1,0 +1,70 @@
+\chapter*{1. Übung}
+\section*{1. Aufgabe}
+$\Sigma = \gklamm{0, 1}$, $L_1 = \gklamm{0, 00, 000}$, $L_2 = \gklamm{0, 1, 01}$
+\begin{enumerate}[label=(\alph*)]
+\item $L_1 \mal L_2 = \gklamm{00, 01, 001, 000, 0001, 0000, 00001}$
+\item $L_1^3 = \gklamm{0^3, 0^4, 0^5, 0^6, 0^7, 0^8, 0^9}$
+\item $L_1^{\mathcal{C}} = \Sigma^* - L_1$
+\item $L_1^* = \gklamm{\epsilon, 0, 00, 000, 0^4, \dots}$
+\item $\emptyset^* = \gklamm{\epsilon}$
+\end{enumerate}
+
+\section*{2. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+\item $\del$
+		\begin{itemize}
+		\item $\del(\epsilon) = \epsilon$
+		\item sei $w = av$, falls $a = b$ wobei $b$ der zu löschende Buchstabe ist, sei $\del(w) = del(v)$. Ansonsten ist $\del(w) = a \del(v)$.
+		\end{itemize}
+
+\item $\gicount$
+		\begin{itemize}
+		\item $\gicount(\epsilon) = 0$
+		\item sei $w = av$, falls $a = b$ wobei $b$ der zu zählende Buchstabe sei ist $\gicount(w) = \gicount(v) + 1$. Ansonsten ist $\gicount(w) = \gicount(v) + 0$.
+		\end{itemize}
+\end{enumerate}
+
+\section*{3. Aufgabe}
+$\Sigma = \gklamm{0, 1, \sharp}$
+\begin{enumerate}[label=(\alph*)]
+\item Die Anzahl der verschiedenen Wörter ist die Anzahl der Zeichen in $\Sigma$ hoch $n$ wobei $n$ die Anzahl der Stellen ist. In dem Fall $\Sigma = \gklamm{0, 1, \sharp}$ ist die Anzahl also $n^3$.
+\item Es gibt $\matrixp{n\\k}$ Möglichkeiten das Symbol zu platzieren. Für jede Platzierung hat man eine Möglichkeit weniger ein also $(n - k)$. Daraus ergibt sich die Formel:
+		\[\matrixp{n\\k} \mal 2^{(n - k)}\]
+
+\item Die Antwort ergibt sich aus der vorherigen Lösung nur muss man alle einzelnen Wahrscheinlichkeiten des Zeichens aufsummieren. Es folgt also:
+		\[\sum_{i = k}^n \matrixp{n\\i} \mal 2^{n - i}\]
+\end{enumerate}
+
+\section*{4. Aufgabe}
+$\Sigma_{\text{Bool}} = \gklamm{0, 1}$, $\underbrace{\rklamm{L_1 \cup L_2}^*}_{M_1} 0 \underbrace{L_1^* \cup L_2^*}_{M_2}$
+\subsection*{Beispielsprachen}
+$L_1 = \gklamm{01}$\\
+$L_2 = \gklamm{10}$
+
+\subsection*{Beweis der Aussage}
+\subsubsection*{Annahme}
+$M_1 \subseteq M_2 \wedge M_2 \subseteq M_1$\\
+\Ra $L_1^* \subseteq \rklamm{L_1 \cup L_2}^* \wedge L_2^* \subseteq \rklamm{L_1 \cup L_2}^*$
+
+\subsubsection*{Beweis}
+\begin{enumerate}
+\item $M_1 \subseteq M_2$
+		\begin{align*}
+		u &\in \rklamm{L_1 \cup L_2}^*\\
+		u &\in \rklamm{\gklamm{01} \cup \gklamm{10}}^*\\
+		u &= \gklamm{01}\\
+		&\Ra u \in \rklamm{\gklamm{01} \cup \gklamm{10}}^* \text{ da } \gklamm{01} \in \gklamm{01}^*
+		\end{align*}
+		\Ra $u \in M_1$
+\item $M_2 \subseteq M_1$
+		\begin{align*}
+		u &\in L_1^* \cup L_2^*\\
+		u &\in \gklamm{01}^* \cup \gklamm{10}^*\\
+		u &= \gklamm{01}\\
+		&\Ra u \in \gklamm{01}^* \cup \gklamm{10}^* \text{ da } \gklamm{01} \in \gklamm{01}^*
+		\end{align*}
+		\Ra $u \in M_1$
+\end{enumerate}
+\Ra $u \in M_1 \wedge M_2$ \Ra $M_1 = M_2$
+\begin{flushright}$\blacksquare$\end{flushright}
+\label{TotalPages}

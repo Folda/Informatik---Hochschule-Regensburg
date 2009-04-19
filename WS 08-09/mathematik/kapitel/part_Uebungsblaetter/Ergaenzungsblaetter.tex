@@ -1,0 +1,79 @@
+\chapter{Ergänzungsblätter}
+\section{Ergänzungsblatt 03}
+\subsection{Aufgabe 12}
+
+\subsection{Aufgabe 13}
+\subsubsection{Lösung}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item 
+\item 
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+\subsection{Aufgabe 14}
+
+\subsection{Aufgabe 15}
+
+\subsection{Aufgabe 16}
+
+\subsection{Aufgabe 17}
+\subsubsection{Aufgabenstellung}
+Seien $A, B$ beliebige Mengen, Beweisen oder widerlegen sie die folgenden Aussagen:
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item $\mathscr{P}(A \cup B) \subseteq (\mathscr{P}(A) \cup \mathscr{P}(B))$
+\item $\mathscr{P}(A \cup B) = (\mathscr{P}(A) \cup \mathscr{P}(B))$
+\item $\mathscr{P}(A \cup B) \supseteq (\mathscr{P}(A) \cup \mathscr{P}(B))$
+\item $\mathscr{P}(A \times B) \subseteq (\mathscr{P}(A) \times \mathscr{P}(B))$
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+\subsubsection{Aufgaben Lösung}
+\renewcommand{\labelenumi}{zu \alph{enumi})}
+\begin{enumerate}
+\item TODO
+\item TODO
+\item TODO
+\item TODO
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+\chapter{Aufgaben}
+\section{E27}
+\subsection{Aufgabenstellung}
+$\mathbb{P}_2 = \gklamm{a t^2 + bt + c | a, b, c \in \mathbb{R}} B = \gklamm{1, t, t^2}$
+\begin{enumerate}[label=\alph*)]
+\item $p_1(t) = 1 - 3 t^1 \Ra (p_1)_{\mathcal{B}} = \vektor{1}{0}{-3}$\\
+		$p_2(t) = 2 + t - 5 t^2 \Ra (p_2)_{\mathcal{B}} = \vektor{2}{1}{-5}$\\
+		$p_3(t) = 1 + 2t \Ra (p_3)_{\mathcal{B}} = \vektor{1}{2}{0}$\\
+\item zu zeigen $B = \gklamm{p_1(t), p_2(t), p_3(t)}$ ist eine Basis von $\mathbb{P}_2$ es reicht zu zeigen $p_1(t), p_2(t), p_3(t)$ linear unabhängig $\Leftrightarrow$ zu zeigen $(p_1)_{\mathcal{B}}, (p_2)_{\mathcal{B}}, (p_3)_{\mathcal{B}}$ linear unabhängig
+\end{enumerate}
+
+\subsection{Aufgabenlösung}
+$\gauss{ccc|c}{1 & 2 & 1 & 0\\0 & 1 & 2 & 0\\-3 & -5 & 0 & 0} \underrightarrow{\RM{3} = \RM{3} + 3 \RM{1}}$\\
+$\underrightarrow{\RM{3} = \RM{3} - \RM{2}}$\\
+$\underrightarrow{\RM{1} = \RM{1} - \RM{3}}_{\RM{2} = \RM{2} - 2 \RM{3}}$\\
+$\underrightarrow{\RM{1} = \RM{1} - 2 \RM{2}}$\\
+Alternative zu zeigen $\begin{vmatrix}1 & 2 & 1\\0 & 1 & 2\\-3 & -5 & 0\end{vmatrix} \neq 0$\\
+Alternativ zeigen $1, t, t^2$ ist Linearkombination von $p_1(t), p_2(t), p_3(t)$
+
+\section{Aufgabe E28}
+\begin{enumerate}
+\item $\mathbb{R}^3$
+\item $\mathbb{P}_2 (\mathbb{R})$
+\item $v_1 = \spanx{\gklamm{\varvektor{c}{1\\0\\0\\0}, \varvektor{c}{0\\1\\0\\0}, \varvektor{c}{0\\0\\1\\0}}}$
+\item $v_2 = \gklamm{\varvektor{cc}{a & b\\c & 0} \vert a, b, c \in \mathbb{R}}$
+\item $v_3 = \gklamm{ax^3 + bx^5 + cx^6 \vert a, b, c \in \mathbb{R}}$
+\end{enumerate}
+
+\section{Aufgabe E29}
+$\vec{x} \in H \Lra es ex s,t \in \mathbb{R} \mal s \vec{v_1} + t \vec{v_2} = \vec{x}$
+\[\gauss{cc|c}{3 & -1 & 3\\6 & 0 & 12\\2 & 1 & 7} \underrightarrow{\RM{1} \lra \RM{2}} \gauss{cc|c}{6 & 0 & 12\\3 & -1 & 3\\2 & 1 & 7}\]
+\[\underrightarrow{\RM{1} = \RM{1} \mal \frac{1}{6}} \gauss{cc|c}{1 & 0 & 2\\3 & -1 & 3\\2 & 1 & 7}\]
+\[\underrightarrow{\RM{2} = \RM{2} - 3 \RM{1}}_{\RM{3} = \RM{3} - 2 \RM{2}} \gauss{cc|c}{1 & 0 & 2\\0 & -1 & -3\\0 & 1 & 3} \underrightarrow{\RM{3} = \RM{3} + \RM{2}} \gauss{cc|c}{1 & 0 & 2\\0 & -1 & -3\\0 & 0 & 0}\]
+\[\ra \gauss{cc|c}{1 & 0 & 2\\0 & 1 & 3\\0 & 0 & 0}\]
+\[\Ra \vec{x} \in H, \vec{x_B} = \varvektor{c}{2\\3}\]
+
+\section{Aufgabe E30}
+8

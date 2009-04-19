@@ -1,0 +1,391 @@
+\chapter{Ungleichungen}
+%MARK: Chapter 2
+\begin{fdefinition}[Ordnungsaxiome]
+%MARK: Definition 1.6
+\label{def:Fakultaet_und_Binominalkoeffizient_Definition_1_6}
+Es gibt eine Relation ''$<$'' in $\mb{R}$ mit den Eigenschaften
+\begin{enumerate}[label=\roman*)]
+\item für $a, b \in \mb{R}$ gilt \underline{genau eine} der Aussagen
+		\[a < b~~a = b~~b < a\]
+		
+\item für $a, b, c \in \mb{R}$:
+		\[a < b \und b < c \Ra a < c \text{ (Transitivität)}\]
+
+\item für $a, b, c \in \mb{R}$:
+		\[a < c \und b < d \Ra a + b < c + d\]
+		Monotonie bezüglich der Addition
+		
+\item für $a, b, c \in \mb{R}$:
+		\[a < b \und 0 < c \Ra ac < bc\]
+		Monotonie bezüglich der Multiplikation
+\end{enumerate}
+\end{fdefinition}
+
+\begin{bemerkung}
+Es gelten folgende Schreibweisen und Vereinbarungen
+\begin{enumerate}
+\item $a \klgl b \Lra a < b \oder a = b$
+\item $a > b \Lra b < a$
+\item $a \grgl b \Lra b \klgl a$
+\item $a < b \klgl c \Lra a < b \und b \klgl c$
+\item Eine reelle Zahl $a$ heißt \indexu{positiv}, falls $a > 0$
+\item Eine reelle Zahl $a$ heißt \indexu{negativ}, falls $a < 0$
+\item Eine reelle Zahl $a$ heißt \indexu{nichtnegativ} falls $a \grgl 0$
+\item Eine reelle Zahl $a$ heißt \indexu{nichtpositiv}, falls $a \klgl 0$
+\end{enumerate}
+\end{bemerkung}
+
+\begin{bemerkung}Mit Definition \ref{def:Fakultaet_und_Binominalkoeffizient_Definition_1_6} und obiger Bemerkung kann man zeigen, dass ''$\klgl$'' auf $\mb{R}$ eine Ordnungsrelation darstellt, also gilt:
+\begin{enumerate}[label=\roman*)]
+\item reflexiv: $\forall a \in \mb{R}: a \klgl a$
+\item transitiv: $\forall a, b, c \in \mb{R}: a \klgl b \und b \klgl c \Ra a \klgl c$
+\item antitsymmetrisch: $\forall a, b \in \mb{R}: a \klgl b \und b \klgl a \Ra a = b$
+\end{enumerate}
+\end{bemerkung}
+
+\begin{fsatz}[Rechenregel für Ungleichungen]
+%MARK: Satz 1.7
+\label{satz:Fakultaet_und_Binominalkoeffizient_Satz_1_7}
+\mbox{}\par
+\begin{enumerate}[label=\roman*)]
+\item $a > 0 \Lra -a < 0$
+\item $a^2 \grgl 0$
+\item $a < b \und c < 0 \Ra ac > bc$
+\item $0 < a < b \Lra 0 < \frac{1}{b} < \frac{1}{a}$
+\item für $a, b \grgl 0: a < b \Lra a^2 < b^2$
+\end{enumerate}
+\end{fsatz}
+
+\begin{fbeweis}[Nachrechnen]\mbox{}\par
+\begin{enumerate}[label = \roman*), start=2]
+\item \begin{description}
+		\item[Fall 1:] $a = 0$
+		\[a^2 = a \mal a = 0 \mal 0 = 0\]
+
+		\item[Fall 2:] $a > 0$
+		\begin{align*}
+		&a > 0~~~~\vert \mal a \text{ Monotonie bezüglich Multiplikation}\\
+		\Lra &a^2 > 0
+		\end{align*}
+
+		\item[Fall 3:] $a < 0$
+		\begin{align*}
+		&a < 0~~\vert -a \text{ Monotonie bezüglich Addition}\\
+		\Lra &0 < -a~~~~\vert \mal (-a) \text{ Monotonie bezüglich Multiplikation}\\
+		\Lra &0 > (-a)(-a)\\
+		\Lra &0 < \underbrace{(-1)^2}_{= 1} \mal a^2
+		\end{align*}
+		\end{description}
+\end{enumerate}\qed
+\end{fbeweis}
+
+\section{Aufgabe 1.3}
+\label{sec:Ungleichungen_A1_3}
+Für welche Werte von $x$ und $y$ gilt: $xy > x$?
+
+Lösung siehe \vref{sec:Ungleichungen_A1_3L}.
+
+\section{Aufgabe 1.4}
+\label{sec:Ungleichungen_A1_4}
+Zeigen Sie: Für positive Zahlen $x$ und $y$ gilt:
+\[\frac{x}{y} + \frac{y}{x} \grgl 2\]
+wobei Gleichheit genau dann Eintritt, wenn $x = y$ ist.
+
+Lösung siehe \vref{sec:Ungleichungen_A1_4L}.
+
+\begin{fdefinition}[Intervalle]
+Die folgenden Mengen von reellen Zahlen bezeichnet man als Intervalle.
+\begin{center}
+\begin{multicols}{2}
+$x \in (a, b) \Lra a < x < b$\\
+$x \in [a, b) \Lra a \klgl x < b$\\
+$x \in (a, b] \Lra a < x \klgl b$\\
+$x \in [a, b] \Lra a \klgl x \klgl b$\\
+$x \in (a, \infty) \Lra x > a$\\
+$x \in (-\infty, b) \Lra x < b$\\
+$x \in [a, \infty) \Lra x \grgl a$\\
+$x \in (-\infty, b] \Lra x \klgl b$
+\end{multicols}
+\end{center}
+\begin{itemize}
+\item Intervalle der Form $(a, b)$ heißen offene Intervalle
+\item Intervalle der Form $[a, b]$ heißen abgeschlossene Intervalle
+\item Intervalle der Form $(a, b]$ \ac{bzw.} $[a, b)$ heißen halboffene Intervalle
+\item Die Intervalle auf der linken Seite heißen endliche Intervalle
+\end{itemize}
+Statt $(a, b)$, $(a, b]$, $[a, b)$ kann man auch schreiben: $]a, b[$, $]a,b]$, $[a, b[$
+%MARK: Definition 1.8
+\end{fdefinition}
+
+\begin{fsatz}[Ungleichung zwischen arithmetischem und geometrischem Mittel]
+Seien $a, b > 0$, dann gilt:
+\begin{itemize}
+\item $\underbrace{\sqrt{a \mal b}}_{\text{geometrische Mittel}} \klgl \underbrace{\frac{1}{2} (a + b)}_{\text{arithmetisches Mittel}}$
+\item $\sqrt{a \mal b} = \frac{1}{2} (a + b) \Lra a = b$
+\end{itemize}
+%MARK: Satz 1.9
+\end{fsatz}
+
+\textbf{Anschauliche Erklärung:}
+
+\begin{tikzpicture}
+	\draw[draw=gray] (0,0) arc (180:0:2);
+	\draw[draw=green] (60:2) -- (1,0) node[right, midway, text=green] {$h$};
+	\draw[draw=blue] (2,2) -- (2,0) node[right, near start, text=blue] {$r$};
+	\draw (1,0) -- (1,-0.1);
+	\draw[serif cm-] (0,0) -- (1,0) node[below, midway] {$a$};
+	\draw[-serif cm] (1,0) -- (4,0) node[below, midway] {$b$};
+	\draw (4,0) -- (60:2) -- (0,0);
+\end{tikzpicture}
+
+Höhensatz: $a \mal b = h^2$
+\begin{itemize}[label=\Ra]
+\item $\underbrace{h = \sqrt{ab}}_{\text{geometrisches Mittel}}$\\
+		$r = \frac{1}{2} (a + b)$
+\item $h \klgl r$ mit Gleichheit, falls $a = b$
+\end{itemize}
+
+\begin{fbeweis}
+$a, b > 0$
+%MA-25.03.2009-FORM1
+\begin{align*}
+\sqrt{ab} &\stackrel{\klgl}{!} \frac{1}{2} (a + b)~~~~\vert \space^2\\
+\Lra ab &\stackrel{\klgl}{!} \frac{1}{4} (a + b)^2\\
+\Lra ab &\stackrel{\klgl}{!} \frac{1}{4} \left(a ^2 + 2ab + b^2\right)~~~~\vert \mal 4\\
+\Lra 4ab &\stackrel{\klgl}{!} a^2 + 2ab + b^2~~~~\vert -4ab\\
+\Lra 0 &\stackrel{\klgl}{!} a^2 - 2ab + b^2\\
+\Lra 0 \klgl (a - b)^2
+\end{align*}
+\begin{description}
+\item[Fall] $a = b \Lra (a - b)^2 = 0 \Lra \dots \Lra \sqrt{ab} = \frac{1}{2} (a + b)$
+\end{description}
+\qed
+\end{fbeweis}
+
+\begin{bemerkung}
+\mbox{}\par
+\begin{itemize}
+\item arithmetisches Mittel wird am meisten verwendet\\
+		\ac{z.B.} Gewicht eines ''Standardpassagiers'' beim Fliegen
+
+\item geometrisches Mittel wird verwendet, wenn große Ausreißer keine zu große Rolle spielen sollen\\
+		\ac{z.B.} gewisse Armutmaße basieren auf geometrischem Mittel
+\end{itemize}
+\end{bemerkung}
+
+\begin{beispiel}
+$a_1 = 1$, $a_2 = 1$, $a_3 = 1$, $a_4 = 10000$
+\begin{align*}
+	&\text{aritmetisches: }\frac{1}{4} \left(a_1 + a_2 + a_3 + a_4\right) = \frac{10003}{4} \approx 2500\\
+	&\text{geometrisches: }\sqrt[4]{a_1 \mal a_2 \mal a_3 \mal a_4} = 10
+\end{align*}
+\end{beispiel}
+
+\begin{fsatz}[Bernoulli-Ungleichungen]
+%MARK: Satz 1.10
+Für Alle $x \grgl -1$ und alle $n \in \mb{N}$ gilt:
+\[(1 + x)^n \grgl 1 + n \mal x\]
+\end{fsatz}
+
+\begin{fbeweis}
+(für $x \grgl 0$ folgt das aus binomischem Lehrsatz)
+\begin{description}
+\item[(IA)] $n = 0$\\
+		\[\left. \begin{array}{l}\text{LS} = (1 + x)^0 = 1\\\text{RS} = 1 + 0 \mal x = 1\end{array}\right\}\checkmark\]
+
+\item[(IS)] \ac{z.z.} $\forall n \in \mb{N}_0$: $\underbrace{(1 + x)^n \grgl 1 + n \mal x}_{\text{(IV)}}$ \Ra $(1 + x)^{n + 1} \grgl 1 + (n + 1) \mal x$
+		%MA-25.03.2009-FORM2
+		\begin{align*}
+		(1 + x)^{n + 1} &= (1 + x) \mal (1 + x)^n\\
+		&\stackrel{\grgl}{\text{(IV)}} (1 + x) (1 + n \mal x)\\
+		&= 1 +nx + x + n \mal x^2 = 1 + (n + 1) \mal x + \underbrace{\underbrace{n}_{\grgl 0} \mal \underbrace{x^2}_{\grgl 0}}_{\grgl 0}\\
+		&\grgl 1 + (n + 1) \mal x
+		\end{align*}
+\end{description}
+\end{fbeweis}
+
+\begin{fdefinition}
+Für $x \in \mb{R}$ definiert man den (Absolut-) Betrag durch
+\[\betrag{x} = \begin{cases}x \text{ für } x \grgl 0\\x \text{ für } x < 0\end{cases}\]
+\end{fdefinition}
+
+\begin{bemerkung}Es gilt auch
+		\begin{itemize}
+		\item $\betrag{x} = \max(x, -x)$
+		\item $\betrag{x} = \sqrt{x^2}$ entspricht Norm für Vektoren der Dimension 1
+		\end{itemize}
+\end{bemerkung}
+
+\begin{fsatz}[Rechnen mit Beträgen]
+%MARK: Satz 1.12
+$a \in \mb{R}$
+\begin{enumerate}[label=\roman*)]
+\item $\betrag{a} \grgl 0$; $\betrag{a} = 0 \Lra a = 0$
+\item $\betrag{a \mal b} = \betrag{a} \mal \betrag{b}$
+\item $\betrag{a + b} \klgl \betrag{a} + \betrag{b}$ $\Delta$-Ungleichung
+\item $\betrag{a - b} \grgl \betrag{\betrag{a} - \betrag{b}}$
+\item $\betrag{a} \klgl b \Lra -b \klgl a \klgl b$
+\item $\betrag{x - x_0} \klgl r \Lra x_0 - r x \klgl x_0 + r$
+\end{enumerate}
+\end{fsatz}
+
+\begin{fbeweis}
+\mbox{}\par
+\begin{enumerate}
+\item[\rM{1}), \rM{2})] folgt aus \ac{Def.} 1.11, \ac{bzw.} aus Mathe 1, Satz 6.2, 6.4
+\item[\rM{3})]
+		\begin{enumerate}[label=\textcircled{\arabic*}]
+		\item $\begin{array}{c}
+				a \klgl \betrag{a}\\
+				b \klgl \betrag{b}\\
+				\hline
+				a + b \klgl \betrag{a} + \betrag{b}
+				\end{array}$
+		\item $\begin{array}{c}
+				-a \klgl \betrag{a}\\
+				-b \klgl \betrag{b}\\
+				\hline
+				-a - b \klgl \betrag{a} + \betrag{b}
+				\end{array}$
+		\end{enumerate}
+		\[\betrag{a + b} = \max (a + b, a - b) \underbrace{\klgl}_{\text{\textcircled{1}, \textcircled{2}}} \betrag{a} + \betrag{b}\]
+
+\item[\rM{4})]
+		\begin{enumerate}[label=\textcircled{\arabic*}]
+		\item $\betrag{a} = \betrag{( a - b) + b} \underbrace{\klgl}_{\Delta \text{- Ungl.}} \betrag{a - b} + \betrag{b}$\\
+				$\Lra \betrag{a - b} \grgl \betrag{a} - \betrag{b}$
+
+		\item $\betrag{b} = \betrag{b - a + a} \klgl \betrag{b - a} + \betrag{a}$\\
+				$\Lra \betrag{b - a} \grgl \betrag{b} - \betrag{a}$\\
+				$\Lra \betrag{a - b} \grgl \betrag{b} - \betrag{a}$\\
+				\begin{align*}
+				\Ra \betrag{\betrag{a} - \betrag{b}} &= \max\left(\betrag{a} - \betrag{b}, \betrag{b} - \betrag{a}\right)\\
+				&\underbrace{\klgl}_{\text{\textcircled{1}, \textcircled{2}}} \betrag{a - b}
+				\end{align*}
+		\end{enumerate}
+\item[\rM{5})] $\betrag{a} \klgl b$
+		\begin{align*}
+		\Lra &\max (a, -a) \klgl b\\
+		\Lra &a \klgl b \und -a \klgl b\\
+		\Lra &a \klgl b \und a \grgl -b\\
+		\Lra &-b \klgl a \klgl b
+		\end{align*}
+
+\item[\rM{6})] $\betrag{x - x_0} \klgl r$
+		\begin{align*}
+		\stackrel{V}{\Lra} &-r \klgl x - x_0 \klgl r\\
+		\Lra &x_0 - r \klgl x \klgl x_0 + r
+		\end{align*}
+\end{enumerate}
+\qed
+\end{fbeweis}
+
+\begin{bemerkung}
+\mbox{}\par
+\begin{description}
+\item[zu iii)] $n$ als $\Delta$-Ungleichung bezeichnet, da Spezialfall von $\|a + b\| \klgl \|a\| + \|b\|$
+
+		%MA-25.03.2009-IMG4
+		\begin{tikzpicture}
+			\draw[serif cm->] (0,0) -- (3,0) node[below, midway]{$\vec{a}$};
+			\draw[serif cm->] (3,0) -- (4,2.5) node[right, midway]{$\vec{b}$};
+			\draw[serif cm->] (0,0) -- (4,2.5) node[midway, left=1em]{$\vec{a} + \vec{b}$};
+		\end{tikzpicture}
+
+		wäre die Ungleichung verletzt, könnten die 3 Vektoren $\vec{a}, \vec{b}$, $\vec{a} + \vec{b}$ kein Dreieck bilden.
+
+\item[zu vi)] $x_0$ interpretiert als fester Punkt (\ra Mittelpunkt und $r$ als Radius)
+
+		%MA-25.03.2009-IMG5
+		\begin{tikzpicture}[decoration=brace]
+		\draw[thick] (-1,0) -- (4,0);
+		\draw[->, thick] (4.2,0) -- (5,0) node[right] {$x$};
+		\draw (0.05,0.1) -- (0,0.1) -- (0,-0.1) -- (0.05,-0.1);
+		\draw (3.95,0.1) -- (4,0.1) -- (4,-0.1) -- (3.95,-0.1);
+		\draw (2,0.2) -- (2,-0.2) node[below] {$x_0$};
+		\draw[dashed] (0,0) arc (180:360:2);
+		\draw[decorate] (2,0.5) -- (4,0.5) node[above,midway] {$r$};
+		\end{tikzpicture}
+
+		$\betrag{x - x_0}$\\
+		die Menge aller Punkte die höchstens um $r$ von $x$ entfernt sind.
+\end{description}
+\end{bemerkung}
+
+\section{Aufgabe 1.5}
+\label{sec:Ungleichungen_A1_5}
+Lösen sie die Ungleichung
+\[\betrag{2 - \frac{x}{2}} < \frac{1}{2}\]
+
+Lösung siehe \vref{sec:Ungleichungen_A1_5L}.
+
+\section{Aufgabe 1.6}
+\label{sec:Ungleichungen_A1_6}
+Bestimmen sie alle Lösungen $x$ der Gleichung
+\[\sqrt{(x^2 - 5x + 6)^2} = x^2 - 5x + 6\]
+
+Lösung siehe \vref{sec:Ungleichungen_A1_6L}.
+
+\section{Lösungen}
+\subsection{Aufgabe 1.3}
+\label{sec:Ungleichungen_A1_3L}
+Lösung zu Aufgabe \vref{sec:Ungleichungen_A1_3}.
+
+\begin{description}
+\item[Fall 1:] $x > 0$
+		\begin{align*}
+		&xy > x~~~~\vert \mal x\\
+		\Lra &y > 1
+		\end{align*}
+
+\item[Fall 2:] $x = 0$
+		\[0 \mal y > 0 \blitza\]
+		
+\item[Fall 3:] $x < 0$
+		\begin{align*}
+		&xy > x~~~~\vert \mal x\\
+		\Lra &y < 1
+		\end{align*}
+\end{description}
+\[(x, y) \in \left((0, \infty) \times (1, \infty)\right) \cup \left((-\infty, 0) \times (-\infty, 1)\right)\]
+
+\subsection{Aufgabe 1.4}
+\label{sec:Ungleichungen_A1_4L}
+Lösung zu Aufgabe \vref{sec:Ungleichungen_A1_4}.
+
+$x, y >0$:
+\begin{align*}
+&\frac{x}{y} + \frac{y}{x} \stackrel{!}{\grgl} 2~~~~\vert \mal xy\\
+\Lra &x^2 + y^2 \stackrel{!}{\grgl} 2xy~~~~\vert -2xy\\
+\Lra &x^2 - 2xy + y^2 \stackrel{!}{\grgl} 0\\
+\Lra & (x - y)^2 \grgl 0
+\end{align*}
+
+\subsection{Aufgabe 1.5}
+\label{sec:Ungleichungen_A1_5L}
+Lösung zu Aufgabe \vref{sec:Ungleichungen_A1_5}.
+
+$\betrag{2 - \frac{x}{2}} < \frac{1}{2}$
+\begin{align*}
+\Lra -\frac{1}{2} < 2 - \frac{x}{2} < \frac{1}{2}~~~~\vert -2\\
+\Lra -\frac{5}{2} < -\frac{x}{2} < - \frac{3}{2}~~~~\vert \mal (-2)\\
+\Lra 5 > x > 3\\
+\Lra L = (3,5)
+\end{align*}
+
+\subsection{Aufgabe 1.6}
+\label{sec:Ungleichungen_A1_6L}
+Lösung zu Aufgabe \vref{sec:Ungleichungen_A1_6}.
+
+$\sqrt{(x^2 - 5x + 6)^2} = x^2 - 5x + 6$
+\begin{align*}
+\Lra \betrag{x^2 - 5x + 6} = x^2 - 5x + 6\\
+\Lra x^2 -5x + 6 \grgl 0\\
+\Lra (x - 3) \mal (x - 2) \grgl 0\\
+\end{align*}
+
+\begin{description}
+\item[$x = 0$] $0^2 - 5 \mal 0 + 6 > 0$\\
+		\Ra Parabel nach oben geöffnet\\
+		$L = \mb{R} \backslash (2, 3) = (- \infty, 2] \cup [3, \infty)$
+\end{description}

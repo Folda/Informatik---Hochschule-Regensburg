@@ -1,0 +1,117 @@
+\section{Übung 4}
+\subsection{Lösung zu Aufgabe 1}
+
+\renewcommand{\labelenumi}{zu \alph{enumi})}
+\begin{enumerate}
+\item Flussdiagramm\\
+\begin{tikzpicture}[node distance = 2.5cm, auto]
+\node[terminal interrupt] (start){Start};
+\node[preparation, below of=start] (preparationABCIErg){$A$, $B$, $C$, $Zahl$, $Erg$, $O\_Flag$};
+\node[process, below of=preparationABCIErg] (processABCErg){$Erg = A - B$\\$Erg = Erg + C$\\$Inc$ \RM{1}};
+\node[decision, below of=processABCErg] (decisionoflag){$of = 1$};
+\node[process, below of=decisionoflag] (processABC){$A = A + A$\\$B = B + B$\\$C = C + C$\\};
+\node[process, right of=decisionoflag] (processoflag){$O\_Flag = 1$};
+\node[terminal interrupt, below of=processoflag] (end){Ende};
+
+\path [line] (start.south) -- (preparationABCIErg.north);
+\path [line] (preparationABCIErg.south) -- (processABCErg.north);
+\path [line] (processABCErg.south) -- (decisionoflag.north);
+\path [line] (decisionoflag.south) -- node[near start]{Nein} (processABC.north);
+\path [line] (decisionoflag.east) -- node[near start]{Ja} (processoflag.west);
+\path [line] (processoflag.south) -- (end.north);
+\path [line] (processABC.south) -| ++(0,-0.5) -- ++(-1.5,0) |- (processABCErg.west);
+\end{tikzpicture}
+
+\item Durchläufe: 000Eh $\equals$ 14d\\
+		Ergebnis: 4000h $\equals$ 16384d\\
+		A: 4000h $\equals$ 16384d\\
+		B: 8000h $\equals$ 32768d\\
+		C: C000h $\equals$ 49152d
+
+\item Läuft unendlich bis BX einen overflow Flag wirft.
+\item Ja z.B. A = 0, B = 0, C = 0
+\item Nach 33 Durchläufen werfen AX und BX einen overflow Flag.
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\subsubsection{Quellcode}
+\begin{lstlisting}
+noctls ; keine Listing Steueranweisungen
+noincl ; keine "Include-Dateien" ausgeben
+INCLUDE macros.asm
+ASSUME DS:Daten, CS:Code ; Segment ''Daten'' wird Datensegment, ''Code'' wird Codesegment
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Daten SEGMENT ; hier beginnt das Segment mit dem Namen DATEN
+A DW 1
+B DW 2
+C DW 3
+Text DB ''Ergebnis:''
+ERG DW 0
+DB ''Flag:''
+O_Flag DB 0
+DB ''Zahl:''
+Zahl DW 0
+ENDS ; hier endet das Datensegment
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Code SEGMENT ; hier beginnt das Segment mit dem Namen CODE
+Anfang:
+mov AX,Daten ; Die Segmentadresse ''Daten'' kommt in AX
+mov DS,AX ; ''Daten'' kommt in DS
+mov AX, A
+mov BX, B
+mov CX, C
+jo overflow
+
+schleife:
+mov DX, AX
+sub DX, BX
+jo overflow
+add DX, CX
+jo overflow
+inc Zahl
+add AX, AX
+jo overflow
+add BX, BX
+jo overflow
+add CX, CX
+jo overflow
+jmp schleife
+
+overflow:
+mov ERG, DX
+mov O_Flag, 1
+
+
+Terminate_Program ; Rückkehr zum Betriebssystem
+ENDS ;hier endet das Code-Segment
+;++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+END Anfang ; hier endet das Assemblerprogramm
+; das Programm wird an der Adresse Anfang gestartet
+\end{lstlisting}
+
+\subsection{Lösung zu Aufgabe 2}
+\subsubsection{Flussdiagramm}
+\begin{tikzpicture}[node distance = 2.5cm, auto]
+\node[terminal interrupt] (start){Start};
+\node[preparation, below of=start] (preparationprodkandkator){MPROD, MKAND, MKATOR};
+\node[process, below of=preparationprodkandkator] (processmprodmkandkator){MPROD $+=$ MKAND\\MKATOR$--$};
+\node[decision, below of=processmprodmkandkator] (decisionmkator){MKATOR $> 0$};
+\node[terminal interrupt, below of=decisionmkator] (end){Ende};
+
+\path[line] (start.south) -- (preparationprodkandkator.north);
+\path[line] (preparationprodkandkator.south) -- (processmprodmkandkator.north);
+\path[line] (processmprodmkandkator.south) -- (decisionmkator.north);
+\path[line] (decisionmkator.south) -- node[near start]{Nein} (end.north);
+\path[line] (decisionmkator.west) -- node[near start]{Ja} ++(-2,0) |- (processmprodmkandkator.west);
+\end{tikzpicture}\\\\
+
+\begin{tabular}{|cccc|l|}
+\hline
+255 & $\times$ & 255 & = & 65025\\
+\hline
+65535 & x & 5 & = & 3276F5\\
+\hline
+16000 & x & 32000 & = & 512 $\cdot 10^6$\\
+\hline
+FFFF & x & FFFF & = & FFFE0001\\
+\hline
+\end{tabular}

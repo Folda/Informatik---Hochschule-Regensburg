@@ -1,0 +1,64 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+
+%<Einstellung fr Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=true,bookmarksnumbered=true,
+pdftitle={Hefter für Mathematik 2 -- Stand: \today},
+pdfauthor={Thaller Alexander},
+pdfsubject={Hefter für das Fach Mathematik 2 aus der Vorlesung von Professorin Gabriela Grüniger (Grüg) für das 2. Semester der Informatik im Sommersemester 2009 an der Hochschule Regensburg.},
+pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
+%</Einstellung fr Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlehead{\includegraphics[width=34mm]{FH-Logo.pdf}}
+\subject{Informatik (Bachelor) 2. Semester}
+\author{Alexander Thaller}
+\title{Mathematik 2\footnote{Gefundene Fehler oder Verbesserungsvorschlge bitte hier im PDF kommentieren, in die Fehler und Verbesserungen Textdatei schreiben oder alternativ mir eine E-Mail schicken an \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\subtitle{Hefter des Sommersemesters 2009}
+\date{stand \today}
+\publishers{Aus der Vorlesung von Professorin Gabriela Grüniger (Grüg)}
+%</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\input{00acronyms.tex}
+\maketitle
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\clearpage
+\pdfbookmark[0]{\contentsname}{tocanc}
+\tableofcontents
+\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{kapitel/Uebersicht.tex}
+\newpage
+\part{Einführung} \pagestyle{fancy} %MARK: Part 1
+\input{kapitel/Fakultaeten_und_Binominalkoeffizienten.tex}
+\input{kapitel/Ungleichungen.tex}
+
+\part{Folgen und Reihen} %MARK: Part 2
+\input{kapitel/Konvergente_Folgen.tex}
+\input{kapitel/Landau_Symbole.tex}
+\input{kapitel/Konvergente_Reihen.tex}
+\input{kapitel/Potenzreihen_und_elementare_Funktionen.tex}
+
+\part{Übungsblätter}
+\input{kapitel/Ergaenzungsblaetter.tex}
+\input{kapitel/Uebungsblaetter.tex}
+\input{kapitel/Testblaetter.tex}
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Literaturverzeichnis
+%\newpage
+%\addcontentsline{toc}{part}{Literaturverzeichnis}
+%\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\thepage}{\Roman{page}}
+\setcounter{page}{1}
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}
+
+

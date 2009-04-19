@@ -1,0 +1,133 @@
+\chapter{Übungsblätter}
+\section{Lösungen}
+\subsection{Übung 1.1}
+\label{sec:Uebungsblaetter_1_1L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_1}.
+
+\begin{itemize}
+\item 3 Wagen 1. Klasse
+\item 5 Wagen 2. Klasse
+\item 2 Gepäckwagen
+\end{itemize}
+
+\begin{enumerate}[label=\alph*)]
+\item $\binom{10}{3} \mal \binom{7}{5} \mal \binom{2}{2} = \frac{10 \mal 9 \mal 8}{3!} \mal \frac{7 \mal 6 \mal 5 \mal 4 \mal 3}{5!} \mal \frac{2 \mal 1}{2!} = \frac{10!}{3! \mal 5! \mal 2!}$\\
+		$\binom{10}{3}$: Anzahl möglicher Plätze für 1. Klasse auszusuchen\\
+		$\binom{7}{5}$: Anzahl Möglichkeiten im Anschluss Plätze für 2. Klasse festzulegen\\
+		$\binom{2}{2}$: Letzte 2 Plätze im Gepäckwagen
+
+\item Wagen wie in a), alle 2. Klasse Wagen am Stück
+
+		%MA-02.04.2009-IMG-1
+		\begin{tikzpicture}[decoration=brace]
+		\draw[thick, ->] (0,0) -- (6,0) node[below] {$n$};
+		\draw[-|] (2,-0.2) node[below] {$n - 1$} -- (2,1.8) node[left]{$S_{n - 1}$};
+		\draw[-|] (3,-0.2) node[below] {$n$} -- (3,2.8) node[above]{$S_1$};
+		\draw[dashed] (2,1.8) -- (5,1.8);
+		\draw[dashed] (3,2.8) -- (5,2.8);
+		\draw[decorate] (2.5,2.8) -- (2.5,1.8) node[right, midway] {$\epsilon$};
+		\draw (3,2.8) -- (2.5,2.8);
+		
+		\draw[draw=red, <->] (5,2.8) node[right] {$S$} -- (5,1.8) node[right,midway] {$> \frac{\epsilon}{2}$};
+		\draw[draw=blue, <->] (6,0) node[right] {$S$} -- (6,2.8) node[right,midway] {$> \frac{\epsilon}{2}$};
+		\end{tikzpicture}
+
+		6 Möglichkeiten den Platz des ersten 2. Klasse Wagens festzulegen\\
+		$\binom{5}{3} \mal \binom{2}{2}$ Anzahl Möglichkeiten die Plätze für die anderen Wagen festzulegen\\
+		$6 \mal \binom{5}{3} \mal \binom{2}{2} = 6 \mal \frac{5 \mal 4 \mal 3}{1 \mal 2 \mal 3} = 60$
+\end{enumerate}
+
+\subsection{Übung 1.2 (Abwandlung)}
+\label{sec:Uebungsblaetter_1_2AL}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_2A}.
+
+\begin{itemize}
+\item 12 stellige Zahl mit Ziffern 1-9
+\item max zwei 9
+\item Summe der ersten beiden 16
+\end{itemize}
+
+\subsubsection*{ersten beiden Stellen}
+$\left.88\right\}$ \textcircled{1}\\
+$\left.\begin{array}{l}
+79\\
+97
+\end{array}\right\}$ \textcircled{2}
+
+\begin{enumerate}[label=\textcircled{\arabic*}]
+\item Möglichkeiten noch $2 \times 9$, $1 \times 9$, $0 \times 9$ in den 10 Stellen\\
+		$\binom{10}{2} \mal 8 + \binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}$\\
+		$8$ ist die Anzahl der Möglichkeiten pro Stelle\\
+		$\space^8$ ist die Anzahl der Stellen
+
+\item Möglichkeiten noch $1 \times 9$ oder $0 \times 9$ in 10 Stellen\\
+		$\binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}$\\
+		\Ra Totale Anzahl = $1 \mal \rkl{\rkl{\binom{10}{2} \mal 8^8 + \binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}} + 2 \mal \rkl{\binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}}}$
+\item 
+\end{enumerate}
+
+\subsection{Übung 1.3}
+\label{sec:Uebungsblaetter_1_3L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_3}.
+
+zu zeigen $\forall n \in \N_0: \sum_{k = 0}^n \binom{m + k}{k} = \binom{m + n + 1}{n}$
+\begin{description}
+\item[(IA)] $n = 0$
+		\[\left.\begin{array}{l}
+		\tx{LS} = \sum_{k = 0}^0 \binom{m + k}{k} = \binom{m + 0}{0} = 1\\
+		\tx{RS} = \binom{m + 0 + 1}{0} = 1
+		\end{array}\right\} \checkmark\]
+
+\item[(IS)] zu zeigen $\forall n \in \N: \underbrace{\sum_{k = 0}^n \binom{m + k}{k} = \binom{m + n + 1}{n}}_{= \tx{(IV)}}$ \Ra $\sum_{k = 0}^{n + 1} \binom{m + k}{k} = \binom{m + n + 2}{n + 1}$
+		\begin{align*}
+		&\sum_{k = 0}^{n + 1} \binom{m + k}{k} = \binom{m + n + 1}{n + 1} + \sum_{k = 0}^n \binom{m + k}{k}\\
+		\stack{=}{\tx{(IV)}} & \underbrace{\binom{m + n + 1}{n + 1}}_{\binom{m + n + 1}{m}} + \binom{m + n + 1}{n} \underbrace{=}_{\tx{Satz 1.3 iii)}} \binom{m + n + 2}{n + 1}
+		\end{align*}\qed
+\end{description}
+
+\subsection{Übung 1.4}
+\label{sec:Uebungsblaetter_1_4L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_4}.
+
+Für welche $(x, y) \in \mb{R}^2$ gilt:
+\[xy \klgl x^2 + y^2\]
+\textit{Behauptung:} Gilt für alle $(x, y) \in \mb{R}^2$
+\begin{description}
+\item[Fall 1] $xy \klgl 0$ (\ac{d.h.} $(x \klgl 0 \und y \grgl 0) \oder (x \klgl 0 \und y \grgl 0)$\\
+		\begin{align*}
+		&x y \klgl 0 \tx{ und } \underbrace{x^2}_{\grgl 0} + \underbrace{y^2}_{\grgl 0} \grgl 0\\
+		\Ra &xy \klgl x^2 + y^2
+		\end{align*}
+
+\item[Fall 2] $xy > 0 (\Lra (x > 0 \und y > 0) \oder (x < 0 \und y < 0)$
+		\begin{align*}
+		&xy \stack{\klgl}{!} x^2 + y^2~~~~\vert - xy\\
+		\Lra &0 \stack{\klgl}{!} x^2 - xy + y^2
+		\La &x^2 - xy + y^2 > x^2 - x - \underbrace{xy}_{> 0} + y^2 = (x - y)^2 \grgl 0
+		\end{align*}\qed
+\end{description}
+
+\subsection{Übung 1.5}
+\label{sec:Uebungsblaetter_1_5L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_5}.
+
+$\betrag{\frac{3 - 2x}{2 + x}} \klgl 4$ $x \in \mb{R} \backslash \gklamm{-1}$\\
+\Lra $-4 \klgl \frac{3 - 2x}{1 + x} \klgl 4$
+\begin{description}
+\item[Fall 1] $1 + x > 0 (\Lra x > - 1)$
+		\begin{align*}
+		\Lra &-4(1 + x) \klgl 3 - 2x \klgl 4(1 + x)\\
+		\Lra &-4 -4x \klgl 3 - 2x \klgl 4 + 4x\\
+		\Lra &\matrixp{-4 -4x \klgl 3 - 2x \vert + 4x - 3\\\Lra - 7 \klgl 2x \vert : 2\\\Lra -\frac{7}{2} \klgl x} \und \matrixp{3 - 2x \klgl 4 + 4x \vert +2x - 4\\- 1 \klgl 6x \vert :6\\-\frac{1}{6} \klgl x}\\
+		&L_1 = \left[- \frac{1}{6}, \infty\right)
+		\end{align*}
+
+\item[Fall 2] $1 + x < 0$ ($\Lra x < - 1$)
+		\begin{align*}
+		\Lra &-4(1 + x) \grgl 3 - 2x \grgl 4(1 + x)\\
+		\Lra &-4 -4x \grgl 3 - 2x \grgl 4 + 4x\\
+		\Lra &\matrixp{-4 -4x \grgl 3 - 2x \vert + 4x - 3\\\Lra - 7 \grgl 2x \vert : 2\\\Lra -\frac{7}{2} \grgl x} \und \matrixp{3 - 2x \grgl 4 + 4x \vert +2x - 4\\- 1 \grgl 6x \vert :6\\-\frac{1}{6} \grgl x}\\
+		&L_2 = \left(\infty, -\frac{7}{2}\right]
+		\end{align*}
+\end{description}
+\[L = L_1 \cup L_2 ) \left(-\infty, -\frac{7}{2}\right] \cup \left[-\frac{1}{6}, \infty\right)\]

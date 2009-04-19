@@ -1,0 +1,156 @@
+%Informationsblätter
+\documentclass[10pt,oneside,a4paper,fleqn]{scrartcl}
+%neue Rechtschreibung
+\usepackage{ngerman}
+%Umlaute ermöglichen
+\usepackage[latin1]{inputenc}
+%Fontkodierung
+\usepackage[T1]{fontenc}
+%Einstellungen der Seitenränder
+%Normal
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2cm,includeheadfoot]{geometry}
+%Erweitertes Unterstreichen
+\usepackage{ulem}
+%Umrahmen
+\usepackage{fancybox}
+%Mathematische Pakete und Fonts
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{polynom} %Polynomdivison Darstellen
+%Verschiedene Symbole
+\usepackage{amssymb}
+\usepackage{latexsym}
+%Bilder
+\usepackage{graphicx}
+%Tabellen
+\usepackage{array}
+%Links
+\usepackage{hyperref}
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true}
+%Inhaltsverzeichnis
+\usepackage{index}
+%Farben
+\usepackage[usenames]{color}
+
+\usepackage{float}
+
+\usepackage{longtable}
+
+\usepackage[table]{xcolor}
+
+\usepackage{libertine}
+
+%Diagramme
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+%Quellcode Einfügen
+\usepackage{listings} 
+\lstset{
+numbers=left,
+numberstyle=\small,
+numbersep=5pt,
+stringstyle=\ttfamily,
+showstringspaces=false
+}
+
+\lstdefinelanguage{pseud}
+{morekeywords={wenn,dann,sonst,return,solange},
+sensitive=false,
+morecomment=[l]{//},
+morecomment=[s]{/*}{*/},
+}
+
+\usepackage{pdfpages}
+
+%%%%%%%%Commandos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%Entspricht
+\newcommand{\equals}{\stackrel{\scriptscriptstyle\wedge}{=}}
+
+%%%%%%%%Zehnerpotenzen
+\newcommand{\znr}[1]{\cdot 10^{#1}}
+
+%%%%%%%%Betrag
+\newcommand{\betrag}[1]{\left| #1 \right|}
+
+%%%%%%%%Sin, Cos, Tan
+\newcommand{\sinx}[1]{\sin{\left( #1 \right)}} %%Sin
+\newcommand{\cosx}[1]{\cos{\left( #1 \right)}} %%Cos
+\newcommand{\tanx}[1]{\tan{\left( #1 \right)}} %%Tan
+
+%%%%%%%%Arabische in Römische Zahl umwandeln
+\newcommand{\RM}[1]{\ensuremath{\mbox{\MakeUppercase{\romannumeral #1}}}}
+
+%%%%%%%%Langer Vektor
+\newcommand{\lvec}[1]{\overrightarrow{#1}}
+
+%%%%%%%%Ausgeschriebener Vektor
+\newcommand{\vektor}[3]{\begin{pmatrix} #1\\#2\\#3 \end{pmatrix}}
+
+%%%%%%%%Ausgeschriebener Punkt
+\newcommand{\punkt}[4]{#1 \left( \begin{array}{c|c|c} #2 & #3 & #4 \end{array} \right)}
+
+%%%%%%%%Eingesetzt in
+\newcommand{\tin}{\mbox{ in }}
+
+%%%%%%%%In Anführungszeichen Setzen
+\newcommand{\quotate}[1]{\glqq #1\grqq }
+
+%%%%%%%%In geschweifte Klammern setzen
+\newcommand{\gklamm}[1]{$\left\{ \mbox{#1} \right\}$}
+
+% \if\blank --- checks if parameter is blank (Spaces count as blank) 
+% \if\given --- checks if parameter is not blank: like \if\blank{#1}\else 
+% \if\nil --- checks if parameter is null (spaces are NOT null) 
+% use \if\given{ } ... \else ... \fi etc. 
+% Beispiel: \newcommand{\blah}[1]{\if\blank{#1}Leer\else#1\fi}
+% 
+{\catcode`\!=8 % funny catcode so ! will be a delimiter 
+\catcode`\Q=3 % funny catcode so Q will be a delimiter 
+\long\gdef\given#1{88\fi\Ifbl@nk#1QQQ\empty!} 
+\long\gdef\blank#1{88\fi\Ifbl@nk#1QQ..!}% if null or spaces 
+\long\gdef\nil#1{\IfN@Ught#1* {#1}!}% if null 
+\long\gdef\IfN@Ught#1 #2!{\blank{#2}} 
+\long\gdef\Ifbl@nk#1#2Q#3!{\ifx#3}% same as above 
+}
+
+%Formel Abschnitt
+\definecolor{FormBoxColor}{RGB}{147,204,234}
+\setlength{\fboxrule}{1pt}
+\newcommand{\FormelAbschnitt}[6]
+{
+\begin{figure}[H]
+#1
+\fcolorbox{black}{FormBoxColor}{\parbox{35mm}{
+\centering \begin{math}\renewcommand{\arraystretch}{1.5} \begin{array}{ll} #2 \end{array} \end{math}
+}}\\\\
+\begin{math}
+\renewcommand{\arraystretch}{1.5}
+\begin{array}{llll}
+#3
+\end{array}
+\if\blank{#4}\else \\\\
+\begin{array}{llll}
+\mbox{Einheit:} & 1 #4 & \mbox{Dimension:} & #5
+\end{array}\fi
+\end{math}
+\if\blank{#6}\else\\\\#6\fi
+\end{figure}
+}
+
+%%%%%%%%Verschiedene Konstanten
+%%%%%%%%Elektrische Feldkonstante
+\def \elefeldk { 8,854 \cdot 10^{-12} \frac{F}{m} }
+%%%%%%%%Gravitationskonstante
+\def \gravik { 6,673 \cdot 10^{-11} \frac{m^3}{kg s^2} }
+%%%%%%%%Elementarladung
+\def \elemlad { 1,602 \cdot 10^{-19} C }
+%%%%%%%%Elektronenmasse
+\def \elekmass { 9,109 \cdot 10^{-31} kg }
+%%%%%%%%Protonenmasse
+\def \protomass { 1,673 \cdot 10^{-27} kg }
+
+%%%%%%%%Abkürzungen
+\def \Ra {$\Rightarrow$}
+\def \mal { \cdot }
+%<>%%%%%Commandos%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

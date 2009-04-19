@@ -1,0 +1,13 @@
+\section{Übung 6}
+\subsection{Lösung zu Aufgabe 1}
+
+\begin{tikzpicture}[node distance = 2.5cm, auto]
+\node[terminal interrupt] (start){Start};
+\node[preparation, below of=start] (preparationZSSA){$Z$, $S$, $SA$};
+\node[process, below of=preparationZSSa] (processSSA){$S = 1$\\$SA = 5$};
+\node[decision, below of=processSSA] (decisionoSA){$SA = 0$};
+\node[process, below of=decisionoSA] (processZ){Ausgabe $Z$};
+\node[process, right of=decisionoSA] (processRead){Stelle einlesen\\Stelle mit $S$ multiplizieren\\Ergebnis zu $Z$ addieren};
+\node[process, right of=processRead] (processSSa2){$S \mal= 10$\\$SA--$};
+\node[terminal interrupt, below of=processoflag] (end){Ende};
+\end{tikzpicture}

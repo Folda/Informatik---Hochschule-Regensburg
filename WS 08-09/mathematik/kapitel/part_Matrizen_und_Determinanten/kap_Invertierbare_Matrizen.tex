@@ -1,0 +1,118 @@
+\chapter{Invertierbare Matrizen}
+\section{Definitionen}
+\subsection{Quadratische Matrix, reguläre Matrix}
+\label{sec:MatrizenundDeterminanten-4-7}
+Man nennt eine Matrix $A$ quadratisch\index{quadratisch}, wenn sie gleich viele Spalten wie Zeilen hat, also $A \in M(n, n)$ für ein $n \in \mathbb{N}$.\\
+Eine quadratische Matrix $A$ nennt man regulär\index{regulär}, falls die Spalten von $A$ linear unabhängig sind.\\
+\textalign{Bemerkung:}{$A$ regulär $A \in M(n, n)$\\
+$\Leftrightarrow \func{f_A} \mathbb{R}^n \ra \mathbb{R}^n$, bijektiv\\
+$\Leftrightarrow \func{f_A} \mathbb{R}^n \ra \mathbb{R}^n$, surjektiv\\
+$\Leftrightarrow \func{f_A} \mathbb{R}^n \ra \mathbb{R}^n$, injektiv}
+
+\section{Sätze}
+\subsection{Existenz der Inversen Matrix}
+\label{sec:MatrizenundDeterminanten-4-8}
+Für jede quadratische Matrix $A \in M(n, n)$ sind die folgenden Aussagen äquivalent:
+\begin{enumerate}
+\item $A$ ist regulär
+\item es gibt ein $B \in M(n, n)$ mit $AB = E_n$
+\item es gibt ein $B \in M(n, n)$ mit $BA = E_n$
+\item es gibt ein $B \in M(n, n)$ mit $AB = E_n = BA$
+\end{enumerate}
+Ist eine dieser Aussagen erfüllt, ist $B$ regulär und durch eine der Gleichungen (1. oder 2.) eindeutig bestimmt. Man nennt $B$ dann die Inverse\index{Inverse} von $A$, Zudem bezeichnet man $A$ dann auch als invertierbar\index{invertierbar}.\\
+\textalign{Bemerkung:}{$A$ regulär $\Leftrightarrow A$ ist invertierbar.}\\
+\textalign{Beweis:}{Sei $\func{f_A} \mathbb{R}^n \ra \mathbb{R}^n$ sei die zu $A$ gehörende lineare Abbildung.\\
+\textalign{$i \Ra$ 2., 3. ,4.}{da $A$ regulär ist $f_A$ bijektiv Daher existiert die Umkehrabbildung $f_A^{-1} \mathbb{R}^n \ra \mathbb{R}^n$ ($f_A^{-1}$ ist eindeutig), so dass man nach Satz \vref{sec:Grundlagen-1-24} gilt:
+\[f_A^{-1} \circ f_A = id_{\mathbb{R}^n}\]
+\[f_A \circ f_A^{-1} = id_{\mathbb{R}^n}\]
+Ist $B$ dann die Standardmatrix von $f_A^{-1}$ gilt:
+\[B \mal A = E_n\]
+\[A \mal B = E_n\]}
+
+\textalign{3. $\Ra$ 1.}{es existiert eine Matrix $B$ mit $BA = E_n$\\
+Wenn $f_B$ die zu $B$ gehörende lineare Abbildung ist gilt also
+\[f_B \circ f_A = id_{\mathbb{R}^n}\]
+$id_{\mathbb{R}^n}$ ist bijektiv $\Ra$ (mit Aufgabe E 13 a,c) $f_B$ ist surjektiv, $f_A$ ist injektiv. Da wir lineare Abbildungen $\mathbb{R}^n \ra \mathbb{R}^n$ betrachten gilt $f_A, f_B$ bijektiv $\Ra$ A,B regulär.}
+
+\textalign{2. $\Ra$ 1.}{\demonstrand{analog zu 3. $\Ra$ 1.}}}
+
+\textalign{Bemerkung:}{Für die Inverse von $A$ schreibt man $A^{-1}$ (in Anlehnung an $f^{-1}$)}
+
+\subsection{Weiterer Satz}
+\label{sec:MatrizenundDeterminanten-4-9}
+Gegeben sei eine reguläre Matrix $A \in M(n, n)$ und ein Vektor $\vec{b} \in M(n, 1)$. Dann ist $A^{-1} \mal \vec{b}$ die eindeutige Lösung des (quadratischen) linearen Gleichungssystems.
+\[A \vec{x} = \vec{b}\]
+\textalign{Beweis:}{$A \in M(n ,n)$ regulär $\Leftrightarrow \func{f_A} \mathbb{R}^n \ra \mathbb{R}^n$ bijektiv daher wegen Surjektivität ist jedes $\vec{b} \in \mathbb{R}^n$ Bild eines Punktes aus $\mathbb{R}^n$ unter $f_A$, daher das Gleichungssystem $A \vec{x} = \vec{b} \left(\Leftrightarrow f_A (\vec{x}) = \vec{b}\right)$ hat mindestens eine Lösung\\
+wegen Injektivität (jeder Punkt kann höchstens das Bild eines Punktes sein) ist diese Lösung eindeutig.\\
+Bleibt also zz dass diese Lösung die Form
+\[\vec{x} = A^{-1} \mal \vec{b} \mbox{ hat}\]
+\demonstrand{\[A \vec{x} = A \mal \left(A^{-1} \vec{b}\right) = \left(A \mal A^{-1}\right) \mal \vec{b} = En \vec{b} = \vec{b}\]}}
+
+Nachtragen von Jurij - Donnerstag 04.12.2008
+
+\section{Ungeordnet}
+\subsection{1.2.1}
+$\gauss{ccc|c}{1 & 0 & 1 & 1\\0 & \lambda & 1 & 0\\1 & 1 & 0 & 0}$
+$\underrightarrow{\RM{3} = \RM{3} - \RM{1}} \gauss{ccc|c}{1 & 0 & 1 & 1\\0 & \lambda & 1 & 0\\0 & 1 & 1 & 1}$
+$\underrightarrow{\RM{2} \leftrightarrow \RM{3}} \gauss{ccc|c}{1 & 0 & 1 & 1\\0 & 1 & 1 & 1\\0 & \lambda & 1 & 0}$
+$\underrightarrow{\RM{3} = \RM{3} - \lambda \RM{2}} \gauss{ccc|c}{1 & 0 & 1 & 1\\0 & 1 & 1 & 1\\0 & 0 & 1 - \lambda & -\lambda}$
+
+\textalign{Fall 1:}{$1 - \lambda = 0 \Leftrightarrow \lambda = 1$\\
+$\gauss{ccc|c}{1 & 0 & 1 & 1\\0 & 1 & 1 & 1\\0 & 0 & 0 & 1}$\\
+$\Ra L = \emptyset$}
+
+\textalign{Fall 2:}{$\lambda = 0$\\
+$\gauss{ccc|c}{1 & 0 & 1 & 1\\0 & 1 & 1 & 1\\0 & 0 & 1 & 0}$
+$\underrightarrow{\RM{2} = \RM{2} - \RM{3}} \gauss{ccc|c}{1 & 0 & 1 & 1\\0 & 1 & 0 & 1\\0 & 0 & 1 & 0}$
+$\underrightarrow{\RM{1} = \RM{1} - \RM{3}} \gauss{ccc|c}{1 & 0 & 0 & 1\\0 & 1 & 0 & 1\\0 & 0 & 1 & 0}$\\
+$\Ra L = \gklamm{(1, 1, 0)^T}$\\
+$\Ra$ Konsistent für $\lambda = 0$}
+
+\subsection{1.2.2}
+$p(x) = a_0 + a_1 x + a_2 x^2$\\
+$p(1) = 12$, $p(2) = 15$, $p(3) = 16$
+08.12.2008-IMG-mathe-1\\
+$a_0 + 1 \mal a_1 + 1 \mal a_2 = 12$\\
+$a_0 + 2 \mal a_2 + 2^2 a_2 = 15$\\
+$a_0 + 3 \mal a_1 + 3^2 \mal a_2 = 16$\\
+$\underrightarrow{\RM{2} = \RM{2} - \RM{1}}$\\
+$\underrightarrow{\RM{3} = \RM{3} - \RM{1}}$\\
+$\underrightarrow{\RM{3} = \RM{3} - 2 \RM{2}}$\\
+$\underrightarrow{\RM{3} = \RM{3} \frac{1}{2}}$\\
+$\underrightarrow{\RM{2} = \RM{2} - 3 \mal \RM{3}}$\\
+$\underrightarrow{\RM{1} = \RM{1} - \RM{3}}$\\
+$\underrightarrow{\RM{1} = \RM{1} - \RM{2}}$\\
+$\Ra a_0 = 7, a_1 = 6, a_2 = -1$\\
+$\Ra$ Polynom $p(x) = 7 + 6x -x^2$
+
+\subsection{Ü 2.5}
+$\gauss{ccc|c}{1 & 0 & 5 & 2\\-2 & 1 & -6 & -1\\0 & 2 & 8 & x}$
+$\underrightarrow{\RM{2} = \RM{2} + 2 \RM{1}}$\\
+$\underrightarrow{\RM{3} = \RM{3} - 2 \RM{2}}$
+
+\textalign{Fall 1:}{$x - 6 \neq 0$\\
+letzte Spalte ist eine Pivot-Spalte $\Ra$ es existiert keine Lösung $\Ra$ $\vec{b}$ ist keine Linearkombination der Spalten von $A$}
+
+\textalign{Fall 2:}{$x - 6 = 0 \Leftrightarrow x = 6$\\
+$\gauss{ccc|c}{1 & 0 & 5 & 2\\0 & 1 & 4 & 3\\0 & 0 & 0 & 0}$\\
+es existiert Lösung $\Ra$ $\vec{b}$ ist Linearkombination $a$ Spalten von $A$\\
+$\Ra x = 6$}
+
+\subsection{Ü 2.6}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item $\vec{u_1} = \vektor{1}{-5}{2}, \vec{u_2} = \vektor{-3}{8}{6}, \vec{u_3} = \vektor{4}{\alpha}{-8}$\\
+		$\gauss{ccc|c}{1 & -3 & 4 & 0\\-5 & 8 & \alpha & 0\\-2 & 6 & -8 & 0}$
+		$\underrightarrow{\RM{2} = \RM{2} + 2 \RM{1}} \gauss{ccc|c}{1 & -3 & 4 & 0\\-5 & 8 & \alpha & 0\\0 & 0 & 0 & 0}$\\
+		da homogenes Gleichungssystem existiert mindesten eine Lösung da zudem eine freie Variable vorhanden ist existieren $\infty$-viele Lösungen.
+		\renewcommand{\labelitemi}{$\Rightarrow$}
+		\begin{itemize}
+		\item Die Vektoren sind für alle $\alpha$ Linear abhängig.
+		\item Es existiert kein $\alpha \in \mathbb{R}$ so, dass $\vec{u_1}, \vec{u_2}, \vec{u_3}$ linear unabhängig sind.
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+
+\item $\vec{v_1} = \varvektor{c}{1\\-5}, \vec{v_2} = \varvektor{c}{1\\7}, \vec{3} = \varvektor{c}{-2\\\alpha}$\\
+		da im 2-dimensionalen Raum maximal 2 Vektoren unabhängig sein können, existiert kein $\alpha$ so, dass $\vec{v_1}, \vec{v_2}, \vec{v_3}$ linear unabhängig sind.
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}

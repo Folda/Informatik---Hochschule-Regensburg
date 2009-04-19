@@ -1,0 +1,45 @@
+\PassOptionsToPackage{x11names}{xcolor} %Für Spezielle Farbnamen
+\documentclass[oneside,a4paper,fleqn,parskip=half]{scrreprt}
+
+%Wenn Hefter in Deutsch
+\usepackage{ngerman}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+%Standartfont
+\usepackage{libertine}
+
+%Zusatzpaket für mathematische Ausdrücke
+\usepackage{amsmath}
+
+%Verbessertes Ref
+\usepackage[german]{varioref}
+
+%Links
+\usepackage{hyperref}
+
+%Stichwortverzeichnis
+\usepackage{makeidx}
+\makeindex
+
+%Anpassbare Enumerates/Itemizes
+\usepackage{enumitem}
+
+\usepackage{listings} %Quellcode Einbindung
+\lstset{
+basicstyle=\ttfamily,
+language=C,
+commentstyle=\color{Green4},
+keywordstyle=\color{blue},
+stringstyle=\color{Firebrick4},
+morekeywords={printf, strcpy}
+breaklines=true
+}
+
+%Für Euro zeichen
+\usepackage{marvosym}
+
+%Für zeichnungen
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc}

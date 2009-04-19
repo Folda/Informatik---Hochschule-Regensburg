@@ -1,0 +1,466 @@
+\chapter{Logik}
+Mathematische Inhalte werden durch Aussagen ausgedrückt. Eine Aussage beschreibt einen Sachverhalt, der eindeutig entweder wahr $(w)$ oder falsch $(f)$ ist.
+Daher:
+\begin{enumerate}
+\item Außer wahr und falsch sind keine weiteren Wahrheitswerte zugelassen. (Prinzip vom ausgeschlossenen Dritten)\index{Prinzip vom ausgeschlossenen Dritten}
+\item Es trifft genau eine der beiden Möglichkeiten zu. (Prinzip vom ausgeschlossenen Widerspruch)\index{Prinzip vom ausgeschlossenen Widerspruch}
+\end{enumerate}
+\textalignenum{Beispiel:}{}{
+\begin{multicols}{2}[][1em]
+\renewcommand{\labelenumi}{\alph{enumi})}
+\item $5$ ist kleiner als $3$
+\item Bonn ist die Hauptstadt der BRD
+\item Gehst du nach Hause?
+\item Der einzige Satz ist dieser Zeile ist falsch.
+\item Jeder gerade Zahl ist größer als $2$ lässt sich als Summe zweier Primzahlen schreiben.
+\item Das Studium der Informatik ist schwer.
+\end{multicols}}\\
+
+\textfakealignenum{Beispiel:}{zu }{
+\renewcommand{\labelenumi}{zu \alph{enumi})}
+\item Aussage mit Wahrheitswert falsch.
+\item Aussage mit Wahrheitswert falsch.
+\item keine Aussage (da Frage).
+\item keine Aussage da man keinen Wahrheitswert zuordnen kann.
+\item Aussage mit Wahrheitswert wahr
+\item keine Aussage, da objektiv kein bestimmter Wahrheitswert zugeordnet werden kann
+\renewcommand{\labelenumi}{\arabic{enumi}.}}
+
+Aus verschiedenen Aussagen werden Definitionen, Sätze und Beweise zusammengesetzt.
+\begin{itemize}
+\item In einer Definition\index{Definition} wird ein neuer Begriff oder eine Bezeichnung eingeführt.\\
+		Dieser neue Begriff kann nur durch Beziehungen zu schon vorhandenen Begriffen erklärt werden. Dabei stößt man irgendwann auf Grundbegriffe, die sich nicht definieren lassen.
+\item In einem Satz\index{Satz} (Theorem)\index{Theorem} wird eine Aussage über Eigenschaften von mathematischen Objekten und über Beziehungen zwischen Objekten gemacht.\\
+		\textalign{Bemerkung:}{Hilfssätze, Lemmata, Korollare sind auch Sätze.
+		\begin{description}
+		\item[Hilfssatz] ''kleiner'' eher unwichtiger Satz.\index{Hilfssatz}
+		\item[Lemma] ''kleiner'', aber wichtiger Satz.\index{Lemma}
+		\item[Korollar] Folgerung aus einem Satz, oft ein wichtiger Spezialfall des Satzes.\index{Korollar}
+		\end{description}}
+\item Ein Beweis ist ein Nachweis eines Satzes mit Mitteln der Logik.\index{Beweis}
+\end{itemize}
+Im Folgenden werden Aussagen mit $A, B$ bezeichnet. Diese Zeichen sind Aussagevariablen, die die Werte wahr oder falsch annehmen können.\\
+Zur Definition von Verknüpfungen und von Aussagen verwendet man Wahrheitstafeln. In einer solchen Tabelle legt man für jeder Kombination von Wahrheitswerten fest, welchen Wahrheitswert die Verknüpfung haben soll.
+
+\section{Definitionen}
+\subsection{Verknüpfung von Aussagen}
+\begin{enumerate}
+\item Die Negation\index{Negation $\neg$} oder Verneinung\index{Verneinung} der Aussage $A$, ist die Aussage ''nicht $A$'' in Zeichen $ \neg A$ (z.T auch $\overline{A}$), sie ist definiert:\\\\
+		%TABL-08.10.2008-mathe-1
+		\begin{tabular}{c||c}
+		$A$ & $\neg A$\\
+		\hline
+		$w$ & $f$\\
+		$f$ & $w$
+		\end{tabular}\\\\
+		\textalign{Beispiel:}{\vspace{-0.7em}
+		$\begin{array}{rl}
+		A & = \mbox{ heute ist Montag}\\
+		\neg A & = \mbox{ heute ist nicht Montag}
+		\end{array}$}
+
+\item Die Konjunktion\index{Konjunktion $\wedge$} der Aussagen $A$ und $B$, ist die Aussage ''$A$ und $B$'' in Zeichen $A \wedge B$.\\\\
+		%TABl-08.10.2008-mathe-2
+		\begin{tabular}{c|c||c}
+		$A$ & $B$ & $A \wedge B$\\
+		\hline
+		$w$ & $w$ & $w$\\
+		$w$ & $f$ & $f$\\
+		$f$ & $w$ & $f$\\
+		$f$ & $f$ & $f$
+		\end{tabular}\\\\
+		$A \wedge B$ ist definiert: $A \wedge B$ ist genau dann richtig, wenn $A$ richtig ist und $B$ richtig ist.\\
+		\textalign{Beispiel:}{\vspace{-0.7em}
+		$\begin{array}{rl}
+		A & = \mbox{ heute ist Montag}\\
+		B & = \mbox{ heute ist der Monatsende}\\
+		A \wedge B & = \mbox{ heute ist Montag und Monatsende}
+		\end{array}$}
+
+\item Die Disjunktion\index{Disjunktion $\vee$} von $A$ und $B$, ist die Aussage ''$A$ oder $B$'' (kein ausschließendes oder) in Zeichen $A \vee B$. $A \vee B$ ist definiert:\\\\
+		%TABL-08.10.2008-mathe-3
+		\begin{tabular}{c|c||c}
+		$A$ & $B$ & $A \vee B$\\
+		\hline
+		$w$ & $w$ & $w$\\
+		$w$ & $f$ & $w$\\
+		$f$ & $w$ & $w$\\
+		$f$ & $f$ & $f$
+		\end{tabular}\\\\
+		$A \vee B$ ist genau dann falsch, wenn $A$ und $B$ falsch sind.\\
+		\textalign{Beispiel:}{
+		$A, B $ wie oben\\
+		$A \vee B $ heute ist Montag oder heute ist Monatsende (oder heute ist Montag und Monatsende)}
+
+\item Die Implikation\index{Implikation $\Rightarrow$} von $A$ nach $B$ ist die Aussage ''wenn $A$ dann $B$'' oder ''aus $A$ folgt $B$'', in Zeichen $A \Rightarrow B$.\\$A \Rightarrow B$ ist definiert durch:\\\\
+		%TABL-08.10.2008-4
+		\begin{tabular}{c|c||c}
+		$A$ & $B$ & $A \Rightarrow B$\\
+		\hline
+		$w$ & $w$ & $w$\\
+		$w$ & $f$ & $f$\\
+		$f$ & $w$ & $w$\\
+		$f$ & $f$ & $w$
+		\end{tabular}\\\\
+		Die Aussage $A \Rightarrow B$ ist genau dann falsch, wenn $B$ falsch und $A$ richtig ist.\\
+		Man nennt $A$ die Voraussetzung und $B$ die (Schluss)Folgerung.\\
+		Man sagt auch $A$ ist eine hinreichend Bedingung für $B$ beziehungsweise $B$ ist eine notwendige Bedingung für $A$.\\
+		\textalignenum{Beispiel:}{}{
+		\item $A = $ es regnet\\
+				$B = $ die Straße ist nass
+		\item $A = $ Karlsruhe liegt in Bayern\\
+				$B = 1+1 = 3$}
+
+\item Die Äquivalenz\index{Äquivalenz $\Leftrightarrow$} von $A$ und $B$ ist die Aussage ''$A$ gilt genau dann wenn $B$ gilt'' beziehungsweise ''$A$ gilt dann und nur dann wenn $B$ gilt'', in Zeichen $A \Leftrightarrow B$ (''$A$ ist äquivalent zu $B$''). $A \Leftrightarrow B$ ist definiert durch:\\\\
+		%TABL-08.10.2008-mathe-5
+		\begin{tabular}{c|c||c}
+		$A$ & $B$ & $A \Leftrightarrow B$\\
+		\hline
+		$w$ & $w$ & $w$\\
+		$w$ & $f$ & $f$\\
+		$f$ & $w$ & $w$\\
+		$f$ & $f$ & $w$
+		\end{tabular}\\\\
+		$A \Leftrightarrow B$ ist gleichwertig zu $(A \Rightarrow B) \wedge (B \Rightarrow A)$\\\\
+		%TABL-08.10.2008-mathe-6
+		\begin{tabular}{c|c||c|c|c}
+		$A$ & $B$ & $A \Rightarrow B$ & $B \Rightarrow A$ & $(A \Rightarrow B) \wedge (B \Rightarrow A)$\\
+		\hline
+		$w$ & $w$ & $w$ & $w$ & $w$\\
+		$w$ & $f$ & $f$ & $w$ & $f$\\
+		$f$ & $w$ & $w$ & $f$ & $f$\\
+		$f$ & $f$ & $w$ & $w$ & $w$
+		\end{tabular}\\\\
+		da die ''Inputspalten'' links und die ''Outputspalten'' rechts der letzten beiden Tabellen übereinstimmen ist $A \Leftrightarrow B$ gleichbedeutend mit $(A \Rightarrow B) \wedge (B \Rightarrow A)$\\
+		\textalign{Beispiel:}{
+		$A = x$ ist durch $2$ teilbar\\
+		$B = x$ ist eine gerade Zahl\\
+		$A \Leftrightarrow B$, da entweder $A$ und $B$ richtig oder $A$ und $B$ falsch sind}
+\end{enumerate}
+\subsection{Tautologie und Kontradiktion}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+	\item Eine Aussage, die immer wahr ist heißt Tautologie\index{Tautologie}.
+	\item Eine Aussage, die immer falsch ist nennt man Kontradiktion\index{Kontradiktion}.
+\end{enumerate}
+\textalignenum{Beispiel:}{zu }{
+\renewcommand{\labelenumi}{zu \arabic{enumi}.}
+\item $A \vee \neg A$ (Gesetz des ausgeschlossenen Dritten)\index{Gesetz des ausgeschlossenen Dritten}
+\item $A \Leftrightarrow \neg (\neg A)$ (Gesetz der doppelten Verneinung)\index{Gesetz der doppelten Verneinung}
+\renewcommand{\labelenumi}{\arabic{enumi}.}}
+
+\subsection{Allquantor und Existenzquantor}
+\begin{enumerate}
+\item Gilt eine Aussage $A(x)$ für alle $x$, so schreibt man
+		\[\forall x: A(x) \mbox{ (für alle $x$ gilt die Aussage $A(x)$)}\]
+		\[\forall \mbox{ heißt Allquantor}\]\index{Allquantor}
+
+\item Gilt eine Aussage $A(x)$ für mindestens ein $x$, so schreibt man
+		\[\exists x: A(x) \mbox{ (es existiert mindestens ein $x$ für das die Aussage $A(x)$ gilt)}\]
+		\[\exists \mbox{ heißt Existenzquantor}\]\index{Existenzquantor}
+
+\item Wenn die Aussage $A(x)$ für genau ein $x$ gilt, schreibt man
+		\begin{alignat*}{2}
+			&\exists^1 &&x: A(x) \mbox{ (es gibt genau ein $x$ mit der Eigenschaft $A(x)$}\\
+			&\exists^{=1} &&x: A(x)\\
+			&\exists! &&x: A(x)\\
+			&\exists_1 &&x: A(x)
+		\end{alignat*}
+
+\item Wenn die Aussage $A(x)$ für genau $n$ verschiedene $x$ Werte gilt, schreibt man
+		\[\exists^{=n} x: A(x)\]
+\end{enumerate}
+\textalignenum{Beispiel:}{zu }{
+\renewcommand{\labelenumi}{zu \arabic{enumi}.}
+\item $\forall x: x^2 \geq 0$ (genauer $\forall x \in \relmeng: x^2 \geq 0$)
+\item $\exists x \in \mathbb{P}: x$ gerade ($\mathbb{P} =$ Menge der Primzahlen)
+\item $\exists! x \in \mathbb{P}: x$ gerade
+\renewcommand{\labelenumi}{\arabic{enumi}.}}
+
+\textalign{Bemerkung:}{
+\begin{itemize}[leftmargin=1.28em]
+\item Die Aussage $\forall x \in \mathbb{X}: A(x)$ entspricht der Aussage $\bigwedge_{x \in \mathbb{X}} A(x)$, also der Konjunktion aller $A(x)$
+\item Die Aussage $\exists x \in \mathbb{X}: A(x)$, entspricht der Aussage $\bigvee_{x \in \mathbb{X}} A(x)$, also der Disjunktion aller $A(x)$
+\end{itemize}}
+
+\subsection{Verneinung der Quantoren}
+\label{Satz_Verneinung_der_Quantoren}
+\begin{enumerate}
+\item $\neg (\forall x: A(x)) \aeq \exists x: \neg A(x)$
+\item $\neg (\exists x: A(x)) \aeq \forall x: \neg A(x)$
+\end{enumerate}
+Beweis: -\\
+\textalign{Bemerkung:}{Satz \vref{Satz_Verneinung_der_Quantoren} entspricht der Verallgemeinerung der Regeln von de Morgan auf allgemeine Indexmengen $\RM{1}$\\
+\[\neg \left(\forall x \in \RM{1}: A(x)\right) \aeq \neg \left(\bigwedge_{x \in \RM{1}} A(x)\right) \aeq \bigvee_{x \in \RM{1}} \left(\neg A(x)\right) \aeq \exists x \in \RM{1}: \neg A(x)\]}
+
+\textalign{Beispiel:}{
+$M$ Mengen aller Musiker eines Orchesters\\
+$A(m) = $ Musiker $m$ spielt falsch\\
+$\forall m \in M: A(m)$ Alle Musiker spielen falsch\\
+$\neg (\forall m \in M: A(m))$ mindestens ein Musiker spielt richtig\\
+$\exists m \in M: A(m)$ mindestens ein Musiker spielt falsch\\
+$\neg (\exists m \in M: A(m))$ alle Musiker spielen richtig}
+
+\subsection{\texorpdfstring{Beweisstrategien für Sätze der Form $A \Ra B$}{Beweisstrategien für Sätze der Form A dann B}}
+\begin{enumerate}
+\item Direkter Beweis\index{Direkter Beweis}\\\\
+		\begin{tabular}{c|c||c}
+			$A$ & $B$ & $A \Ra B$
+			\\\hline
+			$w$ & $w$ & $w$
+			\\$w$ & $f$ & $f$
+			\\$f$ & $w$ & $w$
+			\\$f$ & $f$ & $w$
+		\end{tabular}\\\\
+		Man nimmt an $A$ ist wahr und folgert daraus, dass $B$ wahr ist (d.h Fall $A$ wahr, $B$ falsch tritt nicht auf)\\
+		\textalign{Beispiel:}{
+		\textalign{Behauptung:}{
+		\textfakealign{$\Ra$}{}{$\overbrace{x \mbox { durch } 4 \mbox { teilbar}}^{A(x)}$}\\
+		\textalign{$\Ra$}{$\underbrace{x \mbox { durch } 2 \mbox { teilbar}}_{B(x)}$}}}\\
+		\textfakealign{Beispiel:}{}{
+		Sei $A(x)$ wahr\\$x$ durch $4$ teilbar
+		\begin{alignat*}{2}
+			&\aeq \frac{x}{4} = c~&&c \in \mathbb{Z}\\
+			&\aeq \frac{x}{2} = 2c~&&c \in \mathbb{Z}\\
+			&\aeq \frac{x}{2} = d~&&d \in \mathbb{Z}\\
+			&\aeq x \mbox{ ist durch $2$ teilbar}\\
+			&\aeq B(x) \mbox{ ist wahr}\
+		\end{alignat*}}
+
+\item Kontraposition\index{Kontraposition} ($\Ra$ indirekter Beweis\index{Indirekter Beweis})\\\\
+		\begin{tabular}{c|c||c|c}
+			$A$ & $B$ & $A \Ra B$ & $\neg B \Ra \neg A$
+			\\\hline
+			$w$ & $w$ & $w$ & $w$
+			\\$w$ & $f$ & $f$ & $f$
+			\\$f$ & $w$ & $w$ & $w$
+			\\$f$ & $f$ & $w$ & $w$
+		\end{tabular}\\\\
+		Wegen der Äquivalenz der Aussagen $A \Ra B$ und $\neg B \Ra \neg A$ können wir die zweite statt der ersten zeigen\\
+		Wir nehmen an $B$ sei falsch und folgen daraus, $A$ ist falsch (damit tritt der Fall $A$ wahr, $B$ falsch nicht auf)\\
+		\textalign{Beispiel:}{\textalign{Behauptung:}{$\underbrace{n^2 \mbox{ gerade}}_{A(n)} \Ra \underbrace{n \mbox{ gerade}}_{B(n)} (n \in \mathbb{N})$}}\\
+		\textfakealign{Beispiel:}{}{\textalign{Beweis:}{
+		Wir nehmen an $B(n)$ ist falsch, daher $n$ ist ungerade
+		\begin{alignat*}{2}
+			 \aeq n 	&= 2 m + 1~~m \in \mathbb{N}\\
+			 \Ra n^2 &= (2m + 1)^2 = (2m)^2 + 2(2m) \mal 1 + 1^2\\
+						&= \underbrace{\underbrace{4 m^2}_{\mbox{gerade}} + \underbrace{4m}_{\mbox{gerade}} +1}_{\mbox{ungerade}}\\
+			&\aeq A(n) \mbox{ ist falsch}
+		\end{alignat*}}}
+
+\item Wiederspruchsbeweis\index{Wiederspruchsbeweis} ($\Ra$ indirekter Beweis\index{Indirekter Beweis})\\\\
+		\begin{tabular}{c|c||c}
+			$A$ & $B$ & $A \Ra B$
+			\\\hline
+			$w$ & $w$ & $w$
+			\\$w$ & $f$ & $f$
+			\\$f$ & $w$ & $w$
+			\\$f$ & $f$ & $w$
+		\end{tabular}\\\\
+		Man nimmt an $A$ sei wahr und $B$ sei falsch($\equals$ einziger Fall indem $A \Ra B$ falsch ist) und zeigt, dass diese Annahmen zu einem Widerspruch führen.\\
+		\textalign{Beispiel:}{\textalign{Behauptung:}{$\sqrt{2}$ ist irrational (also nicht in $\mathbb{Q}$)
+		$\aeq \underbrace{x^2 = 2}_{A(x)} \Ra \underbrace{x \mbox{ ist irrational}}_{B(x)}$}}
+		\textfakealign{Beispiel:}{}{\textalign{Beweis:}{Wir nehmen an
+		\begin{align*}
+				   x^2 &= 2 \mbox{ und } x \mbox{ rational}\\
+		    \aeq x^2 &= 2 \mbox{ und es existiert $p,q$ teilerfremd } x = \frac{p}{q}\\
+			 \sqrt{2} &= x =\frac{p}{q}\\
+						 &\Ra 2 = x^2 = \frac{p^2}{q^2}\\
+				  		 &\aeq \underbrace{2q^2}_{\mbox{gerade}} = \underbrace{p^2}_{\mbox{gerade}} \mbox{ (*)}\\
+						 &\Ra p \mbox{ gerade } \Ra p = 2m~~m \in \mathbb{Z}\\
+						 &\Ra p^2 = (2m)^2 = 4 m^2
+		\end{align*}
+		\begin{align*}
+			\mbox{in (*)} &2 q^2 = 4 m^2\\
+			\aeq &q^2 = \underbrace{2m^2}_{\mbox{gerade}}\\
+			&\Ra q \mbox{ gerade } \lightning p,q \mbox{ sollen teilfremd sein}
+		\end{align*}}}
+\end{enumerate}
+\textalign{Bemerkung:}{Sätze der Form $A \aeq B$ zerlegt man für den Beweis normalerweise und zeigt $A \Ra B$ und $B \Ra A$.}
+
+\section{\texorpdfstring{Rechenregeln für $\wedge, \vee, \neg, \Rightarrow,$ und $\Leftrightarrow$}{Rechenregeln für Logik Verknüpfungen}}
+\label{sec_Rechenregeln_für_Logikverknüpfungen}
+\subsection{Assoziativgesetz}
+\index{Logik!Assoziativgesetz}
+\begin{enumerate}
+	\item $(A \wedge B) \wedge C \Longleftrightarrow A \wedge (B \wedge C)$
+	\item $(A \vee B) \vee C \Longleftrightarrow A \vee (B \vee C)$
+	\item $(A \Leftrightarrow B) \Leftrightarrow C \Longleftrightarrow A \Leftrightarrow (B \Leftrightarrow C)$
+\end{enumerate}
+
+\subsection{Kommutativgesetz}
+\index{Logik!Kommutativgesetz}
+\begin{enumerate}
+	\item $A \wedge B \Longleftrightarrow B \wedge A$
+	\item $A \vee B \Longleftrightarrow B \vee A$
+	\item $A \Leftrightarrow B \Longleftrightarrow B \Leftrightarrow A$
+\end{enumerate}
+
+\subsection{Distributivgesetz}
+\index{Logik!Distributivgesetz}
+\begin{enumerate}
+	\item $A \wedge (B \vee C) \Longleftrightarrow (A \wedge B) \vee (A \wedge C)$
+	\item $A \vee (B \wedge C) \Longleftrightarrow (A \vee B) \wedge (A \vee C)$
+\end{enumerate}
+
+\subsection{Idempotenzgesetz}
+\index{Logik!Idempotenzgesetz}
+\begin{enumerate}
+	\item $A \wedge A \Longleftrightarrow A$
+	\item $A \vee A \Longleftrightarrow A$
+\end{enumerate}
+
+\subsection{Absorptionsgesetz}
+\index{Logik!Absorptionsgesetz}
+\begin{enumerate}
+	\item $A \wedge (B \vee A) \Longleftrightarrow A$
+	\item $A \vee (B \wedge A) \Longleftrightarrow A$
+\end{enumerate}
+
+\subsection{Gesetz von de Morgan}
+\index{Logik!Gesetz von de Morgan}
+\begin{enumerate}
+	\item $\neg (A \wedge B) \Longleftrightarrow \neg A \vee \neg B$
+	\item $\neg (A \vee B) \Longleftrightarrow \neg A \wedge \neg B$
+\end{enumerate}
+
+\subsection{Kontraposition}
+\index{Logik!Kontraposition}
+\[A \Rightarrow B \Longleftrightarrow \neg B \Rightarrow \neg A\]
+\textalign{Beweis:}{über Wahrheitstafeln, Assoziativgesetz\\\\
+\begin{tabular}{c|c|c||c|c||c|c||c}
+$A$ & $B$ & $C$ & $A \Leftrightarrow B$ & $(A \Leftrightarrow B) \Leftrightarrow C$ & $B \Leftrightarrow C$ & $A \Leftrightarrow (B \Leftrightarrow C)$ & $D \Leftrightarrow E$\\
+\hline
+$w$ & $w$ & $w$ & $w$ & $w$ & $w$ & $w$ & $w$\\
+$w$ & $w$ & $f$ & $w$ & $f$ & $f$ & $f$ & $w$\\
+$w$ & $f$ & $w$ & $f$ & $f$ & $f$ & $f$ & $w$\\
+$w$ & $f$ & $f$ & $f$ & $w$ & $w$ & $w$ & $w$\\
+\hline
+$f$ & $w$ & $w$ & $f$ & $f$ & $w$ & $f$ & $w$\\
+$f$ & $w$ & $f$ & $f$ & $w$ & $f$ & $w$ & $w$\\
+$f$ & $f$ & $w$ & $w$ & $w$ & $f$ & $w$ & $w$\\
+$f$ & $f$ & $f$ & $w$ & $f$ & $w$ & $f$ & $w$
+\end{tabular}}
+
+\textalign{Beweis:}{Kontraposition\\
+$ A \Rightarrow B \Longleftrightarrow \neg B \Rightarrow \neg A$\\
+\begin{tabular}{c|c||c||c|c|c||c|c}
+$A$ & $B$ & $A \Rightarrow B$ & $\neg B$ & $\neg A$ & $\neg B \Rightarrow \neg A$ & $(A \Rightarrow B) \Leftrightarrow (\neg B \Rightarrow \neg A)$\\
+\hline
+$w$ & $w$ & $w$ & $f$ & $f$ & $w$ & $w$\\
+$w$ & $f$ & $f$ & $w$ & $f$ & $f$ & $w$\\
+$f$ & $w$ & $w$ & $f$ & $w$ & $w$ & $w$\\
+$f$ & $f$ & $w$ & $w$ & $w$ & $w$ & $w$
+\end{tabular}}
+
+\textalign{Bemerkung:}{Alle Aussagen des Satzes \vref{sec_Rechenregeln_für_Logikverknüpfungen} sind Tautologien.}
+
+\section{Aufgaben}
+\begin{tabular}{c|c||c}
+$A$ & $B$ & $A \Rightarrow B$\\
+\hline
+$w$ & $w$ & $w$\\
+w & f & f\\
+f & w & f\\
+f & f & w
+\end{tabular}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{enumerate}
+	\item $A = x$ ist durch 2 teilbar\\$B = x$ eine gerade Zahl\\$B$ und $A$ sind beide wahr oder beide falsch $A \Leftrightarrow B$ wahr (daher $A$ und $B$ sind äquivalent)
+	\item $A = x$ ist durch 2 teilbar\\$B = x$ ist ungerade\\damit ist immer genau eine der beiden Aussagen richtig und die andere falsch $A \Leftrightarrow B$ falsch ($A$ und $B$ sind nicht äquivalent)
+	\item $A = x$ ist durch 2 teilbar\\$B = x$ ist durch 4 teilbar\\daher $A \Leftrightarrow B$ kann wahr oder falsch sein ($A$ und $B$ sind keine äquivalenten Aussagen)
+	\item $A = 1 + 1 = 3$\\$B = $ Regensburg liegt im Saarland\\Da beide Aussagen falsch sind gilt $A \Leftrightarrow B$ (also insbesondere da $1 + 1 = 3$ folgt ''Regensburg liegt im Saarland'')
+\end{enumerate}
+\textalign{Bemerkung:}{
+\begin{itemize}[leftmargin=1.28em]
+	\item Zwei immer wahre Aussagen sind äquivalent
+	\item Zwei immer falsche Aussagen sind äquivalent
+\end{itemize}}
+
+\subsection{Aufgabe 1.2}
+\label{sec:Aufgabe-Logik-AufgabeEinsPunktZwei}
+Es seien $A$ und $B$ zwei Aussagen. Bestimmen sie die Wahrheitswerte der Aussagen
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+	\item $(A \vee B) \wedge \neg A$
+	\item $(A \wedge B) \vee \neg A$
+	\item $(\neg A \wedge \neg B) \vee A$
+\end{enumerate}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeEinsPunktZwei}.
+
+\subsection{Aufgabe 1.3}
+\label{sec:Aufgabe-Logik-AufgabeEinsPunktDrei}
+Sind die folgenden Aussagen richtig oder falsch?
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+	\item Wenn $18$ durch $12$ teilbar ist, dann ist 18 durch 3 teilbar.
+	\item $3$ ist genau dann Teiler von $8$, wenn $14$ eine Primzahl ist.
+\end{enumerate}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeEinsPunktDrei}.
+
+\subsection{Aufgabe 6}
+\label{sec:Aufgabe-Logik-AufgabeSechs}
+Es seien $A, B$ Aussagen. Bestimmen sie die Wahrheitstafel der folgenden Formeln
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item $(\neg (A \und B)) \und ((\neg A) \oder B)$
+\item $((\neg A) \oder B) \Ra (A \und B)$
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeSechs}.
+
+\subsection{Aufgabe 7}
+\label{sec:Aufgabe-Logik-AufgabeSieben}
+Es seien $A, B, C$ Aussagen. Zeigen sie mit Hilfe einer Wahrheitstafel die Äquivalenz der Formeln
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item $(A \oder B) \Ra \neg C$
+\item $C \Ra (\neg A) \und (\neg B)$
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeSieben}.
+
+\subsection{Aufgabe 8}
+\label{sec:Aufgabe-Logik-AufgabeAcht}
+Drücken sie $F_1, F_2, F_3$ mithilfe von $A, B, \und, \oder, \neg$ aus.\\\\
+\begin{tabular}{c|c||c|c|c}
+	$A$ & $B$ & $F_1$ & $F_2$ & $F_3$
+	\\\hline
+	$w$ & $w$ & $f$ & $f$ & $w$
+	\\$w$ & $f$ & $f$ & $w$ & $f$
+	\\$f$ & $w$ & $w$ & $f$ & $f$
+	\\$f$ & $f$ & $f$ & $f$ & $w$
+\end{tabular}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeAcht}.
+
+\subsection{Aufgabe 9}
+\label{sec:Aufgabe-Logik-AufgabeNeun}
+Tragen sie in die unten stehende unvollständige Wahrheitstafel die fehlende Wahrheitswerte ein.\\\\
+\begin{tabular}{c|c|c|c||c|c|c}
+$A$ & $B$ & $C$ & $D$ & $(A \oder B) \und D$ & $\overline{(A \oder B)} \und (C \oder D)$ & $C \Ra ((A \und D) \oder (B \und D))$
+\\\hline
+$f$ & \textvisiblespace & $f$ & \textvisiblespace & $w$ & \textvisiblespace & \textvisiblespace\\
+$w$ &    $w$ & \textvisiblespace & \textvisiblespace & \textvisiblespace & \textvisiblespace & $f$\\
+\textvisiblespace & \textvisiblespace & $f$ & \textvisiblespace & \textvisiblespace & $w$ & \textvisiblespace
+\end{tabular}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeNeun}.
+
+\subsection{Aufgabe 10}
+\label{sec:Aufgabe-Logik-AufgabeZehn}
+Verneinen sie die Aussagen:
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item Alle Quadratzahlen sind gerade.
+\item Es gibt natürliche Zahlen die nicht rational sind.
+\item Alle Straßen und mindestens ein Pfad führen nach Rom.
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+Lösung siehe \vref{sec:Loesung-Logik-AufgabeZehn}.

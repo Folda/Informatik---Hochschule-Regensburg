@@ -1,0 +1,572 @@
+\input{00header.tex}
+
+%%%%%%%%Daten%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=true,bookmarksnumbered=true,pdftitle={Informatik 1. Semester - Hefter für Datenverarbeitungssysteme - WS 2008/2009 stand \today},pdfauthor={Thaller Alexander},pdfsubject={Datenverarbeitungssysteme},pdfkeywords={datenverarbeitungssysteme,ds,studium,hefter,2008,2009,wintersemester}}
+
+\author{Thaller Alexander}
+\title{Informatik 1. Semester\\Hefter für Datenverarbeitungssysteme\footnote{Gefundene Fehler oder Verbesserungsvorschläge bitte hier im PDF kommentieren ,in die Fehler und Verbesserungen Textdatei schreiben oder alternativ mir eine E-Mail schicken an \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\date{WS 2008/2009\\stand \today}
+%<>%%%%%Daten%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+\newpage
+
+%Nummeriuerung auf drei unterpunkte verlängern
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\tableofcontents
+\newpage
+%%%%%%%%Text%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Grundlagen}
+\section{Informationsdarstellung}
+\subsection{Bildungsgesetze von Zahlen}
+		\begin{itemize}
+		\item Ziffernwertsysteme
+		\item Stellenwertsysteme\\
+				Zahlenwert: Ziffern 8 Positionen
+		\end{itemize}
+\subsection{Stellenwertsysteme}
+		Wert $Z$ = $a_n, a_{n-1} \dots a_0, a_1, \dots, a_m$\\
+		im Stellenwertsystem Basis 8 gilt:\\
+		\fbox{$Z = \sum_{i = m}^n a_i \mal B^i$}\\
+		$0 \leqq a_n \leqq B$\\
+		$B$ ist die kleisnte nicht mehr durch eine Ziffer darstellbare Zahl\\
+		Ganze Zahlen: $2018 = 2 \znr{3} + 0 \znr{2} + 1 \znr{1} + 8 \znr{0}$\\
+		allgemein: $a_n a_{n - 1} \dots a_0 a_{-1} \dots a_{-m} = a_n \znr{n-1} + a_{-m} \znr{-m}$\\
+		\\
+		Dezimalbruch: $0,328 = 0 + 3 \znr{-1} + 2 \znr{-2} + 8 \znr{-3}$\\
+		allgemein: $0,a_{-1}, \dots a_{-m} = a_{-1} \znr{-1} + a_{-2} \znr{-2} + a_{-3} \znr{-3} + a_{-m} \znr{-m}$\\
+		\\
+		Dezimalzahlen:
+		\begin{itemize}
+			\item Radixschreibweise:\\$Z = a_n a_{n-1} \dots a_0 a_{-1} \dots a_{-m}$
+			\item Potenzschreibweise:\\$Z = a_n \znr{n} + a_{n-1} \znr{n-1} + \dots a_{-m} \znr{-m}$\\
+												$Z = \sum_{i = -m}^n a_i \znr{i}$
+		\end{itemize}
+		Dualzahlen: $B = 2$\\
+						$a = \gklamm{0, 1} > 8 1010.1_{\mbox{dual}} = 10,5_{\mbox{dez}}$\\
+		\\
+		Oktalzahlen: $B = 8$ aus 3 Dualstellen\\
+						 $a = \gklamm{0, 1, 2, 3, 4, 5, 6, 7}$\\
+						 z.B $101001_{\mbox{dual}} \rightarrow 51_{\mbox{okta}}$\\
+		\\
+		Hexadezimalzahlen: $B = 16$ aus 4 Dualstellen\\
+								 $a = \gklamm{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F}$
+								 z.B $101001_{\mbox{dual}} \rightarrow \$29_{\mbox{hexa}}$ oder auch $H29_{\mbox{hexa}}, 29h, 0x29$
+\subsection{Umrechnung}
+Horner Schema: nur positive Potenzen zur Basis $B$
+\begin{itemize}
+\item fortgesetzte Division durch Basis $B$ gesucht
+		\begin{itemize}
+		\item Ergebnis: Koeffizient (Rest) $\Ra$ ''$0$''
+		\item Reste $\equals$ Ziffern des gesuchten Zahlensystems in aufsteigender Reihenfolge
+		\end{itemize}
+		Beispiel:
+		\begin{align*}
+			z_0 &= z = (\dots ( a_n B + a_{n-1}) \mal B + \dots a_2 \mal B + a_1) B + a_0\\
+			z_1 &= \frac{z}{B} = (\dots ( a_n B + a_{n-1}) \mal B + \dots a_2 \mal B + a_1) B + a_0~~\mbox{Rest: } a_0\\
+			z_2 &= \frac{z_1}{B} = (\dots ( a_n B + a_{n-1}) \mal B + \dots a_2 \mal B + a_1) B + a_2~~\mbox{Rest: } a_2\\
+			&\vdots\\
+			z_n &= \frac{z_{n-1}}{B} = a_n\\
+			z_{n+1} &= \frac{z_n}{B} = 0
+		\end{align*}
+\end{itemize}
+\subsubsection{Programmablauf (Algorythmus)}
+\begin{enumerate}
+\item Setze Dezimalzahl auf Null
+\item Beginne mit der hochstmöglichen Stelle der Dualzahl
+\item Füge der Funktion einen Wert $\RM{1}$ ein, der die aktuelle Stellenposition markiert\[\mbox{Setze } i = n\]
+\item Multipliziere die Dezimalzahl mit 2 und addiere die $\RM{1}$-te Stelle der Dualzahl dazu
+\item Wiederhole 4 solange bis alle Stellen der Dualzahl verarbeitet sind
+\end{enumerate}
+\subsection{Echtgebrochene Zahlen}
+$z_0 = z = (\dots a_{-1} B^{-1} + a_{-2} B^{-2} + \dots a_{-m})$
+Bezüglich: Dezimal $\rightarrow$ Dualzahl
+\begin{enumerate}
+\item Dualzahl auf 0 Setzen
+\item $\RM{1}$ auf 1 setzen
+\item Dezimalzahl mit der Basis 2 multiplizieren
+\item $\RM{1}$-te Stelle der Dualzahl ergibt sich aus dem ganzzahligen Anteil der Dezimal Zahl (Vorkomma Stelle)
+\item Man nehme den gebrochenen Anteil der Dezimal Zahl (Nachkommastellen) für folgende Berechnung
+\item Erhöhe $\RM{1}$ um 1
+\item Wenn Dezimal Zahl $> 0$ ist fahre fort bei Schritt 3
+\end{enumerate}
+\subsection{Arithmetik im Dualsystem}
+Addition: $S = a + b$\\
+Substraktion: $D = a - b$\\
+\begin{tabular}{c|c||c|c}
+$A$ & $B$ & $S$ & $D$
+\\\hline
+$0$ & $0$ & $0$ & $0$
+\\$0$ & $1$ & $1$ & $0$
+\\$1$ & $0$ & $1$ & $0$
+\\$1$ & $1$ & $0$ & $1$
+\end{tabular}
+\subsection{Negative Zahlen}
+
+\section{Wiederholung}
+\subsection{Zahlensysteme}
+\subsubsection{Stellenwertsysteme}
+$Z_n B^n + Z_{n-1} B^{n-1} + \dots + Z_0 B^0 = \sum_{i = 0}^n Z_i B^i$\\
+Basis: $B \geqq 2$\\
+Ziffernwerte: $0 \dots B-1$
+Zahlwort: $Z_n, Z_{n-1}, \dots Z_i, Z_0$
+\begin{alignat*}{2}
+	B = 2&~~	&&\mbox{Dual}\\
+		 8& 	&&\mbox{Oktal}\\
+		 10& 	&&\mbox{Dezimal}\\
+		 16& 	&&\mbox{Hexadezimal}
+\end{alignat*}
+
+\subsection{Umwandlung von Zahlensystemen}
+\subsubsection{Zielverfahren oder Multiplikationsmethode für ganze Zahlen}
+$\rightarrow$ Hornerschema\\
+Quellsystem $\rightarrow$ beliebieg\\
+Zielsystem $\rightarrow$ Dezimal\\
+Berechnung $\rightarrow$ im Zielsystem
+
+Beispiel:\\
+geg: $\mbox{AFFE}_{16} = ?_{10}$
+\begin{alignat*}{2}
+	&= A_{16} \mal 16_{10}^3 + F_{16} \mal 16_{10}^2 + F_{16} \mal 16_{10}^1 + E_{16} \mal 16_{10}^0\\
+	&= \left(\left( A_{16} \mal 16_{10} + F_{16} \right)16_{10} + F_{16} \right) 16_{10} + E_{16}\\
+	&= \left(\left( 10 \mal 16 + 15 \right) 16 + 15 \right) 16 + 14\\
+	&= 45054
+\end{alignat*}
+
+\subsubsection{Quellverfahren oder Divisionsverfahren für ganze Zahlen}
+Quellsystem $\rightarrow$ Dezimalsystem\\
+Zielsystem $\rightarrow$ beliebig\\
+Berechnung $\rightarrow$ im Dezimalsystem\\
+Algorithmus: $Z_n B^n + Z_{n-1} B{n-1} + \dots + Z_i B^i + Z_0$\\
+Suksessive Division mit Basis $B$ im Zielsystem\\
+\[\dfrac{Z_n B^n + Z_{n-1} B^{n-1} + \dots + Z_i B^i + Z_0}{B} = \left(\left(Z_n B + Z_{n-1}\right) B + \dots Z \right) B + Z_1 \mbox{ Rest: } Z_0\]
+n-ter Divisionsschritt: $\frac{Z_n}{B} = 0$ Rest: $Z_n$\\
+Beispiel: $41651_{10} = ?_{16}4$
+\begin{alignat*}{2}
+	&41651 \div 16 = 2603 \mbox{ Rest: }&& Z_0 = 3_{10} = 3_{16}\\
+	&2603 \div 16 = 162 \mbox{ Rest: }&& Z_1 = 11_{10} = B_{16}\\
+	&\Ra A2B3_{16}
+\end{alignat*}
+
+\subsection{Rechnerinterne Darstellung von ganzen Zahlen}
+\begin{itemize}
+\item begrenzte Anzeige von Stellen pro Zahl
+\item Interndarstellung: Abbildung der Zahl auf ein Speicherwort\\
+		$\rightarrow$ Realisierung der Substraktion mit Addition (mit Komplementabbildung)\\
+		Einfaches Rechenwerk:\\
+		Beispiel:\\
+		$B = 10$, $n=3$, $y=937$\\
+		bilde $(B^n - i) - y$\\
+		\begin{minipage}{20mm}
+		$\begin{array}{r}
+		999\\
+		-937\\
+		\hline
+		062
+		\end{array}$
+		\end{minipage}
+		\begin{minipage}{40mm}
+		$\begin{array}{rl}
+		1111\\
+		-0110 & \mbox{ (Die Stellen des Substrahenden werden invertiert)}\\
+		\hline
+		1001
+		\end{array}$
+		\end{minipage}
+
+		Ansatz: Umschreiben der Subtraktion\\
+		$x - y = x + (\textbf{k} - y) - \textbf{k}$\\
+		Definition: $k$ wird als Komplement-Minnuend bezeichnet\\
+		$B-1$-Komplement von $\overline{y} = k - y$ mit $k = B^n - 1$\\
+		$B$-Komplement von $\overline{y} = k - y$ mit $k = B^n$\\
+\end{itemize}
+\subsubsection{Das Eins-Komplement}
+$B = 2$\\
+Notation: $x - y = x + \underbrace{\underbrace{\left(2^n - 1 - y\right)}_{\overline{y}} - \left(2^n - 1\right)}_{\mbox{ohne substraktion berechnet}}$\\
+Beispiel: $n = 4$, $B = 2$\\
+$x = 0111_2 = 7_{10}$\\
+$y = 0101_2 = 5_{10}$
+
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item berechne das $1$-Komplement $\overline{y} = 2^n -1 -y$
+		\[y = 0101 \Rightarrow^{invertiert} \overline{y} = 1010\]
+\item berechne $z = x + \overline{y}$\\
+		$\begin{array}{r}
+		0111\\
+		+1010\\
+		\hline
+		10001
+		\end{array}$
+\item berechne $x - y = z - \left(2^n - 1\right)$
+		$\begin{array}{r}
+		0001\\
+		+1 \mbox{ (Einerrücklauf)}\\
+		\hline
+		10
+		\end{array}$
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+Beispiel:\\
+$n = 4$, $B = 2$\\
+$x = 0011_2 = 3_{10}$\\
+$y = 0101_2 = 5_{10}$
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item berechne das $1$-Komplement\\
+		$\overline{y} = 2^n -1 -y$\\
+		$y = 0101$\\
+		$\overline{y} = 1010$
+\item berechne $z = x + \overline{y}$\\
+		$\begin{array}{r}
+		0011\\
+		+1010\\
+		\hline
+		1101
+		\end{array}$
+\item berechne $x - y = z - \left(2^n - 1\right)$\\
+		$x - y = \left[\left(2^n - 1\right) - 2 \right]$
+		$\left[\begin{array}{r}
+		1111\\
+		-1101 \mbox{ (Einerrücklauf)}\\
+		\hline
+		0010
+		\end{array}\right] = Z_{10}$
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+Beispiel:
+\begin{tabular}{c|c|c|c}
+Dezimal-Zahl & Binär & 1-Komplement & Dezimal-Zahl\\
+$0$ & $0000$ & $1111$ & $0$\\
+$1$ & $0001$ & $1110$ & $-1$\\
+$2$ & $0010$ & $1101$ & $-2$\\
+$3$ & $0011$ & $1100$ & $-3$\\
+$4$ & $0100$ & $1011$ & $-4$\\
+$5$ & $0101$ & $1010$ & $-5$\\
+$6$ & $0110$ & $1001$ & $-6$\\
+$7$ & $0111$ & $1000$ & $-7$\\
+$8$ & $1000$ & $0111$ & $-8$\\
+\end{tabular}
+\subsubsection{Das Zweier-Komplement}
+Notation: $x - y = x + \left(Z^n - \right) - Z^n$
+Beispiel:
+$n = 4$\\
+$x = 0111$\\
+$y = 0101$\\
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item berechne: $\overline{\overline{y}} = \overline{y} + 1 \Ra Z^n - 1 - y + 1$\\
+		$y = 0101$ $\overline{\overline{y}} = 1010 + 0001 = 1011_2$
+\item berechne: $Z = x + \overline{\overline{y}}$
+		$\begin{array}{r}
+		0111\\
+		+1011\\
+		\hline
+		10010
+		\end{array}$
+\item berechne $x - y = Z - Z^n$\\
+		$Z \geqq Z^n$\\
+		$x - y = 10010 - 10000 = 0010_2$
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\begin{tabular}{c|c|c|c}
+Dezimal-Zahl & Binär & 2-Komplement & Dezimal-Zahl\\
+$0$ & $0000$ & $0000$ & $0$\\
+$1$ & $0001$ & $1111$ & $-1$\\
+$2$ & $0010$ & $1101$ & $-2$\\
+$3$ & $0011$ & $0011$ & $-3$\\
+$4$ & $0100$ & $0100$ & $-4$\\
+$5$ & $0101$ & $0101$ & $-5$\\
+$6$ & $0110$ & $0110$ & $-6$\\
+$7$ & $0111$ & $1001$ & $-7$\\
+$8$ & $1000$ & $1000$ & $-8$\\
+\end{tabular}
+$\Rightarrow$ asymmetrischer Zahlenbereich\\
+
+\section{Befehlszyklen}
+\begin{enumerate}
+\item Holen des nächsten Befehls:
+		\begin{itemize}
+		\item Inhalt des PC $\ra$ Adressbus
+		\item Kontrollbus $\ra$ Speicherlese-Signal
+		\item Daten (aus der Adresse) $\ra$ Datenbus
+		\item $\mu$-Proc (CPU) $\ra$ Register, z.B. \fbox{IR}, Akku
+		\end{itemize}
+\item Entschlüsseln des nächsten Befehls:\\
+		Sobald der Befehl im IR steht;\\
+		Kontrolleinheit entschlüsselt den Befehl\\
+		$\ra$ ''richtige'' Folge von internen \& externen Signalen zur Ausführung (benötigt typischerweiße 1 CPU Takt)
+\item Ausführen des nächsten Befehls:\\
+		Sobald CPU den Befehl dekodiert hat
+		\renewcommand{\labelitemi}{$\Rightarrow$}
+		\begin{itemize}
+		\item Reihe von Aktionen, gemäß des Vorschrift
+		\item einfache, kurze Befehle
+		\item komplexe, lange Befehle
+		\item $T_{exec} = \sum \mbox{Takte}$
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+\item Holen des nächsten Befehls
+		\begin{itemize}
+		\item automatische Mechanismus $\ra$ Incrementierer (PC)
+		\item Sprungbefehl, Bedingte Verzweigung
+		\item Befehle sind unterschiedlich lang
+		\end{itemize}
+		Aufgrund des Adressgenerators können nicht gleichzeitig Incrementer und Sprungbefehle ausgeführt werden.\\
+		\begin{tabular}{ll|c|}
+		&&16 Bit\\
+		PC & $\ra$ & 1. Befehl 2 Byte\\
+		PC + 2 & $\ra$ & 2. Befehl 4 Byte\\
+		PC + 4 & $\ra$ & xxxxxxxxxxx
+		\end{tabular}
+\end{enumerate}
+13.11.2008-IMG-DS-1
+\section{Organisation des 8086}
+\textalign{Kontrollblock}{
+\begin{description}
+\item[BIU] Bus Interface Unit - Schnittstelle zur Ausenwelt\\
+		Kontrolliert: Adressbus, Datenbus, Kontrollbus\\
+		parallel zur EU\\
+		Befehlsvorschau Funktion
+\item [EU] Execution Unit - Dekodiert ALU 16-bit, Status, Register\\
+		führt Befehle aus: Holen \& $\underbrace{\mbox{dekodieren}}{\mbox{keine Aktivität auf den Bussen}}$
+\end{description}}
+
+\textalign{Im 8086:}{BIU holt Befehle aus Speicher während die EU noch dekodiert\\Befehlsschlange (Puffer) [6 Byte]\\Beispiel: ADD vs. DIV}\\\\
+\begin{tabular}{c|c}
+EU & BIU\\
+\end{tabular}
+\section{Mikroprozessorarchitektur (8086)}
+\subsection{Die Register des 8086}
+\begin{itemize}
+\item Zwei Hauptgruppen: Daten und Zeiger (Index) Register
+\item 16 Bit breit (2 Byte, 1 Word)
+\item \textalign{Dateigruppe:}{8 bit adressierbar\\
+		\begin{tabular}{|cccl|}
+		\hline\\
+		AH & AX & AL & Akkumulator\\
+		\hline
+		BH & BX & BL & Basis\\
+		\hline
+		CH & CX & CL & Zähler\\
+		\hline
+		DH & DX & DL & Daten\\
+		\hline
+		\end{tabular}}
+		
+		\textfakealign{Dateigruppe:}{Zeiger (Index Register)
+		\begin{tabular}{|cl|}
+		\hline\\
+		SP & Stapelregister\\
+		\hline
+		BP & Basis-Zeiger\\
+		\hline
+		SI & Quell-Index\\
+		\hline
+		DI & Zielzeiger\\
+		\hline
+		\end{tabular}}
+
+		\textfakealign{Dateigruppe:}{Segment Register
+		\begin{tabular}{|cl|}
+		\hline\\
+		CS & Codesegment\\
+		\hline
+		DS & Datensegment\\
+		\hline
+		SS & Stapelspeichersegment\\
+		\hline
+		ES & Extrasegment\\
+		\hline
+		\end{tabular}}
+
+\item Zeiger/Index: 16 bit adressierbar
+\item Systemregister 16 bit\\
+		\renewcommand{\labelitemi}{$\hookrightarrow$}
+		\begin{itemize}
+		\item weiter mit anderen, internen Registern\\
+				Kombination $\Ra$ vollständige 20-bit Adresse zu bilden
+		\item \textalign{Beispiel: PUSH/POP $\Ra$}{Speicheradresse zu bilden die auf das oberste Stapelelement zugreift.}
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+\end{itemize}
+\subsubsection{Befehlszähler Register (IP) (16-bit)}
+\renewcommand{\labelitemi}{$\hookrightarrow$}
+\begin{itemize}
+\item IP wird durch BIV aktualisiert um auf die nächste Adresse zuzugreifen
+\item Programme haben keinen direkten Zugriff
+\end{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\subsubsection{Kennzeichen Register (16-bit)}
+\textalign{8086:}{6 Status- und Bedienungskennzeichen
+\renewcommand{\labelitemi}{$\hookrightarrow$}
+\begin{itemize}
+\item von EU aktualisiert
+\item stellen den ''Zustand'' einer gerade angeführten arithmetischen, logischen Operation dar.
+\end{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+18.11.2008-IMG-ds-1}
+
+\subsection{Speicherorganisation 8086}
+\renewcommand{\labelitemi}{$\rightarrow$}
+\begin{itemize}
+\item 20 Adressleitungen: $2^20 \Ra 1048576$ Speicherzellen
+\item Datenbus: 16-bit $\Ra$ Systemspeicher 16-bit
+\item 8086: Speicherwort 2 Byte\\
+		$\Ra$ Systemspeicher $2^19$ Adressen zu je 16 bit\\
+		18.11.2008-IMG-ds-2
+\item \textalign{Befehle:}{1-6 Datenbystes
+		\renewcommand{\labelitemi}{$\Rightarrow$}
+		\begin{itemize}
+		\item 8086-Befehle: geraden (L) und ungeraden (H) Adressen
+		\item 2 Interne Signale L/H\\
+				A0 $\ra$ ''0'': untere\\
+				BHE $\ra$ ''0'': obere\\
+				beide ''0'' $\Ra$ 16 Datenbit in einem Speicher Zyklus
+				18.11.2008-IMG-ds-3
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}}
+\end{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+\textalign{Beispiel:}{16-bit Zugriff an gerader Adresse $000F0$
+\renewcommand{\labelitemi}{$\hookrightarrow$}
+\begin{itemize}
+\item Beide Bytes (H/L) an der Adresse $000F0$ benötigt
+\item CPU gibt Adresse auf Adressbus aus (BHE, AO $\Ra$ ''0'')
+\item Beide Datenbytes liegen an CPU an\\
+		$A0 = 0$ gibt unteres Byte frei
+		18.11.2008-IMG-ds-4
+		\textalign{8-bit Zugriff auf}{\textcolor{red}{gerade Adressen: $A0 = 0, BHE = 1$}\\
+		\textcolor{blue}{ungeraden Adressen: $000F1 A0 = 1, BHE = 0$}}\\
+		\textalign{16-bit Zugriff auf}{ungerade Adresse\\18.11.2008-IMG-ds-5}
+\end{itemize}
+\renewcommand{\labelitemi}{$\bullet$}}
+\begin{itemize}
+\item Byte/Wort Adressierung (Zugriff)
+\item Ausrichtung, Aligment\\
+		8086 Systemarchitektur, beziehungsweise Speicherzuordnung
+\end{itemize}
+
+\section{Adressierung}
+\subsection{Befehlsadressen}
+Befehlsadressen\\
+\textalign{Bisher:}{Die internen Register (16-bit) und der Adressbuß der CPU (20-bit) bilden zusammen mehr als einen Register}
+Die IP (Befehlsregister) und der CS (Cache Segment) bilden zusammen eine 20-bit Adresse\\
+\textalign{Gleichung:}{20-bit Adresse = (16 $\times$ CS) + IP}\\
+20.11.2008-IMG-DS-1\\
+CS = $1000h$\\
+IP = $0414h$\\
+$\Ra \underbrace{16 \times 1000h}_{10000h (4 \mbox{bit links verschiebeb})} + 01414h$\\
+$+0414h$\\
+\fbox{$10414h$}\\
+''nächste Befehl''\\
+IP = Offset\\
+CS $\times$ 16 = Startadresse des Segements im Speicher\\
+\textalign{Merke:}{Jede Adressbildung benützt eines der 4 Segmentregister
+\textalign{$\hookrightarrow$}{4 mal Shift Left + Öffnet (Internes Register)}
+\textalign{$\Ra$}{Befehl (Adressierungsart) bestimmt welches Segment/Register}}
+
+\subsection{Beispiele für Adressierungsparten}
+\begin{enumerate}
+\item MOV Befehl: MOB Ziel, Quelle\\
+		\textalign{Unmittelbare Adressierung:}{
+		\textalign{$\hookrightarrow$}{Operand ist im Befehl selbst\\
+		\fbox{MOV AX, 568}\\
+		Zahl ''568'' ist Teil der Speicherbytes die den Befehl darstellen.\\
+		\textalign{$\Ra$}{Keine Adressberechnung}}}\\
+		\textalign{Registeradressierung:}{
+		Operand $\ra$ allgemein internes Register (AX, BX, CX, DX, AL, AH, \dots)\\
+		\textalign{Beispiel:}{
+		\begin{tabular}{|c|}
+		\hline\\
+		MOV AX, BX\\
+		\hline\\
+		MOV AL, BL\\
+		\hline
+		\end{tabular}}
+		$\Ra$ CPU führt alle Operationen intern aus\\
+		$\Ra$ keine 20-bit Adresse}\\
+		\textalign{Direkte Adressierung}{
+		Im Befehl: die Speicherstelle, die Operand enthält\\
+		$\Ra$ Adressbestimmung}\\
+		\textalign{Beispiel:}{\fbox{MOV CX, \textcolor{blue}{$\underbrace{\mbox{ES:}}_{\mbox{Überschreibungspräfix}}$}COUNT} \fbox{DS + Offset}
+		\renewcommand{\labelitemi}{$\hookrightarrow$}
+		\begin{itemize}
+		\item Wert: Konstante $\ra$ Offset
+		\item \textalign{8086:}{Segment Adresse\\Default: \fbox{DS}}
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}}
+		20.11.2008-IMG-DS-2\\
+		Register-Indirekte Adressierung
+		\renewcommand{\labelitemi}{$\rightarrow$}
+		\begin{itemize}
+		\item 16-bit Offset Adresse in einem Basis (Indexregister)
+		\item Adresse steht im BX, BP, SI, DI Register\\
+				\textalign{Beispiel:}{\fbox{MOV AX, [SI]} AX = (CS $\mal$ 16 + ST)\\
+				20.11.2008-IMG-DS-3}
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+		$\ra$ \dots mit Verschiebeanteil\\
+		\textalign{16-bit}{Offset Adresse $\Ra$ Addition von
+		\renewcommand{\labelitemi}{$\hookrightarrow$}
+		\begin{itemize}
+		\item 16-bit Wert, bestimmt durch Register
+		\item Konstante
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}}
+		\textalign{Beispiel:}{Register DI\\
+		Verschiebeanteil COUNT\\
+		\fbox{MOV AX, COUNT [DI]}\\
+		\textalign{Falls:}{COUNT = 0378h\\
+		DI = 04FAh\\
+		16-bit Offset: 0872h}}
+		Register Indirekte Adressierung mit Basis- und Indexzeiger\\
+		\begin{enumerate}
+		\item MOV [BP] [DI], AX\\
+				Offset des Zieladresse: $\sum$ der Inhalte der Register BP + DI
+		\item MOV AX, [BP] [SI]\\
+				Offset der Quelladresse = $\sum$ der Inhalte von BX und SI
+		\end{enumerate}
+		\dots + konstante
+		\textalign{$\ra$}{eine Konstante wird am Ende zur 16-Bit Summe hinzuaddiert\\
+		$\left.\begin{array}{lcc}
+		DI & = & 0367h\\
+		BX & = & 7890h\\
+		COUNT & = & 0012h\\
+		\end{array}\right\}$Offset: $\sum$ DI + BX + COUNT $\ra$ Wort vom Speicher in Register AX\\
+		\fbox{MOV AX, COUNT [BX] [DI]}\\
+		Offset = 7C09h\\
+		20-bit Adressierung = 37C09h\\
+		Annahme: DS 30000h}\\
+		\textalign{Objekt-Code:}{
+		\textalign{Beispiel:}{\fbox{MOV AX, 568} 2 oder 3 Byte}
+		REG-Feld oder W-Bit\\
+		20.11.2008-IMG-DS-4\\
+		REG Feld (3-bit)\\
+		welches Register (Byte (Wort))\\
+		\begin{tabular}{l|c|c|}
+		& 16-bit Register & 8-bit Register\\
+		000 & AX & AL\\
+		001 & CX & CL\\
+		010 & DX & DL\\
+		\vdots & \vdots & \vdots
+		\end{tabular}\\
+		\textalign{Annahme:}{MOV AX, $\underbrace{568}_{\hookrightarrow hex Direktoperand}$\\
+		3 Byte Befehl\\
+		B8 68 05\\
+		W = 1\\
+		Reg = 000\\
+		MOV AL}}
+\end{enumerate}
+
+\section{Der 8255}
+8255 Input/Output Baustein (PID??)
+\renewcommand{\labelitemi}{$\rightarrow$}
+\begin{itemize}
+\item 4 Blöche $\ra$ externe Hardware (PAD - PA7, PB0, \dots)
+\item logik 
+\end{itemize}
+\renewcommand{\labelitemi}{$\bullet$}
+%<>%%%%%Text%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document} 

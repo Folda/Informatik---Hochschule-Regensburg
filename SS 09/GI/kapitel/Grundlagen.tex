@@ -1,0 +1,504 @@
+\chapter{Grundlagen}
+\Mark{Kapitel 2}
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[auto]
+	\node[draw, rectangle, minimum width=3cm, minimum height=1.5cm] (start) at (1.5,0.75){};
+	\node[below of=start, node distance = 1.25cm]{Tastatur};
+	\foreach \x in {0.25, 1.00, 1.75, 2.50}
+	{
+		\foreach \y in{0.25, 1.00}
+			\draw (\x,\y) rectangle (\x+0.25,\y+0.25);
+	}
+	\node[draw, rectangle, right of=start, minimum height=2.5cm, text width = 1.5cm, minimum width = 1.5cm, node distance = 3.5cm] (second) {10010101 00101000 01101101 01011101 10011010};
+	\node[below of=second, node distance = 1.75cm]{Computer};
+	\node[above of=second, node distance = 1.75cm](secondb){\LARGE{V}\normalsize{erarbeitung}};
+	\node[left of=secondb, node distance = 3.5cm] {\LARGE{E}\normalsize{ingabe}};
+	\node[right of=secondb, node distance = 3.5cm] {\LARGE{A}\normalsize{usgabe}};
+	\node[draw, rectangle, right of=second, minimum height=2cm, text width = 2cm, minimum width = 2cm, node distance = 3.5cm] (third) {Lorem ipsum dolor sit amet\dots};
+	\node[below of=third, node distance = 1.5cm]{Bildschirm};
+
+	\draw[->] (start.east) -- (second.west);
+	\draw[->] (second.east) -- (third.west);
+\end{tikzpicture}
+\end{figure}
+\Img{GI(V)-17.03.2009-IMG1}
+
+\begin{description}
+\item[Ziel:] Formale Darstellung der Ein-/Ausgaben eines Computers
+		\begin{itemize}[label=\Ra]
+		\item Repräsentation von Daten
+		\end{itemize}
+\end{description}
+
+\begin{anmerkung}
+Computerprogramme sind ebenfalls Daten.
+\end{anmerkung}
+
+\section{Alphabet}
+\Mark{Section 2.1}
+\begin{fdefinition}
+Eine endliche Menge, die nicht leer ist, von \indexn[Symbol]{Symbolen} $\Sigma$ heißt \indexn{Alphabet}\index{$\Sigma$ (Alphabet)}. Die Elemente von $\Sigma$ heißen \indexn[Buchstabe]{Buchstaben} (\indexn{Zeichen}, Symbole). \qed
+\Mark{Definition 2.1}
+\end{fdefinition}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{itemize}
+\item $\Sigma_{\text{RGB}}$ = \gklamm{\text{\underline{rot}}, \text{\underline{grün}}, \text{\underline{blau}}}
+\item $\Sigma_{\text{Bool}}$ = \gklamm{0, 1} das Boole'sche Alphabet
+\item $\Sigma_{\text{lat}}$ = \gklamm{a, b, c, \dots, z} das lateinische Alphabet
+\item $\Sigma_{\text{Tastatur}}$ = \gklamm{A, B, \dots, Z, \text{\textvisiblespace}, <, >, (, ), \dots}
+\item $\Sigma_{\text{m}}$ =  \gklamm{0, \dots, m -1} für $m \grgl 1$ die $m$-adische Darstellung einer Zahl.
+\item $\Sigma_{\text{logic}}$ = \gklamm{0, 1, x, (, ), \oder, \und, \neg} ein Alphabet für logische Ausdrücke
+\end{itemize}
+\end{beispiel}
+
+\section{Wort}
+\begin{fdefinition}[Wort]
+Sei $\Sigma$ ein Alphabet. Ein \indexn[Wort]{Wort}\index{$\lambda$ (Wort)} über $\Sigma$ ist eine endliche (eventuell leere) Folge von Buchstaben. Das leere Wort $\epsilon$ (oder manchmal auch $\lambda$) ist die leere Buchstabenfolge. Die Menge aller Wörter über $\Sigma$ bezeichnen wir mit $\Sigma^*$. Ferner sei $\Sigma^+ = \Sigma^* - \gklamm{\epsilon}$. Fortan gehen wir davon aus, dass $\epsilon \notin \Sigma$ gilt. \qed
+\Mark{Definition 2.2}
+\end{fdefinition}
+
+\begin{beispiel}
+$\overbrace{(0, 1, 0, 1, 0, 1, 0)}^{\text{Z}}$ ist ein Wort über $\Sigma_{\text{Bool}}$, $\Sigma_{\text{Tastatur}}$ und $\Sigma_{\text{logic}}$.
+\begin{itemize}
+\item Z ist \underline{Wort} über $\Sigma_{\text{Bool}}$
+\item Z ist aus $\Sigma_{Bool}^*$
+\end{itemize}
+$\epsilon$ ist ein Wort über einem \ac{bel.} Alphabet ($\epsilon \in \Sigma^*$ für alle Alphabete $\Sigma^*$)
+\end{beispiel}
+
+\begin{fnotation}
+Wörter werden künftig ohne Kommata geschrieben und lassen auch die Klammern weg.\\
+Also \ac{zB} 01010 statt (0,1,0,1,0)\\
+Beachte: Unterschied Wort TI (Folge von Symbolen) und Wort \ggq{Deutsch}
+\end{fnotation}
+
+\subsection{Wortlänge}
+\begin{fdefinition}[Wortlänge]
+Sei $\Sigma$ ein Alphabet und $w \in \Sigma^*$. Die \indexn[Wort!Wortlänge]{Wortlänge} $\betrag{w}$ eines Wortes $w$ ist die Länge des Wortes als Folge. Für $a \in \Sigma$ bezeichnet $\betrag{w}_a$ die Anzahl der Vorkommen von $a$ in $w$. \qed
+\Mark{Definition 2.3}
+\end{fdefinition}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{itemize}
+\item $\betrag{001001} = 6$
+\item $\betrag{001001}_1 = 2$
+\item $\betrag{\epsilon} = 0$
+\item $\betrag{\text{\textvisiblespace}} = 1$
+\end{itemize}
+\end{beispiel}
+
+\section{Konkatenation und Verkettung}
+\begin{fdefinition}[Konkatenation/Verkettung]
+Die \indexn[Alphabet!Konkatenation]{Konkatenation} für ein Alphabet $\Sigma$ ist eine Abbildung (oder auch Funktion) $K$:
+\[\Sigma^* \times \Sigma^* \ra \Sigma^*\text{, so dass} K(u, v) = uv\]
+für alle $u, v \in \Sigma^*$. Anstelle von $K(u, v)$ schreiben wir $u \mal v$. \qed
+\Mark{Definition 2.4}
+\end{fdefinition}
+
+\begin{beobachtung}Konkatenation ist assoziativ. \Ra $(a \mal b) \mal c = a (b \mal c)$\\
+Ferner gilt: $\epsilon \mal w = w = w \mal \epsilon$ Monoid.
+\end{beobachtung}
+
+\section{Induktive Definitionen}
+\subsection{Induktive Definition des Wortbegriffes}
+Die Menge aller Wörter über $\Sigma$ ($\Sigma^*$) ist induktiv definiert durch:
+\begin{enumerate}
+\item $\epsilon \in \Sigma^*$
+\item sei $w \in \Sigma^*$ und $a \in \Sigma$, so $w \mal a \in \Sigma^*$\\
+		\begin{tikzpicture}
+			\node{}
+			child[draw, rectangle]{
+				child[draw, rectangle]{
+					child[draw, rectangle]{
+						child{node[draw, rectangle]{$\epsilon$}}
+						child{node[draw, circle]{a}}}
+					child{node[draw, circle]{b}}}
+				child{node[draw, circle]{c}}};
+		\end{tikzpicture}
+\end{enumerate}
+
+\subsection{Induktive Definition der Wortlänge}
+\begin{enumerate}
+\item für $w = \epsilon$ sei $\betrag{w} = 0$
+\item für $w = v \mal x$ ist $\betrag{w} = \betrag{v} + 1$
+		\begin{align*}
+			\betrag{\underbrace{\epsilon a b}_{v} \underbrace{c}_{x}} &= \betrag{\underbrace{\epsilon a}_{v} \underbrace{b}_{x}} + 1\\
+			&= \betrag{\underbrace{\epsilon}_{v} \underbrace{a}_{x}} + 1 + 1\\
+			&= \betrag{\epsilon} + 1 + 1 + 1\\
+			&= 0 + 1 + 1 + 1\\
+			&= 3
+		\end{align*}
+\end{enumerate}
+
+\section{Kanonische Ordnung}
+\index{Kanonische Ordnung}
+Um alle Wörter aus $\Sigma^*$ systematisch aufzuzählen, ordnen wir Alphabet und Wörter.
+\begin{fdefinition}[Kanonische Ordnung]
+Sei $\Sigma = \gklamm{a_1, a_2, \dots, a_n}$ und $<: \Sigma \times \Sigma$ eine Ordnung auf $\Sigma$ mit $a_1 < a_2 < a_3 < \dots < a_n$. Wir definieren die kanonische Ordnung auf $\Sigma^*$ wie folgt:
+\[u < v \text{ \ac{gdw.} } \betrag{u} < \betrag{v} \oder\]
+\[\betrag{u} = \betrag{v} \und u = w a_i u_1 \und v w a_j u_2 \text{ für } u, v \in \Sigma^* w, u_1, u_2 \in \Sigma^* \text{ und } a_i < a_j (i < j)\] \qed
+\Mark{Definition 2.5}
+\end{fdefinition}
+
+\section{Teilwort, Präfixe, Suffixe}
+\begin{fdefinition}[Teilwort, Präfixe, Suffixe]
+Sei $\Sigma$ ein Alphabet und seien $v, w \in \Sigma^*$
+\begin{itemize}
+\item $v$ heißt \indexn[Wort!Teilwort]{Teilwort} von $w$ \ac{gdw.} $\exists s, t \in \Sigma^*$: $w = s v t$
+\item $v$ heißt \indexn[Wort!Suffix]{Suffix} von $w$ \ac{gdw.} $\exists s \in \Sigma^*$: $w = sv$\\
+		\Img{GI(V)-25.03.2009-IMG1}
+		\begin{tikzpicture}
+			\draw (0,0) -- (3.5em,0);
+			\draw (3.5em,0) -- (3.5em,1em) node[left, midway]{$v$};
+			\draw (3.5em,1em) -- (0,1em) node[above, midway]{$w$};
+			\draw (0,1em) -- (0,0) node[right, midway]{$s$};
+			\draw (1.75em,0) -- (1.75em,1em);
+		\end{tikzpicture}
+
+\item $v$ heißt \indexn[Wort!Präfix]{Präfix} von $w$ \ac{gdw.} $\exists t \in \Sigma^*$: $w = vt$\\
+		\Img{GI(V)-25-03.2009-IMG2}
+		\begin{tikzpicture}
+			\draw (0,0) -- (3.5em,0);
+			\draw (3.5em,0) -- (3.5em,1em) node[left, midway]{$t$};
+			\draw (3.5em,1em) -- (0,1em);
+			\draw (0,1em) -- (0,0) node[right, midway]{$v$};
+			\draw (1.75em,0) -- (1.75em,1em);
+		\end{tikzpicture}
+
+\item $v \neq \epsilon$ heißt \underline{echtes} Teilwort (Präfix/Suffix) von $w$ \ac{gdw.} $v \neq w$ und $v$ ist Teilwort (Präfix/Suffix) von $w$.
+\end{itemize} \qed
+\Mark{Definition 2.6}
+\end{fdefinition}
+
+\section{Wortumkehr}
+\index{Wortumkehr}
+\begin{fdefinition}[Wortumkehr]
+Sei $\Sigma$ ein Alphabet und sei $w = a_1 \mal a_2 \mal a_3 \dots a_n$ mit $a_i \in \Sigma (1 \klgl i \klgl n)$ ein Wort. Dann ist die Wortumkehr $w^{\mathcal{R}}$ von $w$ \ac{def.} durch $w^{\mathcal{R}} = a_n a_{n - 1} \dots a_2 a_1$ \qed
+\Mark{Definition 2.7}
+\end{fdefinition}
+
+\subsection{Alternativ: induktive Definition}
+\begin{itemize}
+\item $\epsilon^{\mathcal{R}} = \epsilon$
+\item falls $v = w \mal a$, so $v^{\mathcal{R}} = a w^{\mathcal{R}}$
+\end{itemize}
+
+\begin{beispiel}
+$(\overline{a}\overline{b}\overline{c})^{\mathcal{R}}$ $v = \overline{a}\overline{b}\overline{c}$ $w = \overline{a}\overline{b}$ $a = \overline{c}$
+\begin{align*}
+\Ra v^{\mathcal{R}} &= \overline{c} \mal \underbrace{(\overline{a}\overline{b})^{\mathcal{R}}} v = \overline{a}\overline{b} w = \overline{a} a = \overline{b}\\
+\Ra v^{\mathcal{R}} &= \overline{c} \overline{b} \mal (\overline{a})^{\mathcal{R}} v = \epsilon \mal \overline{a} w = \epsilon a = \overline{a}\\
+v^{\mathcal{R}} &= \overline{c} \mal \overline{b} \mal \overline{a} \mal (\epsilon)^{\mathcal{R}}\\
+&= \overline{c} \mal \overline{b} \mal \overline{a} \mal \epsilon\\
+&= \overline{c} \mal \overline{b} \mal \overline{a}
+\end{align*}
+\end{beispiel}
+
+\section{Iteration}
+\begin{fdefinition}[Iteration]
+Sei $\Sigma$ ein Alphabet. Für alle Wörter $w \in \Sigma^*$ und $i \in \mb{N}$ definieren wir die $i$-te Iteration $w^i$ als 
+\[w^0 = \epsilon, w^1 = w\]
+und
+\[w^i = w \mal w^{i -1}\]
+\Mark{Definition 2.8}
+\end{fdefinition}
+
+\begin{beispiel}
+\begin{align*}
+aabb \mal bbab &= aabbbbab\\
+&= a^2 b^4 ab\\
+ababc &= (ab)^2 c
+\end{align*}
+\end{beispiel}
+
+\section{Sprachen}
+\index{Sprache}
+\index{Sprache!Konkatenation}
+\index{Kleene-Stern}
+\index{$L$ (Sprache)}
+\begin{fdefinition}[Sprache, Konkatenation von Sprachen, Kleene-Stern]
+Sei $\Sigma$ ein Alphabet. Eine \indexn{Sprache} $L$ ist eine Teilmenge von $\Sigma^*$ ($L \subseteq \Sigma^*$) (potentiell unendlich!). Das Komplement $L^{\mathcal{C}}$ der Sprache $L$ bezüglich $\Sigma^*$ ist die Sprache $\Sigma* - L$. $L_{\emptyset}$ ist die leere Sprache; $L_{\epsilon} = \gklamm{\epsilon}$. Seien $L_1$ und $L_2$ Sprachen, dann ist
+\[L_1 \mal L_2 = L_1 L_2 = \gklamm{u \mal v \in \left(\Sigma_1 \cup \Sigma_2\right)^x \vert u \in L_1 \und v \in L_2}\]
+die Konkatenation von $L_1$ und $L_2$. Ferner definieren wir für eine Sprache $L$
+\[L^0 = L_{\epsilon} L^{i + 1} = L \mal L^i\]
+und
+\[L^* = \bigcup_{i \in \mb{N}} L^i \text{ und } L^+ = \bigcup_{i \in \mb{N} - \gklamm{0}} L^i = L \mal L^*\]
+\Mark{Definition 2.9}
+\end{fdefinition}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{multicols}{2}
+\begin{itemize}
+\item $L_1 = \emptyset$
+\item $L_2 = \gklamm{\epsilon}$
+\item $L_3 = \gklamm{\epsilon, aa, bb, ab, ba}$
+\item $L_4 = \gklamm{a, b}^* = \gklamm{\epsilon, a, b, aa, ab, ba, bb, \dots}$
+\item $L_5 = \gklamm{a}^* = \gklamm{\epsilon, a, aa, aaa, \dots} = \gklamm{a^0, a^1, a^2, \dots}$
+\item $L_6 = \gklamm{a^p \vert p = \text{ Primzahl}}$
+\item $L_7 = \gklamm{a^i b^{2i} a^i \vert i \in \mb{N}}$
+\item $L_8 =$ alle syntaktisch korrekten \textit{JAVA}-Programme.
+\item $L_9 =$ alle typ-korrekter \textit{JAVA}-Programme.
+\item $L_{10} =$ alle terminierenden \textit{JAVA}-Programme.
+\end{itemize}
+\end{multicols}
+\end{beispiel}
+
+\begin{enumerate}
+\item Sprachen geeignet zur Darstellung aller Ein/Ausgaben?
+\item Reicht $\Sigma_{\text{Bool}}$?
+\item Effizienter Test, ob $w \in L$ gilt. \fbox{\la Automaten}
+\item Wie kann man Sprachen formal definieren? \fbox{\la Grammatiken}
+\item Sind Sprachen aufzählbar? \fbox{\la Berechenbarkeit}\\
+		Effizient möglich. \fbox{\la Komplexitätstheorie}
+\end{enumerate}
+
+\begin{lemma}
+Seien $L_1$, $L_2$ und $L_3$ Sprachen über einem Alphabet $\Sigma$. Dann gilt
+\[L_1 \mal L_2 \cup L_1 \mal L_3 = L_1 \mal (L_2 \cup L_3)\]
+\end{lemma}
+
+\begin{fbeweis}
+\mbox{}\par
+\begin{itemize}
+\item $L_1 \mal L_2 \cup L_1 \mal L_3 \subseteq L_1 \mal (L_2 \cup L_3)$
+		\begin{itemize}
+		\item $L_1 \mal L_2 \subseteq L_1 \mal (L_2 \cup L_3)$
+				\begin{align*}
+				L_1 \mal L_2 &= \gklamm{uv \vert u \in L_1 \und v \in L_2}\\
+				&\subseteq \gklamm{uv \vert u \in L_1 \und L_2 \cup L_3}\\
+				&= L_1 \mal (L_2 \cup L_3)
+				\end{align*}
+		\item $L_1 \mal L_3 \subseteq L_1 \mal (L_2 \cup L_3)$\\
+				\ra analog
+		\end{itemize}
+
+\item $L_1 \mal (L_2 \cup L_3) \subseteq L_1 \mal L_2 \cup L_1 \mal L_3$
+		\begin{align*}
+		&x \in L_1 \mal (L_2 \cup L_3) \text{ beliebig}\\
+		\Lra & x \in \gklamm{uv \vert u \in L_1 \und v \in L_2 \cup L_3} \text{ (Definition Konkatenation)}\\
+		\Lra & \exists u \in L_1 \und \exists v \in L_2 \cup L_3: x = uv \text{ (Übergang zur Prädikaten Logik)}\\
+		\Lra & \exists u \in L_1 \und (\exists v \in L_2 \oder \exists v \in L_3): x = uv \text{ (Übergang Prädikaten Logik 2)}\\
+		\Lra & (\exists u \in L_1 \und \exists v \in L_2: x = uv) \oder (\exists u \in L_1 \und \exists v \in L_3: x = uv)\\ &\text{(Distributivgesetz der Prädikaten Logik)}\\
+		\Lra & x \in \underbrace{\gklamm{uv \vert u \in L_1 \und v \in L_2}}_{= L_1 \mal L_2} \oder x \in \underbrace{\gklamm{uv \vert u \in L_1 \und v \in L_3}}_{= L_1 \mal L_3}\\
+		\Lra & x \in L_1 \mal L_2 \oder x \in L_1 \mal L_3\\
+		\Lra & x \in L_1 \mal L_2 \cup L_1 \mal L_3
+		\end{align*}
+\end{itemize}
+\end{fbeweis}
+
+\section{Sprachen zur Beschreibung von Problemen}
+\Mark{Section 2.3}
+\subsection{Entscheidungsprobleme}
+\Mark{Subsection 2.3.1}
+\begin{fdefinition}
+Das Entscheidungsproblem ($\Sigma$, $L$) für ein gegebenes Alphabet $\Sigma$ und eine Sprache $L \in \Sigma^*$ ist, für jedes $w \in \Sigma^*$ zu entscheiden, ob
+\[w \in L \oder w \notin L\]
+\[\Sigma_{\text{Input}}^* \longrightarrow \fbox{$\Sigma_{\text{Bool}}^* \ra \Sigma_{\text{Bool}}^*$} \longrightarrow \Sigma_{\text{Output}}^*\]
+\end{fdefinition}
+
+Ein Algorithmus löst das Entscheidungsproblem ($\Sigma$, $L$), falls $\forall w \in \Sigma^*$
+\[A(w) = \begin{cases}1 & w \in L\\0 & \text{sonst.}\end{cases}\]
+Wir sagen auch, dass $A$ $L$ erkennt.
+
+\begin{fdefinition}
+Existiert für eine Sprache $L$ ein Algorithmus, der diese erkennt, so heißt $L$ \underline{rekursiv}.
+\end{fdefinition}
+
+\begin{beispiel}
+Ein wichtiges Entscheidungsproblem ist der Primzahltest.
+\[\rklamm{\Sigma_{\text{Bool}}, \gklamm{w \in \Sigma_{\text{Bool}}^* \vert \text{Zahlwert }(w)\text{ ist Primzahl}}}\]
+\end{beispiel}
+
+\begin{beispiel}
+Das Erfüllbarkeitsproblem.
+\[\rklamm{\Sigma_{\text{logic}}m \gklamm{w \in \Sigma_{\text{logic}}^* \vert w \text{ erfüllbar}}}\]
+\[\neg \rklamm{A_1 \oder A_2} \und A_3 \und A_4 \und \neg A_4\]
+Ein ebenfalls wichtiges Entscheidungsproblem ist die Frage der Äquivalenz von Algorithmen $A$ und $B$.
+\[\rklamm{\Sigma_{\tx{Tastatur}}, \gklamm{B \vert B \tx{ ist äquivalent zu } A}}\]
+$A$ ist äquivalent zu $B$, falls $A$ auf jede mögliche Eingabe genauso reagiert wie $B$ und umgekehrt $A$.
+\[\fbox{A} \stack{\text{Optimiert}}{\longrightarrow} \fbox{B}\]
+\end{beispiel}
+
+\subsection{\texorpdfstring{Aufzählungsalgorithmus für $L$}{Aufzählungsalgorithmus für L}}
+\begin{fdefinition}
+Sei $\Sigma$ ein Alphabet und $L \subseteq \Sigma^*$. $A$ ist ein Aufzählungsalgorithmus für $L$, falls $A$ für jede Eingabe $n \in \mb{N} - \rklamm{0}$ die kanonisch (siehe Kanonische Ordnung) ersten $n$ Wörter $w_0, w_1, \dots w_{n -1}$ der Sprache $L$ ausgibt.
+\end{fdefinition}
+
+\begin{lemma}
+Sei $\Sigma$ ein Alphabet und $L \subseteq \Sigma^*$.
+\begin{itemize}
+\item $L$ ist rekursiv $\stackrel{\tx{\ac{gdw.}}}{\Lra}$ es existiert Aufzählungsalgorithmus für $L$
+\item $L$ entscheidbar
+\end{itemize}
+\end{lemma}
+
+\subsection{Funktionsberechnungen}
+\begin{fdefinition}[Funktionsproblems]
+Seien $\Sigma_D$ und $\Sigma_W$ zwei Alphabete. Wir sagen, dass ein Algorithmus $A$ eine Funktion $f: \Sigma_D^* \ra \Sigma_W^*$ berechnet (oder das Funktionsproblem $f$ löst), falls
+\[\forall w \in \Sigma_D^*: A(w) = f(w)\]
+Existiert ein Algorithmus, der $f$ berechnet, so heißt $f$ berechenbar.
+\end{fdefinition}
+
+\subsection{Relationsprobleme}
+\begin{fdefinition}
+Seien $\Sigma_1$ und $\Sigma_2$ Alphabete und $R \subseteq \Sigma_1^* \times \Sigma_2^*$ eine Relation. Ein Algorithmus $A$ berechnet $R$ (oder löst das Relationsproblem $R$), falls für jedes $w \in \Sigma_1^*$ gilt:
+\[\rklamm{w, A(w)} \in R\]
+\end{fdefinition}
+
+\section{Kolmogorov Komplexität}
+\Mark{Section 2.4}
+\begin{beispiel}[Wortlänge vs. Informationsgehalt]
+Das Wort
+\[w = 01 01 01 01 01 01 01\]
+ist zwar länger als das Wort
+\[v = 10 10 11 00\]
+kann aber durch $(01)^7$ kompakter dargestellt werden. Es reichen offenbar fünf Zeichen um die Information in $w$ zu kodieren.
+\end{beispiel}
+
+Das Auffinden einer kürzeren Darstellung für ein Wort nennt man \indexu{Komprimierung}.
+\begin{description}
+\item[Ziel:] Um den Informationsgehalt zweier Wörter zu vergleichen, könnten wir zunächst ein Standard-Komprimierungs Verfahren suchen.\\
+\item[Problem:] Wie findet man ein Verfahren, welches immer die kleinstmögliche Darstellung garantiert?
+\end{description}
+
+\begin{beispiel}[Lauflängenkodierung]
+Wir überführen eine Binärzahl zunächst in die Darstellung
+\[b_1^{l_1} b_2^{l_2}\dots, b_i \in \Sigma_{\tx{Bool}}^*\]
+wobei wir auch die Exponenten in Binärschreibweise darstellen. Von dieser Darstellung gehen wir wie folgt über zu einem Wort über $\Sigma_{\sharp} = \rklamm{0, 1, \sharp}$
+\[l_1 \sharp b_1 \sharp l_2 \sharp b_2 \dots\]
+Nach $\Sigma_{\tx{Bool}}$ kommen wir durch Anwendung eines Homomorphismus.\\
+$\Sigma = \gklamm{0, 1, \sharp}$
+\[\left.\begin{array}{l}
+h (0) = 00\\
+h (1) = 11\\
+h (\sharp) = 10
+\end{array} \right\} h: \Sigma_{\sharp} \ra \Sigma_{\tx{Bool}}^*\]
+\[h (a_1 \dots a_n) = h(a_1) \mal h(a_2) \mal \dots \mal h(a_n)\]
+\[k (00\sharp 1) = \begin{array}{ccccccc}
+h(0) & \mal & h(0) & \mal & h(\sharp) & \mal & h(1)\\
+00 && 00 && 01 && 11\\
+0 && 0 && 10 && 1
+\end{array}\]
+$H: \Sigma_1^* \ra \Sigma_2^*$
+\begin{itemize}
+\item $h(\epsilon) = \epsilon$
+\item $h(u \mal v) = h(u) \mal h(v)$
+\end{itemize}
+\end{beispiel}
+
+\begin{beispiel}
+Sei $w = (100)^{11} (101)^3 (01)^3 \betrag{w} = 43$\\
+In unserer Zwischendarstellung ist dies
+\[1011\sharp 100\sharp 11\sharp 101\sharp 11\sharp 01\sharp\]
+und mit dem Homomorphismus $h(0) = 00$, $h(1) = 11$ und $h(\sharp) = 10$ gelangen wir zu
+\[11 00\, 11 11\, 10 11\, 00 00\, 10 11\, 11 10 \dots \text{ mit } \betrag{w'} = 42\]
+\end{beispiel}
+
+Für große Exponenten kann es sich lohnen, die Lauflängenkodierung auch auf diese Anzuwenden. Zum Beispiel:
+\[(011)^{1048576} = (011)^{2^{20}}\]
+
+Diese Strategie kann man beliebig fortsetzen, um zum Beispiel Wörter der Bauarten $(01)^{2^{2^n}}$ oder $(01)^{2^{2^{2^n}}}$ zu kodieren.\\
+Allgemeines kompressions Verfahren wird durch anderen Umstand ebenfalls schwer auffindbar.
+
+\begin{beispiel}[Codierung durch Primfaktorzerlegung]
+Jede Zahl können wir als Folge von Primfaktoren eindeutig darstellen: zum Beispiel $884736 = 2^1 \mal 3^3 \mal 4^7$. Unter Einbeziehung der Basis können wir dies darstellen als.
+\[\bin(e_1) \sharp \bin(p_1) \sharp \bin(e_2) \sharp \dots\]
+Verfahren der Primfaktorzerlegung und der Lauflängenkodierung sind \textbf{unvergleichbar}. Eines der beiden Verfahren ist Grundsätzlich besser.
+\end{beispiel}
+
+\begin{fdefinition}
+Für alle Wörter $w \in \Sigma_{\tx{Bool}}^*$ ist die Kolmogorov-Komplexität $K_c(w)$ definiert als die binäre Länge \textit{des kürzesten \lstinline{C++} Programmes}, welches $w$ generiert.
+\end{fdefinition}
+
+\begin{lemma}
+Es existiert eine Konstante $d$, so dass für jedes $w \in \Sigma_{\tx{Bool}}^*$ gilt:
+\[K_c (w) \klgl \betrag{w} + d\]
+\end{lemma}
+
+\begin{fbeweis}
+Für jedes $w$ aus $\Sigma_{\tx{Bool}}^*$ nehmen wir folgendes \lstinline{C++} Programm:
+\[P(\underbrace{w}_{\tx{Zeichenkette}}) = \left\{
+\begin{minipage}{82mm}
+\begin{lstlisting}[language=C++]
+int main(int args, char** args) {
+	char * ws = w; //"abcdefg"
+	count++ w;
+}
+\end{lstlisting}
+\end{minipage}\right.\]
+\end{fbeweis}
+
+Regelmäßige Wörter haben eine geringere Kolmogorov-Komplexität. Betrachte \ac{zB} Wörter der Bauart $v_n = 0^n$ für $n \in \mb{N} \backslash \gklamm{0}$
+\[P(n) = \left\{
+\begin{minipage}{70mm}
+\begin{lstlisting}[language=C++]
+unsigned int n;
+for(int i = 1; i <= n; i++)
+	cout << "0";
+\end{lstlisting}
+\end{minipage}\right.\]
+Bis auf die konstante $n$ sind alle $P(n)$ identisch. Zur Kodierung von $n$ als Binärzahl benötigt man $\lceil \ld (n + 1)\rceil$ Bits. Damit
+\[K_c (v_n) \klgl \lceil \ld (n + 1) \rceil + c \klgl \lceil \ld n \rceil + c' = \lceil \ld \betrag{v_n} \rceil + c'\]
+
+Betrachte $u_n = 0^{n^2}$ $n \in \mb{N} - \gklamm{0}$
+\[P(n) \begin{cases}
+\begin{minipage}{2.5cm}
+\begin{center}
+$\cancel{\mbox{\lstinline!m = n + n!}}$
+\end{center}
+\end{minipage}
+\left|
+\begin{minipage}{65mm}
+\begin{lstlisting}
+m = n;
+m = m * m;
+for(int i = 1; i <= m; i++)
+	cout << "0";
+\end{lstlisting}
+\end{minipage}\right.
+\end{cases}\]
+\[K_c (u_n) \klgl \lceil \ld n \rceil + c \klgl \lceil \ld \sqrt{\betrag{u_n}} \rceil + c\]
+\begin{align*}
+&\betrag{u_n} = n^2\\
+\Lra &n = \sqrt{\betrag{u_n}}
+\end{align*}
+
+\begin{fdefinition}
+Sei $n \in \mb{N}$. Die Kolmogorov-Komplexität
+\[K_c (n) = K_c(\bin(n))\tx{.}\]
+\end{fdefinition}
+
+\begin{lemma}
+Für jedes $n \in \mb{N} \backslash {0}$ existiert ein Wort $w_n \in \Sigma_{Bool}^n$, so dass
+\[K_c (w_n) \grgl \betrag{w_n}\]
+\textbf{Es gibt Wörter der Länge $n$, die nicht komprimierbar sind.}
+\end{lemma}
+
+\begin{fbeweis}
+Wir haben genau $2^n$ Wörter $x_1, \dots, x_{2^n} \in \Sigma_{\tx{Bool}}^n$. Sei für $i = 1, \dots, 2^n \prog(x_i)$ der Maschinencode des \lstinline{C++} Programmes von $x_i$ und sei $K_c (x_i) = \betrag{\prog(x_i)}$ die Länge eines kürzesten Algorithmus. Es ist klar, dass für $x_i \neq x_j$ gilt: 
+\[\prog(x_i) \neq \prog(x_j)\]
+wir haben also $2^n$ unterschiedliche Programme. Es genügt zu zeigen, dass eines dieser Programme die Länge $n$ hat.
+
+Jetzt hilft das kombinatorisches Argument: es ist unmöglich $2^n$ verschiedene Maschinencodes der Länge kleiner als $n$ zu haben, denn die Anzahl aller unterschiedlichen, nicht leeren, Wörter aus $\Sigma_{\tx{Bool}}^{n - 1}$ ist
+\[\sum_{i = 1}^{n - 1} 2^i = 2^n - 2 < 2^n\]
+Also muss es unter den $2^n$ Programmen mindestens eins der Länge $n$ geben.
+\end{fbeweis}
+
+\begin{fsatz}
+Seien $A$ und $B$ Programmiersprachen. Es existiert eine Konstante $c_{A, B}$, die nur von $A$ und $B$ abhängig ist, so dass $\forall w \in \Sigma_{\tx{Bool}}^*$
+\[\betrag{K_{c_A} (w) - K_{C_B}} \klgl c_{A, B}\]
+\end{fsatz}
+
+\begin{fbeweis}
+trivial
+\end{fbeweis}
+
+\begin{fdefinition}[Zufällig]
+Ein Wort $w \in \Sigma_{\tx{Bool}}^*$ heißt zufällig, falls $K_C (w) \grgl \betrag{w}$. Eine Zahl $n$ heißt zufällig, falls
+\[K_c(n) = K_c (\bin(n)) \grgl \lceil \ld(n + 1) \rceil - 1\]
+\end{fdefinition}

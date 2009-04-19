@@ -1,0 +1,46 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+
+%<Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=true,bookmarksnumbered=true,
+pdftitle={Hefter für Betriebswirtschaftslehre -- Stand: \today},
+pdfauthor={Thaller Alexander},
+pdfsubject={Hefter für das Fach Betriebswirtschaftslehre aus der Vorlesung von Professor Wilhelm Ulrich (Ulwi) für das 2. Semester der Informatik im Sommersemester 2009 an der Hochschule Regensburg.},
+pdfkeywords={informatik,studium,hefter,betriebswirtschaftslehre,sommersemester,2009}}
+%</Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlehead{\includegraphics[width=34mm]{FH-Logo.pdf}}
+\subject{Informatik (Bachelor) 2. Semester}
+\author{Alexander Thaller}
+\title{Betriebswirtschaftslehre\footnote{Gefundene Fehler oder Verbesserungsvorschläge bitte hier im PDF kommentieren, in die Fehler und Verbesserungen Textdatei schreiben oder alternativ mir eine E-Mail schicken an \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\subtitle{Hefter des Sommersemesters 2009}
+\date{stand \today}
+\publishers{Aus der Vorlesung von Professor Wilhelm Ulrich (Ulwi)}
+%</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{00acronyms.tex}
+\maketitle
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\tableofcontents
+\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Literaturverzeichnis
+\newpage
+\addcontentsline{toc}{part}{Literaturverzeichnis}
+\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}
+
+
