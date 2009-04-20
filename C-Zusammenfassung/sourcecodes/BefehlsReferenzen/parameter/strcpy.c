@@ -1,1 +1,0 @@
-char* strcpy(char* Ziel, const char* Quelle)
