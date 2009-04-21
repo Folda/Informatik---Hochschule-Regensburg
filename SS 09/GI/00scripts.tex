@@ -158,7 +158,7 @@
 \newcommand{\Insert}[1]{\todo[inline, color=green!40]{INSERT: #1}}
 \newcommand{\Mark}[1]{\todo[inline, nolist, color=blue!40]{MARK: #1}}
 \newcommand{\Img}[1]{\todo[inline, nolist, color=black!40]{IMG: #1}}
-\newcommand{\Solved}[2]{\todo[inline, nolist]{TODO: #1\\SOLVED: #2}}
+\newcommand{\Solved}[2]{\todo[inline, nolist]{TODO: #1\if\empty{#2} -- DONE\else\\SOLVED: #2\fi}}
 
 %Schriften
 \newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}

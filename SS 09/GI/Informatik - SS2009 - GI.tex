@@ -31,55 +31,12 @@ pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der inf
 \listoftodos
 \newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}
-\node[draw,circle] (one) {\space};
-\node[draw,circle] (two) [right of=one] {\space};
-\node[draw,circle] (three) [right of=two] {\space};
+\input{kapitel/Uebersicht.tex}
 
-\draw[->] (one.west) +(-0.5,0) -- (one.west);
-\draw[->] (one.east) -- (two.west) node[above, midway] {$0$};
-\draw[->] (two.east) -- (three.west) node[above, midway] {$0$};
-\draw[->] (one.north west) to [out=110, in=70] (one.north east) node[right, midway] {$0, 1$};
-\end{tikzpicture}
+\input{kapitel/Grundlagen.tex}
+\input{kapitel/Endliche_Automaten.tex}
 
-%\input{kapitel/Uebersicht.tex}
-%\newpage
-%\input{kapitel/Grundlagen.tex}
-%\input{kapitel/Endliche_Automaten.tex}
-
-%\section{Übung}
-%\subsection{Endliche Automaten}
-%\begin{description}
-%\item[Ziel (fern)] Minimales und vollständiges Modell für Computer \ac{bzw.} \textbf{Algorithmus}
-%\item[Hier]
-%		\begin{itemize}
-%		\item Modell für \textbf{spezielle} Entscheidungsprobleme
-%		\item Einführung wichtiger Begriffe
-%		\end{itemize}
-%\end{description}
-%
-%\Insert{GI(U)-16.04.2009-IMG-1}
-%\Insert{GI(U)-16.04.2009-IMG-2}
-%
-%$L_1 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w}_0 \tx{ gerade } \und \betrag{w}_1 \tx{ gerade}}$
-%
-%\Insert{GI(U)-16.04.2009-IMG-3}
-%
-%$L_2 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w}_0 \tx{ gerade } \und \betrag{w}_1 \tx{ gerade} \oder \betrag{w}_0 \tx{ gerade } \und \betrag{w}_1 \tx{ ungerade}}$
-%
-%\Insert{GI(U)-16.04.2009-IMG-4}
-%
-%$L_3 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert Zahlenwert (w) \mod 4 = 0}$
-%$\approx \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w \tx{ endet auf } 00}$
-%Erstmal: $w$ beginnt mit $00$
-%
-%\Insert{GI(U)-16.04.2009-IMG-5}
-%
-%\Insert{GI(U)-16.04.2009-IMG-6}
-%
-%$L_4 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w \tx{ enthält } 110110}$
-%
-%\Insert{GI(U)-16.04.2009-IMG-7}
+\input{kapitel/Uebungen_und_Tutorium.tex}
 %</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Literaturverzeichnis

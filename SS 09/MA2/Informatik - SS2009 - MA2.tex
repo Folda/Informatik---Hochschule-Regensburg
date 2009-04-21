@@ -19,12 +19,6 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 \publishers{Aus der Vorlesung von Professorin Gabriela Grüniger (Grüg)}
 %</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
-
-  \node[initial,state] (A)             {};
-  \node[state]         (B) [left of=A] {};
-  \node[state]         (C) [left of=B] {};
-\end{tikzpicture}
 %\input{00acronyms.tex}
 %\maketitle
 %\setcounter{tocdepth}{1}
@@ -36,6 +30,16 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 %\listoftodos
 %\newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[scale=2]
+\draw[out=90,in=0] (1,0) to (0,1);
+\draw (0,0) -- (45:1) node[above] {$e^x$};
+
+\draw[->,thick] (0,0) -- (1.5,0) node[below] {Re};
+\draw[->,thick] (0,0) -- (0,1.5) node[right] {Im};
+
+\draw[thick] (1,-0.05) -- (1,0.05) node[below] {$1$};
+\draw[thick] (-0.05,1) -- (0.05,1) node[left] {$i$};
+\end{tikzpicture}
 %\input{kapitel/Uebersicht.tex}
 %\newpage
 %\part{Einführung} \pagestyle{fancy}
@@ -49,66 +53,11 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 %\input{kapitel/Landau_Symbole.tex}
 %\input{kapitel/Konvergente_Reihen.tex}
 %\input{kapitel/Potenzreihen_und_elementare_Funktionen.tex}
-
-\part{Grenzwerte und Stetigkeit}
-\Mark{Part 3}
-\chapter{Grenzwerte und Stetigkeit von Funktionen}
-\Mark{Chapter 3.1}
-Wir betrachten eine Funktion $f$: $D \ra \R$ in einer Umgebung des Punktes $x_0 \in D$.
-
-\begin{fdefinition}[Grenzwerte]
-\mbox{}\par
-\begin{enumerate}[label=\alph*)]
-\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{Grenzwert} $a$, $\lim_{x \ra x_0} f(x) = a$, falls gilt:
-		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, \lim_{n \ra \un} x_n = x_0:~\lim_{n \ra \un} f(x_n) = a\]
-
-\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{linksseitigen Grenzwert} $a \lim_{x \nearrow x_0} f(x) = a$ (\ac{bzw.} $\lim_{x \uparrow x_0} f (x) = a$, $\lim_{x \ra x_0^-} f(x) = a$), falls gilt:
-		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n < x_0, x_n \in D, \lim_{n \ra \infty} x_n ? x_0:~\lim_{n \ra \infty} f(x_n) = a\]
-
-\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{rechtsseitigen Grenzwert} $a$ $\lim_{x \searrow x_0} f (x) = a$ (\ac{bzw.} $\lim_{x \downarrow x_0} f(x) = a$ \ac{bzw.} $\lim_{x \ra x_0^+} f (x) = a$), falls gilt
-		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, x_n > x_0, \lim_{n \ra \infty} x_n = x_0\]
-
-\item Die Funktion $f$ hat in $\pm \un$ den Grenzwert $a$ $\lim_{x \ra \pm \infty} f (x) = a$, falls gilt:
-		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, \lim_{n \ra \infty} = \pm \infty:~\lim_{n \ra \infty} f(x_n) = a\]
-
-\item Die Funktion $f$ hat in $x_0$ den \indexu{uneigentlichen Grenzwert} $\pm \infty$, $\lim_{x \ra x_0} f (x) = \pm \un$ falls gilt:
-		\[\forall(x_n)_{n \in \N} \tx { mit } x_n \in D, \lim_{n \ra \un} x_n = x_0:~\lim_{n \ra \un} f(x_n) = \pm \un\]
-		(Links-/rechtsseitige uneigentliche Grenzwert werden analog definiert).
-\end{enumerate}
-\Mark{Definition 3.1}
-\end{fdefinition}
-
-\begin{bemerkung}
-Es gilt $\lim_{x \ra x_0} f(x) = a \Lra \lim_{x \nearrow x_0} f(x) = \lim_{x \searrow x_0} f(x) = a$
-\end{bemerkung}
-
-\begin{fsatz}[Rechenregeln für Grenzwerte]
-Falls $\lim_{x \ra x_0} f (x) = a$ und $\lim_{x \ra x_0} g (x) = b$ ($a, b \in \R$) gilt:
-\begin{enumerate}[label=\roman*)]
-\item $\lim_{x \ra x_0} (f(x) \pm g(x)) = \lim_{x \ra x_0} f(x) \pm \lim_{x \ra x_0} g(x) = a \pm b$
-\item $\lim_{x \ra x_0} (f(x) \mal g(x)) = \lim_{x \ra x_0} f(x) \mal \lim_{x \ra x_0} g(x) = a \mal b$
-\item $\lambda \in \R$: $\lim_{x \ra x_0} \lambda \mal f(x) = \lambda \mal \lim_{x \ra x_0} f(x) = \lambda \mal a$
-\item falls $b \neq 0$: $\lim_{x \ra x_0} \frac{f(x)}{g(x)} = \frac{\lim_{x \a x_0} f(x)}{\lim_{x \ra x_0} g(x)} = \frac{a}{b}$
-\end{enumerate}
-\Mark{Satz 3.2}
-\end{fsatz}
-
-\begin{beweis}
-Folgt aus Rechenregeln für Grenzwerte von Folgen.
-\end{beweis}
-
-\begin{bemerkung}
-Satz 3.2 gilt analog für links-/rechtsseitige Grenzwerte
-\Todo{Referenziere zu Satz 3.2}
-\end{bemerkung}
-
-\begin{fdefinition}[Stetigkeit]
-Eine Funktion $f$: $D \ra \R$ heißt stetig in $x_0 \ra D$, wenn
-\[\lim_{x \ra x_0} f(x) = f(x_0)\]
-$f$ heißt stetig in der Menge $A \subseteq D$, wenn $f$ in jedem Punkt $x_0 \in A$ stetig ist.
-\Mark{Definition 3.3}
-\end{fdefinition}
-
+%
+%\part{Grenzwerte und Stetigkeit}
+%\Mark{Part 3}
+%\input{kapitel/Grenzwerte_und_Stetigkeit_von_Funktionen.tex}
+%
 %\part{Übungsblätter}
 %\input{kapitel/Ergaenzungsblaetter.tex}
 %\input{kapitel/Uebungsblaetter.tex}

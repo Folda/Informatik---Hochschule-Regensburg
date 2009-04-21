@@ -9,12 +9,13 @@ Man setzt $0^0 = 1$
 \end{bemerkung}
 
 \begin{fsatz}
-%MARK: Satz 2.15
+\label{satz:Potenzreihen_und_elementare_Funktionen_S2_15}
 Für die Potenzreihe $\sum_{n = 0}^{\infty} a_n (x - x_0)^n$ gilt:
 \begin{enumerate}[label=\roman*)]
 \item konvergiert die Reihe $a_n$ einer Stelle $x_1 \neq x_0$, so konvergiert sie für alle $x$ mit $\betrag{x - x_0} < \betrag{x_1 - x_0}$
 \item divergiert die Reihe $a_n$ einer STelle $x_2 \neq x_0$, so divergiert sie für alle $x$ mit $\betrag{x - x_0} > \betrag{x_2 - x_0}$
 \end{enumerate}
+\Mark{Satz 2.15}
 \end{fsatz}
 
 \begin{fbeweis}
@@ -39,18 +40,18 @@ Für die Potenzreihe $\sum_{n = 0}^{\infty} a_n (x - x_0)^n$ gilt:
 \end{fbeweis}
 
 \begin{fsatz}[Konvergenzradius einer Potenzreihe]
-%MARK: Satz 2.16
 Für jede Potenzreihe $\sum_{n = 0}^{\infty} a_n (x - x_0)^n$ existiert ein eindeutig bestimmter \indexu{Konvergenzradius} $r$ ($0 \klgl r \klgl \infty$) für den gilt:
 \begin{enumerate}
 \item Falls $r = 0$ so konvergiert die Potenzreihe nur für $x = x_0$
 \item Falls $0 < r < \infty$ so konvergiert die Potenzreihe für alle $x \in \mb{R}$ mit $\betrag{x - x_0} < r$ und divergiert für alle $x \in \mb{R}$ mit $\betrag{x - x_0} > r$.
 \item Falls $r = \infty$, so konvergiert die Potenzreihe für alle $x \in \mb{R}$
 \end{enumerate}
+\Mark{Satz 2.16}
 \end{fsatz}
 
 \begin{fbeweis}
-folgt aus Satz 2.15 
-\Todo{Insert ref to Satz 2.15}
+Folgt aus Satz \vref{satz:Potenzreihen_und_elementare_Funktionen_S2_15}.
+\Solved{Insert ref to Satz 2.15}{}
 \end{fbeweis}
 
 \begin{fdefinition}[Konvergenzbereich]
@@ -157,7 +158,18 @@ x& \mapsto \exp (x) = \sum_{n = 0}^{\infty} \frac{1}{n!} \mal x^n = e^x
 \end{align*}
 heißt Exponentialfunktion
 
-\Insert{MA-16.04.2009-IMG-1}
+\begin{tikzpicture}[domain=-2.5:1.2]
+\draw[->,thick] (-2.5,0) -- (4.5,0) node[below] {$x$};
+\draw[->,thick] (0,-0.5) -- (0,3.5);
+\node at (0,0) [below right] {$0$};
+\draw[thick] (-0.05,1) -- (0.05,1) node[left] {$1$};
+
+\foreach \x in {1,2,3,4}
+	\draw[thick] (\x,-0.05) -- (\x,0.05);
+
+\draw plot[smooth] (\x,{exp(\x)}) node[right] {$\exp (x)$};
+\end{tikzpicture}
+\Img{MA-16.04.2009-IMG-1}
 
 \end{fdefinition}
 
@@ -234,11 +246,46 @@ heißt Exponentialfunktion
 
 \item Tangens
 		\begin{align*}
-		\tan:~\R& \backslash \gklamm{x \in \R \vert x = (2k + 1) \frac{\pi}{2} K \in \mb{R}} \ra \R\\
+		\tan:~\R& \backslash \gklamm{x \in \R \vert x = (2k + 1) \frac{\pi}{2} K \in \mb{Z}} \ra \R\\
 		x& \mapsto \tanx{x} = \frac{\sinx{x}}{\cosx{x}}
 		\end{align*}
 \end{enumerate}
 
+\begin{tikzpicture}[domain=-pi:pi]
+\draw[->,thick] (-3.5,0) -- (3.5,0) node[below] {$x$};
+\draw[->,thick] (0,-1) -- (0,2);
+\node at (0,0) [below right] {$0$};
+\node at (-3.5,1) {$\sin$};
+
+\foreach \x/\y in {-pi/-\pi,-1.570/-\frac{\pi}{2},1.570/\frac{\pi}{2},pi/\pi}
+	\draw[thick] (\x,-0.05) -- (\x,0.05) node[above] {$\y$};
+
+\draw plot[smooth] (\x,{sin(\x r)});
+\end{tikzpicture}
+
+\begin{tikzpicture}[domain=-pi:pi]
+\draw[->,thick] (-3.5,0) -- (3.5,0) node[below] {$x$};
+\draw[->,thick] (0,-1) -- (0,2);
+\node at (0,0) [below right] {$0$};
+\node at (-3.5,1) {$\cos$};
+
+\foreach \x/\y in {-pi/-\pi,-1.570/-\frac{\pi}{2},1.570/\frac{\pi}{2},pi/\pi}
+	\draw[thick] (\x,-0.05) -- (\x,0.05) node[above] {$\y$};
+
+\draw plot[smooth] (\x,{cos(\x r)});
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\draw[->,thick] (-3.5,0) -- (3.5,0) node[below] {$x$};
+\draw[->,thick] (0,-1) -- (0,2);
+\node at (0,0) [below right] {$0$};
+\node at (-3.5,1) {$\tan$};
+
+\foreach \x/\y in {-pi/-\pi,-1.570/-\frac{\pi}{2},1.570/\frac{\pi}{2},pi/\pi}
+	\draw[thick] (\x,-0.05) -- (\x,0.05) node[above] {$\y$};
+
+\draw plot[domain=0:1.2,smooth] (\x,{tan(\x r)});  \draw plot[domain=-1.2:0,smooth] (\x,{-tan(-\x r)});
+\end{tikzpicture}
 \Insert{MA-16.04.2009-IMG-2}
 
 \end{fdefinition}
@@ -298,7 +345,6 @@ Lösung siehe \vref{sec:Potenzreihen_und_elementare_Funktionen_A2_6L}.
 		&= \sum_{n = 0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} + i \sum_{n = 0}^{\infty} (-1)^n \mal \frac{x^{2n + 1}}{(2n + 1)!}\\
 		&= \cosx{x} + i \mal \sinx{x}
 		\end{align*}
-
 		\Insert{IMG-MA-09-04-21-2}
 
 		$z = x + iy$ $x,y \in \R$\\
