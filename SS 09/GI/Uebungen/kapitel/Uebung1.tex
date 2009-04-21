@@ -1,0 +1,157 @@
+\chapter{1. Übung}
+\section{Aufgaben}
+\subsection{1. Aufgabe (2+2+2+2+2 Punkte)}
+Gegeben sei das ALphabet $\Sigma = \gklamm{0, 1}$. Ferner seien $L_1 = \gklamm{0, 00, 000}$ und $L_1 = \gklamm{0, 1, 01}$. Für welche Sprachen stehen die folgenden Ausdrücke?
+\begin{enumerate}[label=(\alph*)]
+\item $L_1 \mal L_2$
+\item $L_1^3$
+\item $L_1^C$
+\item $L_1^*$
+\item $\emptyset^*$
+\end{enumerate}
+
+\subsection{2. Aufgabe (3+3 Punkte)}
+Geben Sie induktive Definitionen für die folgenden Funktionen an:
+\begin{enumerate}[label=(\alph*)]
+\item $\del$: $\Sigma^* \times \Sigma \ra \Sigma^*$ entfernt alle Vorkommen eines Symbols aus einem Wort (z.B. $\del(abbcab, a) = bbcb$).
+\item $\gicount$: $\Sigma^* \times \Sigma \ra \mb{N}$ zählt alle Vorkommen eines Symbols in einem Wort (z.B. $\gicount$ ist $count(abbdd, d) = 2$).
+\end{enumerate}
+
+\subsection{3. Aufgabe (3+3+3 Punkte)}
+Gegeben sei das Alphabet $\Sigma = \gklamm{0, 1, \sharp}$.
+\begin{enumerate}[label=(\alph*)]
+\item Wie viele verschiedene Wörter der Länge $n$gibt es?
+\item Wie viele verschiedene Wörter der Länge $n$ gibt es, in denen ein Symbol $c \in \Sigma$ genau $k$-mal vorkommt?
+\item Wie viele verschiedene Wörter der Länge $n$ gibt es, in denen ein Symbol $c \in \Sigma$ mindestens $k$-mal vorkommt?
+\end{enumerate}
+
+\subsection{4. Aufgabe (10 Zusatzpunkte)}
+Gegeben sei das Alphabet $\Sigma_{\tx{Bool}} = \gklamm{0, 1}$. Geben Sie zwei Beispielsprachen $L_1$ und $L_2$ an, so dass die folgende Aussage gilt:
+\[(L_1 \cup L_2)^* = L_1^* \cup L_2^*\]
+Dabei dürfen $L_1$ und $L_2$ weder gleich, noch leer sein und müssen sich von $\gklamm{0, 1}^*$ unterscheiden. Beweisen Sie ihre Aussage.
+
+\section{Eigene Lösung}
+\subsection{1. Aufgabe}
+$\Sigma = \gklamm{0, 1}$, $L_1 = \gklamm{0, 00, 000}$, $L_2 = \gklamm{0, 1, 01}$
+\begin{enumerate}[label=(\alph*)]
+\item $L_1 \mal L_2 = \gklamm{00, 01, 001, 000, 0001, 0000, 00001}$
+\item $L_1^3 = \gklamm{0^3, 0^4, 0^5, 0^6, 0^7, 0^8, 0^9}$
+\item $L_1^{\mathcal{C}} = \Sigma^* - L_1$
+\item $L_1^* = \gklamm{\epsilon, 0, 00, 000, 0^4, \dots}$
+\item $\emptyset^* = \gklamm{\epsilon}$
+\end{enumerate}
+
+\subsection{2. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+\item $\del$
+		\begin{itemize}
+		\item $\del(\epsilon) = \epsilon$
+		\item sei $w = av$, falls $a = b$ wobei $b$ der zu löschende Buchstabe ist, sei $\del(w) = del(v)$. Ansonsten ist $\del(w) = a \del(v)$.
+		\end{itemize}
+
+\item $\gicount$
+		\begin{itemize}
+		\item $\gicount(\epsilon) = 0$
+		\item sei $w = av$, falls $a = b$ wobei $b$ der zu zählende Buchstabe sei ist $\gicount(w) = \gicount(v) + 1$. Ansonsten ist $\gicount(w) = \gicount(v) + 0$.
+		\end{itemize}
+\end{enumerate}
+
+\subsection{3. Aufgabe}
+$\Sigma = \gklamm{0, 1, \sharp}$
+\begin{enumerate}[label=(\alph*)]
+\item Die Anzahl der verschiedenen Wörter ist die Anzahl der Zeichen in $\Sigma$ hoch $n$ wobei $n$ die Anzahl der Stellen ist. In dem Fall $\Sigma = \gklamm{0, 1, \sharp}$ ist die Anzahl also $n^3$.
+\item Es gibt $\matrixp{n\\k}$ Möglichkeiten das Symbol zu platzieren. Für jede Platzierung hat man eine Möglichkeit weniger ein also $(n - k)$. Daraus ergibt sich die Formel:
+		\[\matrixp{n\\k} \mal 2^{(n - k)}\]
+
+\item Die Antwort ergibt sich aus der vorherigen Lösung nur muss man alle einzelnen Wahrscheinlichkeiten des Zeichens aufsummieren. Es folgt also:
+		\[\sum_{i = k}^n \matrixp{n\\i} \mal 2^{n - i}\]
+\end{enumerate}
+
+\subsection{4. Aufgabe}
+$\Sigma_{\text{Bool}} = \gklamm{0, 1}$, $\underbrace{\rklamm{L_1 \cup L_2}^*}_{M_1} 0 \underbrace{L_1^* \cup L_2^*}_{M_2}$
+\subsection*{Beispielsprachen}
+$L_1 = \gklamm{01}$\\
+$L_2 = \gklamm{10}$
+
+\subsubsection{Beweis der Aussage}
+\subsubsection*{Annahme}
+$M_1 \subseteq M_2 \wedge M_2 \subseteq M_1$\\
+\Ra $L_1^* \subseteq \rklamm{L_1 \cup L_2}^* \wedge L_2^* \subseteq \rklamm{L_1 \cup L_2}^*$
+
+\subsubsection{Beweis}
+\begin{enumerate}
+\item $M_1 \subseteq M_2$
+		\begin{align*}
+		u &\in \rklamm{L_1 \cup L_2}^*\\
+		u &\in \rklamm{\gklamm{01} \cup \gklamm{10}}^*\\
+		u &= \gklamm{01}\\
+		&\Ra u \in \rklamm{\gklamm{01} \cup \gklamm{10}}^* \text{ da } \gklamm{01} \in \gklamm{01}^*
+		\end{align*}
+		\Ra $u \in M_1$
+\item $M_2 \subseteq M_1$
+		\begin{align*}
+		u &\in L_1^* \cup L_2^*\\
+		u &\in \gklamm{01}^* \cup \gklamm{10}^*\\
+		u &= \gklamm{01}\\
+		&\Ra u \in \gklamm{01}^* \cup \gklamm{10}^* \text{ da } \gklamm{01} \in \gklamm{01}^*
+		\end{align*}
+		\Ra $u \in M_1$
+\end{enumerate}
+\Ra $u \in M_1 \wedge M_2$ \Ra $M_1 = M_2$
+\begin{flushright}$\blacksquare$\end{flushright}
+
+\section{Muster Lösung}
+\subsection{1. Aufgabe}
+$L_1 = \gklamm{0,00,0000}$, $L_2 = \gklamm{0,1,0}$,
+		\begin{enumerate}[label=\alph*)]
+		\item $L_1 \mal L_2 = \gklamm{0,00,000} \mal \gklamm{0, 1, 01} = \gklamm{00,01,000,001,0000,0001,00001}$
+		\item $L_1^3 = L_1 \mal L_1 \mal L_1 = \gklamm{0^2,0^3,0^4,0^5,0^6} \mal \gklamm{0,0^2,0^5} = \gklamm{0^3, 0^4, 0^5, 0^6, 0^7, 0^8, 0^9}$
+		\item $L_1^\mathcal{C} = \Sigma^* - L_1 = \gklamm{\epsilon, 1, 01, 10, 11,001,010,011,100,101, \dots} = \Sigma^* - \gklamm{0,00,0000}$
+		\item $L_1^* = \gklamm{\epsilon,0,00,000,0000,\dots} = \gklamm{0}^*$
+		\item $\emptyset^* = \gklamm{\epsilon}$
+		\end{enumerate}
+
+\subsection{2. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+		\item \begin{enumerate}[label=\arabic*.)]
+				\item $\del(\epsilon, a) = \epsilon$
+				\item $\del(w \mal a, b) = \begin{cases}\del(w, b) \tx{ falls } a = b\\\del(w, b) \mal a \tx{ sonst}\end{cases}$
+				\end{enumerate}
+
+		\item \begin{enumerate}[label=\arabic*.)]
+				\item $\gicount(\epsilon, a) = 0$
+				\item $\gicount(w \mal a, b) = \begin{cases}\gicount (w, b) \tx{ falls } a \neq b\\\gicount(w, b) + 1 \tx{ sonst}\end{cases}$
+				\end{enumerate}
+		\end{enumerate}
+
+\subsection{3. Aufgabe}
+$\Sigma = \gklamm{0, 1, \sharp}$
+\begin{enumerate}[label=(\alph*)]
+\item $\underbrace{3 \mal 3 \mal \dots \mal 3}_{n} = 3^n$
+\item $\underbrace{\binom{n}{k}}_{} \mal 2^{(n - k)}$
+\item $\sum_{i = k}^{n} \binom{n}{l} \mal 2^{(n - i)}$
+\end{enumerate}
+
+\subsection{4. Aufgabe}
+$(L_1 \cup L_2)^* = L_1^* \cup L_2^*$\\
+$L_1 \neq L_2; L_1, L_2 \neq \{\}; L_1, L_2 \neq \gklamm{0,1}^*$\\
+$L_1$ so dass
+\[L_1^* = (L_1 \cup L_2)^*\]
+\[(L_1 \cup L_2)^* = (L_1 \cup L_2)^* \cup L_2^*\]
+$L_1 = \gklamm{0, 01}$, $L_2 = \gklamm{0, 00}$\\
+$L_0 = \gklamm{\epsilon} \cup \gklamm{0w \vert \tx{ zwischen je zwei } \wedge \tx{ ist in } w \tx{ mindestens eine } 0}$\\
+$L_1^* = (L_1 \cup L_2)^* = L_0$\\
+$L_1^* \subseteq (L_1 \cup L_2)^* \subseteq L_0 \subseteq L_1^*$\\
+zu $(L_1 \cup L_2)^* \subseteq L_0$: $v \in (L_1 \cup L_2)^*$\\
+$v = a_1, a_2 \dots a_k (1 \klgl i \klgl k)$ für $k \in \mb{N}$, $a_i \in L_1 \cup L_2 = \gklamm{0, 01, 00}$\\
+$u = a_2 \dots a_k$
+\Ra $v \in L_0$\\
+zu $L_0 \subseteq L_1^*$: $v \in L_0$
+\begin{itemize}
+\item $v \in \gklamm{0}^* \subseteq L_1^*$
+\item $ = v_1 01 v_2 01 v_3 01 \dots v_{k - 1} 01 v_k$\\
+		$v_i \in \gklamm{0}^* (1 \klgl i \klgl k)$\\
+		$\gklamm{0}^* \subseteq L_1^*$ und $\gklamm{01} \in L_1^* \ra v \in L_1^*$\\
+		$L_1 = \gklamm{0, 01}$, $L_2 = \gklamm{00}$
+\item 
+\end{itemize}

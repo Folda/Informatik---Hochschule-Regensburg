@@ -1,0 +1,645 @@
+\chapter{Relation und Abbildungen}
+\section{Darstellung von Relationen}
+$A, B$ endliche Mengen
+\begin{enumerate}
+\item In Worten: $xRy \equals$ ''$x$ steht in Relation zu $y$''
+\item Als Menge geordneter Paare
+		\begin{itemize}
+		\item Aufzählung
+		\item Graphische Darstellung
+		\end{itemize}
+\item Als gerichteten Graphen\\
+		Die Elemente von $A$ beziehungsweise $B$ werden als Knoten aufgefasst. Gilt $(x, y) \in \relmeng$ wird eine gerichtete Kante (Pfeil) vom Koten $x \in A$ zum Knoten $y \in B$ gezeichnet.
+\item Als Matrix\\
+		Zuerst werden die Elemente der Mengen $A$ und $B$ durchnummeriert.\\
+		$A = $\gklamm{x_1, x_2, \dots, x_n}, B = \gklamm{y_1, y_2, \dots, y_m}\\
+		Dann kann man die Wahrheitswerte
+		\[M(i, j) = \left\{\begin{array}{c}w \mbox{ falls } (x_i, y_j) \in R\\f \mbox{ falls } (x_i, y_j) \in R \end{array}\right.\]
+		\[i \in \gklamm{1, 2, \dots, n}, j \in \gklamm{1, 2, \dots, m}\]
+		definiert. Diese Werte kann man eine $n \times m$ Matrix eintragen: ($n$ Zeilen, $m$ Spalten)
+		\[\left(\begin{array}{cccc}
+		M(1, 1) & M(1, 2) & \dots 	& M(1, m)\\
+		M(2, 1) & \dots	& \dots	&\vdots\\
+		M(n, 1) & \dots	& \dots	&M(n, m)
+		\end{array}\right)\]
+\end{enumerate}
+\textalignenum{Beispiel:}{zu }{
+\renewcommand{\labelenumi}{zu \arabic{enumi})}
+\item $R$ definiert durch $x$ sei $\geqq y$ mit $x \in A = $\gklamm{1, 2, 3}, $y \in B$ = \gklamm{0, 2, 4, 6}
+\item $R = $\gklamm{(1,0), (3,2), (3,0), (2,0), (2,2)}\\
+		%TAB-15.10.2008-math-1
+		\includegraphics{bilder/kapitel/kap3_Relation_und_Abbildungen/1.pdf}
+
+\item $ $\newline %TODO -- Fix the top/bottom/middle problem
+		%TAB-15.10.2008-math-2
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$A$};
+		\node (Left_1) 		at (0,0) 		{$1$};
+		\node (Left_2) 		at (0,-0.5) 	{$2$};
+		\node (Left_3) 		at (0,-1) 		{$3$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$0$};
+		\node (Right_2) 		at (3,-0.5) 	{$2$};
+		\node (Right_3) 		at (3,-1) 		{$4$};
+		\node (Right_4) 		at (3,-1.5) 	{$6$};
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_1.west);
+		\draw (Left_2.east) -- (Right_1.west);
+		\draw (Left_2.east) -- (Right_2.west);
+		\draw (Left_3.east) -- (Right_1.west);
+		\draw (Left_3.east) -- (Right_2.west);
+		\end{tikzpicture}
+
+\item $A = $\gklamm{1 (x_1), 2 (x_2), 3 (x_3)} $B = $\gklamm{0 (y_1), 2 (y_2), 4 (y_3), 6 (y_4)}\\
+		\[\left(\begin{array}{cccc}
+		w & f & f & f\\
+		w & w & f & f\\
+		w & w & f & f
+		\end{array}\right)\]
+
+		Bemerkung: Relation wie oben mit $B = A = $\gklamm{1, 2, 3}
+
+		\textalign{Darstellung 3:}{$ $\newline %TODO -- Fix the top/bottom/middle problem
+		%TAB-15.10.2008-math-3
+		\begin{tikzpicture}
+		%Nodes
+		\node (Eins) at (0,0) 		{$1$};
+		\node (Zwei) at (3,-0.5) 		{$2$};
+		\node (Drei) at (0.5,-2)	{$3$};
+		%Verknüpfungen
+		\draw[->] (Zwei.west)	-- (Eins.east);
+		\draw[->] (Drei.north) 	-- (Eins.south);
+		\draw[->] (Drei.north) 	-- (Zwei.west);
+		\end{tikzpicture}}
+\renewcommand{\labelenumi}{\arabic{enumi}.}}
+
+\section{Definitionen}
+\subsection{Relation}
+Seien $A$ und $B$ Mengen und $R \subseteq A \times B$, dann heißt $R$ Relation auf $A \times B$.\\
+Ist $B = A$, so heißt $R$ Relation auf $A$.\\
+Eine Relation definiert eine Beziehung, die zwischen den Komponenten der Paare $(x, y) \in A \times B$ besteht. Dabei lässt sich für jedes dieser Paare $(x, y)$ festlegen, ob die gegebene Beziehung wahr oder falsch ist.\\
+Besteht zwischen $x$ und $y$ die durch $R$ definierte Relation, so schreibt man $(x, y) \in R$ häufig $xRy$.
+
+\subsection{Spezielle Relationen}
+Sei $R$ eine Relation auf der nichtleeren Menge $A$. Die Relation $A$ heißt:
+\begin{enumerate}
+\item reflexiv: wenn für alle $x \in A$ gilt: \[xRx\]
+\item symmetrisch: wenn für alle $x, y \in A$ gilt: \[xRy \Ra yRx\]
+\item antisymmetrisch: wenn für alle $x, y \in A$ gilt: \[(xRy \und yRx) \Ra x = y\]
+\item transitiv: wenn für alle $x, y, z \in A$ gilt: \[xRy \und yRz \Ra xRz\]
+\item vollständig: wenn für alle $(x, y) \in A \times A$ gilt:\[xRy \oder yRx\]
+\end{enumerate}
+\textalign{Beispiel:}{
+Die Produktion einer Maschine erfordert 6 Produktionsschritte. Zuerst muss 1 ausgeführt werden, dann die Schritte 2, 3, 4 in beliebiger Reihenfolge und dann 5, 6 in beliebiger Reihenfolge
+\begin{align*}
+	A_1 &= \gklamm{1, 2, 3, 4, 5, 6}\\
+	R_1 &= \gklamm{(x, y) \in A_1 \times A_1 | y \mbox{ kann nicht vor } x \mbox{ ausgeführt werden}}\\
+	R   &= \left\{(1,2), (1,3), (1,4), (1,5), (1,6), (2,5), (2,6), (3,5), (3,6),\right.\\
+		 &\left.(4,5), (4,6), (1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\right\}
+\end{align*}
+\begin{tabular}{r|c|c}
+& \begin{sideways}wahr\end{sideways} & \begin{sideways}falsch\end{sideways}\\
+\hline
+reflexiv				& x 	&\\
+\hline
+symmetrisch 		& 		& x\\
+\hline
+antisymmetrisch 	& x 	&\\
+\hline
+transitiv 			& x 	&\\
+\hline
+vollständig 		&  	& x
+\end{tabular}}
+\subsection{Äquivalenzrelation}
+Eine Relation auf $A$ nennen wir dann Äquivalenzrelation, wenn sie reflexiv, transitiv und symmetrisch ist.\\
+Im Fall einer Äquivalenzrelation schreibt man meist $x \thicksim y$ anstelle von $xRy$ oder $(x,y) \in R$ ($x \thicksim y \equals$ ''$x$ ist äquivalent zu $y$'')
+
+\subsection{Äquivalenzklasse}
+Ist $A$ eine nichtleere Menge und $R \subseteq A \times A$ eine Äquivalenzrelation auf $A$, so heißt für ein Element $a \in A$ die Menge
+\[[a] = \gklamm{x \in A \vert x \thicksim a} = \gklamm{x \in A \vert a \thicksim x}\]
+die Äquivalenzklasse von a.\\
+Wegen der Reflexivität folgt $a \in [a]$ für jedes $a \in A$.
+Beispiel:\\
+\begin{minipage}{10mm}
+\LARGE R = \normalsize
+\end{minipage}
+\begin{minipage}{40mm}
+\includegraphics{bilder/kapitel/kap3_Relation_und_Abbildungen/5.pdf}
+\end{minipage}\\
+bereits gezeigt $R$ reflexiv, transitiv, symmetrisch,\\
+$\Ra$ Äquivalenzrelation\\
+\[\left.
+\begin{array}{l}
+\lbrack 1 \rbrack = \{1, 4\}\\
+\lbrack 2 \rbrack = \{2, 5\}\\
+\lbrack 3 \rbrack = \{3	\}\\
+\lbrack 4 \rbrack = \{4, 1\}\\
+\lbrack 5 \rbrack = \{5, 2\}
+\end{array}
+\right\}
+\begin{array}{l}
+\lbrack 1 \rbrack = \lbrack 4 \rbrack = \{1, 4\}\\
+\lbrack 2 \rbrack = \lbrack 5 \rbrack = \{2, 5\}\\
+\lbrack 3 \rbrack = \{3\}
+\end{array}\]
+$[1] \cup [2] \cup [3] = \{1, 2, 3, 4, 5\}$
+\begin{alignat*}{2}
+	&[1] \cap [2] = \emptyset\\
+	&[1] \cap [3] = \emptyset\\
+	&[2] \cap [3] = \emptyset\\
+\end{alignat*}
+\subsection{Ordnungsrelation}
+Sei $A$ eine nichtleere Menge
+\begin{enumerate}
+\item Eine Relation auf $A$ nennt man Ordnungsrelation auf $A$, falls sie reflexiv, transitiv und antisymmetrisch ist. In diesem Fall schreibt man meistens $a \leq b$ anstatt $aRb$ oder $(a, b) \in R$
+\item Eine Ordnungsrelation $R$ auf $A$ heißt vollständig oder Totalordnung, falls sie vollständig ist.
+\end{enumerate}
+\subsection{Funktion und Abbildung}
+Seien $D$ und $B$ zwei nichtleere Mengen. Dann heißt die Menge $f \subseteq D \times B$ eine Funktion oder Abbildung von $D$ nach $B$, falls gilt:
+\[\forall x \in D~~\exists ! y \in B~~(x, y) \in f\]
+\subsubsection{Schreibweisen und Bezeichnungen}
+\begin{itemize}
+\item $f: D \rightarrow B \Longleftrightarrow f \subseteq D \times B$
+\item $y = f(x) \Longleftrightarrow x \mapsto y \Longleftrightarrow (x,y) \in f$
+\item $D$ heißt Definitionsbereich von $f$
+\item $f(x)$ heißt Bild von $x \in D$ unter $f$
+\item $f [D] := \gklamm{f(x) \in D} = \bigcup_{x \in D} \gklamm{f(x)}$ heißt Bildmenge von $f^{x \in D}$
+\item $B$ heißt Wertebereich von $f$
+\item für $T \subseteq B$ heißt $f^{-1} [T] = \gklamm{x \in D \vert f(x) \in T}$ die Urbildmenge von $T$ unter $f$.
+\end{itemize}
+\textalignenum{Beispiel:}{}{
+\item $f \mathbb{Z} \rightarrow \mathbb{N}$\\
+		$x \mapsto x^2 + 1$\\
+		$x \in \mathbb{Z}, x^2 \in \mathbb{Z}$\\\\
+		\begin{tabular}{ll}
+		Definitionsbereich & $D = \mathbb{Z}$\\
+		Wertebereich & $B = \mathbb{N}$\\
+		Bildmenge & $f [D] \supseteq \gklamm{1, 2, 5, 10, \dots}$
+		\end{tabular}\\\\
+		schwer anzugeben, deshalb verwendet man einen Wertebereich, der $f [D]$ enthält $(f [D] \subseteq B)$\\
+		$T = \gklamm{2, 3, 4, 5, 6, 7, 8, 9, \dots, 20}$\\
+		$f^{-1} [T] = \gklamm{\pm 1, \pm 2, \pm 3, \pm 4}$
+
+\item Sei $D = B := \gklamm{1, 2, 3, 4, 5}$, die Abbildung $f D \rightarrow B$ sei definiert durch\\
+		\begin{minipage}{50mm}
+		\begin{align*}
+			1 \mapsto f (1) &= 1\\
+			2 \mapsto f (2) &= 1\\
+			3 \mapsto f (3) &= 3\\
+			4 \mapsto f (4) &= 4\\
+			5 \mapsto f (5) &= 4
+		\end{align*}
+		\end{minipage}
+		\begin{minipage}{50mm}
+		%IMG-23.10.2008-mathe-1
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$D$};
+		\node (Left_1) 		at (0,0) 		{$1$};
+		\node (Left_2) 		at (0,-0.5) 	{$2$};
+		\node (Left_3) 		at (0,-1) 		{$3$};
+		\node (Left_4) 		at (0,-1.5) 	{$4$};
+		\node (Left_5) 		at (0,-2) 		{$5$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$1$};
+		\node (Right_2) 		at (3,-0.5) 	{$2$};
+		\node (Right_3) 		at (3,-1) 		{$3$};
+		\node (Right_4) 		at (3,-1.5) 	{$4$};
+		\node (Right_5) 		at (3,-2) 		{$5$};
+
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_1.west);
+		\draw (Left_2.east) -- (Right_1.west);
+		\draw (Left_2.east) -- (Right_3.west);
+		\draw (Left_4.east) -- (Right_5.west);
+		\draw (Left_5.east) -- (Right_4.west);
+		\end{tikzpicture}
+		\end{minipage}\\\\
+		$f [D] = \gklamm{1, 3, 4}$}
+
+\textalignenum{Bemerkung:}{zu }{
+\renewcommand{\labelenumi}{zu \arabic{enumi}.}
+\item $ $\newline
+		%IMG-23.10.2008-mathe-2
+		\begin{minipage}{50mm}
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$D$};
+		\node (Left_1) 		at (0,0) 		{$1$};
+		\node (Left_2) 		at (0,-0.5) 	{$2$};
+		\node (Left_3) 		at (0,-1) 		{$3$};
+		\node (Left_4) 		at (0,-1.5) 	{$4$};
+		\node (Left_5) 		at (0,-2) 		{$5$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$1$};
+		\node (Right_2) 		at (3,-0.5) 	{$2$};
+		\node (Right_3) 		at (3,-1) 		{$3$};
+		\node (Right_4) 		at (3,-1.5) 	{$4$};
+		\node (Right_5) 		at (3,-2) 		{$5$};
+
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_1.west);
+		\draw (Left_2.east) -- (Right_1.west);
+		\draw (Left_2.east) -- (Right_3.west);
+		\draw (Left_4.east) -- (Right_5.west);
+		\draw (Left_5.east) -- (Right_4.west);
+		\end{tikzpicture}
+		\end{minipage}\\
+		keine Abbildung
+		\begin{itemize}
+		\item da von $2$ zwei Pfeile weggehen ($> 1$)
+		\item da von $3$ kein Pfeil weggeht
+		\end{itemize}
+
+\item Falls $D, B$ endliche Mengen gilt
+		\[\betrag{f [D]} \leqq \betrag{D}\]
+\renewcommand{\labelenumi}{\arabic{enumi}.}}
+
+\subsection{Injektiv, Surjektiv, Bijektiv}
+Eine Abbildung $\vert$ Funktion $f: D \rightarrow B, x \mapsto f(x)$ heißt
+\begin{enumerate}
+\item injektiv, falls für alle $x,x' \in D$, $x \neq x'$ gilt $f(x) \neq f(x')$
+\item surjektiv, falls es für jedes $y \in B$ ein $x \in D$ gibt mit $f(x) = y$, falls also $f [D] = B$
+\item bijektiv, falls $f$ injektiv und surjektiv ist
+\end{enumerate}
+
+\textalignenum{Beispiel:}{}{
+\begin{multicols}{2}
+\renewcommand{\labelenumi}{\alph{enumi})}
+\item $ $\newline %TODO -- Fix the top/bottom/middle problem
+		%IMG-23.10.2008-mathe-3
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$D$};
+		\node (Left_1) 		at (0,0) 		{$x_1$};
+		\node (Left_2) 		at (0,-0.5) 	{$x_2$};
+		\node (Left_3) 		at (0,-1) 		{$x_3$};
+		\node (Left_4) 		at (0,-1.5) 	{$x_4$};
+		\node (Left_5) 		at (0,-2) 		{$x_5$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$y_1$};
+		\node (Right_2) 		at (3,-0.5) 	{$y_2$};
+		\node (Right_3) 		at (3,-1) 		{$y_3$};
+		\node (Right_4) 		at (3,-1.5) 	{$y_4$};
+
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_4.west);
+		\draw (Left_2.east) -- (Right_1.west);
+		\draw (Left_3.east) -- (Right_1.west);
+		\draw (Left_4.east) -- (Right_2.west);
+		\draw (Left_5.east) -- (Right_3.west);
+		\end{tikzpicture}
+		\begin{itemize}
+		\item nicht injektiv $(f(x_2) = f(x_3))$
+		\item surjektiv
+		\item nicht bijektiv
+		\end{itemize}
+
+\item $ $\newline %TODO -- Fix the top/bottom/middle problem
+		%IMG-23.10.2008-mathe-4
+		\begin{minipage}{50mm}
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$D$};
+		\node (Left_1) 		at (0,0) 		{$x_1$};
+		\node (Left_2) 		at (0,-0.5) 	{$x_2$};
+		\node (Left_3) 		at (0,-1) 		{$x_3$};
+		\node (Left_4) 		at (0,-1.5) 	{$x_4$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$y_1$};
+		\node (Right_2) 		at (3,-0.5) 	{$y_2$};
+		\node (Right_3) 		at (3,-1) 		{$y_3$};
+		\node (Right_4) 		at (3,-1.5) 	{$y_4$};
+		\node (Right_5) 		at (3,-2) 		{$y_5$};
+
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_5.west);
+		\draw (Left_2.east) -- (Right_1.west);
+		\draw (Left_3.east) -- (Right_4.west);
+		\draw (Left_4.east) -- (Right_2.west);
+		\end{tikzpicture}
+		\end{minipage}
+		\begin{itemize}
+		\item injektiv
+		\item nicht surjektiv $(y_3 \notin f [D])$
+		\item nicht bijektiv
+		\end{itemize}
+
+\item $ $\newline %TODO -- Fix the top/bottom/middle problem
+		%IMG-23.10.2008-mathe-5
+		\begin{minipage}{50mm}
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$D$};
+		\node (Left_1) 		at (0,0) 		{$x_1$};
+		\node (Left_2) 		at (0,-0.5) 	{$x_2$};
+		\node (Left_3) 		at (0,-1) 		{$x_3$};
+		\node (Left_4) 		at (0,-1.5) 	{$x_4$};
+		\node (Left_5) 		at (0,-2) 		{$x_5$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$y_1$};
+		\node (Right_2) 		at (3,-0.5) 	{$y_2$};
+		\node (Right_3) 		at (3,-1) 		{$y_3$};
+		\node (Right_4) 		at (3,-1.5) 	{$y_4$};
+		\node (Right_5) 		at (3,-2) 		{$y_5$};
+
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_2.west);
+		\draw (Left_2.east) -- (Right_3.west);
+		\draw (Left_3.east) -- (Right_1.west);
+		\draw (Left_4.east) -- (Right_5.west);
+		\draw (Left_5.east) -- (Right_4.west);
+		\end{tikzpicture}
+		\end{minipage}
+		\begin{itemize}
+		\item injektiv
+		\item surjektiv
+		\item bijektiv
+		\end{itemize}
+
+\item $ $\newline %TODO -- Fix the top/bottom/middle problem
+		%IMG-23.10.2008-mathe-6
+		\begin{minipage}{50mm}
+		\begin{tikzpicture}
+		%Nodes
+		\node (Left_Over) 	at (0,0.5) 		{$D$};
+		\node (Left_1) 		at (0,0) 		{$x_1$};
+		\node (Left_2) 		at (0,-0.5) 	{$x_2$};
+		\node (Left_3) 		at (0,-1) 		{$x_3$};
+		\node (Left_4) 		at (0,-1.5) 	{$x_4$};
+		\node (Left_5) 		at (0,-2) 		{$x_5$};
+		\node (Right_Over) 	at (3,0.5) 		{$B$};
+		\node (Right_1) 		at (3,0) 		{$y_1$};
+		\node (Right_2) 		at (3,-0.5) 	{$y_2$};
+		\node (Right_3) 		at (3,-1) 		{$y_3$};
+		\node (Right_4) 		at (3,-1.5) 	{$y_4$};
+		\node (Right_5) 		at (3,-2) 		{$y_5$};
+
+		%Verknüpfungen
+		\draw (Left_1.east) -- (Right_2.west);
+		\draw (Left_2.east) -- (Right_2.west);
+		\draw (Left_3.east) -- (Right_3.west);
+		\draw (Left_4.east) -- (Right_5.west);
+		\draw (Left_5.east) -- (Right_3.west);
+		\end{tikzpicture}
+		\end{minipage}
+		\begin{itemize}
+		\item $f_4$ ist nicht injektiv $(f(x_1) = f(x_2))$
+		\item $f_4$ ist nicht surjektiv $y_1 \notin f [D]$
+		\item $f_4$ ist nicht nicht bijektiv
+		\end{itemize}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+\end{multicols}}
+
+\subsection{Hintereinanderausführung}
+Seien $f: D \rightarrow B$ und $g: B \rightarrow W$ zwei Funktionen/Abbildungen. Dann ist die Hintereinanderausführung $g \circ f: D \rightarrow W$ (''$g$ verknüpft mit $f$'', ''$g$ nach $f$'') der Abbildungen $f$ und $g$ definiert durch
+\[x \mapsto (g \circ f) (x) := g (f(x))\]
+\textalign{Beispiel:}{Gegeben Funktionen $f, g$ gesucht $g \circ f$
+\[f \overbrace{\gklamm{1, 2, 3, 4, 5}}^{D :=} \rightarrow \overbrace{\gklamm{1, 2, 3, 4}}^{B :=}\]
+\[f(1) = f(2) := 2, f(3) := 3, f(4) = f(5) := 4\]
+\\
+\[g \overbrace{\gklamm{1, 2, 3, 4}}^{B :=} \rightarrow \overbrace{\gklamm{1, 2, 3, 4, 5, 6}}^{W :=}\]
+\[g(1) := 1, g(2) = g(3) := 2, g(4) := 6\]
+%IMG-23.10.2008-mathe-7
+\begin{tikzpicture}
+%Nodes
+\node (Left_Over) 	at (0,0.5) 		{$D$};
+\node (Left_1) 		at (0,0) 		{$1$};
+\node (Left_2) 		at (0,-0.5) 	{$2$};
+\node (Left_3) 		at (0,-1) 		{$3$};
+\node (Left_4) 		at (0,-1.5) 	{$4$};
+\node (Left_5) 		at (0,-2) 		{$5$};
+
+\node (Center_Over) 	at (3,0.5) 		{$B$};
+\node (Center_1) 		at (3,0) 		{$1$};
+\node (Center_2) 		at (3,-0.5) 	{$2$};
+\node (Center_3) 		at (3,-1) 		{$3$};
+\node (Center_4) 		at (3,-1.5) 	{$4$};
+
+\node (Right_Over) 	at (6,0.5) 		{$W$};
+\node (Right_1) 		at (6,0) 		{$1$};
+\node (Right_2) 		at (6,-0.5) 	{$2$};
+\node (Right_3) 		at (6,-1) 		{$3$};
+\node (Right_4) 		at (6,-1.5) 	{$4$};
+\node (Right_5) 		at (6,-2) 		{$5$};
+\node (Right_6) 		at (6,-2.5) 	{$6$};
+
+%Verknüpfungen
+\draw (Left_1.east) -- (Center_2.west);
+\draw (Left_2.east) -- (Center_2.west);
+\draw (Left_3.east) -- (Center_3.west);
+\draw (Left_4.east) -- (Center_4.west);
+\draw (Left_5.east) -- (Center_4.west);
+
+\draw (Center_1.east) -- (Right_1.west);
+\draw (Center_2.east) -- (Right_2.west);
+\draw (Center_3.east) -- (Right_2.west);
+\draw (Center_4.east) -- (Right_6.west);
+\end{tikzpicture}\\
+%IMG-23.10.2008-mathe-8
+\begin{tikzpicture}
+%Nodes
+\node (Left_Over) 	at (0,0.5) 		{$D$};
+\node (Left_1) 		at (0,0) 		{$1$};
+\node (Left_2) 		at (0,-0.5) 	{$2$};
+\node (Left_3) 		at (0,-1) 		{$3$};
+\node (Left_4) 		at (0,-1.5) 	{$4$};
+\node (Left_5) 		at (0,-2) 		{$5$};
+
+\node (Right_Over) 	at (3,0.5) 		{$W$};
+\node (Right_1) 		at (3,0) 		{$1$};
+\node (Right_2) 		at (3,-0.5) 	{$2$};
+\node (Right_3) 		at (3,-1) 		{$3$};
+\node (Right_4) 		at (3,-1.5) 	{$4$};
+\node (Right_5) 		at (3,-2) 		{$5$};
+\node (Right_6) 		at (3,-2.5) 	{$6$};
+
+%Beschriftungen
+\node (Besch_1) at (1.5,0.5) {$g \circ f$};
+
+%Verknüpfungen
+\draw (Left_1.east) -- (Right_2.west);
+\draw (Left_2.east) -- (Right_2.west);
+\draw (Left_3.east) -- (Right_2.west);
+\draw (Left_4.east) -- (Right_6.west);
+\draw (Left_5.east) -- (Right_6.west);
+\end{tikzpicture}\\
+
+$f: D \rightarrow B, g: B \rightarrow W$\\
+$g \circ f: D \rightarrow W$\\
+\textalign{Bemerkung:}{
+Auch wenn $D = B = W$ gilt allgemein: $g \circ f \neq f \circ $g}}
+
+\textalign{Beispiel:}{$D =B = W = \relmeng$
+\begin{alignat*}{2}
+	\func{f}&\relmeng \ra \relmeng~~\func{g}&&\relmeng \ra \relmeng\\
+	&x \mapsto x^2 &&x \mapsto x - 1
+\end{alignat*}
+\begin{itemize}
+\item $(f \circ g) (x) = f(g(x)) = f(x-1) =(x-1)^2$\\
+		ab. z.B $(f \circ g) (2) = (2-1)^2 = 1$
+\item $(g \circ f)(x) = g (f(x)) = g (x^2) = x^2 -1$\\
+		$(g \circ f)(2) = 2^2 - 1 = 3$\\
+		$\Ra (f \circ g) (2) \neq (g \circ f) (2)$\\
+		$\Ra f \circ g \neq g \circ f$
+\end{itemize}}
+\subsection{Umkehrabbildungen}
+\label{Def-Umkehrabbildungen}
+Sind $D$ und $B$ nichtleere Mengen und $\func{f} D \ra B, x \mapsto f(x)$ eine bijektive Funktion/Abbildung, so gibt es zu jedem $y \in B$ genau ein $x \in D$ mit $x = f(x)$. Man kann daher die folgende Abbildung definieren.
+\begin{align*}
+	\func{f^{-1}}~&B \ra D\\
+	&y \mapsto f^{-1} (y) = x
+\end{align*}
+Diese Abbildung heißt Umkehrfunktion von $f$.
+
+\section{Sätze}
+Sei $A$ eine nichtleere Menge und $R$ eine Äquivalenzrelation auf $A$. Dann gilt für beliebige $a, b \in A$
+\begin{enumerate}
+\item die beiden Äquivalenzklassen $[a]$ und $[b]$ sind gleich $([a] = [b])$ oder disjunkt $([a] \cap [b] = \emptyset)$\\
+		zu zeigen falls $[a] \cap [b] \neq \emptyset \Ra [a] = [b]$\\
+		wir zeigen zunächst $[a] \subseteq [b]$\\
+		$[a] \cap [b] \neq \emptyset \Ra \exists r \in ([a] \cap [b])$
+		$x \in [a]$ beliebig
+		\[x \thicksim a \und a \thicksim r \underbrace{\Ra}_{\mbox{transitiv}} x \thicksim r\]
+		\[x \thicksim r \und r \thicksim b \underbrace{\Ra}_{\mbox{transitiv}} x \thicksim b\]
+		\[\Ra x \in [b]\]
+		\[\Ra [a] \subseteq [b]\]
+		analog zeigt man $[b] \subseteq [a]$\\
+		\demonstrand{$\Ra [a] = [b]$}
+\item $\bigcup_{a \in A} \{a\} = A$\\
+		Beweis: wegen der Reflexivität von $R$ gilt für jedes $a \in A~~a \in [a]$ und damit
+		\[\left.\begin{array}{l}
+		\bigcup_{a \in A} [a] \supseteq \bigcup_{a \in A} {a} = A\\
+		\mbox{aber}\\
+		\bigcup_{a \in A} [a] \subseteq \bigcup_{a \in A} A = A
+		\end{array}\right\} \Ra \bigcup_{a \in A} [a] = A\]
+\end{enumerate}
+\textalignenum{Beispiel:}{}{
+\item Auf der Menge $A = \relmeng$ beziehungsweise $\mathbb{Z, Q, R}$ ist durch die natürliche Ordnung $a \subseteq b$, $a,b \in A$ eine Totalordnung definiert.
+\item Auf der Menge $A = \relmeng$ ist durch $n \vert m$ (''$n$ teilt $m$'', ''$n$ ist Teiler von'', $n \vert m$ heißt $\exists k \in \relmeng$, so dass $m = n k)$ eine Ordnungsrelation definiert.
+		\begin{itemize}
+		\item reflexiv $\checkmark$
+		\item antisymmetrisch
+				\begin{align*}
+				&n \vert m \und m \vert n\\
+				&m = n \mal k_1 n = m \mal k_2\\
+				&m = (m \mal k_2) k_1\\
+				\Leftrightarrow ~&k_1 \mal k_2 = 1\\
+				\Rightarrow ~&m = n
+				\end{align*}
+		\item transitiv $\checkmark$
+		\end{itemize}
+		vollständig $\Leftrightarrow (m, n) \in R$ oder $(n, m) \in R$\\
+		die Ordnung $R$ ist nicht vollständig,\\
+		da z.B. $(5,6) \notin R$ und $(6,5) \notin R$
+		also $\begin{array}{l} 5 \mbox{ ist kein Teiler von } 6 \mbox{ und}\\6 \mbox{ ist kein Teiler von } 5\end{array}$\\
+		daher $5$ und $6$ sind nicht vergleichbar bezüglich der Teilbarkeit}
+
+\textalign{Verwendung:}{Immer wenn Listen sortiert werden sollten, muss für die Inhalte der Liste eine Totalordnung gegeben sein.}
+
+\subsection{Klasseneinteilung einer Menge}
+Sei $A$ eine nichtleere Menge und $\RM{1}$ eine nichtleere Indexmenge. Weiter gelte:
+\begin{itemize}
+\item $\forall i \in \RM{1}~~K_i \neq \emptyset, K_i \subseteq A$
+\item $\forall i,j \in \RM{1}$ mit $i \neq j$: $K_i \cap K_j = \emptyset$
+\item $A = \bigcup_{i \in \RM{1}} K_i$
+\end{itemize}
+Eine derartige Darstellung von $A$ als Vereinigung von nichtleeren disjunkten Teilmengen $K_i \subseteq A$, $i \in \RM{1}$ nennt man Klasseneinteilung der Menge $A$.\\
+Für $a, b \in A$ gelte $a \thicksim b$ falls es ein $i \in \RM{1}$ gibt mit $a, b \in K_j$. Dann ist $\thicksim$ eine Äquivalenzrelation auf der Menge $A$ mit Äquivalenzklassen $K_i$, $i \in \RM{1}$.\\
+Beweis: nachprüfend Eigenschaften einer Äquivalenzrelation\\
+\textalignenum{Beispiel:}{}{
+\item Klassifizierung der Bücher in der FH-Bibliothek\\
+		Klassen:
+		\begin{itemize}
+		\item Mathebücher 
+		\item Informatikbücher
+		\item Elektrotechnikbücher
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\Rightarrow$}
+		\begin{itemize}
+		\item die Klassen sind disjunkt (jedes Buch kann nur an einer Stelle stehen)
+		\item die Vereinigung aller Klassen entspricht dem gesamten Bestand der Bibliothek
+		\end{itemize}
+		\renewcommand{\labelitemi}{$\bullet$}
+		Die Äquivalenzrelation (also 2 Bücher derselben Klasse sind äquivalent) erlaubt es auch einem Laien die Bücher zu sortieren.
+
+\item Restklassen\\
+		Die Relation $R$ auf den ganzen Zahlen ist definiert durch
+		\[R := \gklamm{(n, m) \in \ganzmeng \times \ganzmeng \vert n - m \mbox{ ist ein Vielfaches von} 7}\]
+		dies ist eine Äquivalenzrelation\\
+		Klasseneinteilung
+		\begin{alignat*}{2}
+			&[0] &&= \gklamm{\dots, -14, -7, 0, 7, 14, 21, 28, \dots}\\
+			&[1] &&= \gklamm{\dots, -13, -6, 1, 8, 15, 22, 29, \dots}\\
+			&[2] &&= \gklamm{\dots, -12, -5, 2, 9, 16, 23, 30, \dots}\\
+			&&\vdots\\
+			&[6] &&= \gklamm{\dots, -15, -8, -1, 6, 13, 20, 27, \dots}
+		\end{alignat*}}
+
+\textalignenum{Anwendung:}{}{
+\item Wochentage
+		\begin{alignat*}{2}
+			&[0] &&\equals \mbox{ Sonntage}\\
+			&[1] &&\equals \mbox{ Montage}
+		\end{alignat*}
+		Heute ist der Mittwoch 22.10, welcher Wochentag ist in einem Monat also am 22.11\\
+		\[ \left[ \underbrace{3}_{\mbox{heute Mittwoch}} + \underbrace{31}_{\mbox{Oktoberlänge}} \right] = \lbrack 34 \rbrack = \lbrack 6 \rbrack \equals \mbox{ Samstag}\]
+		\[\Ra \mbox{ am 22.11 ist also ein Samstag}\]
+
+\item Prüfziffern\\
+		alte ISBN Zahlen $\underbrace{a_1, a_2, \dots, a_9}_{9 \mbox{ Ziffern}}, \underbrace{b}_{\mbox{Prüfziffern}} = c$
+		\begin{alignat*}{2}
+			&b &&= \overbrace{\left[a_1 \mal 1 + a_2 \mal 2 + a_3 \mal 3 + \dots + a_9 \mal 9\right]_{11}}^{:= c}\\
+			&b &&\equals \mbox{ Rest der Zahl $c$ bei der Division durch}
+		\end{alignat*}
+		\[\begin{array}{lcllcl}
+		[0]  & = 		& \{0, 11, 22, 33, \dots\} 	& \Ra b 	& = 		& 0\\[0pt]
+		     & \vdots 	& 										& 			& \vdots &	\\[0pt]
+		[9]  & = 		& \{9, 20, \dots\} 				& 			& \vdots &	\\[0pt]
+		[10] & = 		& \{10, 21, 32, 43, \dots\} 	& \Ra b 	& = 		& \RM{10}
+		\end{array}\]
+		die Prüfziffer ändert sich bei Vertauschung benachbarter Ziffern.}
+
+\subsection{Satz zu Umkehrabbildungen}
+\label{sec:Grundlagen-1-24}
+Sind $D$ und $B$ nichtleere Mengen und $\func{f} D \ra B, x \mapsto f(x)$ eine bijektive Funktion, sowie $f^{-1}$ die Umkehrfunktion von $f$, so gilt:
+\begin{enumerate}
+\item $\forall x \in D\!\!:\; \left(f^{-1} \circ f\right) (x) = x$
+\item $\forall y \in B\!\!:\; \left(f \circ f^{-1}\right) (y) = y$
+\end{enumerate}
+Folgt aus \vref{Def-Umkehrabbildungen}\\
+\textalign{Bemerkung:}{
+Statt $\forall x \in D\!\!:\; \left(f^{-1} \circ f\right) (x) = x$ schreibt man auch $f^{-1} \circ f = id_D$\\
+$id_D$ heißt die Identität auf der Menge $D$.}
+
+\textalignmize{Anwendungen:}{}{
+\item Speichern ($f$) einer Textdatei als Folge von Nullen und Einsen, Laden der entsprechenden Daten ($f^{-1}$).
+\item Umwandlung von Sprache in übertragbare elektromagnetische Wellen im Telefon (und den entsprechenden reversiblen Vorgang).}
+
+\section{Aufgaben}
+\subsection{Aufgabe 1.4}
+\label{sec:Aufgabe-RelationenUndAbbildungen-EinsPunktVier}
+Es sei $R$ die Relation auf $A := $\gklamm{1, 2, 3, 4}, die dadurch definiert ist, dass $xRy$ genau dann gilt, wenn $x + 2y$ ungerade ist. Stellen sie $R$ auf jede der folgenden Arten dar:
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item als Menge geordneter Paare
+\item als gerichteten Graphen
+\item als Matrix
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+Lösung siehe \vref{sec:Loesung-RelationenUndAbbildungen-EinsPunktVier}.
+
+\subsection{Aufgabe 1.5}
+\label{sec:Aufgabe-RelationenUndAbbildungen-EinsPunktFuenf}
+Entscheiden sie, welche der folgenden Relationen auf der Menge der Menschen reflexiv, symmetrisch oder transitiv ist:
+\renewcommand{\labelenumi}{\alph{enumi})}
+\begin{enumerate}
+\item \quotate{hat die selben Eltern wie}
+\item \quotate{ist Bruder von}
+\item \quotate{ist älter als}
+\end{enumerate}
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+Lösung siehe \vref{sec:Loesung-RelationenUndAbbildungen-EinsPunktFuenf}.

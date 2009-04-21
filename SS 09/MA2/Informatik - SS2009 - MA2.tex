@@ -1,0 +1,131 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+
+%<Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=true,bookmarksnumbered=true,
+pdftitle={Hefter für Mathematik 2 -- Stand: \today},
+pdfauthor={Thaller Alexander},
+pdfsubject={Hefter für das Fach Mathematik 2 aus der Vorlesung von Professorin Gabriela Grüniger (Grüg) für das 2. Semester der Informatik im Sommersemester 2009 an der Hochschule Regensburg.},
+pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
+%</Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlehead{\includegraphics[width=34mm]{FH-Logo.pdf}}
+\subject{Informatik (Bachelor) 2. Semester}
+\author{Alexander Thaller}
+\title{Mathematik 2\footnote{Gefundene Fehler oder Verbesserungsvorschlge bitte hier \href{http://fhrein2ss09.codeplex.com/WorkItem/List.aspx}{http://fhrein2ss09.codeplex.com/WorkItem/List.aspx} berichten oder alternativ mir eine E-Mail schreiben \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\subtitle{Hefter des Sommersemesters 2009}
+\date{stand \today}
+\publishers{Aus der Vorlesung von Professorin Gabriela Grüniger (Grüg)}
+%</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
+
+  \node[initial,state] (A)             {};
+  \node[state]         (B) [left of=A] {};
+  \node[state]         (C) [left of=B] {};
+\end{tikzpicture}
+%\input{00acronyms.tex}
+%\maketitle
+%\setcounter{tocdepth}{1}
+%\setcounter{secnumdepth}{2}
+%\clearpage
+%\pdfbookmark[0]{\contentsname}{tocanc}
+%\tableofcontents
+%\newpage
+%\listoftodos
+%\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{kapitel/Uebersicht.tex}
+%\newpage
+%\part{Einführung} \pagestyle{fancy}
+%\Mark{Part 1}
+%\input{kapitel/Fakultaeten_und_Binominalkoeffizienten.tex}
+%\input{kapitel/Ungleichungen.tex}
+%
+%\part{Folgen und Reihen}
+%\Mark{Part 2}
+%\input{kapitel/Konvergente_Folgen.tex}
+%\input{kapitel/Landau_Symbole.tex}
+%\input{kapitel/Konvergente_Reihen.tex}
+%\input{kapitel/Potenzreihen_und_elementare_Funktionen.tex}
+
+\part{Grenzwerte und Stetigkeit}
+\Mark{Part 3}
+\chapter{Grenzwerte und Stetigkeit von Funktionen}
+\Mark{Chapter 3.1}
+Wir betrachten eine Funktion $f$: $D \ra \R$ in einer Umgebung des Punktes $x_0 \in D$.
+
+\begin{fdefinition}[Grenzwerte]
+\mbox{}\par
+\begin{enumerate}[label=\alph*)]
+\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{Grenzwert} $a$, $\lim_{x \ra x_0} f(x) = a$, falls gilt:
+		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, \lim_{n \ra \un} x_n = x_0:~\lim_{n \ra \un} f(x_n) = a\]
+
+\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{linksseitigen Grenzwert} $a \lim_{x \nearrow x_0} f(x) = a$ (\ac{bzw.} $\lim_{x \uparrow x_0} f (x) = a$, $\lim_{x \ra x_0^-} f(x) = a$), falls gilt:
+		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n < x_0, x_n \in D, \lim_{n \ra \infty} x_n ? x_0:~\lim_{n \ra \infty} f(x_n) = a\]
+
+\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{rechtsseitigen Grenzwert} $a$ $\lim_{x \searrow x_0} f (x) = a$ (\ac{bzw.} $\lim_{x \downarrow x_0} f(x) = a$ \ac{bzw.} $\lim_{x \ra x_0^+} f (x) = a$), falls gilt
+		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, x_n > x_0, \lim_{n \ra \infty} x_n = x_0\]
+
+\item Die Funktion $f$ hat in $\pm \un$ den Grenzwert $a$ $\lim_{x \ra \pm \infty} f (x) = a$, falls gilt:
+		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, \lim_{n \ra \infty} = \pm \infty:~\lim_{n \ra \infty} f(x_n) = a\]
+
+\item Die Funktion $f$ hat in $x_0$ den \indexu{uneigentlichen Grenzwert} $\pm \infty$, $\lim_{x \ra x_0} f (x) = \pm \un$ falls gilt:
+		\[\forall(x_n)_{n \in \N} \tx { mit } x_n \in D, \lim_{n \ra \un} x_n = x_0:~\lim_{n \ra \un} f(x_n) = \pm \un\]
+		(Links-/rechtsseitige uneigentliche Grenzwert werden analog definiert).
+\end{enumerate}
+\Mark{Definition 3.1}
+\end{fdefinition}
+
+\begin{bemerkung}
+Es gilt $\lim_{x \ra x_0} f(x) = a \Lra \lim_{x \nearrow x_0} f(x) = \lim_{x \searrow x_0} f(x) = a$
+\end{bemerkung}
+
+\begin{fsatz}[Rechenregeln für Grenzwerte]
+Falls $\lim_{x \ra x_0} f (x) = a$ und $\lim_{x \ra x_0} g (x) = b$ ($a, b \in \R$) gilt:
+\begin{enumerate}[label=\roman*)]
+\item $\lim_{x \ra x_0} (f(x) \pm g(x)) = \lim_{x \ra x_0} f(x) \pm \lim_{x \ra x_0} g(x) = a \pm b$
+\item $\lim_{x \ra x_0} (f(x) \mal g(x)) = \lim_{x \ra x_0} f(x) \mal \lim_{x \ra x_0} g(x) = a \mal b$
+\item $\lambda \in \R$: $\lim_{x \ra x_0} \lambda \mal f(x) = \lambda \mal \lim_{x \ra x_0} f(x) = \lambda \mal a$
+\item falls $b \neq 0$: $\lim_{x \ra x_0} \frac{f(x)}{g(x)} = \frac{\lim_{x \a x_0} f(x)}{\lim_{x \ra x_0} g(x)} = \frac{a}{b}$
+\end{enumerate}
+\Mark{Satz 3.2}
+\end{fsatz}
+
+\begin{beweis}
+Folgt aus Rechenregeln für Grenzwerte von Folgen.
+\end{beweis}
+
+\begin{bemerkung}
+Satz 3.2 gilt analog für links-/rechtsseitige Grenzwerte
+\Todo{Referenziere zu Satz 3.2}
+\end{bemerkung}
+
+\begin{fdefinition}[Stetigkeit]
+Eine Funktion $f$: $D \ra \R$ heißt stetig in $x_0 \ra D$, wenn
+\[\lim_{x \ra x_0} f(x) = f(x_0)\]
+$f$ heißt stetig in der Menge $A \subseteq D$, wenn $f$ in jedem Punkt $x_0 \in A$ stetig ist.
+\Mark{Definition 3.3}
+\end{fdefinition}
+
+%\part{Übungsblätter}
+%\input{kapitel/Ergaenzungsblaetter.tex}
+%\input{kapitel/Uebungsblaetter.tex}
+%\input{kapitel/Testblaetter.tex}
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Literaturverzeichnis
+%\newpage
+%\addcontentsline{toc}{part}{Literaturverzeichnis}
+%\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}
+
+

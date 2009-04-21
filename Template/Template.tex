@@ -1,0 +1,244 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+%Dummytext für Template
+\usepackage{lipsum}
+
+%<Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=false,bookmarksnumbered=true,
+pdftitle={Template für Hefter \today},
+pdfauthor={Thaller Alexander, Max Mustermann},
+pdfsubject={Template},pdfkeywords={template,studium,hefter}}
+%</Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlehead{\includegraphics[width=34mm]{FH-Logo.pdf}}
+\subject{Informatik (Bachelor)}
+\author{Alexander Thaller, Max Mustermann}
+\title{Musterfach\footnote{Gefundene Fehler oder Verbesserungsvorschlge bitte hier \href{http://fhrein2ss09.codeplex.com/WorkItem/List.aspx}{http://fhrein2ss09.codeplex.com/WorkItem/List.aspx} berichten oder alternativ mir eine E-Mail schreiben \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\subtitle{Hefter des Wintersemesters 2008/09}
+\date{stand \today}
+\publishers{Aus der Vorlesung von Professor Mustermann}
+%</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%\input{00acronyms.tex}
+%\maketitle
+%\setcounter{tocdepth}{1}
+%\setcounter{secnumdepth}{3}
+%\tableofcontents
+%\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{00testcontent.tex}
+\newcommand{\changefont}[3]{
+\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\chapter{Font Test}
+\section{Fourier}
+\begin{minipage}{\textwidth}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Libertine}
+\begin{minipage}{\textwidth}
+\changefont{fxl}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Computer Modern Roman (Standardfont)}
+\begin{minipage}{\textwidth}
+\changefont{cmr}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Times Roman}
+\begin{minipage}{\textwidth}
+\changefont{ptm}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Palatino}
+\begin{minipage}{\textwidth}
+\changefont{ppl}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{NewCenturySchoolBook}
+\begin{minipage}{\textwidth}
+\changefont{pnc}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Bookman}
+\begin{minipage}{\textwidth}
+\changefont{pbk}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Computer Modern SansSerif}
+\begin{minipage}{\textwidth}
+\changefont{cmss}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Helvetica}
+\begin{minipage}{\textwidth}
+\changefont{phv}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{AvantGarde}
+\begin{minipage}{\textwidth}
+\changefont{pag}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Computer Modern Typewriter}
+\begin{minipage}{\textwidth}
+\changefont{cmtt}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Courier}
+\begin{minipage}{\textwidth}
+\changefont{pcr}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Computer Modern Fibonacci}
+\begin{minipage}{\textwidth}
+\changefont{cmfib}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+
+\section{Computer Modern Dunhill}
+\begin{minipage}{\textwidth}
+\changefont{cmdh}{m}{n}
+\Huge
+ABC abc 123 !?()\{\}[]"`"'\\
+\Large
+ABCDEFGHIJKLMNOPQRSTUVWXYZ ÄÖÜ \textsc{ß}\\
+abcdefghijklmnopqrstuvwxyz äöü ß\\
+1234567890
+\normalsize\\
+Dies ist ein Beispieltext mit Zahlen 1234567890! öäüß ÖÄÜ U V W X Y ff fi fl ffi ffl Hamburg\\
+Am 30.4.1987 saß ich im "`Café Hamburg"' und schlürfte Kaffee für 2,65 Euro!
+\end{minipage}
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Literaturverzeichnis
+\newpage
+\addcontentsline{toc}{part}{Literaturverzeichnis}
+\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}
+
+

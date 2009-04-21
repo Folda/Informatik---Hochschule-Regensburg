@@ -1,0 +1,96 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+
+%<Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=true,bookmarksnumbered=true,
+pdftitle={Hefter für Grundlagen der Informatik-- Stand: \today},
+pdfauthor={Thaller Alexander},
+pdfsubject={Hefter für das Fach Grundlagen der Informatik aus der Vorlesung von Professor Dr. rer. nat. Jorg Striegnitz (Str) für das 2. Semester der Informatik im Sommersemester 2009 an der Hochschule Regensburg.},
+pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der informatik}}
+%</Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlehead{\includegraphics[width=34mm]{FH-Logo.pdf}}
+\subject{Informatik (Bachelor) 2. Semester}
+\author{Alexander Thaller}
+\title{Grundlagen der Informatik\footnote{Gefundene Fehler oder Verbesserungsvorschlge bitte hier \href{http://fhrein2ss09.codeplex.com/WorkItem/List.aspx}{http://fhrein2ss09.codeplex.com/WorkItem/List.aspx} berichten oder alternativ mir eine E-Mail schreiben \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\subtitle{Hefter des Sommersemesters 2009}
+\date{stand \today}
+\publishers{Aus der Vorlesung von Professor Dr. rer. nat. Jorg Striegnitz (Str)}
+%</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\input{00acronyms.tex}
+\maketitle
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\clearpage
+\pdfbookmark[0]{\contentsname}{tocanc}
+\tableofcontents
+\newpage
+\listoftodos
+\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}
+\node[draw,circle] (one) {\space};
+\node[draw,circle] (two) [right of=one] {\space};
+\node[draw,circle] (three) [right of=two] {\space};
+
+\draw[->] (one.west) +(-0.5,0) -- (one.west);
+\draw[->] (one.east) -- (two.west) node[above, midway] {$0$};
+\draw[->] (two.east) -- (three.west) node[above, midway] {$0$};
+\draw[->] (one.north west) to [out=110, in=70] (one.north east) node[right, midway] {$0, 1$};
+\end{tikzpicture}
+
+%\input{kapitel/Uebersicht.tex}
+%\newpage
+%\input{kapitel/Grundlagen.tex}
+%\input{kapitel/Endliche_Automaten.tex}
+
+%\section{Übung}
+%\subsection{Endliche Automaten}
+%\begin{description}
+%\item[Ziel (fern)] Minimales und vollständiges Modell für Computer \ac{bzw.} \textbf{Algorithmus}
+%\item[Hier]
+%		\begin{itemize}
+%		\item Modell für \textbf{spezielle} Entscheidungsprobleme
+%		\item Einführung wichtiger Begriffe
+%		\end{itemize}
+%\end{description}
+%
+%\Insert{GI(U)-16.04.2009-IMG-1}
+%\Insert{GI(U)-16.04.2009-IMG-2}
+%
+%$L_1 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w}_0 \tx{ gerade } \und \betrag{w}_1 \tx{ gerade}}$
+%
+%\Insert{GI(U)-16.04.2009-IMG-3}
+%
+%$L_2 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w}_0 \tx{ gerade } \und \betrag{w}_1 \tx{ gerade} \oder \betrag{w}_0 \tx{ gerade } \und \betrag{w}_1 \tx{ ungerade}}$
+%
+%\Insert{GI(U)-16.04.2009-IMG-4}
+%
+%$L_3 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert Zahlenwert (w) \mod 4 = 0}$
+%$\approx \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w \tx{ endet auf } 00}$
+%Erstmal: $w$ beginnt mit $00$
+%
+%\Insert{GI(U)-16.04.2009-IMG-5}
+%
+%\Insert{GI(U)-16.04.2009-IMG-6}
+%
+%$L_4 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w \tx{ enthält } 110110}$
+%
+%\Insert{GI(U)-16.04.2009-IMG-7}
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Literaturverzeichnis
+%\newpage
+%\addcontentsline{toc}{part}{Literaturverzeichnis}
+%\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}
