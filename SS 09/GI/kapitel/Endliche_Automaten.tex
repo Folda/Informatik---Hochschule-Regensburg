@@ -198,7 +198,7 @@ Wir stellen folgende Induktionsannahme auf:
 	\node[state] (B) [right of=A] {};
 	\node[accepting,state] (C) [right of=B] {};
 
-	\path(A) edge [loop above] node {$0,1$} ();
+	\path (A) edge [loop above] node {$0,1$} ();
 	\path (A) edge node {$0$} (B);
 	\path (B) edge node {$0$} (C);
 \end{tikzpicture}
@@ -215,3 +215,83 @@ Ein \ac{NEA} $M$ ist ein Quintupel $(Q, \Sigma, \delta, q_0, F)$ aus
 \begin{fnotation}
 Falls $q \in \delta(p, a)$ schreiben wir $p \stack{a}{\ra} q$
 \end{fnotation}
+
+\begin{fdefinition}
+Konfiguration analog zu \ac{DEA} $Q \times \Sigma^*$
+\end{fdefinition}
+
+\begin{fdefinition}
+Schrittrelation kann ebenfalls übernommen werden, da $p \stack{a}{\ra} q$ für \ac{NEA} angepasst.
+\[(p, aw) \vd (q, w) \tx{\ac{gdw.}} p \stack{a}{\ra} q\]
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ eine \ac{NEA}. Eine Berechnung $C$ von $M$ ist eine Folge von Konfigurationen
+\[C = C_0, \dots, Q_n \tx{ mit } C_i \vd C_{i + 1} (0 \klgl i \klgl n - 1)\]
+$C$ ist eine Berechnung von $M$ für die Eingabe $w$, falls $C_0 = (q_0, w)$ Startkonfiguration ist und entweder
+\begin{itemize}
+\item $C_n = (q, \epsilon)$ eine Endkonfiguration ist, oder
+\item $C_n = (q, aw)$ und $\delta(q, a) = \emptyset$ gilt (der Automat \ggq{stürzt ab})
+\end{itemize}
+\ac{akzept.} und verwerfende \ac{Ber.} analog \ac{DEA}. Reflexiver und transitiver Abschluss von $\vd$ analog \ac{DEA}.
+\[(q,w) \vd^* (q,w)\]
+\[(q, a_1, a_2, a_3) \vd^* (q', \epsilon)\]
+\Mark{Definition 3.8}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{NEA}. Die Fortsetzung $\hat{\delta}: Q \times \Sigma^* \ra \mathcal{P}(Q)$ von $\delta$ auf Wörter ist \ac{def.} durch
+\begin{itemize}
+\item $\hat{\delta} (q, \epsilon) = \gklamm{q}$
+\item Sei $w = ua$ und $\hat{\delta} (q, u) = \gklamm{q_1, \dots, q_n}$, dann gilt
+		\[\hat{\delta} (q, ua) = \bigcup_{i = 1}^n \delta (q_i, a)\]
+		\[w, u \in \Sigma^*, a \in \Sigma, q_i, q \in Q, 1 \klgl i \klgl n\]
+\end{itemize}
+\Mark{Definition 3.9}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{NEA}. Die von $M$ \ac{akzept.} Sprache $L(M)$ ergibt sich aus
+\begin{align*}
+L(M) &= \gklamm{w \in \Sigma^* \vert (q_0, w) \vd^{*} (q, \epsilon) \tx{ mit } q_f \in F}\\
+&= \gklamm{w \in \Sigma^* \vert \hat{\delta} (q_0, w) \cap F \neq \emptyset}\\
+&= \gklamm{w \in \Sigma^* \vert q_0 \stack{w}{\ra} q_f \tx{ und } q_f \in F}
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (q0) {$q_0$};
+\node[state] (q1) [right of=q0] {$q_1$};
+\node[state, accepting] (q2) [right of=q1] {$q_2$};
+
+\path (q0) edge [loop above] node[left]{$1,0$} ();
+\path (q2) edge [loop above] node[right]{$1,0$} ();
+
+\path (q0) edge node[above] {$1$} (q1);
+\path (q1) edge node[above] {$1$} (q2);
+\end{tikzpicture}
+\end{center}
+\Mark{Definition 3.10}
+\end{fdefinition}
+
+\begin{lemma}
+$L(M_{11}) = \overbrace{\gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w = u11v \tx{ mit } u,v \in \Sigma_{\tx{Bool}}^*}}^L$\\
+Wie üblich erfolgt der \ac{Bew.} in 2 Schritten
+\begin{itemize}
+\item $\gklamm{u11v \vert u, v \in \Sigma_{\tx{Bool}}^*} \subseteq L (M_{11})$. Sei $w \in L$; \ac{d.h} $w = u11v$ für \ac{bel.} $u, v \in \Sigma_{\tx{Bool}}^*$. Zu zeigen: es gibt \ac{akz.} Berechnung von $M_{11}$ für $w$. Da $q_0 \in \delta(q_0, 0) \cap \delta (q_0, 1)$ \ac{ex.} für jedes $z \in \Sigma_{Bool}^*$ eine Berechnung
+		\[(q_0, z) \vd^* (q_0, \epsilon)\]
+		gleichermaßen
+		\[(q_2, z) \vd^* (q_2, \epsilon), \tx{ da } q_2 \in \delta (q_2, 0) \cap \delta(q_2, 1)\]
+		Damit erhalten wir für \ac{Ber.} für $w$ wie folgt
+		\[(q_0, u11v) \vd^* (q_0, 11v) \vd (q_1, 1v) \vd (q_2, v) \vd^* (q_2, \epsilon)\]
+
+\item $L(M_{11}) \subseteq L.$ Sei $w \in L(M_{11})$; \ac{d.h} es \ac{ex.} eine \ac{akzept.} Berechnung von $M$ für $w$. Da $q_2$ einziger \ac{akzept.} Zustand, muss \ac{Ber.} in $q_0$ starten und in $q_2$ enden. Der einzige Pfad von $q_0$ zu $q_2$ führt über $q_1$:
+		\[(q_0, w) \vd^* (q_1, u) \vd^* (q_2, \epsilon)\]
+		Jede \ac{Berechn.} von $M$ kann höchstens einmal in eine Konfiguration mit Zustand $q_1$ gelangen, denn $q_1 \notin \delta(q_1, a)$ für $a \in \Sigma_{\tx{Bool}}$. Die Berechnung muss daher wie folgt aussehen:
+		\[(q_0, w) \vd^* (q_0, abu) \vd (q_1, bu), \vd (q_2, u) \vd^* (q_2, \epsilon)\]
+		mit $a, b \in \SigB$. Die einzige Möglichkeit zu $q_1$ zu gelangen, ist die \ac{Anw.} der Transition $q_0 \stack{1}{\ra} q_1$, und somit folgt $a = 1$. Die einzige \ac{Mögl.} $q_1$ zu verlassen ist $q_1 \stack{1}{\ra} q_2$; daher $b = 1$ gelten, also insgesamt
+		\[(q_0, w) \vd^* (q_0, 11u) \vd (q_1, 1u) \vd (q_2, u) \vd^* (q_2, \epsilon)\]
+		\Ra offenbar hat $w$ $11$ enthalten, also $w \in L$
+\end{itemize}
+\Mark{Lemma 3.2}
+\end{lemma}

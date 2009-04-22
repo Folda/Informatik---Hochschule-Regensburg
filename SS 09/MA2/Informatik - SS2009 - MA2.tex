@@ -19,49 +19,39 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 \publishers{Aus der Vorlesung von Professorin Gabriela Grüniger (Grüg)}
 %</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%\input{00acronyms.tex}
-%\maketitle
-%\setcounter{tocdepth}{1}
-%\setcounter{secnumdepth}{2}
-%\clearpage
-%\pdfbookmark[0]{\contentsname}{tocanc}
-%\tableofcontents
-%\newpage
-%\listoftodos
-%\newpage
+\input{00acronyms.tex}
+\maketitle
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{2}
+\clearpage
+\pdfbookmark[0]{\contentsname}{tocanc}
+\tableofcontents
+\newpage
+\listoftodos
+\newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}[scale=2]
-\draw[out=90,in=0] (1,0) to (0,1);
-\draw (0,0) -- (45:1) node[above] {$e^x$};
+\input{kapitel/Uebersicht.tex}
+\newpage
+\part{Einführung} \pagestyle{fancy}
+\Mark{Part 1}
+\input{kapitel/Fakultaeten_und_Binominalkoeffizienten.tex}
+\input{kapitel/Ungleichungen.tex}
 
-\draw[->,thick] (0,0) -- (1.5,0) node[below] {Re};
-\draw[->,thick] (0,0) -- (0,1.5) node[right] {Im};
+\part{Folgen und Reihen}
+\Mark{Part 2}
+\input{kapitel/Konvergente_Folgen.tex}
+\input{kapitel/Landau_Symbole.tex}
+\input{kapitel/Konvergente_Reihen.tex}
+\input{kapitel/Potenzreihen_und_elementare_Funktionen.tex}
 
-\draw[thick] (1,-0.05) -- (1,0.05) node[below] {$1$};
-\draw[thick] (-0.05,1) -- (0.05,1) node[left] {$i$};
-\end{tikzpicture}
-%\input{kapitel/Uebersicht.tex}
-%\newpage
-%\part{Einführung} \pagestyle{fancy}
-%\Mark{Part 1}
-%\input{kapitel/Fakultaeten_und_Binominalkoeffizienten.tex}
-%\input{kapitel/Ungleichungen.tex}
-%
-%\part{Folgen und Reihen}
-%\Mark{Part 2}
-%\input{kapitel/Konvergente_Folgen.tex}
-%\input{kapitel/Landau_Symbole.tex}
-%\input{kapitel/Konvergente_Reihen.tex}
-%\input{kapitel/Potenzreihen_und_elementare_Funktionen.tex}
-%
-%\part{Grenzwerte und Stetigkeit}
-%\Mark{Part 3}
-%\input{kapitel/Grenzwerte_und_Stetigkeit_von_Funktionen.tex}
-%
-%\part{Übungsblätter}
-%\input{kapitel/Ergaenzungsblaetter.tex}
-%\input{kapitel/Uebungsblaetter.tex}
-%\input{kapitel/Testblaetter.tex}
+\part{Grenzwerte und Stetigkeit}
+\Mark{Part 3}
+\input{kapitel/Grenzwerte_und_Stetigkeit_von_Funktionen.tex}
+
+\part{Übungsblätter}
+\input{kapitel/Ergaenzungsblaetter.tex}
+\input{kapitel/Uebungsblaetter.tex}
+\input{kapitel/Testblaetter.tex}
 %</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Literaturverzeichnis

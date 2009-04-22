@@ -1,4 +1,4 @@
-\documentclass[oneside,a4paper,german,parskip=half,draft]{scrbook}
+\documentclass[oneside,a4paper,german,parskip=half,final]{scrbook}
 \usepackage[latin1]{inputenc}
 \pdfcompresslevel=9
 
@@ -7,9 +7,11 @@
 
 %Seitenheader
 \usepackage{fancyhdr}
-\pagestyle{fancy} %eigener Seitenstil
-\addtolength{\headwidth}{\marginparsep}% Die Kopfzeile soll
-\addtolength{\headwidth}{0.5\marginparwidth}% verbreitert werden
+\pagestyle{fancy}
+\rhead{\nouppercase{\rightmark}}
+\lhead{\nouppercase{\leftmark}}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{0.5\marginparwidth}
 
 %Standartfont
 \usepackage[T1]{fontenc}
@@ -41,8 +43,7 @@
 %Tikz/PGF Zeichnenpaket
 \usepackage{pgf}
 \usepackage{tikz}
-%\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc,arrows,automata,through,backgrounds}
-\usetikzlibrary{calc,through,backgrounds}
+\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc,arrows,automata,through,backgrounds}
 
 %Für graphische Todos
 \usepackage[colorinlistoftodos, obeyDraft]{todonotes}

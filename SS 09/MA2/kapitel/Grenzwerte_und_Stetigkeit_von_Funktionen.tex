@@ -55,3 +55,107 @@ Eine Funktion $f$: $D \ra \R$ heißt stetig in $x_0 \ra D$, wenn
 $f$ heißt stetig in der Menge $A \subseteq D$, wenn $f$ in jedem Punkt $x_0 \in A$ stetig ist.
 \Mark{Definition 3.3}
 \end{fdefinition}
+
+\begin{bemerkung}[$\delta$-$\epsilon$-Definition der Stetigkeit]
+Die Funktion $f:$ $D \ra \R$ heißt stetig in $x_0 \in D$, falls:\\
+$\forall \epsilon > 0~\exists \delta(\epsilon, x_0) \tx{ so dass } \forall x \in D$:
+\[\betrag{x - x_0} < \epsilon \Ra \betrag{f(x) - f(x_0)} < \epsilon\]
+$f$ heißt stetig in $A \subseteq D$, falls $f$ stetig in allen $x_0 \in A$.
+\end{bemerkung}
+
+\begin{bemerkung}[Gleichmäßige Stetigkeit]
+Die Funktion $f$: $D \ra \R$ ist gleichmäßig stetig in $A \subseteq D$, wenn\\
+$\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in A$:
+\[\betrag{x - y} < \delta \Ra \betrag{f(x) - f(y)} < \epsilon\]
+\end{bemerkung}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{enumerate}
+\item $A = D = \eklamm{0, 2\pi}$
+		\Insert{IMG-MA-09-04-22-1}
+
+\item $A = D = (0, 2)$\\
+		$f(x) = \frac{1}{x}$
+		\Insert{IMG-MA-09-04-22-2}
+		es ist nicht möglich, das $\delta$ an der schlimmsten Stelle zu wählen. (\Ra $\delta = 0$ \blitza)
+\item $f$: $\R \ra \R$
+		\[x \mapsto \begin{cases}0 & \tx{für } x \klgl 0\\1 & \tx{für } x > 0\end{cases}\]
+		nicht stetig in $x_0$ und damit nicht stetig in \R
+		\Insert{IMG-MA-09-04-22-3}
+		$f$ heißt \indexb{Heaviside-Sprungfunktion}
+\end{enumerate}
+\end{beispiel}
+
+\begin{bemerkung}
+Stetigkeit einer Funktion $f$ auf einen Intervall $\eklamm{a, b}$ heißt anschaulich, dass man den Graph der Funktion $f$ (die Menge $G(f) = \gklamm{(x, y) \in \R^2 \vert x \in \eklamm{a, b}, y = f(x)}$) zeichnen kann ohne den Stift abzusetzen.
+\end{bemerkung}
+
+\begin{fsatz}[Rechenregeln für stetige Funktionen]
+Die Funktionen $f$ und $g$ seien stetig in $x_0$. Dann sind auch
+\[f \pm g, f \mal g, \betrag{f}\]
+stetig in $x_0$.\\
+Falls $g(x_0) \neq 0$ gilt auch $\frac{f}{g}$ stetig in $x_0$.
+\Mark{Satz 3.4}
+\end{fsatz}
+
+\begin{fbeweis}
+-
+\end{fbeweis}
+
+\begin{beispiel}
+$f \begin{cases}x^3 + 1 & \tx{für } x \klgl 1\\2x^2 & \tx{für } x > 1\end{cases}$\\
+Ist $f$ stetig?
+\begin{align*}
+&\ln (-\un, 1) \tx{ ist } f \tx{ stetig da } x^3 &\tx{ stetig und } 1 \tx{ stetig}\\
+&\ln (1, \un) \tx{ ist } f \tx{ stetig da } 2x^2 &\tx{ stetig und } 1 \tx{ stetig}
+\end{align*}
+bleibt der Punkt $x_0 = 1$ zu überprüfen.\\
+Gilt $\lim_{x \nearrow 1} f(x) = \lim_{x \searrow 1} f(x)$?
+\Insert{IMG-MA-09-04-22-4}
+\begin{align*}
+\lim_{x \searrow 1} 2x^2 &= \lim_{\epsilon \searrow 0} 2 (1 + \epsilon)^2 = \lim_{\epsilon \searrow 0} 2(1 + 2\epsilon + \epsilon^2)\\
+&= \lim_{\epsilon \searrow 0} (2 + 4\epsilon + 2 \epsilon^2) = 2
+\end{align*}
+\begin{align*}
+\lim_{x \nearrow 1} (x^3 + 1) &= \lim_{\epsilon \searrow 0} \rkl{(1 - \epsilon)^3 + 1} = \lim_{\epsilon \searrow 0} \rkl{1 - 3\epsilon + 3\epsilon^2 - \epsilon^3 + 1}\\
+&= 2
+\end{align*}
+$f(1) = 1^3 + 1 - 2$
+\begin{itemize}[label=\Ra]
+\item $f$ ist auch in $x_0 = 1$ stetig
+\item $f$ ist stetig
+\end{itemize}
+\end{beispiel}
+
+\section{Aufgabe 3.1}
+\Todo{Nachtragen von Aufgabenblatt 3}
+\Todo{Ref zur Lösung}
+
+\section{Aufgabe 3.2}
+\Todo{Nachtragen von Aufgabenblatt 3}
+\Todo{Ref zur Lösung}
+
+\section{Aufgabe 3.3}
+\Todo{Nachtragen von Aufgabenblatt 3}
+\Todo{Ref zur Lösung}
+
+\section{Lösungen}
+\subsection{Aufgabe 3.1}
+\Todo{Ref zur Aufgabe}
+$f(x) = \begin{cases}x^2 & \tx{für } 0 \klgl x \klgl 2\\x + 2 & \tx{für } 2 < x < 5\end{cases}$\\
+f in $[0, 2)$ und $(2, 5)$ stetig ($0$ und $5$ müssen nicht untersucht werden, da Werte $< 0$ \ac{bzw.} $\grgl 5$ nicht im Definitionsbereich vorkommen). Bleibt $x_0 = 2$ zu untersuchen
+\begin{align*}
+&\lim_{x \searrow 2} (x + 2) = \lim_{\epsilon \searrow 0} (2+ \epsilon + 2) = 4\\
+&\lim_{x \nearrow 2} (x^2) = \lim_{\epsilon \searrow 0} (2 - \epsilon)^2 = \lim_{\epsilon \searrow 0} (4 - 4\epsilon + \epsilon^2) = 4\\
+&f(2) = 4
+\end{align*}
+
+\subsection{Aufgabe 3.2}
+\Todo{Ref zur Aufgabe}
+$f(x) = \begin{cases}x + 1 & x \in [0,1)\\3 \lambda x^2 + 4 & x \in [1,2]\end{cases}$\\
+interessanter Punkt $x = 1$
+\Todo{Nachtragen der Lösung}
+
+\subsection{Aufgabe 3.3}
+\Todo{Ref zur Aufgabe}

@@ -1,4 +1,4 @@
-\documentclass[oneside,a4paper,german,parskip=half,draft]{scrbook}
+\documentclass[oneside,a4paper,german,parskip=half,final]{scrbook}
 
 \usepackage[latin1]{inputenc}
 
@@ -8,6 +8,8 @@
 %Seitenheader
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+\rhead{\nouppercase{\rightmark}}
+\lhead{\nouppercase{\leftmark}}
 \addtolength{\headwidth}{\marginparsep}% Die Kopfzeile soll
 \addtolength{\headwidth}{0.5\marginparwidth}% verbreitert werden
 

@@ -484,7 +484,7 @@ Wir haben genau $2^n$ Wörter $x_1, \dots, x_{2^n} \in \Sigma_{\tx{Bool}}^n$. Sei
 \[\prog(x_i) \neq \prog(x_j)\]
 wir haben also $2^n$ unterschiedliche Programme. Es genügt zu zeigen, dass eines dieser Programme die Länge $n$ hat.
 
-Jetzt hilft das kombinatorisches Argument: es ist unmöglich $2^n$ verschiedene Maschinencodes der Länge kleiner als $n$ zu haben, denn die Anzahl aller unterschiedlichen, nicht leeren, Wörter aus $\Sigma_{\tx{Bool}}^{n - 1}$ ist
+Jetzt hilft das kombinatorische Argument: es ist unmöglich $2^n$ verschiedene Maschinencodes der Länge kleiner als $n$ zu haben, denn die Anzahl aller unterschiedlichen, nicht leeren, Wörter aus $\Sigma_{\tx{Bool}}^{n - 1}$ ist
 \[\sum_{i = 1}^{n - 1} 2^i = 2^n - 2 < 2^n\]
 Also muss es unter den $2^n$ Programmen mindestens eins der Länge $n$ geben.
 \end{fbeweis}

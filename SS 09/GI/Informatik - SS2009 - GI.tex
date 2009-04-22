@@ -20,6 +20,7 @@ pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der inf
 %</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
+\frontmatter
 \input{00acronyms.tex}
 \maketitle
 \setcounter{tocdepth}{2}
@@ -32,7 +33,7 @@ pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der inf
 \newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{kapitel/Uebersicht.tex}
-
+\mainmatter
 \input{kapitel/Grundlagen.tex}
 \input{kapitel/Endliche_Automaten.tex}
 
@@ -45,6 +46,7 @@ pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der inf
 %\bibliography{literatur}{}
 
 %Stichwortverzeichnis
+\backmatter
 \newpage
 \renewcommand{\indexname}{Stichwortverzeichnis}
 \addcontentsline{toc}{part}{Stichwortverzeichnis}
