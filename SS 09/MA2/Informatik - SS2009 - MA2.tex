@@ -20,6 +20,7 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 %</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \input{00acronyms.tex}
+\frontmatter
 \maketitle
 \setcounter{tocdepth}{1}
 \setcounter{secnumdepth}{2}
@@ -31,7 +32,7 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 \newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{kapitel/Uebersicht.tex}
-\newpage
+\mainmatter
 \part{Einführung} \pagestyle{fancy}
 \Mark{Part 1}
 \input{kapitel/Fakultaeten_und_Binominalkoeffizienten.tex}
@@ -53,7 +54,7 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 \input{kapitel/Uebungsblaetter.tex}
 \input{kapitel/Testblaetter.tex}
 %</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\backmatter
 %Literaturverzeichnis
 %\newpage
 %\addcontentsline{toc}{part}{Literaturverzeichnis}
