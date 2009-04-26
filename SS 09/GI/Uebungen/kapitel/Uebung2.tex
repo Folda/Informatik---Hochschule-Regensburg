@@ -1,0 +1,122 @@
+\chapter{2. Übung}
+\section{1. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+\item \[\left.\begin{array}{l}
+		h (0) = 00 \tx{ (node)}\\
+		h (1) = 11 \tx{ (edge)}\\
+		h (\sharp) = 10
+		\end{array} \right\} h: \Sigma_{\sharp} \ra \Sigma_{\tx{Bool}}^*\]
+		\[\begin{matrixp}
+1 & # & # & # & # & #\\
+# & 0 & # & # & # & #\\
+1 & # & # & # & # & #\\
+1 & # & # & # & # & #\\
+1 & # & # & # & # & #\\
+1 & # & # & # & # & #
+		\end{matrixp}
+\item $w = 110 110 111 100 101 111$\\
+		Alte Darstellung: $11\sharp 01\sharp 10\sharp 11\sharp 11\sharp 00\sharp 10\sharp 11\sharp 11$\\
+		Neue Darstellung: $110\sharp 110\sharp 111\sharp 100\sharp 101\sharp 111$
+\end{enumerate}
+
+\section{2. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+\item 
+\item 
+\end{enumerate}
+
+\section{3. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+\item $L_2 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w}_0 = 4}$ - alle Binärwörter, die exakt 4 Nullen enthalten.\\
+		Lösung siehe \vref{fig:Uebung2_3a}.
+		\begin{figure}[hbt]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] (n1) {};
+		\node[state] (n2) [right of=n1] {};
+		\node[state] (n3) [right of=n2] {};
+		\node[state] (n4) [right of=n3] {};
+		\node[state,accepting] (n5) [right of=n4] {};
+		\node[state] (n6) [below of=n5] {DS};
+		
+		\path[->] (n1) edge[loop above] node[right] {$1$} ();
+		\path[->] (n2) edge[loop above] node[right] {$1$} ();
+		\path[->] (n3) edge[loop above] node[right] {$1$} ();
+		\path[->] (n4) edge[loop above] node[right] {$1$} ();
+		\path[->] (n5) edge[loop above] node[right] {$1$} ();
+		\path[->] (n6) edge[loop below] node[right] {$1, 0$} ();
+		
+		\path[->] (n1) edge node[above] {$0$} (n2);
+		\path[->] (n2) edge node[above] {$0$} (n3);
+		\path[->] (n3) edge node[above] {$0$} (n4);
+		\path[->] (n4) edge node[above] {$0$} (n5);
+		\path[->] (n5) edge node[right] {$0$} (n6);
+		\end{tikzpicture}
+		\caption{Lösung für 3. Aufgabe (a)}
+		\label{fig:Uebung2_3a}
+		\end{figure}
+
+\item $L_3 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert 110 \tx{ ist kein Teilwort von } w}$
+		Lösung siehe \vref{fig:Uebung2_3b}.
+		\begin{figure}[hbt]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=,accepting] (n1) {};
+		\node[state,accepting] (n2) [right of=n1] {};
+		\node[state,accepting] (n3) [right of=n2] {};
+		\node[state] (n4) [right of=n3] {DS};
+
+		\path[->] (n1) edge[loop above] node[right] {$0$} ();
+		\path[->] (n4) edge[loop above] node[right] {$1, 0$} ();
+
+		\path[->] (n1) edge node[above] {$1$} (n2);
+		\path[->] (n2) edge node[below] {$1$} (n3);
+		\path[->] (n3) edge node[above] {$0$} (n4);
+
+		\path[->] (n2) edge [bend left] node[below] {$0$} (n1);
+		\path[->] (n3) edge [bend right] node [above] {$1$} (n2);
+		\end{tikzpicture}
+		\caption{Lösung für 3. Aufgabe (b)}
+		\label{fig:Uebung2_3b}
+		\end{figure}
+
+\item $L_4 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w} \klgl 5}$
+		Lösung siehe \vref{fig:Uebung2_3c}.
+		\begin{figure}[hbt]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] (n1) {};
+		\node[state,accepting] (n2) [right of=n1] {};
+		\node[state,accepting] (n3) [right of=n2] {};
+		\node[state,accepting] (n4) [right of=n3] {};
+		\node[state,accepting] (n5) [right of=n4] {};
+		\node[state,accepting] (n6) [right of=n5] {};
+		\node[state] (n7) [below of=n6] {DS};
+
+		\path[->] (n7) edge [loop below] node[right] {$1,0$} ();
+		\path[->] (n1) edge node[above] {$1, 0$} (n2);
+		\path[->] (n2) edge node[above] {$1, 0$} (n3);
+		\path[->] (n3) edge node[above] {$1, 0$} (n4);
+		\path[->] (n4) edge node[above] {$1, 0$} (n5);
+		\path[->] (n5) edge node[above] {$1, 0$} (n6);
+		\path[->] (n6) edge node[right] {$1, 0$} (n7);
+		\end{tikzpicture}
+		\caption{Lösung für 3. Aufgabe (c)}
+		\label{fig:Uebung2_3c}
+		\end{figure}
+\end{enumerate}
+
+\section{4. Aufgabe}
+\[\left.
+\begin{array}{lll}
+h(0) &=& 0000\\
+h(1) &=& 0001\\
+h(\wedge) &=& 0010\\
+h(\vee) &=& 0011\\
+h(=) &=& 0100\\
+h(\neq) &=& 0101\\
+h('(') &=& 0110\\
+h(')') &=& 0111\\
+h(x) &=& 1000
+\end{array}\right\} h: \Sigma_{\tx{logic}}^* \ra \Sigma_{\tx{Bool}}^*
+\]
