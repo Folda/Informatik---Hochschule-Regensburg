@@ -1,13 +1,14 @@
 \chapter{Endliche Automaten}
 \Mark{Kapitel 3}
+\section{Deterministische endliche Automaten (DEA)}
 \begin{fdefinition}[\ac{DEA}]
 Ein \ac{DEA} ist ein Quintupel $M = (Q, \Sigma, \delta, q_0, F)$ aus
 \begin{itemize}
-\item einer endlichen Menge von Zuständen $Q$
-\item einem Eingabealphabet $\Sigma$
-\item einer Transitionsfunktion $\delta$: $Q \times \Sigma \ra Q$
-\item einen Startzustand $q_0 \in Q$
-\item eine Menge von akzeptierenden Zuständen $F \subseteq Q$\\
+\item einer endlichen \indexb[Endliche Automaten!$Q$ Menge von Zuständen]{Menge von Zuständen} $Q$
+\item einem \indexb[Endliche Automaten!$\Sigma$ Eingabealphabet]{Eingabealphabet} $\Sigma$
+\item einer \indexb[Endliche Automaten!$\delta$ Transitionsfunktion]{Transitionsfunktion} $\delta$: $Q \times \Sigma \ra Q$
+\item einen \indexb[Endliche Automaten!$q_0$ Startzustand]{Startzustand} $q_0 \in Q$
+\item eine \indexb[Endliche Automaten!$F$ Menge von akzeptierenden Zuständen]{Menge von akzeptierenden Zuständen} $F \subseteq Q$\\
 		\begin{anmerkung}
 		$F$ kann leeres Element sein also kann der Automat auch keine Zustände annehmen!
 		\end{anmerkung}
@@ -15,10 +16,10 @@ Ein \ac{DEA} ist ein Quintupel $M = (Q, \Sigma, \delta, q_0, F)$ aus
 \Mark{Definition 3.1}
 \end{fdefinition}
 
-\begin{fnotation}
+\begin{notation}
 Anstelle von $\delta(q, a) = q$ schreiben wir
 \[p \stack{a}{\longrightarrow}_M q\]
-\end{fnotation}
+\end{notation}
 
 \begin{beispiel}
 $M^*$
@@ -66,12 +67,12 @@ $q_3$ & $q_2$ & $q_1$
 \end{beispiel}
 
 \begin{fdefinition}
-Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Eine \indexn{Konfiguration} von $M$ ist ein Paar aus $Q \times \Sigma^*$. $(q_0, w)$ heißt \indexn{Startkonfiguration} und $(q, \epsilon)$ \indexn{Endkonfiguration} (für \ac{bel.} $w \in \Sigma^*$). Gilt für eine Endkonfiguration $(q, \epsilon)$ das $q \in F$, so heißt diese akzeptierend, ansonsten verwerfend. \qed
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Eine \indexb{Konfiguration} von $M$ ist ein Paar aus $Q \times \Sigma^*$. $(q_0, w)$ heißt \indexb{Startkonfiguration} und $(q, \epsilon)$ \indexn{Endkonfiguration} (für \ac{bel.} $w \in \Sigma^*$). Gilt für eine Endkonfiguration $(q, \epsilon)$ das $q \in F$, so heißt diese akzeptierend, ansonsten verwerfend. \qed
 \Mark{Definition 3.2}
 \end{fdefinition}
 
 \begin{fdefinition}
-Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Ein \indexn{Konfigurationsübergang} (ein Schritt) ist eine Relation $\vd_M$: $(Q \times \Sigma^*) \times (Q \times \Sigma^*)$, die \ac{def.} ist durch
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Ein \indexb{Konfigurationsübergang} (ein Schritt) ist eine Relation $\vd_M$: $(Q \times \Sigma^*) \times (Q \times \Sigma^*)$, die \ac{def.} ist durch
 \[(p, \underbrace{a}_{\tx{Lesekopf}}\overbrace{w}^{\tx{Band}}) \vd (q, w) \tx{ \ac{gdw.} } \delta(p, a) = q\]
 
 \begin{center}
@@ -83,12 +84,12 @@ Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Ein \indexn{Konfigurationsüb
 \end{tikzpicture}
 \end{center}
 
-mit $p, q \in Q$, $w \in \Sigma^*$ und $a \in \Sigma$. $\vd_u$ nennen wir \indexn{Schrittrelation}.
+mit $p, q \in Q$, $w \in \Sigma^*$ und $a \in \Sigma$. $\vd_u$ nennen wir \indexb{Schrittrelation}.
 \Mark{Definition 3.3}
 \end{fdefinition}
 
 \begin{fdefinition}
-Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA} und $w \in \Sigma^*$. Eine Berechnung $c$ von $M$ ist eine endliche Folge von Konfigurationen
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA} und $w \in \Sigma^*$. Eine \indexb{Berechnung} $c$ von $M$ ist eine endliche Folge von Konfigurationen
 \[c = c_0, \dots, c_n \tx{ mit } c_i \vd c_{i + 1} (1 \klgl i \klgl n - 1)\]
 $c$ ist eine Berechnung von $M$ für eine Eingabe $w$, falls $c_0 = (q_0, w)$ (Startkonfiguration) und $c_n = (q, \epsilon)$ (Endkonfiguration). Falls $c_n$ \ac{akzept.} Endkonfiguration ist, so ist C \ac{akzept.} Berechnung; ansonsten verwerfende Berechnung.
 \Mark{Definition 3.4}
@@ -115,11 +116,11 @@ Die Fortsetzung $\hat{\delta}$: $Q \times \Sigma^* \ra Q$ der Transitionsfunktio
 \Mark{Definition 3.5}
 \end{fdefinition}
 
-\begin{fnotation}
+\begin{notation}
 Falls $\hat{\delta} (q, w) = p$, so schreiben wir
 \[q \stack{w}{\longrightarrow} p\]
 und sagen es existiert ein Pfad von $q$ nach $p$ mit Beschriftung $w$.
-\end{fnotation}
+\end{notation}
 
 \begin{fdefinition}
 Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Die von $M$ akzeptierte Sprache $L(M)$ ergibt sich aus:
@@ -128,7 +129,7 @@ L(M) &= \gklamm{w \in \Sigma^* \vert \hat{\delta}(q_0, w) \in F}\\
 &= \gklamm{w \in \Sigma^* \vert q_0 \stack{w}{\longrightarrow} q \tx{ und } q \in F}\\
 &= \gklamm{w \in \Sigma^* \vert (q_0, w) \vd^* (q, \epsilon) \tx{ mit } q \in F}
 \end{align*}
-Sprachen, die von einem \ac{DEA} erkannt werden nennt man reguläre Sprachen. Zwei \ac{DEA}s $M_1$ und $M_2$ sind äquivalent \ac{gdw.} $L(M_1) = L(M_2)$
+Sprachen, die von einem \ac{DEA} erkannt werden nennt man \indexb{reguläre Sprachen}. Zwei \ac{DEA}s $M_1$ und $M_2$ sind äquivalent \ac{gdw.} $L(M_1) = L(M_2)$
 \Mark{Definition 3.6}
 \end{fdefinition}
 
@@ -140,7 +141,7 @@ Der \ac{DEA} $M_x = \rklamm{\Sigma_{\tx{Bool}}, Q, \delta, q_0, F}$ erkennt die 
 \begin{fbeweis}
 Für jedes Wort $w \in \Sigma_{\tx{Bool}}^*$ bleibt der Automat $M_x$ in einem bestimmten Zustand stehen. Betrachten wir für einen \ac{bel.} Zustand die Menge der Wörter, für die $M_x$ in exakt diesem Zustand terminiert.
 \[\mathcal{K} (q) = \gklamm{w \in \Sigma_{\tx{Bool}}^*\vert q_0 \stack{w}{\longrightarrow} q}\]
-Da $M_x$ deterministisch ist, kann ein Wort, welches in $\mathcal{K}(q)$ liegt nicht gleichzeitig in $\mathcal{K}\rklamm{q^{\frownie}}$ liegen (mit $q \neq q^{\frownie}$) - $\mathcal{K}(q) \cap \mathcal{K}\rklamm{q^{\frownie}} = \emptyset$. Die Menge der von $M_x$ erkannten Wörter entspricht der Vereinigung aller Mengen $\mathcal{K}(q)$, die sich auf akzeptierende Zustände beziehen.
+Da $M_x$ deterministisch ist, kann ein Wort, welches in $\mathcal{K}(q)$ liegt nicht gleichzeitig in $\mathcal{K}\rklamm{q'}$ liegen (mit $q \neq q'$) - $\mathcal{K}(q) \cap \mathcal{K}\rklamm{q'} = \emptyset$. Die Menge der von $M_x$ erkannten Wörter entspricht der Vereinigung aller Mengen $\mathcal{K}(q)$, die sich auf akzeptierende Zustände beziehen.
 \[L(M_x) = \bigcup_{q \in F} \mathcal{K}(q)\]
 $\mathcal{K}$ ist eine Äquivalenzklasse folgender Relation $R_s$
 \begin{align*}
@@ -212,9 +213,9 @@ Ein \ac{NEA} $M$ ist ein Quintupel $(Q, \Sigma, \delta, q_0, F)$ aus
 \end{itemize}
 \end{fdefinition}
 
-\begin{fnotation}
+\begin{notation}
 Falls $q \in \delta(p, a)$ schreiben wir $p \stack{a}{\ra} q$
-\end{fnotation}
+\end{notation}
 
 \begin{fdefinition}
 Konfiguration analog zu \ac{DEA} $Q \times \Sigma^*$

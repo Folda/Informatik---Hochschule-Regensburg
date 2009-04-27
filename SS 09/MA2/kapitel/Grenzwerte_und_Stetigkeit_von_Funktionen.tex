@@ -73,7 +73,26 @@ $\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in 
 \mbox{}\par
 \begin{enumerate}
 \item $A = D = \eklamm{0, 2\pi}$
-		\Insert{IMG-MA-09-04-22-1}
+
+		\begin{tikzpicture}[domain=0:7]
+		\draw[->,thick] (7,0) node[below] {$x$} -- (0,0) -- (0,2);
+		\foreach \x/\y in {pi/\pi,2*pi/\frac{2}{\pi}}
+			\draw[thick] (\x,-0.05) -- (\x,0.05) node[below] {$\y$};
+		
+		\draw plot[smooth] (\x,{sin(\x r)}) node[left, above, text width=19mm] {gleichm‰ﬂig stetig in A};
+		\draw (0,0) rectangle (0.3,{sin(0.3 r)});
+		\draw (pi/2,0) rectangle (pi/2+0.3,{sin(1.871 r)});
+		
+		\draw[color=blue,thick] (0,0) -- (0,0.3) node[left, midway] {$\epsilon$};
+		\draw[color=red,thick] (0,0) -- (0.3,0) node[below, midway] {$\delta$};
+		\draw[color=blue] (pi/2,{sin(1.871 r)}) -- (pi/2,{sin(pi/2 r)});
+		\draw[in=180, out=90] (pi/2,{sin(pi/2 r)}) to (2,1.5) node[right,color=blue] {$< \epsilon$};
+		\node[left] at (pi/2,{sin(pi/2 r)+0.3}) {$\sinx{}$};
+		\draw[color=red,thick] (pi/2,0) -- (pi/2+0.3,0) node[below, midway] {$\delta$};
+		
+		\draw[in=0, out=90] (0.15,{sin(0.15 r)}) to (-1,1) node[left,text width=24mm] {Ort mit grˆﬂter Steigung};
+		\end{tikzpicture}
+		\Img{IMG-MA-09-04-22-1}
 
 \item $A = D = (0, 2)$\\
 		$f(x) = \frac{1}{x}$

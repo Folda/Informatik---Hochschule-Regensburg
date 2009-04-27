@@ -1,4 +1,4 @@
-\documentclass[oneside,a4paper,german,parskip=half]{scrbook}
+\documentclass[oneside,a4paper,german,parskip=half]{scrreprt}
 \usepackage[latin1]{inputenc}
 
 %Neue Deutsche Rechtschreibung
@@ -6,6 +6,7 @@
 
 %Seitenheader
 \usepackage{fancyhdr}
+\setlength{\headheight}{3em}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[ER,OL]{
@@ -14,7 +15,7 @@ Alexander Thaller (Mrt. Nr. 2577257) -- Informatik \RM{2}\\
 Grundlagen Informatik - 2. Übung - \today
 \end{tabular}
 }
-\fancyfoot[OC]{\thepage/\pageref{TotalPages}}
+\fancyfoot[OC]{\thepage/\pageref{LastPage}}
 
 \fancypagestyle{plain}{
 \fancyhf{}
@@ -24,12 +25,13 @@ Alexander Thaller (Mrt. Nr. 2577257) -- Informatik \RM{2}\\
 Grundlagen Informatik - 2. Übung - \today
 \end{tabular}
 }
-\fancyfoot[OC]{\thepage/\pageref{TotalPages}}
+\fancyfoot[OC]{\thepage/\pageref{LastPage}}
 }
 
 %Standartfont
 \usepackage[T1]{fontenc}
-\usepackage{fourier}
+%\usepackage{fourier}
+\usepackage{libertine}
 
 %Zusatzpaket für mathematische Ausdrücke
 \usepackage{amsmath}
@@ -68,3 +70,8 @@ Grundlagen Informatik - 2. Übung - \today
 
 %Für das manipulieren von Captions in Figuren
 \usepackage{caption}
+\captionsetup{labelformat=default}
+\DeclareCaptionLabelFormat{simplegraph}{Graph #2}
+
+%Für das ausgeben der Gesamtanzahl an Seiten
+\usepackage{lastpage}

@@ -22,7 +22,7 @@ ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=4
+TabOrder=3
 UseThesaurus=yes
 WrapLine=yes
 
@@ -38,15 +38,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=12
-CaretPos.Y=340
+CaretPos.X=17
+CaretPos.Y=275
 CharSet=def
 FileName=kapitel\Potenzreihen_und_elementare_Funktionen.tex
 FoldedLines=
 IsMainFile=no
 Opened=no
 ScrollPos.X=0
-ScrollPos.Y=321
+ScrollPos.Y=257
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -206,19 +206,28 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=31
-CaretPos.Y=51
+CaretPos.X=37
+CaretPos.Y=81
 CharSet=def
 FileName=kapitel\Grenzwerte_und_Stetigkeit_von_Funktionen.tex
 FoldedLines=
 IsMainFile=no
-Opened=no
+Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=41
-SearchListCount=0
+ScrollPos.Y=87
+SearchListCount=1
+
+[Files\16\SearchList\0]
+CaseSensitive=no
+Color=65535
+RegExp=no
+Show=1
+Text=insert
+
+[Files\16]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=-1
+TabOrder=4
 UseThesaurus=yes
 WrapLine=yes
 
@@ -234,19 +243,28 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=28
+CaretPos.Y=159
 CharSet=def
 FileName=kapitel\Wertannahme_stetiger_Funktionen.tex
 FoldedLines=
 IsMainFile=no
-Opened=yes
+Opened=no
 ScrollPos.X=0
-ScrollPos.Y=0
-SearchListCount=0
+ScrollPos.Y=80
+SearchListCount=1
+
+[Files\17\SearchList\0]
+CaseSensitive=no
+Color=65535
+RegExp=no
+Show=1
+Text=\ac{z.z}
+
+[Files\17]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=5
+TabOrder=-1
 UseThesaurus=yes
 WrapLine=yes
 
@@ -274,7 +292,7 @@ ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=2
+TabOrder=1
 UseThesaurus=yes
 WrapLine=yes
 
@@ -298,11 +316,11 @@ FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=141
+ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=3
+TabOrder=2
 UseThesaurus=yes
 WrapLine=yes
 
@@ -346,19 +364,19 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=35
+CaretPos.Y=38
 CharSet=def
 FileName=Informatik - SS2009 - MA2.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=40
+ScrollPos.Y=32
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=1
+TabOrder=0
 UseThesaurus=yes
 WrapLine=yes
 

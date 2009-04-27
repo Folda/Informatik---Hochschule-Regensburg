@@ -87,6 +87,17 @@
 \definecolor{framecolor_satz}{rgb}{0,0,0}%
 \begin{fshaded}{framecolor_satz}{shadecolor_satz}\begin{satz}[#1]}{\end{satz}\end{fshaded}}
 
+\newtheoremstyle{beweis}% name
+	{3pt}			%Space above
+	{3pt}			%Space below
+	{}				%Body font
+	{}				%Indent amount (empty = no indent, \parindent = para indent)
+	{\sc}	%Thm head font
+	{:}			%Punctuation after thm head
+	{.5em}		%Space after thm head: " " = normal interword space; \newline = linebreak
+	{}				%Thm head spec (can be left empty, meaning `normal')
+
+\theoremstyle{beweis}
 \newtheorem{beweis}{Beweis}[part]
 \newenvironment{fbeweis}[1][]{\definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
 \definecolor{framecolor_beweis}{rgb}{0,0,0}%

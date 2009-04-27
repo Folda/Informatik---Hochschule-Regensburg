@@ -83,6 +83,17 @@
 \definecolor{framecolor_satz}{rgb}{0,0,0}%
 \begin{fshaded}{framecolor_satz}{shadecolor_satz}\begin{satz}[#1]}{\end{satz}\end{fshaded}}
 
+\newtheoremstyle{beweis}% name
+	{3pt}			%Space above
+	{3pt}			%Space below
+	{}				%Body font
+	{}				%Indent amount (empty = no indent, \parindent = para indent)
+	{\sc}	%Thm head font
+	{:}			%Punctuation after thm head
+	{.5em}		%Space after thm head: " " = normal interword space; \newline = linebreak
+	{}				%Thm head spec (can be left empty, meaning `normal')
+
+\theoremstyle{beweis}
 \newtheorem{beweis}{Beweis}[chapter]
 \newenvironment{fbeweis}[1][]{\definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
 \definecolor{framecolor_beweis}{rgb}{0,0,0}%
@@ -90,9 +101,6 @@
 
 \theoremstyle{remark}
 \newtheorem{notation}{Notation}[chapter]
-\newenvironment{fnotation}[1][]{\definecolor{shadecolor_notation}{rgb}{.90, .90, .90}
-\definecolor{framecolor_notation}{rgb}{0,0,0}%
-\begin{fshaded}{framecolor_notation}{shadecolor_notation}\begin{notation}[#1]}{\end{notation}\end{fshaded}}
 
 \newtheoremstyle{note}% name
 	{3pt}			%Space above
@@ -155,6 +163,8 @@
 \newcommand{\spanx}[1]{\ensuremath{\spano{\left(#1\right)}}}
 \newcommand{\arccosx}[1]{\ensuremath{\arccos{\left(#1\right)}}}
 \newcommand{\stack}[2]{\ensuremath{\stackrel{#1}{#2}}}
+
+%Todo, Insert, Mark, Img, Solved
 \newcommand{\Todo}[1]{\todo[inline]{TODO: #1}}
 \newcommand{\Insert}[1]{\todo[inline, color=green!40]{INSERT: #1}}
 \newcommand{\Mark}[1]{\todo[inline, nolist, color=blue!40]{MARK: #1}}

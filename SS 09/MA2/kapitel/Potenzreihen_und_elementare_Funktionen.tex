@@ -352,7 +352,21 @@ Lösung siehe \vref{sec:Potenzreihen_und_elementare_Funktionen_A2_6L}.
 		&= \sum_{n = 0}^{\infty} (-1)^n \frac{x^{2n}}{(2n)!} + i \sum_{n = 0}^{\infty} (-1)^n \mal \frac{x^{2n + 1}}{(2n + 1)!}\\
 		&= \cosx{x} + i \mal \sinx{x}
 		\end{align*}
-		\Insert{IMG-MA-09-04-21-2}
+		\begin{tikzpicture}
+		\draw[->, thick] (0,0) -- (4.0,0) node[below] {Re};
+		\draw[->, thick] (0,0) -- (0,4.0) node[right] {Im};
+		\draw[in=0,out=90] (3,0) node[below] {$1$} to (0,3) node[left] {$i$};
+		\draw (0,0) -- (45:3) node[right] {$e^x$};
+		\draw (45:3) -- (2.12,0);
+		\draw (45:3) -- (0,2.12);
+		\node[below] at (1.06,0) {$\cosx{}$};
+		\node[left] at (0,1.06) {$\sinx{}$};
+		\draw[thick] (2.12,0.05) -- (2.12,-0.05);
+		\draw[thick] (0.05,2.12) -- (-0.05,2.12);
+		\draw[thick] (3,0.05) -- (3,-0.05);
+		\draw[thick] (0.05,3) -- (-0.05,3);
+		\end{tikzpicture}
+		\Img{IMG-MA-09-04-21-2}
 
 		$z = x + iy$ $x,y \in \R$\\
 		$\overline{z} = x - iy$

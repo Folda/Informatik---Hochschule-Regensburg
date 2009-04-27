@@ -19,20 +19,27 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 \publishers{Aus der Vorlesung von Professorin Gabriela Grüniger (Grüg)}
 %</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-\input{00acronyms.tex}
-\frontmatter
-\maketitle
-\setcounter{tocdepth}{1}
-\setcounter{secnumdepth}{2}
-\clearpage
-\pdfbookmark[0]{\contentsname}{tocanc}
-\tableofcontents
-\newpage
-\listoftodos
-\newpage
+%\input{00acronyms.tex}
+%\frontmatter
+%\maketitle
+%\setcounter{tocdepth}{1}
+%\setcounter{secnumdepth}{2}
+%\clearpage
+%\pdfbookmark[0]{\contentsname}{tocanc}
+%\tableofcontents
+%\newpage
+%\listoftodos
+%\newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[domain=0:7]
+\draw[->,thick] (7,0) node[below] {$x$} -- (0,0) -- (0,2);
+\foreach \x/\y in {0/0,2/2}
+	\draw[thick] (\x,-0.05) -- (\x,0.05) node[below] {$\y$};
+
+\draw plot[smooth] (\x,{sin(\x r)})
+\end{tikzpicture}
 %\input{kapitel/Uebersicht.tex}
-\mainmatter
+%\mainmatter
 %\part{Einführung} \pagestyle{fancy}
 %\Mark{Part 1}
 %\input{kapitel/Fakultaeten_und_Binominalkoeffizienten.tex}
@@ -45,10 +52,10 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 %\input{kapitel/Konvergente_Reihen.tex}
 %\input{kapitel/Potenzreihen_und_elementare_Funktionen.tex}
 %
-\part{Grenzwerte und Stetigkeit}
-\Mark{Part 3}
+%\part{Grenzwerte und Stetigkeit}
+%\Mark{Part 3}
 %\input{kapitel/Grenzwerte_und_Stetigkeit_von_Funktionen.tex}
-\input{kapitel/Wertannahme_stetiger_Funktionen.tex}
+%\input{kapitel/Wertannahme_stetiger_Funktionen.tex}
 %
 %\part{Übungsblätter}
 %\input{kapitel/Ergaenzungsblaetter.tex}
