@@ -38,8 +38,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=11
+CaretPos.X=6
+CaretPos.Y=0
 CharSet=def
 FileName=00packages.tex
 FoldedLines=
@@ -74,7 +74,7 @@ FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=1
+ScrollPos.Y=136
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -122,15 +122,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=37
+CaretPos.X=47
+CaretPos.Y=84
 CharSet=def
 FileName=Informatik - SS2009 - GI.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=0
+ScrollPos.Y=66
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -151,18 +151,18 @@ Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
 CaretPos.X=0
-CaretPos.Y=0
+CaretPos.Y=262
 CharSet=def
 FileName=kapitel\Endliche_Automaten.tex
 FoldedLines=
 IsMainFile=no
-Opened=no
+Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=0
+ScrollPos.Y=248
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=-1
+TabOrder=4
 UseThesaurus=yes
 WrapLine=yes
 
@@ -234,15 +234,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=28
-CaretPos.Y=24
+CaretPos.X=0
+CaretPos.Y=0
 CharSet=def
 FileName=kapitel\Uebungen_und_Tutorium.tex
 FoldedLines=
 IsMainFile=no
 Opened=no
 ScrollPos.X=0
-ScrollPos.Y=0
+ScrollPos.Y=68
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -252,6 +252,21 @@ WrapLine=yes
 
 [Files]
 Count=9
+
+[ProjectDictionary]
+abu
+bu
+htb
+img
+nodeone
+nodetwo
+q'
+semithick
+stealth'
+tikzpicture
+ua
+uv
+wa
 
 [Project]
 ActiveFilters=

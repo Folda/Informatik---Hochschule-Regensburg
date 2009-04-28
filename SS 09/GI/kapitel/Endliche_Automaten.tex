@@ -296,3 +296,50 @@ Wie üblich erfolgt der \ac{Bew.} in 2 Schritten
 \end{itemize}
 \Mark{Lemma 3.2}
 \end{lemma}
+
+\section{\texorpdfstring{$\epsilon$-Nichtdeterministische Automaten}{Epsilon-Nichtdeterministische Automaten}}
+$\epsilon$-Transitionen\\
+\Insert{GI-28.04.2009-IMG-1}
+
+\subsection{\texorpdfstring{NEAs mit $\epsilon$-Transitionen}{NEAs mit Epsilon-Transitionen}}
+\begin{fdefinition}
+Ein $\epsilon$-\ac{NEA} $\mu$ ist ein Quintupel $(Q, \Sigma, \delta, q_0, F)$.
+\begin{itemize}
+\item $Q, \Sigma, q, F$ wie \ac{NEA}
+\item $\delta$: $Q \times (\Sigma \cup \gklamm{\epsilon}) \ra \mathcal{P}(Q)$
+\end{itemize} \qed
+\end{fdefinition}
+
+\begin{notation}
+$q \in \delta (q, a)$ schreiben wir als $p \stack{a}{\ra} q$ $a \in \Sigma \cup \gklamm{\epsilon}$
+\end{notation}
+
+Übernehme Begriff \ggq{Konfiguration von \ac{NEA}}. Zur Definition der Schrittrelation; an Übergang
+\[(p, w) \vd (q, w)\] \Insert{GI-28.04.2009-IMG-2}
+nicht zu erkennen, wie viele $\epsilon$-Transitionen benutzt wurden. \Ra Erlaube derartige Übergänge mit \ac{bel.} vielen $\epsilon$-Transitionen.
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein $\epsilon$-\ac{NEA}. Die $\epsilon$-Hülle $\epsilon_c$: $Q \ra \mathcal{P}(Q)$ ist \ac{def.} durch
+\[\epsilon_c (q) = \gklamm{q} \cup \bigcup_{q' \in \delta(q, \epsilon)} \epsilon_c(q')\]
+\Mark{Definition 3.13}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein $\epsilon$-\ac{NEA}. Ein Konfigurationsübergang (ein Schritt) ist eine Relation $\vd:~(Q \times \Sigma^*) \times (Q \times \Sigma^*)$, die \ac{def.} ist durch
+\[(q, aw) \vd (p, w) \tx{ falls } p \in \delta(q, a)\]
+und
+\[(q, w) \vd (p, w) \tx{ falls } p \in \epsilon_c (q)\]
+wobei $a \in \Sigma, w \in \Sigma^*$ und $p, q \in Q$.
+\Mark{Definition 3.14}
+\end{fdefinition}
+
+\begin{fdefinition}
+für Berechnungen und von $\epsilon$-\ac{NEA} \ac{akzept.} Sprache analog zu \ac{NEA}.
+\end{fdefinition}
+
+\subsection{\texorpdfstring{Äquivalenz von $\epsilon$-NEA und NEA}{Äquivalenz von Epsilon-NEA und NEA}}
+\Insert{GI-28.04.2009-IMG-3}
+
+\begin{beispiel}
+\Insert{GI-28.04.2009-IMG-4}
+\end{beispiel}

@@ -31,13 +31,6 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 %\listoftodos
 %\newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}[domain=0:7]
-\draw[->,thick] (7,0) node[below] {$x$} -- (0,0) -- (0,2);
-\foreach \x/\y in {0/0,2/2}
-	\draw[thick] (\x,-0.05) -- (\x,0.05) node[below] {$\y$};
-
-\draw plot[smooth] (\x,{sin(\x r)})
-\end{tikzpicture}
 %\input{kapitel/Uebersicht.tex}
 %\mainmatter
 %\part{Einführung} \pagestyle{fancy}
@@ -57,6 +50,109 @@ pdfkeywords={informatik,studium,hefter,mathematik2,sommersemester,2009}}
 %\input{kapitel/Grenzwerte_und_Stetigkeit_von_Funktionen.tex}
 %\input{kapitel/Wertannahme_stetiger_Funktionen.tex}
 %
+\part{Differentialrechnung}
+\Mark{Part 4}
+\chapter{Differenzierbarkeit}
+\Mark{Chapter 4.1}
+$f$: $D \ra \R$ stetig dann bedeutet dies, dass $f$ in $D$ keine \ggq{Sprünge} hat\\
+$f$: $D \ra \R$ differenzierbar bedeutet, dass $f$ in $D$ keine Sprünge und keine \ggq{Knicke} hat
+
+\begin{fdefinition}[Differenzierbarkeit]
+Die Funktion $f$: $D \ra \R$ heißt im Punkt $x_0 \in D$ \indexb{differenzierbar}, falls der Grenzwert
+\[f' (x_0) \ceq \lim_{x \ra x_0} \frac{f(x) - f(x_0)}{x - x_0}\]
+existiert $(f' (x_0) \in \R)$.\\
+Die Zahl $f'(x_0)$ heißt dann \indexb{Ableitung} von $f$ an der Stelle $x_0$.\\
+Die Funktion $f$: $D \ra \R$ heißt differenzierbar in $A \subseteq D$, falls $f$ in jedem $x_0 \in A$ differenzierbar ist.
+\Mark{Definition 4.1}
+\end{fdefinition}
+\section*{Geometrische Interpretation}
+\Insert{MA-28.04.2009-1}
+Mit $h = \Delta x$ stellt der Differenzenquotient
+\[\frac{f(x_0 + \Delta x) - f(x_0)}{\delta x} = \frac{f(x_0 + h) - f(x_0)}{h} = \frac{\Delta y}{\Delta x} = \frac{\Delta f}{\Delta x}\]
+die Steigung der Sekante (Sehne) zwischen $f(x_0)$ und $f(x_0 + \Delta x)$ dar.\\
+Für $h \ra 0$ \ac{bzw.} $\Delta x \ra 0$ geht die Sekante in die Tangente in $x_0$ über und Steigung der Tangente ist
+\begin{align*}
+f'(x_0) &= \frac{df(x)}{dx}_{x = x_0} = \frac{df}{dx}_{(x_0)} = \lim_{\Delta x \ra 0} \frac{f(x + \Delta x) - f(x_0)}{\Delta x}\\
+&=\tanx{\alpha}
+\end{align*}
+
+\begin{bemerkung}
+\mbox{}\par
+\begin{enumerate}
+\item In Anlehnung an d en Differenzenquotient $\frac{\Delta f}{\Delta x}$ nennt man $\frac{df}{dx}$ \indexb{Differenzialquotient}.
+\item $h$ \ac{bzw.} $\Delta x$ muss nicht $> 0$ sein.
+\item Alternative Definition der Differenzierbarkeit\\
+		Sei $D \subseteq \R$ und $x_0 \in D$, so dass mindestens eine Folge $(x_n)_{n \in \N}$ mit $x_n \in D \backslash \gklamm{x_0}$ existiert mit $\lim_{n \ra \un} (x_n) = x_0$.\\
+		Eine Funktion $f$: $D \ra \R$ heißt differenzierbar in $x_0 \in D$, falls es eine Konstante $a \in \R$ und eine Funktion $r$: $D \ra \R$ mit $\lim_{x \ra x_0} r(x) = 0$ gibt, sodass
+		\[f(x) = f(x_0) + a \mal (x - x_0) + r(x) \mal (x - x_0)~~x \in D\]
+		In diesem Fall ist $a = f' (x_0)$
+
+\item Die Gleichung der Tangente an $f$ in $x_0$ lautet
+		\[\ub{T(f, x)}{= T(x) = T_f(x)} = f(x_0) + f' (x_0) \mal (x - x_0)\]
+
+\item aus 3, 4 folgt, dass sich lokal (also in der Nähe eines gegebenen Punktes $x_0$) der \ggq{Zuwachs} der Funktion $f$ durch den Zuwachs der Tangente $T_f$ ($a_n$ $f in x_0$) darstellen lässt.
+		\begin{align*}
+		\Delta f &= f(x) - f(x_0)\\
+		&= f(x_0) + f'(x_0) (x - x_0) + r(x) \mal (x - x_0) - f(x_0)\\
+		&= f'(x_0) \mal (x - x_0) + r(x) \mal (x - x_0)\\
+		&\approx f'(x_0) \mal (x - x_0)\\
+		&= T_f(x) - T_f(x_0)\\
+		\Ra& df = f'(x) dx \tx{ Differential}
+		\end{align*}
+		\ac{d.h.} wenn man um die Infinitesimale Größe $dx$ von $x_0$ weggeht, ändert sich der Funktionswert um $df = f'(x_0) dx$
+\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{enumerate}
+\item $f(x) = 4x - 5$\\
+		Ist $f$ in $x_0 = 3$ differenzierbar?\\
+		Ist $f$ in $\R$ differenzierbar?
+		\begin{align*}
+		\lim_{x \ra x_0} \frac{f(x) - f(x_0)}{x - x_0} &= \lim_{h \ra 0} \frac{f(x_0 + h) - f(x_0)}{h}\\
+		&= \lim_{h \ra 0} \frac{\rkl{4 (x_0 + h) - 5} - (4 x_0 - 5)}{h}\\
+		&= \lim_{h \ra 0} \frac{4x_0 + 4h - 5 - 4x_0 + 5}{h} = \lim_{h \ra 0} 4 = 4
+		\end{align*}
+		Da der Grenzwert existiert ohne dass wir den Wert von $x_0$ gebraucht hätten, ist $f$ in ganz $\R$ differenzierbar.
+\end{enumerate}
+\end{beispiel}
+
+\section{Aufgabe 4.1}
+Ermitteln sie die Ableitung der Funktion $f(x) = x^2$ direkt mit Hilfe der Definition\\
+\Todo{Link zu Lösung}
+\section{Lösungen}
+\subsection{Aufgabe 4.1}
+\Todo{Link zur Aufgabe}
+$f(x) = x^2$ gesucht $f'(x)$
+\begin{align*}
+\lim_{x \a x_0} \frac{f(x) - f(x_0)}{x - x_0} &= \lim_{h \ra 0} \frac{f(x_0 + h) - f(x_0)}{h}\\
+&= \lim_{h \ra 0} \frac{(x_0 + h)^2 - x_0^2}{h} = \lim_{h \ra 0} \frac{x_0^2 + 2x_0 h + h^2 - x_0^2}{h}\\
+&= \lim_{h \ra 0} (2 x_0 + h) = 2 x_0 = f'(x_0)\\
+\Ra & f'(x) = 2x
+\end{align*}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{enumerate}[start=2]
+\item $f(x) = e^x$ gesucht $f'(x)$
+		\begin{align*}
+		\lim_{x \ra x_0} \frac{f(x) - f(x_0)}{x - x_0} &= \lim_{h \ra 0} \frac{f (x_0 + h) - f(x_0)}{h}\\
+		&= \lim_{h \ra 0} \frac{e^{x_0 + h} - e^{x_0}}{h} = \lim_{h \ra 0} \frac{e^{x_0} e^h - e^{x_0}}{h}\\
+		&= e^{x_0} \mal \lim_{h \ra 0} \frac{e^h - 1}{h} = e^{x_0} \lim_{h \ra 0} \frac{1}{h} \rkl{\sum_{k = 0}^{\un} \frac{h^k}{k!} - 1}\\
+		&= e^{x_0} \mal \lim_{h \ra 0} \rkl{\frac{1}{h} \sum_{k = 1}^{\un} \frac{h^k}{k!}} = e^{x_0} \ub{\lim_{h \ra 0} \sum_{k = 1}^{\un} \frac{h^{k - 1}}{k!}}{= \textcircled{\star}}\\
+		\textcircled{\start} &\klgl \lim_{h \ra 0} \sum_{k = 1}^{\un} \frac{\betrag{h}^{k - 1}}{k!} = \lim_{h \ra 0} \sum_{k = 0}^{\un} \frac{\betrag{h}^k}{(k + 1)!} \klgl \lim_{h \ra 0} \sum_{k = 0}^{\un} \frac{\betrag{h}^k}{k!}\\
+		&= \lim_{h \ra 0} e^{\betrag{h}} = 1\\
+		\textcircled{\start} &= \lim_{h \ra 0} \frac{h^k}{(k + 1)!} = \lim_{h \ra 0} \rkl{1 - \sum_{k = 1}^{\un} \frac{\betrag{h}^k}{(k + 1)!}}\\
+		&= \lim_{h \ra 0} \rkl{1 - \sum_{k = 1}^{\infty} \frac{\betrag{h}}{2} \mal \frac{\betrag{h}}{3} \mal \frac{\betrag{h}}{4} \dots \frac{\betrag{h}}{(k + 1)}} \grgl \lim_{h \ra \infty} \rkl{1 - \sum_{k = 1}^{\infty} \rkl{\frac{\betrag{h}}{2}}^k}\\
+		&= \lim_{h \ra 0} \rkl{1 - \frac{\betrag{h}}{2} \mal \sum_{k = 0}^{\un} \rkl{\frac{\betrag{h}}{2}}^k}\\
+		&= \lim_{h \ra 0} \rkl{1 - \frac{\betrag{h}}{2} \mal \frac{1}{1 - \frac{\betrag{h}}{2}}}\\
+		&= 1 - \lim_{h \ra 0} \frac{\betrag{h}}{2} \mal \lim_{h \ra 0} \frac{1}{1 - \frac{\betrag{h}}{2} = 1 - 0 \mal 1 = 1\\
+		\Ra& \frac{d}{dx} \rkl{e^x}_{x = x_0} = e^{x_0} = f'(x_0}\\
+		\Ra& f'(x) = e^x
+		\end{align*}
+\end{enumerate}
+\end{beispiel}
 %\part{Übungsblätter}
 %\input{kapitel/Ergaenzungsblaetter.tex}
 %\input{kapitel/Uebungsblaetter.tex}
