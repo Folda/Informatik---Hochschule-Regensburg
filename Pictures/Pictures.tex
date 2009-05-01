@@ -1,0 +1,30 @@
+\documentclass[oneside,a4paper,german,parskip=half]{scrbook}
+\usepackage[latin1]{inputenc}
+
+%Standartfont
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%Zusatzpaket für mathematische Ausdrücke
+\usepackage{amsmath}
+
+%Zusatzfonts für mathbb usw.
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+%Tikz/PGF Zeichnenpaket
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc,arrows,automata}
+
+%Für graphische Todos
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\Img}[1]{\todo[inline, nolist, color=black!40]{IMG: #1}}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\input{kapitel/IN2_SS2009.tex}
+
+\end{document}

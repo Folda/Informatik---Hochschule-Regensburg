@@ -299,7 +299,20 @@ Wie üblich erfolgt der \ac{Bew.} in 2 Schritten
 
 \section{\texorpdfstring{$\epsilon$-Nichtdeterministische Automaten}{Epsilon-Nichtdeterministische Automaten}}
 $\epsilon$-Transitionen\\
-\Insert{GI-28.04.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (n0) {};
+\node[state] (n1) [right of=n0] {};
+\node[state] (n2) [right of=n1] {};
+\node[state,accepting] (n3) [right of=n2] {};
+
+\path[->] (n0) edge[loop below] node[right] {$1, 0$} ();
+\path[->] (n3) edge[loop below] node[right] {$1, 0$} ();
+\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$1$} (n2);
+\path[->] (n2) edge node[below] {$1$} (n3);
+\path[->] (n2) edge[bend left] node[above] {$\epsilon$} (n3);
+\end{tikzpicture}
+\Img{GI-28.04.2009-IMG-1}
 
 \subsection{\texorpdfstring{NEAs mit $\epsilon$-Transitionen}{NEAs mit Epsilon-Transitionen}}
 \begin{fdefinition}
@@ -315,7 +328,20 @@ $q \in \delta (q, a)$ schreiben wir als $p \stack{a}{\ra} q$ $a \in \Sigma \cup 
 \end{notation}
 
 Übernehme Begriff \ggq{Konfiguration von \ac{NEA}}. Zur Definition der Schrittrelation; an Übergang
-\[(p, w) \vd (q, w)\] \Insert{GI-28.04.2009-IMG-2}
+\[(p, w) \vd (q, w)\]
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (n0) {$p$};
+\node[state] (n1) [right of=n0] {$p_1$};
+\node[state] (n2) [right of=n1] {\dots};
+\node[state] (n3) [right of=n2] {$p_4$};
+\node[state] (n4) [right of=n3] {$q$};
+
+\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$\epsilon$} (n2);
+\path[->] (n2) edge node[above] {$\epsilon$} (n3);
+\path[->] (n3) edge node[above] {$\epsilon$} (n4);
+\end{tikzpicture}
+\Img{GI-28.04.2009-IMG-2}
 nicht zu erkennen, wie viele $\epsilon$-Transitionen benutzt wurden. \Ra Erlaube derartige Übergänge mit \ac{bel.} vielen $\epsilon$-Transitionen.
 
 \begin{fdefinition}
@@ -338,8 +364,127 @@ für Berechnungen und von $\epsilon$-\ac{NEA} \ac{akzept.} Sprache analog zu \ac{
 \end{fdefinition}
 
 \subsection{\texorpdfstring{Äquivalenz von $\epsilon$-NEA und NEA}{Äquivalenz von Epsilon-NEA und NEA}}
-\Insert{GI-28.04.2009-IMG-3}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (n0) {$p$};
+\node[state] (n1) [right of=n0] {$q$};
+\node[state] (n2) [right of=n1] {$q'$};
+\node[state] (n3) [right of=n2] {$r$};
+
+\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$a$} (n2);
+\path[->] (n2) edge node[above] {$\epsilon$} (n3);
+\path[->] (n0) edge[bend right] node[below] {$a$} (n3);
+\end{tikzpicture}
+\Img{GI-28.04.2009-IMG-3}
 
 \begin{beispiel}
-\Insert{GI-28.04.2009-IMG-4}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (n0) {$q_0$};
+\node[state] (n1) [right of=n0] {$q_1$};
+\node[state] (n4) [below right of=n1] {$q_4$};
+\node[state] (n2) [above right of=n4] {$q_2$};
+\node[state,accepting] (n3) [right of=n2] {$q_3$};
+\node[state] (n5) [below of=n4] {$q_5$};
+
+\path[->] (n1) edge[loop below] node[right] {$0$} ();
+\path[->] (n1) edge node[above] {$0$} (n2);
+\path[->] (n4) edge node[above] {$0$} (n3);
+\path[->] (n4) edge[bend right] node[left] {$1$} (n5);
+\path[->] (n5) edge[bend right] node[right] {$1$} (n4);
+
+\path[->,color=red] (n0) edge node[color=red, above] {$\epsilon$} (n1);
+\path[->,color=red] (n2) edge node[color=red, above] {$\epsilon$} (n3);
+\path[->,color=red] (n0) edge[bend right] node[color=red, above] {$\epsilon$} (n4);
+
+\path[->,color=green] (n0) edge[bend left] node[color=green, below right] {$0$} (n1);
+\path[->,color=green] (n1) edge[bend left] node[color=green, below] {$0$} (n3);
+\path[->,color=green] (n0) edge[bend right] node[color=green, above] {$1$} (n5);
+\path[->,color=green] (n0) edge[bend left] node[color=green, below] {$0$} (n2);
+\path[->,color=green] (n0) edge[bend left] node[color=green, above] {$0$} (n3);
+\end{tikzpicture}
+\Img{GI-28.04.2009-IMG-4}
 \end{beispiel}
+
+\begin{fsatz}
+Zu jedem $\epsilon$-\ac{NEA} lässt sich \textbf{effektiv} ein \textbf{äquivalenter} NEA konstruieren.
+\Mark{Satz 3.1}
+\end{fsatz}
+
+\begin{fbeweis}
+Sei $M_{\epsilon} = (Q, \Sigma, \delta_{\epsilon}, q_0, F_{\epsilon})$ ein $\epsilon$-\ac{NEA}. Konstruktionsidee für \ac{NEA}: Eliminiere $\epsilon$-Transitionen und kompensiere durch Hinzunahme neuer Transitionen.\\
+Formal: Konstruiere NEA $M = (Q, \Sigma, \underline{\delta}, q_0, \underline{F})$ aus $M_{\epsilon}$ wie folgt:
+\[\textcolor{green}{r \in \delta(p, a)} \Lra \exists q, q' \in Q:~q \in \epsilon_c (p) \und r \in \epsilon_c (q') \und q' \in \delta (q, a)\]
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (n0) {$p$};
+\node[state] (n1) [right of=n0] {$q$};
+\node[state] (n2) [right of=n1] {$q'$};
+\node[state] (n3) [right of=n2] {$r$};
+
+\path[->, color=red] (n0) edge node[above, color=red] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$a$} (n2);
+\path[->, color=red] (n2) edge node[above, color=red] {$\epsilon$} (n3);
+\path[->, color=green] (n0) edge[bend right] node[below, color=green] {$a$} (n3);
+\end{tikzpicture}
+\end{center}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (n0) {};
+\node[state,accepting] (n1) [right of=n0] {};
+\path[->] (n0) edge node[above] {$\epsilon^*$} (n1);
+\end{tikzpicture}
+
+und
+\[F = \begin{cases}
+F_{\epsilon} \cup \gklamm{q_0} & \tx{falls } \epsilon_c (q_0) \cap F_{\epsilon} \neq \emptyset\\
+F_{\epsilon} & \tx{sonstige}
+\end{cases}\]
+Effektive Berechnung: ohne Beweis.
+
+\begin{enumerate}[label=\alph*)]
+\item Bleibt zu zeigen $L(M) = L(M_2)$.\\
+		$L(M_{\epsilon}) \subseteq L(M)$. Sei $w = a_1 \dots a_n \in L(M_\epsilon)$ und $q_0 \stack{w}{\ra} p_n$ (also: $w$ ist Pfadbeschreibung von $q_0$ nach $p_n$ \ac{incl.} der $\epsilon$-Transitionen). \ac{bzw.}
+		\[(q_0, a_1 \dots a_n) \vd_{M_{\epsilon}} (p_1, a_2 \dots a_n) \vd_{M_{\epsilon}} \dots \vd_{M_{\epsilon}} (p_{n - 1}, a_n) \vd (p_n, \epsilon)\]
+		ist eine \ac{akzept.} Berechnung von $M_{\epsilon}$ für $w$.
+		
+		Wir betrachten Indizes $i_1, \dots, i_m$ mit $a_{ij} \neq \epsilon$ ($1 \klgl j \klgl m$). Offenbar ist $a_{i1} a_{i2} \dots a_{im} = w$.
+		\begin{enumerate}[label=\roman*)]
+		\item $(m = 0)$ es gibt keinen solchen Index $i_m$ mit $a_{ij} \neq \epsilon$, dann ist $w = \epsilon$ und $p_n \in \epsilon_c (q_0)$ sowie $p_n \in F_{\epsilon}$. $F$ wurde für diesen Fall aber so konstruiert, dass $q_0 \in F$.\\
+				\Ra $\epsilon \in L(M)$
+		
+		\item $(m > 0)$ Gemäß \ac{Def.} von $\delta$ \Todo{ref zur definition} ist
+				\[\tx{\ac{NEA}: } (q_0, a_{i1} \dots a_{im}) \vd (p_{i1}, a_{i2} a_{i3} \dots a_{im}) \vd \dots \vd (p_{i_{m - 1}} a_{i_m}) \vd (p_n, \epsilon)\]
+				Machen wir uns das am \ac{Bsp.} des ersten Schritts nochmals klar:
+				\[(q_0, a_{i_1} \dots a_{i_m}) \vd (p_{i_1}, a_{i_2} \dots a_{i_m})\]
+				Angenommen es gibt im $\epsilon$-\ac{NEA} \textbf{keine} Transition
+				\[q_0 \stack{q_{i_1}}{\ra} q_{i_1}\]
+				\ac{d.h.} um \ac{NEA} wurde eine hinzugefügte Kante benutzt. Offenbar ist dann $i_2 - i_1 > 1$; \ac{d.h.} im $\epsilon$-\ac{NEA} wurden $\epsilon$-Transitionen benutzt. Dann muss es laut Konstruktion $\space^*$ von $\delta$ ein $q'$ mit $q' \in \epsilon_c (q_0)$ geben, so dass $\delta '' \in \delta_{\epsilon} (q', a)$ und $q_{i_1} \in \epsilon_c (q'')$:
+				\Insert{GI-29-04.2009-IMG-1}
+				sonst hätte $\epsilon$-\ac{NEA} Konfiguration ($p_{i_1}, a_{i_2} \dots a_{i_m}$) niemand erreicht. In der Konstruktion für $\delta$ haben wir für solche Fälle vereinbart, dass $p_{i_1} \in \delta(q_0, a_{i_1})$.
+		\end{enumerate}
+
+\item $L(M) \subseteq L(M_\epsilon)$: Sei $w = a_1 \dots a_n \in L(M)$ und
+		\[q_0, a_1 \dots a_n) \vd_{\mu} (p_1, a_2 \dots a_n) \vd_{\mu} \dots \vd_{\mu} (p_n, \epsilon)\]
+		mit $p_n \in F$ eine \ac{akzept.} Berechnung des \ac{NEA} $M$. Gemäß \ac{Def.} von $\delta$ \Todo{ref auf definition} gilt nun aber auch, dass
+		\[(q_0, a_1 \dots a_n) \vd_{M_\epsilon}^* (p_1, a_2 \dots a_n) \vd_{M_\epsilon}^* \dots \vd_{M_\epsilon}^* (p_n, \epsilon)\]
+		eine \ac{akzept.} Berechnung des $\epsilon$-\ac{NEA} ist. Zwei Fälle sind zu unterscheiden:
+		\begin{enumerate}[label=\roman*)]
+		\item $p_n \in F_{\epsilon}$ folgt sofort $w \in L(M_{\epsilon})$
+		\item $p_n \in F - F_{\epsilon}$; \ac{d.h.} $p_n = q_0$: Gemäß \ac{Def.} von $F$ \Todo{ref zur definition} folgt nun für ein $\hat{p} \in F_{\epsilon}$: $\hat{p} \in \epsilon_c (q_0)$ und somit \ac{ex.} eine Berechnung
+				\[(q_0, a_1 \dots a_n) \vd_{\mu}^* (p_1, a_2 \dots a_n) \vd_{\mu}^* \dots \vd_{\mu}^* (\hat{p}, \epsilon)\]
+		\end{enumerate}
+\end{enumerate} \qed
+\end{fbeweis}
+
+$L = \gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0 \und w = u111v für u, v \in \SigBs}$\\
+\ac{DEA} $M$ für $L$ gesucht!\\
+$L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \ub{\gklamm{w \in \SigBs \vert w = u111v}}{L_2}$
+\Insert{GI-29-04.2009-IMG-2}
+\Insert{GI-29-04.2009-IMG-3}
+
+\subsection{Äquivalenz von NEA und DEA}
+\Insert{GI-30.04.2009-IMG-1}
+\Insert{GI-30.04.2009-IMG-2}
+$L = \gklamm{w \in \SigBs \vert w^R \tx{ enthält an $n$-ten Stelle eine } 1}$ $Q_D = \mathcal{P}(Q)$
+\Insert{GI-30.04.2009-IMG-3}

@@ -19,82 +19,25 @@ pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der inf
 \publishers{Aus der Vorlesung von Professor Dr. rer. nat. Jorg Striegnitz (Str)}
 %</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%\frontmatter
-%\input{00acronyms.tex}
-%\maketitle
-%\setcounter{tocdepth}{2}
-%\setcounter{secnumdepth}{3}
-%\clearpage
-%\pdfbookmark[0]{\contentsname}{tocanc}
-%\tableofcontents
-%\newpage
-%\listoftodos
-%\newpage
+\frontmatter
+\input{00acronyms.tex}
+\maketitle
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{3}
+\clearpage
+\pdfbookmark[0]{\contentsname}{tocanc}
+\tableofcontents
+\newpage
+\listoftodos
+\newpage
 %<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-\node[state,initial,initial text=] (n0) {};
-\node[state] (n1) [right of=n0] {};
-\node[state] (n2) [right of=n1] {};
-\node[state,accepting] (n3) [right of=n2] {};
-
-\path[->] (n0) edge[loop below] node[right] {$1, 0$} ();
-\path[->] (n3) edge[loop below] node[right] {$1, 0$} ();
-\path[->] (n0) edge node[above] {$\epsilon$} (n1);
-\path[->] (n1) edge node[above] {$1$} (n2);
-\path[->] (n2) edge node[below] {$1$} (n3);
-\path[->] (n2) edge[bend left] node[above] {$\epsilon$} (n3);
-\end{tikzpicture}
-
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-\node[state] (n0) {$p$};
-\node[state] (n1) [right of=n0] {$p_1$};
-\node[state] (n2) [right of=n1] {\dots};
-\node[state] (n3) [right of=n2] {$p_4$};
-\node[state] (n4) [right of=n3] {$q$};
-
-\path[->] (n0) edge node[above] {$\epsilon$} (n1);
-\path[->] (n1) edge node[above] {$\epsilon$} (n2);
-\path[->] (n2) edge node[above] {$\epsilon$} (n3);
-\path[->] (n3) edge node[above] {$\epsilon$} (n4);
-\end{tikzpicture}
-
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-\node[state] (n0) {$p$};
-\node[state] (n1) [right of=n0] {$q$};
-\node[state] (n2) [right of=n1] {$q'$};
-\node[state] (n3) [right of=n2] {$r$};
-
-\path[->] (n0) edge node[above] {$\epsilon$} (n1);
-\path[->] (n1) edge node[above] {$a$} (n2);
-\path[->] (n2) edge node[above] {$\epsilon$} (n3);
-\path[->] (n0) edge[bend right] node[below] {$a$} (n3);
-\end{tikzpicture}
-
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-\node[state,initial,initial text=] (n0) {$q_0$};
-\node[state] (n1) [right of=n0] {$q_1$};
-\node[state] (n4) [below right of=n1] {$q_4$};
-\node[state] (n2) [above right of=n4] {$q_2$};
-\node[state,accepting] (n3) [right of=n2] {$q_3$};
-\node[state] (n5) [below of=n4] {$q_5$};
-
-\path[->] (n1) edge[loop below] node[right] {$0$} ();
-\path[->] (n1) edge node[above] {$0$} (n2);
-\path[->] (n4) edge node[above] {$0$} (n3);
-\path[->] (n4) edge[bend right] node[left] {$1$} (n5);
-\path[->] (n5) edge[bend right] node[right] {$1$} (n4);
-
-\path[->,color=red] (n0) edge node[color=red, above] {$\epsilon$} (n1);
-\path[->,color=red] (n2) edge node[color=red, above] {$\epsilon$} (n3);
-\path[->,color=red] (n0) edge node[color=red, above] {$\epsilon$} (n4);
-\end{tikzpicture}
-%\input{kapitel/Uebersicht.tex}
-%\mainmatter
-%\input{kapitel/Grundlagen.tex}
-%\input{kapitel/Endliche_Automaten.tex}
-%\input{kapitel/Uebungen_und_Tutorium.tex}
+\input{kapitel/Uebersicht.tex}
+\mainmatter
+\input{kapitel/Grundlagen.tex}
+\input{kapitel/Endliche_Automaten.tex}
+\input{kapitel/Uebungen_und_Tutorium.tex}
 %</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\backmatter
+\backmatter
 %Literaturverzeichnis
 %\newpage
 %\addcontentsline{toc}{part}{Literaturverzeichnis}
