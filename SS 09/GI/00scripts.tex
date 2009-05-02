@@ -72,15 +72,21 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{\ac{Def.}}[chapter]
-\newenvironment{fdefinition}[1][]{\definecolor{shadecolor_definition}{rgb}{.87,.94,.96}
-\definecolor{framecolor_definition}{rgb}{0,0,0}%
+\newenvironment{fdefinition}[1][]{
+\definecolor{shadecolor_definition}{rgb}{.85882,.89803,.94509}
+%OLD: \definecolor{shadecolor_definition}{rgb}{.87,.94,.96}
+\definecolor{framecolor_definition}{rgb}{.30980,.50588,.74117}
+%OLD: \definecolor{framecolor_definition}{rgb}{0,0,0}
 \begin{fshaded}{framecolor_definition}{shadecolor_definition}\begin{definition}[#1]}{\end{definition}\end{fshaded}}
 
 \newtheorem{lemma}[definition]{Lemma}
 
 \newtheorem{satz}{Satz}[chapter]
-\newenvironment{fsatz}[1][]{\definecolor{shadecolor_satz}{rgb}{.87,.96,.56}
-\definecolor{framecolor_satz}{rgb}{0,0,0}%
+\newenvironment{fsatz}[1][]{
+\definecolor{shadecolor_satz}{rgb}{.91764,.94509,.86666}
+%OLD: \definecolor{shadecolor_satz}{rgb}{.87,.96,.56}
+\definecolor{framecolor_satz}{rgb}{.60784,.73333,.34901}
+%OLD: \definecolor{framecolor_satz}{rgb}{0,0,0}
 \begin{fshaded}{framecolor_satz}{shadecolor_satz}\begin{satz}[#1]}{\end{satz}\end{fshaded}}
 
 \newtheoremstyle{beweis}% name
@@ -95,8 +101,11 @@
 
 \theoremstyle{beweis}
 \newtheorem{beweis}{Beweis}[chapter]
-\newenvironment{fbeweis}[1][]{\definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
-\definecolor{framecolor_beweis}{rgb}{0,0,0}%
+\newenvironment{fbeweis}[1][]{
+\definecolor{shadecolor_beweis}{rgb}{.94901,.85882,.85882}
+%OLD: \definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
+\definecolor{framecolor_beweis}{rgb}{.75294,.31372,.30196}
+%OLD: \definecolor{framecolor_beweis}{rgb}{0,0,0}
 \begin{fshaded}{framecolor_beweis}{shadecolor_beweis}\begin{beweis}[#1]}{\end{beweis}\end{fshaded}}
 
 \theoremstyle{remark}
@@ -178,4 +187,13 @@
 \newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
 
 \newcommand{\matrixp}[1]{\ensuremath{\begin{pmatrix} #1 \end{pmatrix}}}
+
+%Tikz Abkürzungen
+%%Für Automaten Graphen
+\newcommand{\tikzedge}[5]{\path[->] (#1) edge[#4] node[#5] {$#3$} (#2);}
+\newcommand{\tikzloop}[4]{\tikzedge{#1}{}{#2}{loop #3}{#4};}
+
+%%Für Mathematische Graphen
+%%%Coordinatensystem
+\newcommandtwoopt{\tikzcoor}[4][x][y]{\draw[<->,thick] (0,#4) node[right] {$#2$} -- (0,0) -- (#3,0) node[below] {$#1$};}
 %</Abkürzungen>

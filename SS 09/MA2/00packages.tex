@@ -1,4 +1,4 @@
-\documentclass[oneside,a4paper,german,parskip=half,draft]{scrbook}
+\documentclass[oneside,a4paper,german,parskip=half,final]{scrbook}
 \usepackage[latin1]{inputenc}
 \pdfcompresslevel=9
 
@@ -10,8 +10,6 @@
 \pagestyle{fancy}
 \rhead{\nouppercase{\rightmark}}
 \lhead{\nouppercase{\leftmark}}
-\addtolength{\headwidth}{\marginparsep}
-\addtolength{\headwidth}{0.5\marginparwidth}
 
 %Standartfont
 \usepackage[T1]{fontenc}
@@ -81,3 +79,6 @@
 
 %Für das umstellen zwischen Doppelten, EinEinhalben und Einzelnen Zeilenabständen
 \usepackage{setspace}
+
+%Für Commandos mit zwei opotionalen Argumenten
+\usepackage{twoopt}

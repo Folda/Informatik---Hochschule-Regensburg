@@ -206,9 +206,9 @@ $a_{n + 1} = \frac{1}{2} \rkl{a_n + \frac{x_0}{a_n}} ~~ n \in \N$
 
 \item $e_n = \sqrt[n]{\sqrt[n]{n!}}$
 		\begin{align*}
-		&\lim_{n \ra \un} e_n = \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n!}} = \tx{\textcircled{\star}}\\
-		&\tx{\textcircled{\star}} \grgl \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{1}}  = \lim_{n \ra \un} \sqrt[n]{1} = 1\\
-		&\tx{\textcircled{\star}} \klgl \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n^n}} = \lim_{n \ra \un} \sqrt[n]{n} = 1\\
+		&\lim_{n \ra \un} e_n = \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n!}} = \tx{\textcircled{$\star$}}\\
+		&\tx{\textcircled{$\star$}} \grgl \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{1}}  = \lim_{n \ra \un} \sqrt[n]{1} = 1\\
+		&\tx{\textcircled{$\star$}} \klgl \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n^n}} = \lim_{n \ra \un} \sqrt[n]{n} = 1\\
 		\Ra& \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n!}} = 1
 		\end{align*}
 \end{enumerate}
@@ -261,7 +261,7 @@ kleinstes $N$, welches die Bedingung erfüllt\\
 
 \item $\sum_{n = 1}^{\infty} \frac{\sinx{n}}{n^2}$ konvergent/divergent?\\
 		Majorantenkriterium
-		\[\betrag{\sum_{n = 1}^{\un} \frac{\sinx{x}}{n^2}} \klgl \sum_{n = 1}^{\un} \betrag{\frac{\sinx{n}}{n^2} \klgl \sum_{n = 1}^{\un} \frac{1}{n^2}\]
+		\[\betrag{\sum_{n = 1}^{\un} \frac{\sinx{x}}{n^2}} \klgl \sum_{n = 1}^{\un} \betrag{\frac{\sinx{n}}{n^2}} \klgl \sum_{n = 1}^{\un} \frac{1}{n^2}\]
 		verallgemeinerte harmonische Reihe mit\\
 		$\alpha = 2$ \Ra konvergent
 \end{enumerate}
@@ -271,10 +271,10 @@ kleinstes $N$, welches die Bedingung erfüllt\\
 \item $\sum_{n = 0}^{\un} \ub{\rkl{\frac{1}{2^n} + \frac{1}{3^n}}}{= a_n} \rkl{x - \ub{0}{= x_0}}^n$\\
 		Quotientenmethode
 		\begin{align*}
-		\lim_{n \ra \un} \betrag{\frac{a_n}{a_{n + 1}} &= \lim_{n \ra \un} \rkl{\rkl{\frac{1}{2^n} + \frac{1}{3^n}} \mal \rkl{\frac{1}{2^{n + 1}} + \frac{1}{3^{n + 1}}^{-1}}\\
-		&= \lim_{n \ra \un} \frac{\frac{1}{2^n} + \frac{1}{3^n}}{\frac{1}{2^{n + 1}} + \frac{1}{3^{n + 1}}} = \lim_{n \ra \un} \frac{\frac{3^n + 2^n}{6^n}}{\frac{3^{n + 1} + 2^{n + 1}}{6^{n + 1}} = \lim_{n \ra \un} \frac{\rkl{3^n + 2^n} \mal 6^{n + 1}}{6^n \rkl{3^{n + 1} + 2^{n + 1}}}\\
+		\lim_{n \ra \un} \betrag{\frac{a_n}{a_{n + 1}}} &= \lim_{n \ra \un} \rkl{\rkl{\frac{1}{2^n}} + \frac{1}{3^n}} \mal \rkl{\frac{1}{2^{n + 1}} + \frac{1}{3^{n + 1}}^{-1}}\\
+		&= \lim_{n \ra \un} \frac{\frac{1}{2^n} + \frac{1}{3^n}}{\frac{1}{2^{n + 1}} + \frac{1}{3^{n + 1}}} = \lim_{n \ra \un} \frac{\frac{3^n + 2^n}{6^n}}{\frac{3^{n + 1} + 2^{n + 1}}{6^{n + 1}}} = \lim_{n \ra \un} \frac{\rkl{3^n + 2^n} \mal 6^{n + 1}}{6^n \rkl{3^{n + 1} + 2^{n + 1}}}\\
 		&= 6 \mal \lim_{n \ra \un} \frac{3^n + 2^n}{3^{n + 1} + 2^{n + 1}} = 6 \mal \lim_{n \ra \un} \frac{1 + \rkl{\frac{2}{3}}^n}{3 + 2 \mal \rkl{\frac{2}{3}}^n}\\
-		&= 6 \mal \frac{lim_{n \ra \un} \rkl{1+ \rkl{\frac{2}{3}}^n}{\lim_{n \ra \un} \rkl{3 + 2 \rkl{\frac{2}{3}}^n}} = 6 \mal \frac{1}{3} = 2
+		&= 6 \mal \frac{lim_{n \ra \un} \rkl{1+ \rkl{\frac{2}{3}}^n}}{\lim_{n \ra \un} \rkl{3 + 2 \rkl{\frac{2}{3}}^n}} = 6 \mal \frac{1}{3} = 2
 		\end{align*}
 		Konvergenzradius $r = q = 2$
 

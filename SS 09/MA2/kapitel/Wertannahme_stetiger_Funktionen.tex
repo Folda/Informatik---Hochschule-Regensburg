@@ -16,7 +16,17 @@ Sei $f(x_0) > 0$ und $f$ in $x_0$ stetig. Nach \ac{Def.} der Stetigkeit gilt $\f
 \begin{fsatz}[Zwischenwertsatz]
 \label{satz:Wertannahme_stetiger_Funktionen_S3_6}
 Die Funktion $f$: $[a, b] \ra \R$ sei auf dem ganzen Intervall $[a, b]$ stetig und $f(a) \mal f(b) < 0$. Dann gibt es ein $\xi \in (a, b)$ mit $f(\xi) = 0$
-\Insert{MA-23.04.2009-IMG-1}
+
+\begin{tikzpicture}
+\tikzcoor[x][]{3.5}{1.5}
+
+\foreach \x/\y in{1/a,3/b}
+	\draw (\x,-0.05) node[below] {$\y$} -- (\x,0.05);
+
+\draw[->] (1,-1) -- (1.5,-0.5) -- (2, 0.7) -- (2.5,-0.5) -- (3,1);
+\end{tikzpicture}
+\Img{MA2-23.04.2009-IMG-1}
+
 \Mark{Satz 3.6}
 \end{fsatz}
 
@@ -80,7 +90,7 @@ $M = \frac{1 + 2}{2}$
 \begin{enumerate}
 \item Das Konstruktionsverfahren im obigen Beweis nennt man auch Intervallhalbierungsmethode \ac{bzw.} Bisektionsmethode.
 \item Der Satz \vref{satz:Wertannahme_stetiger_Funktionen_S3_6} Kann erweitert werden zur Aussage, dass jeder Wert zwischen $f(a)$ und $f(b)$ angenommen wird.
-		\Insert{MA-23.04.2009-IMG-2}
+		\Mark{MA-23.04.2009-IMG-2}
 \end{enumerate}
 \end{bemerkung}
 
@@ -112,7 +122,7 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 		f:~(0, &1) \ra &&\R\\
 		&x \mapsto &&\frac{1}{x}
 		\end{align*}
-		\Insert{MA-23.04.2009-IMG-3}
+		\Mark{MA-23.04.2009-IMG-3}
 		\end{beispiel}
 
 \item Es kann auch mehrere oder gar $\un$-viele Maxima/Minima geben
@@ -121,7 +131,7 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 		f:~(0, &4\pi) \ra &&\R\\
 		&x \mapsto &&\cosx{}
 		\end{align*}
-		\Insert{MA-23.04.2009-IMG-4}
+		\Mark{MA-23.04.2009-IMG-4}
 		\[\overline{x} \in \gklamm{0, 2\pi, 4\pi}, \underline{x} \in \gklamm{\pi, 3\pi}\]
 		\end{beispiel}
 
@@ -131,7 +141,7 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 		&x \mapsto &&f(x) = \begin{cases}0 & \tx{für } -1 \klgl x \klgl 0\\x & \tx{für } 0 < x < 1\\1 & \tx{für } 1 \klgl x \klgl 2\end{cases}
 		\end{align*}
 		\end{beispiel}
-		\Insert{MA-23.04.2009-IMG-5}
+		\Mark{MA-23.04.2009-IMG-5}
 
 \item Falls $f$ zudem differenzierbar ist, kann man die Orte der Maxima/Minima bestimmen
 \end{enumerate}

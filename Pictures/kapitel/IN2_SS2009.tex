@@ -59,7 +59,7 @@
 \node[state] (n3) [right of=n2] {$\begin{array}{c}\overline{2}\\\epsilon\end{array}$};
 \node[state] (n4) [below of=n1] {$\begin{array}{c}\overline{0}\\11\end{array}$};
 \node[state] (n5) [below of=n2] {$\begin{array}{c}\overline{2}\\1\end{array}$};
-\node[state] (n6) [right of=n5] {$\dots$};
+\node (n6) [right of=n5] {$\dots$};
 \node[state, accepting] (n7) [right of=n6] {$\begin{array}{c}\overline{0}\\111\end{array}$};
 \node[left of=n0,node distance=2.0cm] {$M$:};
 
@@ -70,8 +70,6 @@
 \path[->] (n2) edge node[above] {$0$} (n3);
 \path[->] (n1) edge node[right] {$1$} (n4);
 \path[->] (n2) edge node[right] {$1$} (n5);
-\path[->] (n3) edge (n6);
-\path[->] (n6) edge (n7);
 \end{tikzpicture}
 \Img{GI-29.04.2009-IMG-3}
 
@@ -136,11 +134,128 @@
 \node[state,initial, initial text=] (n0) {$\{S\}$};
 \node[state] (n1) [right of=n0] {$\{S, A\}$};
 \node[state] (n2) [right of=n1] {$\{S, A, T_1\}$};
-\node[state] (n3) [right of=n2] {$\{S, A, T_1, T_2\}$};
+\node[state,accepting] (n3) [right of=n2] {$\{S, A, T_1, T_2\}$};
 \node[state] (n4) [below of=n1] {$\{S, T_1\}$};
 \node[state] (n5) [below of=n2] {$\{S, A, T_2\}$};
+\node [right of=n5] {$\dots$};
 
-\newcommand{\tikzloop}[3]
-\path[->] (n0) edge[loop above]
+\tikzloop{n0}{0}{above}{right}
+
+\tikzedge{n0}{n1}{1}{}{above}
+\tikzedge{n1}{n2}{1}{}{above}
+\tikzedge{n2}{n3}{1}{}{above}
+\tikzedge{n1}{n4}{0}{}{right}
+\tikzedge{n4}{n5}{1}{}{above}
 \end{tikzpicture}
 \Img{GI-30.04.2009-IMG-3.2}
+
+\chapter{Mathematik 2}
+\section{22.04.2009}
+\subsection{MA2-22.04.2009-IMG-2}
+\begin{tikzpicture}[domain=6:0.33]
+\tikzcoor[x][]{6}{3}
+\foreach \x in {0,2}
+	\draw[thick] (\x,-0.05) node[below] {$\x$} -- (\x,0.05); 
+
+\draw[color=blue] (0.5,{1/0.5}) -- (0.5, {1/0.5 - 1}) node[left, midway, color=black] {$\epsilon$};
+\draw[color=red] (0.5,{1/0.5 - 1}) -- (1, {1/0.5 - 1}) node[below, midway, color=black] {$\delta$};
+\draw plot[smooth] (\x,{1/\x}) node[right] {$\frac{1}{x}$};
+\node[text width=5cm] at (4,1.5) {stetig aber nicht gleichmäßig stetig auf $(0,2)$};
+\end{tikzpicture}
+\Img{MA2-22.04.2009-IMG-2}
+
+\subsection{MA2-22.04.2009-IMG-3}
+\begin{tikzpicture}[scale=2.0]
+\tikzcoor[x][]{3}{1.5}
+\foreach \x in {0,1}
+	\node[left] at (0,\x) {$\x$}; 
+
+\draw[thick,(-,color=blue] (0,1) -- (2,1);
+\draw[thick,[-,color=blue] (0,0) -- (-1,0);
+\end{tikzpicture}
+\Img{MA2-22.04.2009-IMG-3}
+
+\subsection{MA2-22.04.2009-IMG-4}
+\begin{tikzpicture}[scale=0.5]
+\draw[thick,->] (0,-3) -- (0,3);
+\draw[thick,->] (-1.2,0) -- (1.2,0);
+\draw plot[smooth,domain=0:pi/2.5] (\x,{tan(\x r)});
+\draw plot[smooth,domain=0:-pi/2.5] (\x,{-tan(-\x r)});
+\node at (0,0) [below right] {$0$};
+\end{tikzpicture}
+\Img{MA2-22.04.2009-IMG-4}
+
+\section{23.04.2009}
+\subsection{MA2-23.04.2009-IMG-1}
+\begin{tikzpicture}
+\tikzcoor[x][]{3.5}{1.5}
+
+\foreach \x/\y in{1/a,3/b}
+	\draw (\x,-0.05) node[below] {$\y$} -- (\x,0.05);
+
+\draw[->] (1,-1) -- (1.5,-0.5) -- (2, 0.7) -- (2.5,-0.5) -- (3,1);
+\end{tikzpicture}
+\Img{MA2-23.04.2009-IMG-1}
+
+\subsection{MA2-23.04.2009-IMG-2}
+\begin{tikzpicture}
+
+\draw (0.5,0) node[left] {$1 \delta$} -- (3.5,0);
+\draw[*-*] (1,-1) -- (1.5,-0.5) -- (2, 0.7) -- (2.5,-0.5) -- (3,1);
+\draw (1,-1.5) node[below] {$a$} -- (1,1.5);
+\draw (3,-1.5) node[below] {$b$} -- (3,1.5);
+\end{tikzpicture}
+\Img{MA2-23.04.2009-IMG-2}
+
+\subsection{MA2-23.04.2009-IMG-3}
+\begin{tikzpicture}
+\tikzcoor[][]{2}{2}
+
+\foreach \x in{0,1}
+	\draw[thick] (\x,-0.05) node[below] {$\x$} -- (\x,0.05);
+
+\draw plot[smooth, domain=0.15:2] (\x,{1/\x * 0.3});
+
+\end{tikzpicture}
+\Img{MA2-23.04.2009-IMG-3}
+
+\subsection{MA2-23.04.2009-IMG-4}
+\begin{tikzpicture}[scale=0.5]
+\tikzcoor[][]{12.566}{1.5}
+\draw[thick] (0,-1.5) -- (0,1.5);
+
+\draw[thick] (6.283,-0.05) node[below] {$\frac{\pi}{2}$} -- (6.283,0.05);
+
+\draw plot[smooth, domain=0:12.566] (\x,{sin(\x r)});
+
+\end{tikzpicture}
+\Img{MA2-23.04.2009-IMG-4}
+
+\subsection{MA2-23.04.2009-IMG-5}
+\begin{tikzpicture}
+\draw[thick, ->] (-1.5,0) -- (3.5,0);
+\draw[thick, ->] (0,0) -- (0,1.5);
+
+\foreach \x in {-1,0,...,3}
+	\draw[thick] (\x,-0.05) node[below] {$\x$} -- (\x,0.05);
+
+\draw[blue] (-1,0) -- (0,0) -- (1,1) -- (2,1) -- (3,1);
+\end{tikzpicture}
+\Img{MA2-23.04.2009-IMG-5}
+
+\section{28.04.2009}
+\subsection{MA2-28.04.2009-IMG-1}
+\begin{tikzpicture}[domain=0:6]
+\draw[<->,thick] (0,5) node[above] {$y$} -- (0,0) -- (6,0) node[right] {$x$};
+\draw plot[smooth] (\x,{exp(\x)/80 + 0.5}) node[right] {$f(x)$};
+\draw (2.5,{exp(2.5)/80 + 0.5}) -- (5.5,{exp(2.5)/80 + 0.5}) -- (5.5,{exp(5.5)/80 + 0.5});
+\draw[color=green] (2.5,{exp(2.5)/80 + 0.5}) node[above left, color=black] {$f(x_0)$} -- (5.5,{exp(5.5)/80 + 0.5}) node[above left, color=black] {$f(x_0) = f(x_0 + \Delta x)$};
+\draw[dashed] (2.5,0) node[below] {\footnotesize{$x_0$}} -- (2.5,{exp(2.5)/80 + 0.5});
+\draw[dashed] (5.5,0) node[below, text width=7mm] {\begin{center}\footnotesize{$x_0 + \Delta x$}\end{center}} -- (5.5,{exp(5.5)/80 + 0.5});
+
+\draw[<->] (2.5,{exp(2.5)/80 + 0.2}) -- (5.5,{exp(2.5)/80 + 0.2}) node[below, midway] {\scriptsize{$\Delta x$}};
+\draw (5.5,{exp(2.5)/80 + 0.5}) -- (5.8,{exp(2.5)/80 + 0.5});
+\draw (5.5,{exp(5.5)/80 + 0.5}) -- (5.8,{exp(5.5)/80 + 0.5});
+\draw[<->] (5.8,{exp(2.5)/80 + 0.5}) -- (5.8,{exp(5.5)/80 + 0.5}) node[right, midway] {\scriptsize{$\Delta y$}};
+\end{tikzpicture}
+\Img{MA2-28.04.2009-IMG-1}

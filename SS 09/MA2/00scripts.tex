@@ -70,6 +70,11 @@
 %Fetter Index
 \newcommand{\indexb}[2][]{\textbf{#2}\if\blank{#1}\index{#2}\else\index{#1}\fi}
 
+%Underbrace mit viel text
+\newcommand{\ubl}[3][]{
+\ub{#2}{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#2}}\else#1\fi}\begin{center}\scriptsize{#3}\end{center}\end{minipage}}
+}
+
 %Definitionen, Beispiele, Sätze
 \newenvironment{fshaded}[2]{%
 \def\FrameCommand{\fcolorbox{#1}{#2}}%
@@ -78,13 +83,19 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{\ac{Def.}}[part]
-\newenvironment{fdefinition}[1][]{\definecolor{shadecolor_definition}{rgb}{.87,.94,.96}
-\definecolor{framecolor_definition}{rgb}{0,0,0}%
+\newenvironment{fdefinition}[1][]{
+\definecolor{shadecolor_definition}{rgb}{.85882,.89803,.94509}
+%OLD: \definecolor{shadecolor_definition}{rgb}{.87,.94,.96}
+\definecolor{framecolor_definition}{rgb}{.30980,.50588,.74117}
+%OLD: \definecolor{framecolor_definition}{rgb}{0,0,0}
 \begin{fshaded}{framecolor_definition}{shadecolor_definition}\begin{definition}[#1]}{\end{definition}\end{fshaded}}
 
 \newtheorem{satz}[definition]{Satz}
-\newenvironment{fsatz}[1][]{\definecolor{shadecolor_satz}{rgb}{.87,.96,.56}
-\definecolor{framecolor_satz}{rgb}{0,0,0}%
+\newenvironment{fsatz}[1][]{
+\definecolor{shadecolor_satz}{rgb}{.91764,.94509,.86666}
+%OLD: \definecolor{shadecolor_satz}{rgb}{.87,.96,.56}
+\definecolor{framecolor_satz}{rgb}{.60784,.73333,.34901}
+%OLD: \definecolor{framecolor_satz}{rgb}{0,0,0}
 \begin{fshaded}{framecolor_satz}{shadecolor_satz}\begin{satz}[#1]}{\end{satz}\end{fshaded}}
 
 \newtheoremstyle{beweis}% name
@@ -99,15 +110,15 @@
 
 \theoremstyle{beweis}
 \newtheorem{beweis}{Beweis}[part]
-\newenvironment{fbeweis}[1][]{\definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
-\definecolor{framecolor_beweis}{rgb}{0,0,0}%
+\newenvironment{fbeweis}[1][]{
+\definecolor{shadecolor_beweis}{rgb}{.94901,.85882,.85882}
+%OLD: \definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
+\definecolor{framecolor_beweis}{rgb}{.75294,.31372,.30196}
+%OLD: \definecolor{framecolor_beweis}{rgb}{0,0,0}
 \begin{fshaded}{framecolor_beweis}{shadecolor_beweis}\begin{beweis}[#1]}{\end{beweis}\end{fshaded}}
 
 \theoremstyle{remark}
 \newtheorem{notation}{Notation}[part]
-\newenvironment{fnotation}[1][]{\definecolor{shadecolor_notation}{rgb}{.90, .90, .90}
-\definecolor{framecolor_notation}{rgb}{0,0,0}%
-\begin{fshaded}{framecolor_notation}{shadecolor_notation}\begin{notation}[#1]}{\end{notation}\end{fshaded}}
 
 \newtheoremstyle{note}% name
 	{1em}			%Space above
@@ -173,19 +184,21 @@
 \newcommand{\un}{\ensuremath{\infty}}
 \newcommand{\rac}[2]{\ensuremath{\frac{#1}{#1}}}
 \newcommand{\ggq}[1]{"`#1"'}
+\newcommand{\ural}[1]{\ensuremath{\displaystyle \matholongrightarrow_{#1}}}
 
 %Todo, Insert, Mark, Img
 \newcommand{\Todo}[1]{\todo[inline]{TODO: #1}}
 \newcommand{\Insert}[1]{\todo[inline, color=green!40]{INSERT: #1}}
 \newcommand{\Mark}[1]{\todo[inline, nolist, color=blue!40]{MARK: #1}}
 \newcommand{\Img}[1]{\todo[inline, nolist, color=black!40]{IMG: #1}}
-\newcommand{\Solved}[2]{\todo[inline, nolist]{
-\if\blank{#2}DONE: #1\else
-TODO: #1\\SOLVED: #2\fi}}
+\newcommand{\Solved}[2][]{\todo[inline, nolist]{
+\if\blank{#1}DONE: #2\else
+TODO: #2\\SOLVED: #1\fi}}
 
 %Sin, Cos, Tan, Dim, Span, Arccos, Limes
 \DeclareMathOperator{\spano}{span}
 \DeclareMathOperator{\lb}{lb}
+\DeclareMathOperator*{\matholongrightarrow}{\longrightarrow}
 
 \newcommand{\sinx}[1]{\ensuremath{\sin{\left(\if\blank{#1}x\else#1\fi\right)}}}
 \newcommand{\cosx}[1]{\ensuremath{\cos{\left(\if\blank{#1}x\else#1\fi\right)}}}
@@ -196,6 +209,15 @@ TODO: #1\\SOLVED: #2\fi}}
 
 %Schriften
 \newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}
+
+%Tikz Abkürzungen
+%%Für Automaten Graphen
+\newcommand{\tikzedge}[5]{\path[->] (#1) edge[#4] node[#5] {$#3$} (#2);}
+\newcommand{\tikzloop}[4]{\tikzedge{#1}{}{#2}{loop #3}{#4};}
+
+%%Für Mathematische Graphen
+%%%Coordinatensystem
+\newcommandtwoopt{\tikzcoor}[4][x][y]{\draw[<->,thick] (0,#4) node[right] {$#2$} -- (0,0) -- (#3,0) node[below] {$#1$};}
 %</Abkürzungen>
 
 

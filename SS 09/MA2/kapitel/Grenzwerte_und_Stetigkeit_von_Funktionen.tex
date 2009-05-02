@@ -96,12 +96,34 @@ $\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in 
 
 \item $A = D = (0, 2)$\\
 		$f(x) = \frac{1}{x}$
-		\Insert{IMG-MA-09-04-22-2}
+
+		\begin{tikzpicture}[domain=6:0.33]
+		\tikzcoor[x][]{6}{3}
+		\foreach \x in {0,2}
+			\draw[thick] (\x,-0.05) node[below] {$\x$} -- (\x,0.05); 
+		
+		\draw[color=blue] (0.5,{1/0.5}) -- (0.5, {1/0.5 - 1}) node[left, midway, color=black] {$\epsilon$};
+		\draw[color=red] (0.5,{1/0.5 - 1}) -- (1, {1/0.5 - 1}) node[below, midway, color=black] {$\delta$};
+		\draw plot[smooth] (\x,{1/\x}) node[right] {$\frac{1}{x}$};
+		\node[text width=5cm] at (4,1.5) {stetig aber nicht gleichmäßig stetig auf $(0,2)$};
+		\end{tikzpicture}
+		\Img{MA2-22.04.2009-IMG-2}
+
 		es ist nicht möglich, das $\delta$ an der schlimmsten Stelle zu wählen. (\Ra $\delta = 0$ \blitza)
 \item $f$: $\R \ra \R$
 		\[x \mapsto \begin{cases}0 & \tx{für } x \klgl 0\\1 & \tx{für } x > 0\end{cases}\]
 		nicht stetig in $x_0$ und damit nicht stetig in \R
-		\Insert{IMG-MA-09-04-22-3}
+
+		\begin{tikzpicture}[scale=2.0]
+		\tikzcoor[x][]{3}{1.5}
+		\foreach \x in {0,1}
+			\node[left] at (0,\x) {$\x$}; 
+		
+		\draw[thick,(-,color=blue] (0,1) -- (2,1);
+		\draw[thick,[-,color=blue] (0,0) -- (-1,0);
+		\end{tikzpicture}
+		\Img{MA2-22.04.2009-IMG-3}
+
 		$f$ heißt \indexb{Heaviside-Sprungfunktion}
 \end{enumerate}
 \end{beispiel}
@@ -131,7 +153,16 @@ Ist $f$ stetig?
 \end{align*}
 bleibt der Punkt $x_0 = 1$ zu überprüfen.\\
 Gilt $\lim_{x \nearrow 1} f(x) = \lim_{x \searrow 1} f(x)$?
-\Insert{IMG-MA-09-04-22-4}
+
+\begin{tikzpicture}[scale=0.5]
+\draw[thick,->] (0,-3) -- (0,3);
+\draw[thick,->] (-1.2,0) -- (1.2,0);
+\draw plot[smooth,domain=0:pi/2.5] (\x,{tan(\x r)});
+\draw plot[smooth,domain=0:-pi/2.5] (\x,{-tan(-\x r)});
+\node at (0,0) [below right] {$0$};
+\end{tikzpicture}
+\Img{MA2-22.04.2009-IMG-4}
+
 \begin{align*}
 \lim_{x \searrow 1} 2x^2 &= \lim_{\epsilon \searrow 0} 2 (1 + \epsilon)^2 = \lim_{\epsilon \searrow 0} 2(1 + 2\epsilon + \epsilon^2)\\
 &= \lim_{\epsilon \searrow 0} (2 + 4\epsilon + 2 \epsilon^2) = 2
