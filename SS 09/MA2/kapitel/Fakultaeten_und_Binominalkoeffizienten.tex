@@ -1,4 +1,4 @@
-\chapter{Fakultäten und Binominalkoeffizienten}
+\chapter{Fakultäten und Binominialkoeffizienten}
 %MARK: Chapter 1
 \begin{fdefinition}[Fakultät]
 %MARK: Definition 1.1
@@ -16,7 +16,8 @@ Für $n \in \mathbb{N}_0$ definiert man die Fakultät $n!$ von $n$ durch:
 		Eine Anordnung einer Menge nennt man auch \indexi{Permutation}\\
 		\ac{z.B.} $n = 3$, $N = \gklamm{1, 2, 3}$
 
-		%MA2-18.03.2009-DIA2
+		\begin{figure}[h]
+		\centering
 		\begin{tikzpicture}[level 2/.style={sibling distance=10mm}]
 			\node{1 \dots}[grow=right]
 			child[->]{node{3 \dots}
@@ -44,8 +45,9 @@ Für $n \in \mathbb{N}_0$ definiert man die Fakultät $n!$ von $n$ durch:
 		\draw[->] (desc1) +(-0.5,-0.5) node[below] {3} -- (desc1);
 		\draw[->] (desc2) +(-0.5,-0.5) node[below] {2} -- (desc2);
 		\draw[->] (desc3) +(0,-0.5) node[below] {1 = $3! = 6$} -- (desc3);
-
 		\end{tikzpicture}
+		\Img{MA2-18.03.2009-DIA2}
+		\end{figure}
 
 \item Anzahl Möglichkeiten aus einer $n$-\ac{elem.} Grundmenge $N = \gklamm{1, 2, 3, \dots, n}$ eine $k$-\ac{elem.} Teilmenge auszuwählen $(k \grgl n)$
 		\ac{z.B.} $n = 49$, $k = 6$ (Lotto)\\
@@ -53,7 +55,7 @@ Für $n \in \mathbb{N}_0$ definiert man die Fakultät $n!$ von $n$ durch:
 		\underline{$n, k$} $\Ra$ $\text{Anzahl} = \frac{n \mal (n - 1) \mal (n - 2) \mal \dots \mal (n - k + 1)}{k!}$\\
 \end{enumerate}
 
-\begin{fdefinition}[Binominalkoeffizient]
+\begin{fdefinition}[Binominialkoeffizient]
 %MARK: Definition 1.2
 Für $n, k \in \mathbb{N}_0$ und $0 \klgl k \klgl n$ definiert man den \indexu[Binominialkoeffizient]{Binominialkoeffizienten} $\binom{n}{k}$ (''$n$ über $k$'' oder ''$n$ tief $k$'') durch
 \[\binom{n}{k} = \frac{n!}{k! \mal (n - k)!}\]
@@ -70,13 +72,14 @@ Für $n, k \in \mathbb{N}_0$ und $0 \klgl k \klgl n$ definiert man den \indexu[Bi
 \begin{enumerate}[label=\alph*)]
 \item Um von Punkt $0 = (0 \vert 0)$ zum Punkt $P = (6 \vert 4)$ zu gelangen, wollen wir uns nur auf Wegstücken bewegen, die durch ganzzahlige Gitterpunkte des $\mathbb{R}^2$ gehen und parallel zu einer Koordinatenachse verlaufen.\\
 		(Beispiel eines solchen Weges von 0 nach  P)
-
+		\begin{figure}[h]
+		\centering
 		\begin{tikzpicture}
 			\draw[step=1,gray,very thin] (0,0) grid (6,4);
 			\draw (0,0) rectangle (6,4);
 			\draw[ultra thick] (0,0) node[below]{$0$} -- (5,0) -- (5,3) -- (6,3) -- (6,4) node[above]{$P$};
 		\end{tikzpicture}
-
+		\end{figure}
 		Auf wie vielen Wegen der minimalen Länge $l = 6 + 4$ kann man von $0$ nach $P$ gelangen? (Vom Gitterpunkt $(i \vert  j)$ bewegt man sich also entweder zum Gitterpunkt $(i + 1 \vert j)$ oder $(i \vert j + 1)$.
 
 \item Wie viele $12$-stellige Zahlen, bei denen die Ziffer $9$ genau zweimal auftritt, lassen sich aus den Ziffern $1, 2, \dots, 9$ bilden?\\
@@ -107,7 +110,8 @@ Für i), ii) betrachteten wir eine Menge $\gklamm{1, 2, 3, \dots, n}$
 
 \item Wenn wir aus der Menge $\gklamm{1, 2, \dots, n}$ eine $k$-\ac{elem.} Teilmenge wählen, bleibt eine $n$-$k$-\ac{elem.} Teilmenge übrig.\\
 		$n = 5$, $k = 3$ $\gklamm{1, 2, 3, 4 ,5}$
-
+		\begin{table}[h]
+		\centering
 		\begin{tabular}{ccc}
 		3-\ac{elem.} \ac{Teilm.} & & 2-\ac{elem.} \ac{Teilm.}\\
 		$\gklamm{1,2,3}$ & $\ral$ & $\gklamm{4,5}$\\
@@ -121,7 +125,7 @@ Für i), ii) betrachteten wir eine Menge $\gklamm{1, 2, 3, \dots, n}$
 		$\gklamm{2,4,5}$ & $\ral$ & $\gklamm{1,3}$\\
 		$\gklamm{3,4,5}$ & $\ral$ & $\gklamm{1,2}$
 		\end{tabular}
-
+		\end{table}
 		$\binom{5}{3} = \frac{5 \mal 2 \mal 3}{1 \mal 2 \mal 3} = 10 = \binom{5}{2}$
 
 \item Urne mit $n$ weißen Kugeln mit Nummern $1, 2, \dots, n$ und einer gelben Kugeln mit Nummer $n + 1$.\\
@@ -138,8 +142,8 @@ Für i), ii) betrachteten wir eine Menge $\gklamm{1, 2, 3, \dots, n}$
 \section{Pascalsches Dreieck}
 Mit Hilfe von $\binom{n}{0} = \binom{n}{n} = 1$ und $\binom{n}{k} + \binom{n}{k + 1} = \binom{n + 1}{k + 1}$ kann man den Binominialkoeffizienten in einem Deiecksschema darstellen.\\
 Die im Inneren liegenden Zahlen sind sind die Summe der jeweils darüber liegenden beiden Zahlen.
-
-%MA2-19.03.2009-IMG1
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}[scale=0.5]
 	\foreach{\xa/\xb/\xc}in{0/8/2,-2/6/4,0/6/6,2/6/4,-1/5/10,1/5/10,-4/4/6,0/4/20,4/4/6}{\draw(\xa,\xb)node{\xc};}
 	\draw(0,10)node (p1){1};
@@ -162,6 +166,8 @@ Die im Inneren liegenden Zahlen sind sind die Summe der jeweils darüber liegende
 	\draw[->] (p6.north east) +(1,1) node[above] {$\binom{n}{5}$} -- (p6.north east);
 	\draw[->] (p7.north east) +(1,1) node[above] {$\binom{n}{6}$} -- (p7.north east);
 \end{tikzpicture}
+\end{figure}
+\Img{MA2-19.03.2009-IMG1}
 
 \subsection{Implementierung von Binominialkoeffizienten}
 \begin{itemize}
@@ -234,7 +240,7 @@ $(1,07)^{10} = \left(1 + \frac{7}{100}\right)^{10} = \sum_{k = 0}^{10} \underbra
 \end{align*}
 \end{beispiel}
 
-\begin{fsatz}[Eigenschaften von Binominalkoeffizienten (Teil 2)]
+\begin{fsatz}[Eigenschaften von Binominialkoeffizienten (Teil 2)]
 \label{satz:Fakultaet_und_Binominalkoeffizient_Satz1_3T2}
 Teil 1 siehe Satz \vref{satz:Fakultaet_und_Binominalkoeffizient_Satz1_3T1}
 \begin{enumerate}[label = \roman*), start=4]

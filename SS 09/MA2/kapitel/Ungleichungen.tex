@@ -5,7 +5,7 @@
 \label{def:Fakultaet_und_Binominalkoeffizient_Definition_1_6}
 Es gibt eine Relation ''$<$'' in $\mb{R}$ mit den Eigenschaften
 \begin{enumerate}[label=\roman*)]
-\item für $a, b \in \mb{R}$ gilt \underline{genau eine} der Aussagen
+\item für $a, b \in \mb{R}$ gilt \textbf{genau eine} der Aussagen
 		\[a < b~~a = b~~b < a\]
 		
 \item für $a, b, c \in \mb{R}$:
@@ -28,10 +28,10 @@ Es gelten folgende Schreibweisen und Vereinbarungen
 \item $a > b \Lra b < a$
 \item $a \grgl b \Lra b \klgl a$
 \item $a < b \klgl c \Lra a < b \und b \klgl c$
-\item Eine reelle Zahl $a$ heißt \indexu{positiv}, falls $a > 0$
-\item Eine reelle Zahl $a$ heißt \indexu{negativ}, falls $a < 0$
-\item Eine reelle Zahl $a$ heißt \indexu{nichtnegativ} falls $a \grgl 0$
-\item Eine reelle Zahl $a$ heißt \indexu{nichtpositiv}, falls $a \klgl 0$
+\item Eine reelle Zahl $a$ heißt \indexb{positiv}, falls $a > 0$
+\item Eine reelle Zahl $a$ heißt \indexb{negativ}, falls $a < 0$
+\item Eine reelle Zahl $a$ heißt \indexb{nichtnegativ} falls $a \grgl 0$
+\item Eine reelle Zahl $a$ heißt \indexb{nichtpositiv}, falls $a \klgl 0$
 \end{enumerate}
 \end{bemerkung}
 
@@ -39,7 +39,7 @@ Es gelten folgende Schreibweisen und Vereinbarungen
 \begin{enumerate}[label=\roman*)]
 \item reflexiv: $\forall a \in \mb{R}: a \klgl a$
 \item transitiv: $\forall a, b, c \in \mb{R}: a \klgl b \und b \klgl c \Ra a \klgl c$
-\item antitsymmetrisch: $\forall a, b \in \mb{R}: a \klgl b \und b \klgl a \Ra a = b$
+\item anti symmetrisch: $\forall a, b \in \mb{R}: a \klgl b \und b \klgl a \Ra a = b$
 \end{enumerate}
 \end{bemerkung}
 
@@ -127,7 +127,8 @@ Seien $a, b > 0$, dann gilt:
 \end{fsatz}
 
 \textbf{Anschauliche Erklärung:}
-
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}
 	\draw[draw=gray] (0,0) arc (180:0:2);
 	\draw[draw=green] (60:2) -- (1,0) node[right, midway, text=green] {$h$};
@@ -137,8 +138,9 @@ Seien $a, b > 0$, dann gilt:
 	\draw[-serif cm] (1,0) -- (4,0) node[below, midway] {$b$};
 	\draw (4,0) -- (60:2) -- (0,0);
 \end{tikzpicture}
+\end{figure}
 
-Höhensatz: $a \mal b = h^2$
+Höhen Satz: $a \mal b = h^2$
 \begin{itemize}[label=\Ra]
 \item $\underbrace{h = \sqrt{ab}}_{\text{geometrisches Mittel}}$\\
 		$r = \frac{1}{2} (a + b)$
@@ -176,7 +178,7 @@ $a, b > 0$
 \begin{beispiel}
 $a_1 = 1$, $a_2 = 1$, $a_3 = 1$, $a_4 = 10000$
 \begin{align*}
-	&\text{aritmetisches: }\frac{1}{4} \left(a_1 + a_2 + a_3 + a_4\right) = \frac{10003}{4} \approx 2500\\
+	&\text{arithmetisches: }\frac{1}{4} \left(a_1 + a_2 + a_3 + a_4\right) = \frac{10003}{4} \approx 2500\\
 	&\text{geometrisches: }\sqrt[4]{a_1 \mal a_2 \mal a_3 \mal a_4} = 10
 \end{align*}
 \end{beispiel}
@@ -198,7 +200,7 @@ Für Alle $x \grgl -1$ und alle $n \in \mb{N}$ gilt:
 		\begin{align*}
 		(1 + x)^{n + 1} &= (1 + x) \mal (1 + x)^n\\
 		&\stackrel{\grgl}{\text{(IV)}} (1 + x) (1 + n \mal x)\\
-		&= 1 +nx + x + n \mal x^2 = 1 + (n + 1) \mal x + \underbrace{\underbrace{n}_{\grgl 0} \mal \underbrace{x^2}_{\grgl 0}}_{\grgl 0}\\
+		&= 1 + nx + x + n \mal x^2 = 1 + (n + 1) \mal x + \underbrace{\underbrace{n}_{\grgl 0} \mal \underbrace{x^2}_{\grgl 0}}_{\grgl 0}\\
 		&\grgl 1 + (n + 1) \mal x
 		\end{align*}
 \end{description}
@@ -284,19 +286,20 @@ $a \in \mb{R}$
 \mbox{}\par
 \begin{description}
 \item[zu iii)] $n$ als $\Delta$-Ungleichung bezeichnet, da Spezialfall von $\|a + b\| \klgl \|a\| + \|b\|$
-
-		%MA-25.03.2009-IMG4
+		\begin{figure}[h]
+		\centering
 		\begin{tikzpicture}
 			\draw[serif cm->] (0,0) -- (3,0) node[below, midway]{$\vec{a}$};
 			\draw[serif cm->] (3,0) -- (4,2.5) node[right, midway]{$\vec{b}$};
 			\draw[serif cm->] (0,0) -- (4,2.5) node[midway, left=1em]{$\vec{a} + \vec{b}$};
 		\end{tikzpicture}
-
+		\end{figure}
+		\Img{MA-25.03.2009-IMG4}
 		wäre die Ungleichung verletzt, könnten die 3 Vektoren $\vec{a}, \vec{b}$, $\vec{a} + \vec{b}$ kein Dreieck bilden.
 
 \item[zu vi)] $x_0$ interpretiert als fester Punkt (\ra Mittelpunkt und $r$ als Radius)
-
-		%MA-25.03.2009-IMG5
+		\begin{figure}[h]
+		\centering
 		\begin{tikzpicture}[decoration=brace]
 		\draw[thick] (-1,0) -- (4,0);
 		\draw[->, thick] (4.2,0) -- (5,0) node[right] {$x$};
@@ -306,7 +309,8 @@ $a \in \mb{R}$
 		\draw[dashed] (0,0) arc (180:360:2);
 		\draw[decorate] (2,0.5) -- (4,0.5) node[above,midway] {$r$};
 		\end{tikzpicture}
-
+		\end{figure}
+		\Img{MA-25.03.2009-IMG5}
 		$\betrag{x - x_0}$\\
 		die Menge aller Punkte die höchstens um $r$ von $x$ entfernt sind.
 \end{description}

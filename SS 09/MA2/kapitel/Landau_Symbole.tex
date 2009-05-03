@@ -65,8 +65,8 @@ a_n &= n + 1000 \sqrt{n}
 \mbox{}\par
 \begin{enumerate}
 \item \begin{itemize}
-		\item Man nennt einen Algorithmus \indexu{effizient} wenn seine Komplexität/Laufzeit im "`worst case"' höchstens polynomial wächst.
-		\item Ist die Komplexität im "`worst case"' exponentiell nennt man den Algorithmus \indexu{ineffizient}
+		\item Man nennt einen Algorithmus \indexb{effizient} wenn seine Komplexität/Laufzeit im "`worst case"' höchstens polynomial wächst.
+		\item Ist die Komplexität im "`worst case"' exponentiell nennt man den Algorithmus \indexb{ineffizient}
 		\item Es werden in der Praxis auch ineffiziente Algorithmen verwendet, weil \ac{z.B.} kein effizienter Algorithmus existiert oder der "`worst case"' nicht oder nur selten auftritt.
 		\end{itemize}
 
@@ -137,7 +137,7 @@ Lösung zu Aufgabe \vref{sec:Landau_Symbole_A2_2}.
 \item $b_n \ceq \rklamm{1 + \frac{1}{n}}^n + \rklamm{-1 - \frac{1}{n}}^n$
 		\begin{align*}
 		&\rklamm{1 + \frac{1}{n}}^n + \rklamm{-1 - \frac{1}{n}}^n = \rklamm{1 + \frac{1}{n}}^n + (-1)^n \mal \rklamm{1 + \frac{1}{n}}^n\\
-		= &\rkl{1 + \frac{1}{n}}^n \mal \rkl{1 + (-1)^n} = \begin{cases}0 \tx{ für } n \tx{ ungerade}\\2 \underbrace{\rkl{1 + \frac{1}{n}}^n}_{\overrightarrow{n \ra \infty} \mbox{ $e$}} \tx{ für } n \tx{ gerade}\end{cases}
+		= &\rkl{1 + \frac{1}{n}}^n \mal \rkl{1 + (-1)^n} = \begin{cases}0 \tx{ für } n \tx{ ungerade}\\2 \underbrace{\rkl{1 + \frac{1}{n}}^n}_{\ural{n \ra \infty} e} \tx{ für } n \tx{ gerade}\end{cases}
 		\end{align*}
 		unterschiedliche Grenzwerte für gerade \ac{bzw.} ungerade $n$
 		\begin{itemize}[label=\Ra]

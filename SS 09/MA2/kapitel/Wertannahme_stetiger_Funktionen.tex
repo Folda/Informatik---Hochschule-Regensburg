@@ -16,7 +16,7 @@ Sei $f(x_0) > 0$ und $f$ in $x_0$ stetig. Nach \ac{Def.} der Stetigkeit gilt $\f
 \begin{fsatz}[Zwischenwertsatz]
 \label{satz:Wertannahme_stetiger_Funktionen_S3_6}
 Die Funktion $f$: $[a, b] \ra \R$ sei auf dem ganzen Intervall $[a, b]$ stetig und $f(a) \mal f(b) < 0$. Dann gibt es ein $\xi \in (a, b)$ mit $f(\xi) = 0$
-
+\begin{center}
 \begin{tikzpicture}
 \tikzcoor[x][]{3.5}{1.5}
 
@@ -25,6 +25,7 @@ Die Funktion $f$: $[a, b] \ra \R$ sei auf dem ganzen Intervall $[a, b]$ stetig u
 
 \draw[->] (1,-1) -- (1.5,-0.5) -- (2, 0.7) -- (2.5,-0.5) -- (3,1);
 \end{tikzpicture}
+\end{center}
 \Img{MA2-23.04.2009-IMG-1}
 
 \Mark{Satz 3.6}
@@ -119,8 +120,8 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 \item Es ist wichtig, dass das Intervall abgeschlossen ist.
 		\begin{beispiel}[Für Probleme bei offenen Intervallen]
 		\begin{align*}
-		f:~(0, &1) \ra &&\R\\
-		&x \mapsto &&\frac{1}{x}
+		f:~(0, 1) \ra &\R\\
+		x \mapsto &\frac{1}{x}
 		\end{align*}
 		\Mark{MA-23.04.2009-IMG-3}
 		\end{beispiel}
@@ -128,8 +129,8 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 \item Es kann auch mehrere oder gar $\un$-viele Maxima/Minima geben
 		\begin{beispiel}
 		\begin{align*}
-		f:~(0, &4\pi) \ra &&\R\\
-		&x \mapsto &&\cosx{}
+		f:~(0, 4\pi) \ra &\R\\
+		x \mapsto &\cosx{}
 		\end{align*}
 		\Mark{MA-23.04.2009-IMG-4}
 		\[\overline{x} \in \gklamm{0, 2\pi, 4\pi}, \underline{x} \in \gklamm{\pi, 3\pi}\]
@@ -137,8 +138,8 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 
 		\begin{beispiel}
 		\begin{align*}
-		f:~(-1, &2) \ra &&\R\\
-		&x \mapsto &&f(x) = \begin{cases}0 & \tx{für } -1 \klgl x \klgl 0\\x & \tx{für } 0 < x < 1\\1 & \tx{für } 1 \klgl x \klgl 2\end{cases}
+		f:~(-1, 2) \ra &\R\\
+		x \mapsto &f(x) = \begin{cases}0 & \tx{für } -1 \klgl x \klgl 0\\x & \tx{für } 0 < x < 1\\1 & \tx{für } 1 \klgl x \klgl 2\end{cases}
 		\end{align*}
 		\end{beispiel}
 		\Mark{MA-23.04.2009-IMG-5}
@@ -169,7 +170,7 @@ Daher $\exists \underline{x}, \overline{x} \in [a, b]$ mit\\
 
 		\item[Variante 2] \ac{z.z.} $\exists x \in [0, \un)$ mit $x^2 = 2$ ($\Lra x^2 - 2 = 0$)
 				\[h(x) = x^2 - 2\]
-				da $h(0) = -2 < 0$, $h(2) = 2 > 0$, $h$ stetig besagt das Zwischenwertsatz, dass ein $\xi \in [0, 2]$ exisitiert mit $h(\xi) = 0$ ($\Lra f(\xi) = g(\xi) = 2$)
+				da $h(0) = -2 < 0$, $h(2) = 2 > 0$, $h$ stetig besagt das Zwischenwertsatz, dass ein $\xi \in [0, 2]$ existiert mit $h(\xi) = 0$ ($\Lra f(\xi) = g(\xi) = 2$)
 		\end{description}
 
 \item $\exists x \in \R$: $x^2 = \cosx{}$ ($\Lra x^2 - \cosx{} = 0$)

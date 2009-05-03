@@ -12,6 +12,8 @@ Die Funktion $f$: $D \ra \R$ heiﬂt differenzierbar in $A \subseteq D$, falls $f$
 \Mark{Definition 4.1}
 \end{fdefinition}
 \section*{Geometrische Interpretation}
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}[domain=0:6]
 \draw[<->,thick] (0,5) node[above] {$y$} -- (0,0) -- (6,0) node[right] {$x$};
 \draw plot[smooth] (\x,{exp(\x)/80 + 0.5}) node[right] {$f(x)$};
@@ -25,6 +27,7 @@ Die Funktion $f$: $D \ra \R$ heiﬂt differenzierbar in $A \subseteq D$, falls $f$
 \draw (5.5,{exp(5.5)/80 + 0.5}) -- (5.8,{exp(5.5)/80 + 0.5});
 \draw[<->] (5.8,{exp(2.5)/80 + 0.5}) -- (5.8,{exp(5.5)/80 + 0.5}) node[right, midway] {\scriptsize{$\Delta y$}};
 \end{tikzpicture}
+\end{figure}
 \Img{MA2-28.04.2009-IMG-1}
 
 Mit $h = \Delta x$ stellt der Differenzenquotient

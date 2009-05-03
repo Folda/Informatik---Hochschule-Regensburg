@@ -5,19 +5,19 @@ Wir betrachten eine Funktion $f$: $D \ra \R$ in einer Umgebung des Punktes $x_0 
 \begin{fdefinition}[Grenzwerte]
 \mbox{}\par
 \begin{enumerate}[label=\alph*)]
-\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{Grenzwert} $a$, $\lim_{x \ra x_0} f(x) = a$, falls gilt:
+\item Die Funktion $f$ hat im Punkt $x_0$ den \indexb{Grenzwert} $a$, $\lim_{x \ra x_0} f(x) = a$, falls gilt:
 		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, \lim_{n \ra \un} x_n = x_0:~\lim_{n \ra \un} f(x_n) = a\]
 
-\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{linksseitigen Grenzwert} $a \lim_{x \nearrow x_0} f(x) = a$ (\ac{bzw.} $\lim_{x \uparrow x_0} f (x) = a$, $\lim_{x \ra x_0^-} f(x) = a$), falls gilt:
+\item Die Funktion $f$ hat im Punkt $x_0$ den \indexb{linksseitigen Grenzwert} $a \lim_{x \nearrow x_0} f(x) = a$ (\ac{bzw.} $\lim_{x \uparrow x_0} f (x) = a$, $\lim_{x \ra x_0^-} f(x) = a$), falls gilt:
 		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n < x_0, x_n \in D, \lim_{n \ra \infty} x_n ? x_0:~\lim_{n \ra \infty} f(x_n) = a\]
 
-\item Die Funktion $f$ hat im Punkt $x_0$ den \indexu{rechtsseitigen Grenzwert} $a$ $\lim_{x \searrow x_0} f (x) = a$ (\ac{bzw.} $\lim_{x \downarrow x_0} f(x) = a$ \ac{bzw.} $\lim_{x \ra x_0^+} f (x) = a$), falls gilt
+\item Die Funktion $f$ hat im Punkt $x_0$ den \indexb{rechtsseitigen Grenzwert} $a$ $\lim_{x \searrow x_0} f (x) = a$ (\ac{bzw.} $\lim_{x \downarrow x_0} f(x) = a$ \ac{bzw.} $\lim_{x \ra x_0^+} f (x) = a$), falls gilt
 		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, x_n > x_0, \lim_{n \ra \infty} x_n = x_0\]
 
 \item Die Funktion $f$ hat in $\pm \un$ den Grenzwert $a$ $\lim_{x \ra \pm \infty} f (x) = a$, falls gilt:
 		\[\forall(x_n)_{n \in \N} \tx{ mit } x_n \in D, \lim_{n \ra \infty} = \pm \infty:~\lim_{n \ra \infty} f(x_n) = a\]
 
-\item Die Funktion $f$ hat in $x_0$ den \indexu{uneigentlichen Grenzwert} $\pm \infty$, $\lim_{x \ra x_0} f (x) = \pm \un$ falls gilt:
+\item Die Funktion $f$ hat in $x_0$ den \indexb{uneigentlichen Grenzwert} $\pm \infty$, $\lim_{x \ra x_0} f (x) = \pm \un$ falls gilt:
 		\[\forall(x_n)_{n \in \N} \tx { mit } x_n \in D, \lim_{n \ra \un} x_n = x_0:~\lim_{n \ra \un} f(x_n) = \pm \un\]
 		(Links-/rechtsseitige uneigentliche Grenzwert werden analog definiert).
 \end{enumerate}
@@ -40,9 +40,9 @@ Falls $\lim_{x \ra x_0} f (x) = a$ und $\lim_{x \ra x_0} g (x) = b$ ($a, b \in \
 \Mark{Satz 3.2}
 \end{fsatz}
 
-\begin{beweis}
+\begin{fbeweis}
 Folgt aus Rechenregeln für Grenzwerte von Folgen.
-\end{beweis}
+\end{fbeweis}
 
 \begin{bemerkung}
 Satz \vref{satz:Grenzwerte_und_Stetigkeit_von_Funktionen_S3_2} gilt analog für links-/rechtsseitige Grenzwerte.
@@ -73,7 +73,7 @@ $\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in 
 \mbox{}\par
 \begin{enumerate}
 \item $A = D = \eklamm{0, 2\pi}$
-
+		\begin{center}
 		\begin{tikzpicture}[domain=0:7]
 		\draw[->,thick] (7,0) node[below] {$x$} -- (0,0) -- (0,2);
 		\foreach \x/\y in {pi/\pi,2*pi/\frac{2}{\pi}}
@@ -92,11 +92,12 @@ $\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in 
 		
 		\draw[in=0, out=90] (0.15,{sin(0.15 r)}) to (-1,1) node[left,text width=24mm] {Ort mit größter Steigung};
 		\end{tikzpicture}
+		\end{center}
 		\Img{IMG-MA-09-04-22-1}
 
 \item $A = D = (0, 2)$\\
 		$f(x) = \frac{1}{x}$
-
+		\begin{center}
 		\begin{tikzpicture}[domain=6:0.33]
 		\tikzcoor[x][]{6}{3}
 		\foreach \x in {0,2}
@@ -107,13 +108,14 @@ $\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in 
 		\draw plot[smooth] (\x,{1/\x}) node[right] {$\frac{1}{x}$};
 		\node[text width=5cm] at (4,1.5) {stetig aber nicht gleichmäßig stetig auf $(0,2)$};
 		\end{tikzpicture}
+		\end{center}
 		\Img{MA2-22.04.2009-IMG-2}
 
 		es ist nicht möglich, das $\delta$ an der schlimmsten Stelle zu wählen. (\Ra $\delta = 0$ \blitza)
 \item $f$: $\R \ra \R$
 		\[x \mapsto \begin{cases}0 & \tx{für } x \klgl 0\\1 & \tx{für } x > 0\end{cases}\]
 		nicht stetig in $x_0$ und damit nicht stetig in \R
-
+		\begin{center}
 		\begin{tikzpicture}[scale=2.0]
 		\tikzcoor[x][]{3}{1.5}
 		\foreach \x in {0,1}
@@ -122,6 +124,7 @@ $\forall \epsilon > 0~\exists \delta (\epsilon) \tx{ so dass } \forall x, y \in 
 		\draw[thick,(-,color=blue] (0,1) -- (2,1);
 		\draw[thick,[-,color=blue] (0,0) -- (-1,0);
 		\end{tikzpicture}
+		\end{center}
 		\Img{MA2-22.04.2009-IMG-3}
 
 		$f$ heißt \indexb{Heaviside-Sprungfunktion}
@@ -153,7 +156,8 @@ Ist $f$ stetig?
 \end{align*}
 bleibt der Punkt $x_0 = 1$ zu überprüfen.\\
 Gilt $\lim_{x \nearrow 1} f(x) = \lim_{x \searrow 1} f(x)$?
-
+\begin{figure}[h]
+\centering
 \begin{tikzpicture}[scale=0.5]
 \draw[thick,->] (0,-3) -- (0,3);
 \draw[thick,->] (-1.2,0) -- (1.2,0);
@@ -161,6 +165,7 @@ Gilt $\lim_{x \nearrow 1} f(x) = \lim_{x \searrow 1} f(x)$?
 \draw plot[smooth,domain=0:-pi/2.5] (\x,{-tan(-\x r)});
 \node at (0,0) [below right] {$0$};
 \end{tikzpicture}
+\end{figure}
 \Img{MA2-22.04.2009-IMG-4}
 
 \begin{align*}

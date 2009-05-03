@@ -109,6 +109,7 @@ Die Menge aller Wörter über $\Sigma$ ($\Sigma^*$) ist induktiv definiert durch:
 \begin{enumerate}
 \item $\epsilon \in \Sigma^*$
 \item sei $w \in \Sigma^*$ und $a \in \Sigma$, so $w \mal a \in \Sigma^*$\\
+		\begin{center}
 		\begin{tikzpicture}
 			\node{}
 			child[draw, rectangle]{
@@ -119,6 +120,7 @@ Die Menge aller Wörter über $\Sigma$ ($\Sigma^*$) ist induktiv definiert durch:
 					child{node[draw, circle]{b}}}
 				child{node[draw, circle]{c}}};
 		\end{tikzpicture}
+		\end{center}
 \end{enumerate}
 
 \subsection{Induktive Definition der Wortlänge}
@@ -150,7 +152,7 @@ Sei $\Sigma$ ein Alphabet und seien $v, w \in \Sigma^*$
 \begin{itemize}
 \item $v$ heißt \indexn[Wort!Teilwort]{Teilwort} von $w$ \ac{gdw.} $\exists s, t \in \Sigma^*$: $w = s v t$
 \item $v$ heißt \indexn[Wort!Suffix]{Suffix} von $w$ \ac{gdw.} $\exists s \in \Sigma^*$: $w = sv$\\
-		\Img{GI(V)-25.03.2009-IMG1}
+		\begin{center}
 		\begin{tikzpicture}
 			\draw (0,0) -- (3.5em,0);
 			\draw (3.5em,0) -- (3.5em,1em) node[left, midway]{$v$};
@@ -158,9 +160,11 @@ Sei $\Sigma$ ein Alphabet und seien $v, w \in \Sigma^*$
 			\draw (0,1em) -- (0,0) node[right, midway]{$s$};
 			\draw (1.75em,0) -- (1.75em,1em);
 		\end{tikzpicture}
+		\end{center}
+		\Img{GI(V)-25.03.2009-IMG1}
 
 \item $v$ heißt \indexn[Wort!Präfix]{Präfix} von $w$ \ac{gdw.} $\exists t \in \Sigma^*$: $w = vt$\\
-		\Img{GI(V)-25-03.2009-IMG2}
+		\begin{center}
 		\begin{tikzpicture}
 			\draw (0,0) -- (3.5em,0);
 			\draw (3.5em,0) -- (3.5em,1em) node[left, midway]{$t$};
@@ -168,6 +172,8 @@ Sei $\Sigma$ ein Alphabet und seien $v, w \in \Sigma^*$
 			\draw (0,1em) -- (0,0) node[right, midway]{$v$};
 			\draw (1.75em,0) -- (1.75em,1em);
 		\end{tikzpicture}
+		\end{center}
+		\Img{GI(V)-25-03.2009-IMG2}
 
 \item $v \neq \epsilon$ heißt \underline{echtes} Teilwort (Präfix/Suffix) von $w$ \ac{gdw.} $v \neq w$ und $v$ ist Teilwort (Präfix/Suffix) von $w$.
 \end{itemize} \qed
@@ -360,7 +366,7 @@ ist zwar länger als das Wort
 kann aber durch $(01)^7$ kompakter dargestellt werden. Es reichen offenbar fünf Zeichen um die Information in $w$ zu kodieren.
 \end{beispiel}
 
-Das Auffinden einer kürzeren Darstellung für ein Wort nennt man \indexu{Komprimierung}.
+Das Auffinden einer kürzeren Darstellung für ein Wort nennt man \indexb{Komprimierung}.
 \begin{description}
 \item[Ziel:] Um den Informationsgehalt zweier Wörter zu vergleichen, könnten wir zunächst ein Standard-Komprimierungs Verfahren suchen.\\
 \item[Problem:] Wie findet man ein Verfahren, welches immer die kleinstmögliche Darstellung garantiert?

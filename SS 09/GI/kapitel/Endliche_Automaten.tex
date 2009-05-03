@@ -23,8 +23,7 @@ Anstelle von $\delta(q, a) = q$ schreiben wir
 
 \begin{beispiel}
 $M^*$
-\begin{figure}[htb]
-\centering
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 	\node[initial,accepting,state,initial text=] (q0) {$q_0$};
 	\node[state] (q1) [right of=q0] {$q_1$};
@@ -51,7 +50,7 @@ $M^*$
 	(q3) edge [bend left] node [below] {0} (q2)
 	(q3) edge [bend left] node [left] {1} (q1);
 \end{tikzpicture}
-\end{figure}
+\end{center}
 \Img{GI(V)-15.04.2009-DIA-1}
 
 $M = \rklamm{\gklamm{q_0, q_1, q_2, q_3}, \Sigma_{\tx{Bool}}m, \delta, q_0, \gklamm{q_0, q_3}}$ mit $\delta$:
@@ -192,8 +191,7 @@ Wir stellen folgende Induktionsannahme auf:
 
 \section{Nichtdeterministische endliche Automaten (NEAs)}
 \Mark{Section 3.3}
-\begin{figure}[htb]
-\centering
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 	\node[initial,state,initial text=] (A) {};
 	\node[state] (B) [right of=A] {};
@@ -203,8 +201,9 @@ Wir stellen folgende Induktionsannahme auf:
 	\path (A) edge node {$0$} (B);
 	\path (B) edge node {$0$} (C);
 \end{tikzpicture}
-\end{figure}
+\end{center}
 \Img{IMG-GI-09-04-21-1}
+
 \begin{fdefinition}
 Ein \ac{NEA} $M$ ist ein Quintupel $(Q, \Sigma, \delta, q_0, F)$ aus
 \begin{itemize}
@@ -299,6 +298,7 @@ Wie üblich erfolgt der \ac{Bew.} in 2 Schritten
 
 \section{\texorpdfstring{$\epsilon$-Nichtdeterministische Automaten}{Epsilon-Nichtdeterministische Automaten}}
 $\epsilon$-Transitionen\\
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state,initial,initial text=] (n0) {};
 \node[state] (n1) [right of=n0] {};
@@ -312,6 +312,7 @@ $\epsilon$-Transitionen\\
 \path[->] (n2) edge node[below] {$1$} (n3);
 \path[->] (n2) edge[bend left] node[above] {$\epsilon$} (n3);
 \end{tikzpicture}
+\end{center}
 \Img{GI-28.04.2009-IMG-1}
 
 \subsection{\texorpdfstring{NEAs mit $\epsilon$-Transitionen}{NEAs mit Epsilon-Transitionen}}
@@ -329,6 +330,7 @@ $q \in \delta (q, a)$ schreiben wir als $p \stack{a}{\ra} q$ $a \in \Sigma \cup 
 
 Übernehme Begriff \ggq{Konfiguration von \ac{NEA}}. Zur Definition der Schrittrelation; an Übergang
 \[(p, w) \vd (q, w)\]
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state] (n0) {$p$};
 \node[state] (n1) [right of=n0] {$p_1$};
@@ -341,6 +343,7 @@ $q \in \delta (q, a)$ schreiben wir als $p \stack{a}{\ra} q$ $a \in \Sigma \cup 
 \path[->] (n2) edge node[above] {$\epsilon$} (n3);
 \path[->] (n3) edge node[above] {$\epsilon$} (n4);
 \end{tikzpicture}
+\end{center}
 \Img{GI-28.04.2009-IMG-2}
 nicht zu erkennen, wie viele $\epsilon$-Transitionen benutzt wurden. \Ra Erlaube derartige Übergänge mit \ac{bel.} vielen $\epsilon$-Transitionen.
 
@@ -364,6 +367,7 @@ für Berechnungen und von $\epsilon$-\ac{NEA} \ac{akzept.} Sprache analog zu \ac{
 \end{fdefinition}
 
 \subsection{\texorpdfstring{Äquivalenz von $\epsilon$-NEA und NEA}{Äquivalenz von Epsilon-NEA und NEA}}
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state] (n0) {$p$};
 \node[state] (n1) [right of=n0] {$q$};
@@ -375,10 +379,12 @@ für Berechnungen und von $\epsilon$-\ac{NEA} \ac{akzept.} Sprache analog zu \ac{
 \path[->] (n2) edge node[above] {$\epsilon$} (n3);
 \path[->] (n0) edge[bend right] node[below] {$a$} (n3);
 \end{tikzpicture}
+\end{center}
 \Img{GI-28.04.2009-IMG-3}
 
 \begin{beispiel}
 \mbox{}\par
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state,initial,initial text=] (n0) {$q_0$};
 \node[state] (n1) [right of=n0] {$q_1$};
@@ -403,6 +409,7 @@ für Berechnungen und von $\epsilon$-\ac{NEA} \ac{akzept.} Sprache analog zu \ac{
 \path[->,color=green] (n0) edge[bend left] node[color=green, below] {$0$} (n2);
 \path[->,color=green] (n0) edge[bend left] node[color=green, above] {$0$} (n3);
 \end{tikzpicture}
+\end{center}
 \Img{GI-28.04.2009-IMG-4}
 \end{beispiel}
 
@@ -428,14 +435,13 @@ Formal: Konstruiere NEA $M = (Q, \Sigma, \underline{\delta}, q_0, \underline{F})
 \path[->, color=red] (n2) edge node[above, color=red] {$\epsilon$} (n3);
 \path[->, color=green] (n0) edge[bend right] node[below, color=green] {$a$} (n3);
 \end{tikzpicture}
-\end{center}
 
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state,initial,initial text=] (n0) {};
 \node[state,accepting] (n1) [right of=n0] {};
 \path[->] (n0) edge node[above] {$\epsilon^*$} (n1);
 \end{tikzpicture}
-
+\end{center}
 und
 \[F = \begin{cases}
 F_{\epsilon} \cup \gklamm{q_0} & \tx{falls } \epsilon_c (q_0) \cap F_{\epsilon} \neq \emptyset\\
@@ -461,7 +467,7 @@ Effektive Berechnung: ohne Beweis.
 				Angenommen es gibt im $\epsilon$-\ac{NEA} \textbf{keine} Transition
 				\[q_0 \stack{q_{i_1}}{\ra} q_{i_1}\]
 				\ac{d.h.} um \ac{NEA} wurde eine hinzugefügte Kante benutzt. Offenbar ist dann $i_2 - i_1 > 1$; \ac{d.h.} im $\epsilon$-\ac{NEA} wurden $\epsilon$-Transitionen benutzt. Dann muss es laut Konstruktion $\space^*$ von $\delta$ ein $q'$ mit $q' \in \epsilon_c (q_0)$ geben, so dass $\delta '' \in \delta_{\epsilon} (q', a)$ und $q_{i_1} \in \epsilon_c (q'')$:
-
+				\begin{center}
 				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 				\node (n0) {$q_0$};
 				\node (n1) [right of=n0] {$q'$};
@@ -473,6 +479,7 @@ Effektive Berechnung: ohne Beweis.
 				\path[->] (n2) edge node[above] {$\epsilon$} (n3);
 				\path[->] (n0) edge[bend left] node[above] {$a$} (n3);
 				\end{tikzpicture}
+				\end{center}
 				\Img{GI-29.04.2009-IMG-1}
 
 				sonst hätte $\epsilon$-\ac{NEA} Konfiguration ($p_{i_1}, a_{i_2} \dots a_{i_m}$) niemand erreicht. In der Konstruktion für $\delta$ haben wir für solche Fälle vereinbart, dass $p_{i_1} \in \delta(q_0, a_{i_1})$.
@@ -494,7 +501,7 @@ Effektive Berechnung: ohne Beweis.
 $L = \gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0 \und w = u111v \tx{ für } u, v \in \SigBs}$\\
 \ac{DEA} $M$ für $L$ gesucht!\\
 $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \ub{\gklamm{w \in \SigBs \vert w = u111v}}{L_2}$
-
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=, accepting] (n0) {$\overline{0}$};
 \node[state] (n1) [right of=n0] {$\overline{1}$};
@@ -509,8 +516,10 @@ $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \u
 \path[->] (n1) edge[bend left] node[above] {$0$} (n2);
 \path[->] (n2) edge[bend left] node[below] {$0$} (n1);
 \end{tikzpicture}
+\end{center}
 \Img{GI-29.04.2009-IMG-2.1}
 
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=] (n0) {$\epsilon$};
 \node[state] (n1) [right of=n0] {$1$};
@@ -528,8 +537,10 @@ $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \u
 \path[->] (n1) edge[bend left] node[below] {$0$} (n0);
 \path[->] (n2) edge[bend right] node[above] {$0$} (n0);
 \end{tikzpicture}
+\end{center}
 \Img{Gi-29.04.2009-IMG-2.2}
 
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=] (n0) {$\begin{array}{c}\overline{0}\\\epsilon\end{array}$};
 \node[state] (n1) [right of=n0] {$\begin{array}{c}\overline{1}\\1\end{array}$};
@@ -549,9 +560,11 @@ $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \u
 \path[->] (n1) edge node[right] {$1$} (n4);
 \path[->] (n2) edge node[right] {$1$} (n5);
 \end{tikzpicture}
+\end{center}
 \Img{GI-29.04.2009-IMG-3}
 
 \subsection{Äquivalenz von NEA und DEA}
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node (n0) {$\epsilon$-NEA};
 \node (n1) [right of=n0] {NEA};
@@ -563,8 +576,10 @@ $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \u
 \path[->] (n1) edge (n0);
 \path[->] (n2) edge (n1);
 \end{tikzpicture}
+\end{center}
 \Img{GI-30.04.2009-IMG-1}
 
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=] (n0) {$A$};
 \node[state] (n1) [right of=n0] {$B$};
@@ -575,8 +590,10 @@ $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \u
 \path[->] (n0) edge node[above] {$0$} (n1);
 \path[->] (n1) edge node[above] {$0$} (n2);
 \end{tikzpicture}
+\end{center}
 \Img{GI-30.04.2009-IMG-2.1}
 
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=] (n0) {$\{A\}$};
 \node[state] (n1) [right of=n0] {$\{A, B\}$};
@@ -590,10 +607,11 @@ $L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \u
 \path[->] (n2) edge[bend right] node[above] {$1$} (n0);
 \path[->] (n1) edge[bend right] node[below] {$1$} (n0);
 \end{tikzpicture}
+\end{center}
 \Img{GI-30.04.2009-IMG-2.2}
 
 $L = \gklamm{w \in \SigBs \vert w^R \tx{ enthält an $n$-ten Stelle eine } 1}$ $Q_D = \mathcal{P}(Q)$
-
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=] (n0) {$S$};
 \node[state] (n1) [right of=n0] {$A$};
@@ -605,8 +623,10 @@ $L = \gklamm{w \in \SigBs \vert w^R \tx{ enthält an $n$-ten Stelle eine } 1}$ $Q
 \path[->] (n1) edge node[above] {$1,0$} (n2);
 \path[->] (n2) edge node[above] {$1,0$} (n3);
 \end{tikzpicture}
+\end{center}
 \Img{GI-30.04.2009-IMG-3.1}
 
+\begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state,initial, initial text=] (n0) {$\{S\}$};
 \node[state] (n1) [right of=n0] {$\{S, A\}$};
@@ -624,4 +644,5 @@ $L = \gklamm{w \in \SigBs \vert w^R \tx{ enthält an $n$-ten Stelle eine } 1}$ $Q
 \tikzedge{n1}{n4}{0}{}{right}
 \tikzedge{n4}{n5}{1}{}{above}
 \end{tikzpicture}
+\end{center}
 \Img{GI-30.04.2009-IMG-3.2}

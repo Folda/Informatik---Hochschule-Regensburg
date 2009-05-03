@@ -20,9 +20,9 @@ Für alle $q \in \mb{R} \backslash \gklamm{1}$ und $n \in \mb{N}_0$ gilt:
 
 \begin{fdefinition}[Unendliche Reihen]
 %MARK: Definition 2.9
-Sei die Folge $(A_k)_{k \in \mb{N}}$ gegeben. Die Folge $(S_n)_{n \in \mb{N}}$ der \indexu{Partialsummen} ist definiert durch
+Sei die Folge $(A_k)_{k \in \mb{N}}$ gegeben. Die Folge $(S_n)_{n \in \mb{N}}$ der \indexb{Partialsummen} ist definiert durch
 \[S_n \ceq \sum_{k = 1}^n A_k\]
-Man nennt $(S_n)_{n \in \mb{N}}$ auch \indexu{unendliche Reihe} mit den Gliedern $A_k$ (geschrieben $\sum_{k = 1}^{\infty} A_k$ oder $\sum A_k$).\\
+Man nennt $(S_n)_{n \in \mb{N}}$ auch \indexb{unendliche Reihe} mit den Gliedern $A_k$ (geschrieben $\sum_{k = 1}^{\infty} A_k$ oder $\sum A_k$).\\
 Wenn die Folge $(S_n)_{n \in \mb{N}}$ konvergiert, nennt man auch die Reihe $\sum_{k = 1}^{\infty} A_k$ konvergent und $S \ceq \lim_{n \ra \infty} S_n = \sum_{k = 1}^{\infty} A_k$ ist der Wert der Summe.
 \end{fdefinition}
 
@@ -119,8 +119,8 @@ Für die (unendliche) geometrische Reihe gilt:
 		\foreach \x in {0, 0.5, 1,..., 5}
 			\draw (\x,0) rectangle +(0.3,0.2);
 		
-		\draw[decorate] (5.3,-0.2) -- (3.5,-0.2) node[below,midway] {mögl. positionen};
-		\draw[decorate] (4.8,-1) -- (1.5,-1) node[below,midway] {mögl. positionen};
+		\draw[decorate] (5.3,-0.2) -- (3.5,-0.2) node[below,midway] {mögl. Positionen};
+		\draw[decorate] (4.8,-1) -- (1.5,-1) node[below,midway] {mögl. Positionen};
 		\end{tikzpicture}
 
 \item $A_{k + 1} \klgl A_k$ $S_n = \sum_{k = 1}^n (- 1)^k A_k$
@@ -203,14 +203,14 @@ Für die (unendliche) geometrische Reihe gilt:
 				&\tx{$\epsilon$ so klein, dass $Q = w - \epsilon > 1$}
 				\end{align*}
 				\[\sum_{k = 0}^{\infty} \betrag{A_k} = \sum_{k = N - 1}^{\infty} \betrag{A_k} + \sum_{k = N}^{\infty} \betrag{A_k} \grgl \sum_{k = N}^{\infty} \betrag{A_k} \grgl \sum_{k = N}^{\infty} Q^k = \infty\]
-				\Ra $\sum \betrag{A_k}$ divergent (Rechnug für $\sum_{A_k}$ analog)
+				\Ra $\sum \betrag{A_k}$ divergent (Rechnung für $\sum_{A_k}$ analog)
 		\end{description}
 
 \item Beweis Quotientenkriterium ähnlich wie Wurzelkriterium \qed
 \end{enumerate}
 \end{fbeweis}
 
-\begin{fsatz}[Cauchycher Verdichtungssatz]
+\begin{fsatz}[Cauchyscher Verdichtungssatz]
 Sei $(A_k)_{k \in \N}$ monoton fallend ($A_K > 0$), dann gilt
 \[\sum_{k = 1}^{\infty} \tx{ konvergent } \Lra \sum_{k = 0}^{\infty} 2^k \mal A_{2k} \tx{ konvergent}\]
 \end{fsatz}
@@ -289,19 +289,23 @@ Lösung zu Aufgabe \vref{sec:Konvergente_Reihen_A2_3}.
 				\[\lim_{n \ra \infty} A_n = \lim_{n \ra \infty} \frac{1}{2 + 3^n} = 0 \Ra \sum A_n \tx{ kann konvergent sein}\]
 
 		\item Majorantenkriterium
-				\[\sum_{n = 1}^{\infty} \frac{1}{2 + 3^n} \klgl \underbrace{\sum_{n = 1}^{\infty} \rklamm{\frac{1}{3}}^n}_{\begin{minipage}{10mm}\begin{center}\scriptsize{konvergente geometrische Reihe}\end{center}\end{minipage}} \Ra \tx{ konvergent}\]
+				\[\sum_{n = 1}^{\infty} \frac{1}{2 + 3^n} \klgl \ubl{\sum_{n = 1}^{\infty} \rklamm{\frac{1}{3}}^n}{konvergente geometrische Reihe} \Ra \tx{ konvergent}\]
 
 		\item Quotientenkriterium
 				\begin{align*}
 				\lim_{n \ra \infty} \betrag{\frac{A_{n + 1}}{A_n}} &= \lim_{n \ra \infty} \betrag{\frac{1}{2 + 3^{n + 1}} \mal \frac{2 + 3^n}{1}} = \lim_{n \ra \infty} \frac{2 + 3^n}{2 + 3^{n + 1}}\\
-				&= \lim_{n \ra \infty} \frac{\frac{2}{3^n} + 1}{\frac{2}{3^n} + 3} = \frac{\lim_{n \ra \infty} \rklamm{\frac{2}{3^n} + 1}}{\lim_{n \ra \infty} \rklamm{\frac{2}{3^n} + 3}} = \frac{1}{3} < \Ra \tx{ konvergent}
+				&= \lim_{n \ra \infty} \frac{\frac{2}{3^n} + 1}{\frac{2}{3^n} + 3} = \frac{\lim_{n \ra \infty} \rklamm{\frac{2}{3^n} + 1}}{\lim_{n \ra \infty} \rklamm{\frac{2}{3^n} + 3}} = \frac{1}{3}\\
+				&\Ra \tx{ konvergent}
 				\end{align*}
 
 		\item Wurzelkriterium
-				\[0 \klgl \lim_{n \ra \infty} \sqrt[n]{\betrag{A_n}} = \lim_{n \ra \infty} \sqrt[n]{\betrag{\frac{1}{2 + 3^n}}} \klgl \lim_{n \ra \infty} \sqrt[n]{\frac{1}{3^n}} = \lim_{n \ra \infty} \frac{1}{3} = \frac{1}{3} \Ra \tx{ konvergent}\]
+				\begin{align*}
+				&0 \klgl \lim_{n \ra \infty} \sqrt[n]{\betrag{A_n}} = \lim_{n \ra \infty} \sqrt[n]{\betrag{\frac{1}{2 + 3^n}}} \klgl \lim_{n \ra \infty} \sqrt[n]{\frac{1}{3^n}} = \lim_{n \ra \infty} \frac{1}{3} = \frac{1}{3}\\&
+				\Ra \tx{ konvergent}
+				\end{align*}
 
 		\item Verdichtungssatz
-				\[\sum_{n = 0}^{\infty} 2^n \mal \frac{1}{\underbrace{2 + 3^{2^n}}_{= A_{2^n}}} \klgl \sum_{n = 0}^{\infty} 2^n \mal \rklamm{\frac{1}{3^2}}^n = \underbrace{\sum_{n = 0}^{\infty} \rklamm{\frac{2}{9}}^n}_{\tx{konvergente geometrische Reihe}}\]
+				\[\sum_{n = 0}^{\infty} 2^n \mal \frac{1}{\underbrace{2 + 3^{2^n}}_{= A_{2^n}}} \klgl \sum_{n = 0}^{\infty} 2^n \mal \rklamm{\frac{1}{3^2}}^n = \ubl{\sum_{n = 0}^{\infty} \rklamm{\frac{2}{9}}^n}{konvergente geometrische Reihe}\]
 				\[\sum_{n = 0}^{\infty} 2^n \frac{2}{2 + 3^{2^n}} \tx{ konvergent } \Lra \sum_{n = 1}^{\infty} \frac{1}{2 + 3^n} \tx{ konvergent}\]
 		\end{itemize}
 
