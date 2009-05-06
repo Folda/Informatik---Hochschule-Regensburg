@@ -136,3 +136,49 @@ $L_4 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w \tx{ enthält } 110110}$
 		\label{fig:Tutorium_22_01_2009_3}
 \end{figure}
 \end{enumerate}
+
+\section{2. Übung}
+\subsection{1. Aufgabe}
+\begin{enumerate}[label=(\alph*)]
+\item \begin{enumerate}[label=\arabic*)]
+		\item ohne Gewicht
+				\begin{itemize}
+				\item Einträge in der Adjazenzmatrix: 1 oder 0
+				\item Trennzeichen nicht nötig da Adjazenzmatrix quadratisch
+						\begin{itemize}[label=$\hookrightarrow$]
+						\item 2\,$\times$ durch String laufen nötig um Adjazenzmatrix zu rekonstruieren
+						\end{itemize}
+						Alternative Kodierung: $0$ durch $00$ $1$ durch 01 $\sharp$ durch $11$
+				\end{itemize}
+
+		\item mit Gewicht
+				\begin{itemize}
+				\item in Adjazenzmatrix: Gewichte (\ac{z.B.} natürliche Zahlen)
+				\item Zahl $n$ kodieren durch $n$-maliges hintereinander schreiben der $0$, $1$ als Trennzeichen
+				\end{itemize}
+		\end{enumerate}
+
+\item Graph ohne Gewicht einfach alle Zeilen hintereinander schreiben
+		\begin{itemize}[label=$\hookrightarrow$]
+		\item neue Länge $n^2$ anstelle von $n^2 + n$
+		\item Trennzeichen nicht nötig
+		\end{itemize}
+\end{enumerate}
+
+\subsection{2. Aufgabe}
+Trivial! Schon Gemacht!
+
+\subsection{3. Aufgabe}
+\Todo{von meiner Lösung nachtragen}
+
+\subsection{4. Aufgabe}
+\Todo{von meiner Lösung nachtragen}
+
+\subsection{5. Aufgabe}
+unendliche Menge von Wörtern $y_1, y_2, \dots$ mit $\betrag{y_i} < \betrag{y_{i + 1}}$ für i = $1, 2, 3, \dots$ $\exists c$, so dass gilt
+\[KC(y_i) \klgl \lceil \ld \ld \ld \betrag{y_i}\rceil + c\]
+$y_i = 1^{2^{2^i}}$\\
+$\betrag{y_i} = 2^{2^i}$, $\betrag{y_{i + 1}} = 2^{2^{i + 1}}$ \Ra $\underbrace{2^{2^i} < 2^{2^i}}_{\tx{für alle } i \in \mb{N}}$
+\Insert{GI(T)-05.05.2009-LST-1}
+Darstellung von $i \ra \lceil \ld i \rceil$ Bits\\
+$KC(y_i) \klgl \lceil \ld i \rceil + c = \lceil \ld \ld \ld \betrag{y_i} \rceil + c$

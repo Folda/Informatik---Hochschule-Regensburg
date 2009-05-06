@@ -10,8 +10,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=23
-CaretPos.Y=6
+CaretPos.X=0
+CaretPos.Y=0
 CharSet=def
 FileName=00acronyms.tex
 FoldedLines=
@@ -50,7 +50,7 @@ ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=1
+TabOrder=2
 UseThesaurus=yes
 WrapLine=yes
 
@@ -74,11 +74,11 @@ FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=1
+ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=2
+TabOrder=1
 UseThesaurus=yes
 WrapLine=yes
 
@@ -122,15 +122,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=8
-CaretPos.Y=29
+CaretPos.X=98
+CaretPos.Y=15
 CharSet=def
 FileName=Informatik - SS2009 - GI.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=24
+ScrollPos.Y=27
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -151,27 +151,34 @@ Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
 CaretPos.X=17
-CaretPos.Y=645
+CaretPos.Y=760
 CharSet=def
 FileName=kapitel\Endliche_Automaten.tex
 FoldedLines=
 IsMainFile=no
-Opened=no
+Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=650
-SearchListCount=1
+ScrollPos.Y=929
+SearchListCount=2
 
 [Files\5\SearchList\0]
 CaseSensitive=no
 Color=65535
 RegExp=no
 Show=1
-Text=tikzpicture
+Text=\ac{def}
+
+[Files\5\SearchList\1]
+CaseSensitive=no
+Color=65535
+RegExp=no
+Show=1
+Text=jetzt nutzen
 
 [Files\5]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=-1
+TabOrder=4
 UseThesaurus=yes
 WrapLine=yes
 
@@ -187,15 +194,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=19
-CaretPos.Y=121
+CaretPos.X=7
+CaretPos.Y=240
 CharSet=def
 FileName=kapitel\Grundlagen.tex
 FoldedLines=
 IsMainFile=no
 Opened=no
 ScrollPos.X=0
-ScrollPos.Y=508
+ScrollPos.Y=240
 SearchListCount=1
 
 [Files\6\SearchList\0]
@@ -252,15 +259,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=138
+CaretPos.X=41
+CaretPos.Y=161
 CharSet=def
 FileName=kapitel\Uebungen_und_Tutorium.tex
 FoldedLines=
 IsMainFile=no
 Opened=no
-ScrollPos.X=0
-ScrollPos.Y=116
+ScrollPos.X=3
+ScrollPos.Y=146
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -303,6 +310,7 @@ nea
 neas
 nodeone
 nodetwo
+potenzmengenkonstruktion
 q'
 rgb
 secondb

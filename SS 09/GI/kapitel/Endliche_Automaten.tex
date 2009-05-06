@@ -646,3 +646,147 @@ $L = \gklamm{w \in \SigBs \vert w^R \tx{ enthält an $n$-ten Stelle eine } 1}$ $Q
 \end{tikzpicture}
 \end{center}
 \Img{GI-30.04.2009-IMG-3.2}
+
+\begin{fdefinition}[Potenzmengenkonstruktion]
+Sei $M_N = \rklamm{Q_N, \Sigma, \delta_N, q_0, F_N}$ ein \ac{NEA}. WIr konstruieren aus $M_N$ einen \ac{DEA} $M_D = \rklamm{Q_D, \Sigma, \delta_D, \rklamm{q_0}, F_D}$ wie folgt:
+\begin{itemize}
+\item $Q_D = \mathcal{P}(Q_N)$
+\item $F_D = \gklamm{S \in Q_D \vert S \cap F_N \neq \emptyset}$
+\item Für jedes $S \in Q_D$ und jedes Eingabesymbol $a \in \Sigma$
+		\[\delta_D (S, a) = \bigcup_{q \in S} \delta_N (q, a)\]
+\end{itemize}
+Man sagt $M_D$ entsteht aus $M_N$ durch Anwendung der \ac{PMK}.
+\Mark{Definition 3.15}
+\end{fdefinition}
+
+\begin{beispiel}
+Gegeben Sei \ac{NEA} $M_N = \rklamm{\rklamm{A, B, C}, \SigB, \delta_N, A, \rklamm{B}}$ mit\\
+\begin{multicols}{2}
+$\delta_N (A, 0) = \rklamm{C}$\\
+$\delta_N (B, 0) = \rklamm{B}$\\
+$\delta_N (C, 0) = \emptyset$\\
+$\delta_N (A, 1) = \rklamm{A, B}$\\
+$\delta_N (B, 1) = \rklamm{C}$\\
+$\delta_N (C, 1) = \emptyset$
+\end{multicols}
+\Insert{GI-05.05.2009-IMG-1}
+Einen \ac{DEA} $M_D = \rklamm{\mathcal{P} \rklamm{\gklamm{A, B, C}}, \SigB, \delta_D \gklamm{A}, F_D}$ zu $M_N$ erhalten wir durch \ac{Anw.} der \ac{PMK} wie folgt:
+\begin{itemize}
+\item $Q_D = \gklamm{\emptyset, \gklamm{A}, \underline{\gklamm{B}}, \gklamm{C}, \gklamm{A, \underline{B}}, \gklamm{A, C}, \gklamm{\underline{B}, C}, \gklamm{A, \underline{B}, C}}$
+\item $F_D = \gklamm{\gklamm{B}, \gklamm{A, B}, \gklamm{B, C}, \gklamm{A, B, C}}$ denn $F_N = \gklamm{B}$.
+\item $\delta_D \rklamm{\emptyset, 0} = \emptyset$ $\delta_D \rklamm{\emptyset, 1} = \emptyset$ (Dead State)
+\item $\delta_D \rklamm{\gklamm{A}, 0} = \gklamm{C}$ $\delta_D \rklamm{\gklamm{A}, 1} = \gklamm{A, B} = \delta_D \rklamm{A, 1}$
+\item $\delta_D \rklamm{\gklamm{B}, 0} = \gklamm{B}$ $\delta_D \rklamm{\gklamm{B}, 1} = \gklamm{C}$\\
+		$\delta_D \rklamm{\gklamm{C}, 0} = \emptyset$ $\delta_D \rklamm{\gklamm{C}, 1} = \emptyset$\\
+		$\delta_D \rklamm{\gklamm{A, B}, 0} = \bigcup_{q \in \gklamm{A, B}} \delta_N (q, 0) = \delta_N (A, 0) \cup \delta_N (B, 0) = \gklamm{C} \cup \gklamm{B} = \gklamm{B, C}$\\
+		$\delta_D \rklamm{\gklamm{A, B}, 1} = \gklamm{A, B, C}$\\
+		$\vdots$
+\end{itemize}
+\Insert{GI-05.05.2009-IMG-2}
+\Mark{Beispiel 3.4}
+\end{beispiel}
+
+\begin{fsatz}
+Sei $M_N = \rklamm{Q_N, \Sigma, \delta_N, q_0, F_N}$ ein \ac{NEA} und $M_D = \rklamm{Q_D, \Sigma, \delta_D, \gklamm{q_0}, F_N}$ ein \ac{DEA} der durch \ac{PMK} aus $M_N$ entsteht. Dann gilt $L(M_N) = L(M_D)$.
+\Mark{Satz 3.2}
+\end{fsatz}
+
+\begin{fbeweis}
+Wir beweisen zunächst
+\[\hat{\delta}_D \rklamm{\gklamm{q_0}, w} = \hat{\delta}_N \rklamm{q_0, w} \tx{\textcircled{$\star$}}\]
+denn dann folgt:
+\begin{align*}
+\underline{w \in L\rklamm{M_N}} &\Lra \exists q_f \in F_N:~\rklamm{q_0, w} \vd_{M_N}^* \rklamm{q_f, \epsilon}\\
+&\Lra \exists q_f \in F_N:~q_f \in \hat{\delta}_N \rklamm{q_0, w}\\
+&\Lra \exists q_f \in F_N:~q_f \in \hat{\delta}_D \rklamm{\gklamm{q_0}, w}\\
+&\Lra \hat{\delta}_D \rklamm{\gklamm{q_0}, w} \cap F_N \neq \emptyset\\
+&\Lra \hat{\delta}_D \in F_D\\
+&\Lra \underline{w \in L(M_D)}
+\end{align*}
+Wir beweisen \textcircled{$\star$} durch \ac{vollst.} Induktion über die Wortlänge von $w$.
+Induktionsanfang: $w = \epsilon$ \ac{bzw.} $\betrag{w} = 0$.\\
+Laut \ac{Def.} von $\hat{\delta}_D$ \Todo{Ref to Definition} \ac{bzw.} $\hat{\delta}_N$ gilt:
+\[\hat{\delta}_N \rklamm{q_0, \epsilon} = \gklamm{q_0} = \hat{\delta}_D \rklamm{q_0, \epsilon}\]
+Induktionsschritt: Es gelte $\betrag{w} = n + 1$ \ac{bzw.} $w = \underline{u}a$. Laut Induktionsvoraussetzung gilt
+\[\hat{\delta}_N \rklamm{q_0, u} = \hat{\delta}_D \rklamm{\gklamm{q_0}, u} = \gklamm{q_1, q_2, \dots, q_R}\]
+Aus der induktiven Definition von $\hat{\delta}_N$ wissen wir
+\[\hat{\delta}_N \rklamm{q_0, ua} = \bigcup_{q \in \hat{\delta}_N (q_0, u)} \delta_N (q, a) = \bigcup_{i = 1}^k \delta_N (q_i, a)\]
+Die \ac{PMK} liefert uns andererseits
+\[\hat{\delta}_D \rklamm{\gklamm{q_1, \dots, q_k}, a} = \bigcup_{i = 1}^k \delta_N \rklamm{q_i, a}\]
+Jetzt nutzen wir die \ac{IV} und die \ac{indukt.} \ac{Def.} von $\hat{\delta}_D$ aus und erhalten
+\begin{align*}
+\hat{\delta}_D \rklamm{\gklamm{q_0}, ua} &\ubl[8mm]{=}{\ac{Def.} $\hat{\delta}_D$} \delta_D \rklamm{\hat{\delta}_D \rklamm{\gklamm{q_0}, u}, a} \ubl[8mm]{=}{\ac{IV}} \delta_D \rklamm{\hat{\delta}_D \rklamm{q_0, u}, a}\\
+&= \delta_D \rklamm{\gklamm{q_1, \dots, q_R}, a} = \ubl[8mm]{=}{\ac{PMK}} \bigcup_{i = 1}^k \delta_N \rklamm{q_i, a} \ubl[8mm]{=}{\ac{Def.} $\hat{\delta}_N$} \hat{\delta}_N \rklamm{q_0, uq} = \hat{\delta}_N \rklamm{q_0, w}
+\end{align*}
+\end{fbeweis}
+
+\subsection{\texorpdfstring{Ausdehnung auf $\epsilon$-NEAs}{Ausdehnung auf Epsilon-NEAs}}
+\ggq{Werkzeug}: $\epsilon_c$ ($\epsilon$-Hülle)\\
+Neu:
+\begin{itemize}
+\item $\delta_D \rklamm{S, a} = \gklamm{q \in Q_N \vert q \in \epsilon_c \rklamm{\delta_N \rklamm{r, a}} \tx{ für ein} r \in Q_N}$
+\item $q_{0_D} = \epsilon_c \rklamm{q_{0_N}}$
+\end{itemize}
+
+\section{Minimierung von Automaten}
+\Mark{Section 3.4}
+\Insert{GI-06.05.2009-IMG-1}
+Minimieren von Automaten bedeutet
+\begin{itemize}
+\item entfernen unerreichbarer Zustände \Todo{G und H mit rot durchstreichen in IMG-1}
+\item Zusammenfassen äquivalenter Zustände
+\end{itemize}
+\begin{fdefinition}
+Zwei Zustände $p$, $q$ heißen äquivalent \ac{gdw.}
+\[\forall w \in \Sigma^*:~\hat{\delta} (p, w) \in F \Lra \hat{\delta} (q, w) \in F\]
+(in Zeichen $p \equiv q$)
+\end{fdefinition}
+
+Problem $\Sigma^*$ enthält unendlich viele Wörter.\\
+Muss man wirklich alle prüfen?\\
+Nein denn ein Automat mit $\betrag{Q} = n$ Zuständen durchläuft mindestens einen Zustand zweimal, wenn er ein Wort $\betrag{w} \grgl n$ abarbeitet.\\
+Wie aufwändig ist dieses Verfahren? Wir müssen alle Zustandspaare untersuchen, das sind $\binom{n}{2}$.\\
+Für jedes Paar müssen alle Wörter der Länge $n$ getestet werden.
+
+\begin{beispiel}
+$\SigB$
+\begin{align*}
+T (n) = \binom{n}{2} \mal \sum_{i = 0}^{n - 1} 2^i &= \frac{n!}{(n - 2)! \mal 2!} \mal 2^{n} - 1\\
+&= \rklamm{n^2 - n} \mal \rklamm{2^{n - 1} - \frac{1}{2}}
+\end{align*}
+\begin{center}
+\begin{tabular}{c|c}
+$n$ & $T(n)$ ca.\\
+\hline
+$10$ & $46.000$\\
+$11$ & $112.000$\\
+\vdots & \vdots\\
+$30$ & $467.077.00.000$
+\end{tabular}
+\end{center}
+\end{beispiel}
+
+\subsection{Eigenschaften einer Äquivalenzrelation}
+\begin{itemize}
+\item $q \equiv q$ (Reflexivität)
+\item $q \equiv p \und p \equiv r \Ra q \equiv r$ (Transitivität)
+\item $q \equiv p \Lra \equiv q$ (Symmetrisch)
+\end{itemize}
+Angenommen $p \equiv q$, dann gilt
+\[\forall w \in \Sigma^*:~\hat{\delta} (p, w) \in F \Lra \hat{\delta} (q, w) \in F\]
+Betrachten wir zwei Berechnungen für konkretes $w = a_1 \dots a_n$:
+\begin{align*}
+&(p, a_1 \dots a_n) \vd (p_1, a_2 \dots a_n) \vd \dots \vd (p_n, \epsilon)\\
+&(q, a_1 \dots a_n) \vd (q_1, a_2 \dots a_n) \vd \dots \vd (q_n, \epsilon)
+\end{align*}
+Offenbar gilt $p_i \equiv q_i$ ($1 \klgl i \klgl n$)
+
+\begin{beobachtung}
+$p \equiv q \Ra \forall a \in \Sigma:~\delta (p, a) \equiv \delta (q, a)$
+\Mark{Beobachtung 1}
+\end{beobachtung}
+
+\begin{beobachtung}
+$p \equiv q \Ra p \in F \Lra q \in F$
+\Mark{Beobachtung 2}
+\end{beobachtung}
