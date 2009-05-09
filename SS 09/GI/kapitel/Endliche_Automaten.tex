@@ -782,11 +782,23 @@ Betrachten wir zwei Berechnungen für konkretes $w = a_1 \dots a_n$:
 Offenbar gilt $p_i \equiv q_i$ ($1 \klgl i \klgl n$)
 
 \begin{beobachtung}
-$p \equiv q \Ra \forall a \in \Sigma:~\delta (p, a) \equiv \delta (q, a)$
-\Mark{Beobachtung 1}
-\end{beobachtung}
-
-\begin{beobachtung}
-$p \equiv q \Ra p \in F \Lra q \in F$
-\Mark{Beobachtung 2}
+\mbox{}\par
+\begin{enumerate}
+\item $p \equiv q \Ra \forall a \in \Sigma:~\delta (p, a) \equiv \delta (q, a)$
+\item $p \equiv q \Ra p \in F \Lra q \in F$
+\end{enumerate}
+\Insert{GI(U)-07.05.2009-IMG-1}
+\Insert{GI(U)-07.05.2009-IMG-2}
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+  & F						& E & D 						& C & B\\\hline
+A & \tc{x}						& \tc{x} & \tc{x} 						& \tc{x} & \tc{x}\\\hline
+B & \tc{x}						& \tc{x} & \tc{x} \tiny{A,D}&   &  \\\hline
+C & \tc{x}						& \tc{x} & \tc{x} \tiny{A,D}&   &  \\\hline
+D & \tc{x}						& \tc{x} &   						&   &  \\\hline
+E & \tiny{B,C}	&   &   		&   &  \\\hline
+\end{tabular}
+\end{center}
+\Insert{GI(U)-07.05.2009-TAB-3}
+\Insert{GI(U)-07.05.2009-IMG-4}
 \end{beobachtung}

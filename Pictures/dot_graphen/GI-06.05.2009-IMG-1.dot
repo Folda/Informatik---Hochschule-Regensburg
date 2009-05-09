@@ -1,7 +1,7 @@
 #render with dot
 digraph GI06052009IMG1 {
-graph [overlap=false,start=0,rankdir=LR,order=out];
-#edge [len=2];
+graph [overlap=false,start=0order=out];
+edge [len=2];
 start [shape=plaintext, label="", width=0]; 
 #n0 [shape=doublecircle, group="g1"];
 #n1 [shape=circle, group="g1"];

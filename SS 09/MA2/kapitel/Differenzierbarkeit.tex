@@ -339,6 +339,99 @@ Berechnen Sie die Umkehrfunktion $f^{-1}$ (inklusive Definitionsbereich) sowie d
 
 Lösung siehe \vref{sec:Differenzierbarkeit_A4_6L}.
 
+\begin{fsatz}
+Sei $f$ in $(a, b)$ differenzierbar und $x_0 \in (a, b)$ derart, dass $f(x_0) \grgl f(x)$ $\forall x \in (a, b)$ (\ac{bzw.} $f(x_0) \klgl f(x)$ $\forall x \in (a, b)$), dann ist $f' (x_0) = 0$
+\Mark{Satz 4.6}
+\end{fsatz}
+
+\begin{fbeweis}
+\ac{OBdA} $f(x) \grgl f(x)$ $\forall x \in (a, b)$
+\[\lim_{x \ra x_0} \frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \ra x_0} \ub{\frac{1}{x - x_0}}{> 0} \mal \ub{\rkl{f(x) - f(x_0)}}{\klgl 0} \klgl 0\]
+\[\lim_{x \nearrow x_0} \frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \nearrow x_0} \ub{\frac{1}{x - x_0}}{< 0} \mal \ub{\rkl{f(x) - f(x_0)}}{\klgl 0} \grgl 0\]
+da $f$ in $x_0$ differenzierbar gilt:
+\[f'(x_0) = \lim_{x \searrow x_0} \frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \nearrow x_0} \frac{f(x) - f(x_0)}{x - x_0} = 0\] \qed
+\end{fbeweis}
+
+\begin{fsatz}
+Die Funktion $f$: $\eklamm{a, b} \ra \R$ sei stetig in $\eklamm{a, b}$ und differenzierbar in $(a, b)$ und es gilt $f(a) = f(b)$. Dann existiert ein $\xi \in (a, b)$ mit $f'(\xi) = 0$.
+\Mark{Satz 4.7}
+\end{fsatz}
+
+\begin{fbeweis}
+\mbox{}\par
+\begin{description}
+\item[Fall 1] $f(x)$ konstant \Ra $f(x) = f(a)$ $\forall x \in (a, b)$
+		\[f'(x_0) = \lim_{x \ra x_0} \frac{f(x) - f(x_0)}{x - x_0} = \lim_{x \ra x_0} \frac{0}{x - x_0} = 0 ~~ x \in (a, b) \tx{ beliebig}\]
+		\Ra $f'(x) \equiv 0$ $\forall x \in (a, b)$
+
+\item[Fall 2] $f$ nicht konstant\\
+\ac{d.h.} es existiert ein $x_0 \in (a, b)$ mit $f(x_0) \neq f(a)$ \ac{OBdA} $f(x_0) > f(a)$, \ac{d.h.} da Maximum von $f$ wird nicht am Rand von $\eklamm{a, b}$ angenommen, sondern im Inneren, also $\overline{x} \in (a, b)$ (siehe Satz 3.7) \Todo{Ref zu Satz 3.7} \ac{d.h.} $f(\overline{x}) \grgl f(x)$ $\forall x \in \eklamm{a, b}$\\
+Nach Satz 4.6 \Todo{Ref zu Satz 4.6} gilt $f'(\overline{x}) = 0$
+\[\xi \ceq \overline{x}\]
+\end{description}
+\end{fbeweis}
+
+\begin{bemerkung}
+Der Satz von Rolle besagt insbesondere, dass zwischen zwei Nullstellen einer differenzierbaren Funktion mindestens eine Nullstelle der Ableitung liegt.
+\end{bemerkung}
+
+\begin{beispiel}
+\begin{align*}
+f:~\eklamm{0, 1} &\ra \R\\
+x &\mapsto x^3 - x^2
+\end{align*}
+gesucht Minimalstelle
+\begin{itemize}
+\item Nach Satz 3.7 \Todo{Ref zu Satz 3.7} wird Minimum angenommen.
+\item $f(0) = 0 = f(1)$ \ac{d.h.} nach Satz 4.7 \Todo{Ref zu Satz 4.7} \ac{ex.} $\xi \in (0, 1)$ mit $f'(\xi) = 0$
+\item da $f\rkl{\frac{1}{2}} = \rkl{\frac{1}{2}}^3 - \rkl{\frac{1}{2}}^2 = \frac{1}{8} - \frac{1}{4} = - \frac{1}{8} < 0$ ist das Minimum nicht am Rand
+		\begin{align*}
+		f'(x) &= 3x^2 - 2x \stack{!}{=} 0\\
+		&\Lra x(3x - 2) \stack{!}{=} 0\\
+		&\Lra x = 0 \oder 3x - 2 = 0\\
+		&\Lra \ubl[10mm]{x = 0}{keine mögliche Minimalstelle, da $f \rkl{\frac{1}{2} < f(0)}$} \oder x = \frac{2}{3}\\
+		\end{align*}
+		\Ra Minimum in $x = \frac{2}{3}$
+\end{itemize}
+\end{beispiel}
+
+\section{Aufgabe 4.7}
+\label{sec:Differenzierbarkeit_A4_7}
+Von einem rechteckigen Stück Pappe mit den Seitenlängen $a = 15cm$ und $b = 24cm$ wird an jeder Ecke ein Quadrat mit der Seitenlänge $x$ weggeschnitten. Auffalten der vorstehenden Rechtecke entsteht eine nach oben offene Schachtel. Für welches $x$ hat die Schachtel das maximales Volumen.
+
+Lösung siehe \vref{sec:Differenzierbarkeit_A4_7L}.
+
+\begin{fsatz}[Mittelwertsatz der Differentialrechnung]
+Die Funktion $f$: $\eklamm{a, b} \ra \R$ ist stetig in $\eklamm{a, b}$ und differenzierbar in $(a, b)$. Dann existiert ein $\xi \in (a, b)$ mit
+\[f'(\xi) = \frac{f(b) - f(a)}{b - a}\]
+\Insert{MA2-07.05.2009-IMG-1}
+\end{fsatz}
+
+\begin{fbeweis}
+Wir definieren die Hilfsfunktion
+\[g(x) \ceq f(x) - \frac{f(b) - f(a)}{b - a} (x - a)\]
+\[g(a) = f(a) - \frac{f(b) - f(a)}{b - a} \ub{(a - a)}{= 0} = f(a)\]
+\[g(b) = f(b) - \frac{f(b) - f(a)}{b - a} \mal (b - a) = f(b) - (f(b) - f(a)) = f(a)\]
+Anwendung des Satzes von Rolle ergibt:\\
+es \ac{ex.} ein $\xi \in (a, b)$ mit $g'(\xi) = 0$
+\begin{align*}
+&g'(\xi) = 0\\
+\Lra& \frac{d}{dx} \rkl{f(x) - \frac{f(b) - f(a)}{b - a} (x - a)}_{x = \xi} = 0\\
+\Lra& f'(\xi) - \frac{f(b) - f(a)}{b - a} = 0\\
+\Lra& f'(\xi) = \frac{f(b) - f(a)}{b - a}
+\end{align*} \qed
+\end{fbeweis}
+
+\begin{folgerung}
+Die FUnktion $f$: $\eklamm{a, b} \ra \R$ sei stetig. Dann gilt:
+\begin{enumerate}
+\item $f' \equiv 0$ auf $(a, b)$ \Ra $f \equiv \tx{const.}$ auf $\eklamm{a, b}$
+\item $f'(x) > 0$ $\forall x \in (a, b)$, dann ist $f$ streng monoton wachsend\\
+		$f'(x) \grgl 0$ $\forall x \in (a, b)$, dann ist $f$ monoton wachsend\\
+		$f'(x) < 0$ $\forall x \in (a, b)$, dann ist $f$ streng monoton fallend\\
+		$f'(x) \klgl 0$ $\forall x \in (a, b)$, dann ist $f$ monoton fallend
+\end{enumerate}
+\end{folgerung}
 \section{Lösungen}
 \subsection{Aufgabe 4.1}
 \label{sec:Differenzierbarkeit_A4_1L}
@@ -451,3 +544,31 @@ $f$ streng monoton fallend $\eklamm{A, B} = \eklamm{f(\ub{b}{=1}), f(\ub{a}{=0})
 \Lra&1 - y = f^{-1} (y) (y + 1) \Vert :(y + 1)\\
 \Lra&f^{-1} = \frac{1 - y}{1 + y}
 \end{align*}
+\begin{align*}
+f'(x) &= \frac{(1 - x)' \mal (1 + x) - (1 - x) \mal (1 + x)}{(1 + x)^2}\\
+&=\frac{-1 (1 + x) - (1 - x) \mal 1}{(1 + x)^2}\\
+&=\frac{-1 -x -1 +x}{(1 + x)^2} = \frac{-2}{(1 + x)^2}\\
+\end{align*}
+\[\rkl{f^{-1}}' \tx{ mit Satz 4.5}\]
+\Todo{Ref zu Satz 4.5}
+\begin{align*}
+f^{-1} (y) &= \frac{1}{f'(f^{-1} (y))} = \frac{1 \mal \rkl{ 1 + f^{-1} (y)}^2}{-2}
+&= \frac{-1}{2} \mal \rkl{1 + \frac{1 - y}{1 + y}}^2 = \rkl{- \frac{1}{2}} \mal \rkl{\frac{1 + y + 1 - y}{1 + y}}^2\\
+&= \rkl{-1 \frac{1}{2}} \mal \rkl{\frac{2}{1 + y}}^2 = \frac{-2}{(1 + y)^2}
+\end{align*}
+
+\subsection{Aufgabe 4.7}
+\label{sec:Differenzierbarkeit_A4_7L}
+Lösung zu Aufgabe \vref{sec:Differenzierbarkeit_A4_7}.
+\Insert{Zeichnung zur Aufgabe}
+\begin{align*}
+V(x) &= (b - 2x) \mal (a - 2x) \mal x\\
+&= (ab - 2ax - 2bx + 4x^2) \mal x\\
+&= ab \mal x - 2ax^2 - 2bx^2 + 4x^3\\
+V'(x) &= ab - 2a 2x - 2b 2x + 12 \mal x^2\\
+V'(x) &= 12x^2 + (-4a - 4b) \mal x + ab = 0\\
+x_{1, 2} &= \frac{4a + 4b \pm \sqrt{(-4a - 4b)^2 - 4 \mal 12 ab}}{24} = \frac{a + b}{6} \pm \frac{\sqrt{(-a -b)^2 - 3ab}}{6}\\
+&= \frac{a + b}{6} \pm \frac{\sqrt{a^2 -ab + b^2}{6}} = \frac{39}{6} \pm \frac{\sqrt{15^2 - 15 \mal 24 + 24^2}}{6} = \begin{cases}10\\3\end{cases}
+\end{align*}
+$10$ ist keine mögliche Lösung, da dann eine negative Breite auftauchen würde.\\
+$f(0) = 0 = f(7,5)$ und für $x = 1$ $f(1) > 0$ \Ra in 3 Maximum
