@@ -149,6 +149,124 @@
 \end{tikzpicture}
 \Img{GI-30.04.2009-IMG-3.2}
 
+\section{07.05.2009}
+\subsection{GI(U)-07.05.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\foreach \n/\pos/\np in {{A,E}/0/AE,{B,E}/1/BE,{D,E}/2/DE,{C,E}/3/CE}
+{
+\node[state] (\np) at (\pos*2,0) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{A,F}/0/AF,{B,F}/1/BF,{D,F}/2/DF,{C,F}/3/CF}
+{
+\node[state] (\np) at(\pos*2,-2) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{A,D}/0/AD,{C,D}/1/CD,{A,B}/2/AB}
+{
+\node[state] (\np) at(\pos*2,-4) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{B,D}/0/BD,{A,C}/1/AC}
+{
+\node[state] (\np) at(\pos*2,-6) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\node[state] (BC) at(8,-4) {B,C};
+\node[state] (EF) at(8,-6) {E,F};
+
+\tikzedge{AC}{BF}{0}{bend left}{left, near start};
+\tikzedge{AD}{CD}{1}{}{above};
+\tikzedge{AD}{BD}{1}{}{right};
+\tikzedge{AB}{CD}{1}{}{below};
+\tikzedge{CD}{DF}{1}{}{left};
+\tikzedge{AB}{BE}{0}{}{above, near end};
+\tikzedge{BD}{DE}{0}{bend left}{right, near end};
+\tikzedge{BC}{EF}{0}{}{right};
+\tikzloop{EF}{1,0}{below}{right};
+
+\node at (8,0) {
+\begin{tabular}{l}
+\large{B = C}\\
+\large{E = F}
+\end{tabular}};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-1}
+
+\subsection{GI(U)-07.05.2009-IMG-2}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (A) {A};
+\node[state] (BC) [right of=A] {BC};
+\node[state,accepting] (EF) [right of=BC] {EF};
+\node[state] (D) [below of=BC] {D};
+
+\tikzedge{A}{BC}{$1, 0$}{}{above};
+\tikzedge{BC}{EF}{$0$}{}{above};
+\tikzedge{BC}{D}{$1$}{}{right};
+\tikzloop{D}{$1, 0$}{below}{right};
+\tikzloop{EF}{$1, 0$}{above}{right};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-2}
+
+\subsection{GI(U)-07.05.2009-IMG-3}
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{1}&\RM{1}\\
+&A&\RM{2}&\RM{1}\\
+&B&\RM{2}&\RM{1}\\
+&C&\RM{2}&\RM{1}\\
+&D&\RM{1}&\RM{1}\\\hline
+\RM{2}&E&\RM{2}&\RM{2}\\
+&F&\RM{2}&\RM{2}
+\end{tabular}
+$\Rightarrow$
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{2}&\RM{2}\\
+&D&\RM{1}&\RM{1}\\\hline
+\RM{2}&B&\RM{3}&\RM{1}\\
+&C&\RM{3}&\RM{1}\\\hline
+\RM{3}&E&\RM{3}&\RM{3}\\
+&F&\RM{3}&\RM{3}
+\end{tabular}
+$\Rightarrow$
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{3}&\RM{3}\\\hline
+\RM{2}&D&\RM{2}&\RM{2}\\\hline
+\RM{3}&B&\RM{4}&\RM{2}\\
+&C&\RM{4}&\RM{2}\\\hline
+\RM{4}&E&\RM{4}&\RM{4}\\
+&F&\RM{4}&\RM{4}\\
+\end{tabular}
+\end{table}
+\Img{GI(U)-07.05.2009-TAB-3}
+
+\subsection{GI(U)-07.05.2009-IMG-4}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (1) {\RM{1}};
+\node[state] (2) [right of=1] {\RM{2}};
+\node[state] (3) [right of=2] {\RM{3}};
+\node[state,accepting] (4) [right of=3] {\RM{4}};
+
+\tikzedge{1}{3}{$0, 1$}{bend left}{above};
+\tikzedge{3}{2}{$1$}{}{above};
+\tikzedge{3}{4}{$0$}{}{above};
+\tikzloop{2}{$0, 1$}{below}{right};
+\tikzloop{4}{$0, 1$}{above}{right};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-4}
+
 \chapter{Mathematik 2}
 \section{22.04.2009}
 \subsection{MA2-22.04.2009-IMG-2}
@@ -259,3 +377,25 @@
 \draw[<->] (5.8,{exp(2.5)/80 + 0.5}) -- (5.8,{exp(5.5)/80 + 0.5}) node[right, midway] {\scriptsize{$\Delta y$}};
 \end{tikzpicture}
 \Img{MA2-28.04.2009-IMG-1}
+
+\section{07.05.2009}
+\subsection{MA2-07.05.2009-IMG-1}
+\begin{tikzpicture}[decoration=brace]
+\tikzcoor{9}{6}
+\draw[thick] (1.5,-0.05) node[below] {$a$} -- (1.5,0.05);
+\draw[thick] (7,-0.05) node[below] {$b$} -- (7,0.05);
+\draw[thick] (5.5,-0.05) node[below] {$\xi$} -- (5.5,0.05);
+\draw[thick] (-0.05,1) node[left] {$f(a)$} -- (0.05,1);
+\draw[thick] (-0.05,4.5) node[left] {$f(b)$} -- (0.05,4.5);
+
+\draw[dashed] (1.5,0) -- (1.5,1);
+\draw[dashed] (7,0) -- (7,4.5);
+\draw[dashed] (0,1) -- (7,1);
+\draw[dashed] (0,4.5) -- (7,4.5);
+\draw[blue] (1.5,1) -- (7,4.5);
+
+\draw[out=0, in=190] (1.5,1) to (4.75,1.3) [out=10, in=240] to (7,4.5) node[above] {$f(b)$};
+
+\draw[decorate] (7.2,4.5) -- (7.2,1) node[right, midway] {$f(b) - f(a)$};
+\end{tikzpicture}
+\Img{MA2-07.05.2009-IMG-1}

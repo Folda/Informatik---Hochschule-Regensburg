@@ -6,9 +6,9 @@ Ein \ac{DEA} ist ein Quintupel $M = (Q, \Sigma, \delta, q_0, F)$ aus
 \begin{itemize}
 \item einer endlichen \indexb[Endliche Automaten!$Q$ Menge von Zust‰nden]{Menge von Zust‰nden} $Q$
 \item einem \indexb[Endliche Automaten!$\Sigma$ Eingabealphabet]{Eingabealphabet} $\Sigma$
-\item einer \indexb[Endliche Automaten!$\delta$ Transitionsfunktion]{Transitionsfunktion} $\delta$: $Q \times \Sigma \ra Q$
+\item einer \indexb[Endliche Automaten!$\delta$ Transitionsfunktion]{Transitionsfunktion} $\delta$: $Q \times \Sigma \ra Q$\label{def:Endliche_Automaten_Transitionsfunktion}
 \item einen \indexb[Endliche Automaten!$q_0$ Startzustand]{Startzustand} $q_0 \in Q$
-\item eine \indexb[Endliche Automaten!$F$ Menge von akzeptierenden Zust‰nden]{Menge von akzeptierenden Zust‰nden} $F \subseteq Q$\\
+\item eine \indexb[Endliche Automaten!$F$ Menge von akzeptierenden Zust‰nden]{Menge von akzeptierenden Zust‰nden} $F \subseteq Q$\label{def:Endliche_Automaten_MengevonakzeptierendenZustaenden}\\
 		\begin{anmerkung}
 		$F$ kann leeres Element sein also kann der Automat auch keine Zust‰nde annehmen!
 		\end{anmerkung}
@@ -460,7 +460,7 @@ Effektive Berechnung: ohne Beweis.
 		\item $(m = 0)$ es gibt keinen solchen Index $i_m$ mit $a_{ij} \neq \epsilon$, dann ist $w = \epsilon$ und $p_n \in \epsilon_c (q_0)$ sowie $p_n \in F_{\epsilon}$. $F$ wurde f¸r diesen Fall aber so konstruiert, dass $q_0 \in F$.\\
 				\Ra $\epsilon \in L(M)$
 		
-		\item $(m > 0)$ Gem‰ﬂ \ac{Def.} von $\delta$ \Todo{ref zur definition} ist
+		\item $(m > 0)$ Gem‰ﬂ \ac{Def.} von $\delta$ auf Seite \pageref{def:Endliche_Automaten_Transitionsfunktion}\Solved{ref zur definition} ist
 				\[\tx{\ac{NEA}: } (q_0, a_{i1} \dots a_{im}) \vd (p_{i1}, a_{i2} a_{i3} \dots a_{im}) \vd \dots \vd (p_{i_{m - 1}} a_{i_m}) \vd (p_n, \epsilon)\]
 				Machen wir uns das am \ac{Bsp.} des ersten Schritts nochmals klar:
 				\[(q_0, a_{i_1} \dots a_{i_m}) \vd (p_{i_1}, a_{i_2} \dots a_{i_m})\]
@@ -487,12 +487,12 @@ Effektive Berechnung: ohne Beweis.
 
 \item $L(M) \subseteq L(M_\epsilon)$: Sei $w = a_1 \dots a_n \in L(M)$ und
 		\[q_0, a_1 \dots a_n) \vd_{\mu} (p_1, a_2 \dots a_n) \vd_{\mu} \dots \vd_{\mu} (p_n, \epsilon)\]
-		mit $p_n \in F$ eine \ac{akzept.} Berechnung des \ac{NEA} $M$. Gem‰ﬂ \ac{Def.} von $\delta$ \Todo{ref auf definition} gilt nun aber auch, dass
+		mit $p_n \in F$ eine \ac{akzept.} Berechnung des \ac{NEA} $M$. Gem‰ﬂ \ac{Def.} von $\delta$ auf Seite \pageref{def:Endliche_Automaten_Transitionsfunktion} \Solved{ref auf definition} gilt nun aber auch, dass
 		\[(q_0, a_1 \dots a_n) \vd_{M_\epsilon}^* (p_1, a_2 \dots a_n) \vd_{M_\epsilon}^* \dots \vd_{M_\epsilon}^* (p_n, \epsilon)\]
 		eine \ac{akzept.} Berechnung des $\epsilon$-\ac{NEA} ist. Zwei F‰lle sind zu unterscheiden:
 		\begin{enumerate}[label=\roman*)]
 		\item $p_n \in F_{\epsilon}$ folgt sofort $w \in L(M_{\epsilon})$
-		\item $p_n \in F - F_{\epsilon}$; \ac{d.h.} $p_n = q_0$: Gem‰ﬂ \ac{Def.} von $F$ \Todo{ref zur definition} folgt nun f¸r ein $\hat{p} \in F_{\epsilon}$: $\hat{p} \in \epsilon_c (q_0)$ und somit \ac{ex.} eine Berechnung
+		\item $p_n \in F - F_{\epsilon}$; \ac{d.h.} $p_n = q_0$: Gem‰ﬂ \ac{Def.} von $F$ auf Seite \pageref{def:Endliche_Automaten_MengevonakzeptierendenZustaenden} \Solved{ref zur definition} folgt nun f¸r ein $\hat{p} \in F_{\epsilon}$: $\hat{p} \in \epsilon_c (q_0)$ und somit \ac{ex.} eine Berechnung
 				\[(q_0, a_1 \dots a_n) \vd_{\mu}^* (p_1, a_2 \dots a_n) \vd_{\mu}^* \dots \vd_{\mu}^* (\hat{p}, \epsilon)\]
 		\end{enumerate}
 \end{enumerate} \qed
