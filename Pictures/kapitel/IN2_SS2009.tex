@@ -149,6 +149,137 @@
 \end{tikzpicture}
 \Img{GI-30.04.2009-IMG-3.2}
 
+\section{05.05.2009}
+\subsection{GI-05.05.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (A) {A};
+\node[state, accepting] (B) [right of=A] {B};
+\node[state] (C) [below of=A] {C};
+
+\tikzloop{A}{$1$}{above}{right};
+\tikzloop{B}{$0$}{above}{right};
+\tikzedge{A}{B}{1}{}{above};
+\tikzedge{A}{C}{0}{}{right};
+\tikzedge{B}{C}{1}{}{right};
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-1}
+
+\subsection{GI-05.05.2009-IMG-2}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] at (56bp,262bp) (A) {\{A\}};
+\node[state,accepting] at (270bp,156bp) (B) {\{B\}};
+\node[state] at (188bp,238bp) (C) {\{C\}};
+\node[state] at (259bp,332bp) (0) {$\emptyset$};
+\node[state,accepting] at (50bp,130bp) (AB) {\{AB\}};
+\node[state,color=red] at (106bp,199bp) (AC) {\{AC\}};
+\node[state,accepting] at (177bp,110bp) (BC) {\{BC\}};
+\node[state] at (99bp,32bp) (ABC) {\{ABC\}};
+
+
+\tikzedge{A}{C}{0}{}{}
+\tikzedge{A}{AB}{1}{}{}
+\tikzedge{AB}{ABC}{1}{}{}
+\tikzedge{AB}{BC}{0}{}{}
+\tikzedge{ABC}{BC}{0}{}{}
+\tikzloop{ABC}{1}{above}{}
+\tikzedge{BC}{B}{0}{}{}
+\tikzedge{BC}{C}{1}{}{}
+\tikzloop{B}{0}{above}{}
+\tikzedge{B}{C}{1}{}{}
+\tikzedge{C}{0}{0,1}{}{}
+\tikzloop{0}{0,1}{above}{}
+\path[->,color=red] (AC) edge node {0} (C);
+\path[->,color=red] (AC) edge node {1} (AB);
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-2}
+
+\subsection{GI-05.05.2009-IMG-3}
+\begin{tikzpicture}
+\draw (0,0) -- (2,-5) -- (-2,-5) -- (0,0);
+\draw (5,0) -- (7,-5) -- (3,-5) -- (5,0);
+
+\draw[*-*] (0,0) node[above right] {$\{q_0\}$} -- (0,-5) node[right, near end] {$w$} node[below] {$\hat{\delta} (\{a_0\}, w)$};
+
+\draw[*-*] (5,0) node[above right] {$q_0$} -- (5,-5) node[right, near end] {$w$} node[below] {$\hat{\delta}_N (q_0, w)$};
+\draw[-*] (5,0) -- (4,-5) node[left, near end] {$w$};
+\draw[-*] (5,0) -- (6,-5) node[right, near end] {$w$};
+
+\node at (-2,-2.5) {\Large{DEA}};
+\node at (7,-2.5) {\Large{NEA}};
+\node at (2.5,-2.5) {\Large{$=$}};
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-3}
+
+\subsection{GI(T)-05.05.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] at (187bp,305bp) (BD) {BD};
+\node[state] at (158bp,136bp) (BE) {BE};
+\node[state,accepting] at (52bp,117bp) (BF) {BF};
+\node[state,accepting] at (106bp,361bp) (AE) {AE};
+\node[state,accepting,initial,initial text=] at (80bp,244bp) (AD) {AD};
+\node[state,accepting] at (203bp,418bp) (AF) {AF};
+\node[state,accepting] at (143bp,28bp) (CF) {CF};
+\node[state] at (233bp,199bp) (CE) {CE};
+\node[state] at (246bp,86bp) (CD) {CD};
+
+\tikzedge{AD}{BD}{1}{}{};
+\tikzedge{AD}{AE}{0}{}{};
+
+\tikzedge{BD}{AD}{1}{bend left}{};
+\tikzedge{BD}{CE}{0}{}{};
+
+\tikzedge{AE}{BD}{1}{}{};
+\tikzedge{AE}{AF}{0}{}{};
+
+\tikzedge{AF}{BD}{1}{}{};
+\tikzloop{AF}{0}{above}{};
+
+\tikzedge{CE}{CD}{1}{}{};
+\tikzedge{CE}{BF}{0}{above}{};
+
+\tikzedge{BF}{AD}{1}{}{};
+\tikzedge{BF}{CF}{0}{bend left}{};
+
+\tikzedge{CF}{CD}{1}{}{};
+\tikzedge{CF}{BF}{0}{}{};
+
+\tikzedge{BE}{AD}{1}{}{};
+\tikzedge{BE}{CF}{0}{}{};
+
+\tikzloop{CD}{1}{below}{};
+\tikzedge{CD}{BE}{0}{}{};
+\end{tikzpicture}
+\Img{GI(T)-05.05.2009-IMG-1}
+\section{06.05.2009}
+\subsection{GI-06.05.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+  \node[state,initial,initial text=] at (73bp,175bp) (A) {A};
+  \node[state] at (152bp,203bp) (C) {C};
+  \node[state] at (84bp,95bp) (B) {B};
+  \node[state,accepting] at (57bp,23bp) (E) {E};
+  \node[state] at (159bp,121bp) (D) {D};
+  \node[state] at (154bp,283bp) (G) {G};
+  \node[state,accepting] at (232bp,212bp) (F) {F};
+  \node[state,accepting] at (231bp,116bp) (H) {H};
+    
+  \tikzedge{A}{B}{0}{}{};
+  \tikzedge{A}{C}{1}{}{};
+  
+  \tikzedge{B}{E}{0}{}{};
+  \tikzedge{B}{D}{1}{}{};
+  
+  \tikzedge{C}{F}{0}{}{};
+  \tikzedge{C}{D}{1}{}{};
+  
+  \tikzedge{G}{C}{0,1}{}{};
+  
+  \tikzloop{D}{0,1}{below}{};
+  \tikzloop{E}{0,1}{below}{};
+  \tikzloop{F}{0,1}{above}{};
+  \tikzloop{H}{0,1}{above}{};
+\end{tikzpicture}
+\Img{GI-06.05.2009-IMG-1}
+
 \section{07.05.2009}
 \subsection{GI(U)-07.05.2009-IMG-1}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
@@ -278,7 +409,7 @@ $\Rightarrow$
 \draw[color=blue] (0.5,{1/0.5}) -- (0.5, {1/0.5 - 1}) node[left, midway, color=black] {$\epsilon$};
 \draw[color=red] (0.5,{1/0.5 - 1}) -- (1, {1/0.5 - 1}) node[below, midway, color=black] {$\delta$};
 \draw plot[smooth] (\x,{1/\x}) node[right] {$\frac{1}{x}$};
-\node[text width=5cm] at (4,1.5) {stetig aber nicht gleichm‰ﬂig stetig auf $(0,2)$};
+\node[text width=5cm] at (4,1.5) {stetig aber nicht gleichmig stetig auf $(0,2)$};
 \end{tikzpicture}
 \Img{MA2-22.04.2009-IMG-2}
 
