@@ -38,7 +38,7 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
+CaretPos.X=56
 CaretPos.Y=0
 CharSet=def
 FileName=00packages.tex
@@ -74,7 +74,7 @@ FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=1
+ScrollPos.Y=0
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -122,15 +122,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=26
+CaretPos.Y=36
 CharSet=def
 FileName=Informatik - SS2009 - GI.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=1
+ScrollPos.Y=16
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -150,16 +150,16 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=33
+CaretPos.Y=927
 CharSet=def
 FileName=kapitel\Endliche_Automaten.tex
 FoldedLines=
 IsMainFile=no
-Opened=yes
+Opened=no
 ScrollPos.X=0
-ScrollPos.Y=1
-SearchListCount=2
+ScrollPos.Y=940
+SearchListCount=3
 
 [Files\5\SearchList\0]
 CaseSensitive=no
@@ -175,10 +175,17 @@ RegExp=no
 Show=1
 Text=\insert
 
+[Files\5\SearchList\2]
+CaseSensitive=no
+Color=16776960
+RegExp=no
+Show=1
+Text=\img
+
 [Files\5]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=4
+TabOrder=-1
 UseThesaurus=yes
 WrapLine=yes
 
@@ -278,6 +285,32 @@ WrapLine=yes
 [Files]
 Count=9
 
+[ProjectDictionary]
+abu
+ae
+bd
+bu
+ce
+df
+ef
+gdw
+gi
+htb
+ij
+img
+multicols
+neas
+nodeone
+nodetwo
+q'
+semithick
+stealth'
+tikzpicture
+ua
+uq
+uv
+wa
+
 [Project]
 ActiveFilters=
 
@@ -331,7 +364,7 @@ Zoom=9
 
 [Project\DVI]
 FileName=1
-FirstPage=1
+FirstPage=0
 Magnifier=5
 Page=0
 PaperHeight=297

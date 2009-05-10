@@ -100,6 +100,7 @@ ist \ac{akzept.} Berechnung von $M^*$ (zu GI(V)-15.04.2009-DIA-1) auf $1001$
 \end{beispiel}
 
 \begin{fdefinition}
+\label{def:Endliche_Automaten_DeltaHat}
 Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Wir definieren: $\vd_M^*$: $(Q \times \Sigma^*) \times (Q \times \Sigma^*)$ als reflexiven und transitiven Abschluss von $\vd$:
 \begin{itemize}
 \item $(q, w) \vd^* (q, w)$ $\forall q \in Q, w \in \Sigma^*$
@@ -669,7 +670,23 @@ $\delta_N (A, 1) = \rklamm{A, B}$\\
 $\delta_N (B, 1) = \rklamm{C}$\\
 $\delta_N (C, 1) = \emptyset$
 \end{multicols}
-\Insert{GI-05.05.2009-IMG-1}
+
+\begin{center}
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (A) {A};
+\node[state, accepting] (B) [right of=A] {B};
+\node[state] (C) [below of=A] {C};
+
+\tikzloop{A}{$1$}{above}{};
+\tikzloop{B}{$0$}{above}{};
+\tikzedge{A}{B}{1}{}{};
+\tikzedge{A}{C}{0}{}{};
+\tikzedge{B}{C}{1}{}{};
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-1}
+\end{center}
+
 Einen \ac{DEA} $M_D = \rklamm{\mathcal{P} \rklamm{\gklamm{A, B, C}}, \SigB, \delta_D \gklamm{A}, F_D}$ zu $M_N$ erhalten wir durch \ac{Anw.} der \ac{PMK} wie folgt:
 \begin{itemize}
 \item $Q_D = \gklamm{\emptyset, \gklamm{A}, \underline{\gklamm{B}}, \gklamm{C}, \gklamm{A, \underline{B}}, \gklamm{A, C}, \gklamm{\underline{B}, C}, \gklamm{A, \underline{B}, C}}$
@@ -682,7 +699,36 @@ Einen \ac{DEA} $M_D = \rklamm{\mathcal{P} \rklamm{\gklamm{A, B, C}}, \SigB, \del
 		$\delta_D \rklamm{\gklamm{A, B}, 1} = \gklamm{A, B, C}$\\
 		$\vdots$
 \end{itemize}
-\Insert{GI-05.05.2009-IMG-2}
+\begin{center}
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] at (56bp,262bp) (A) {\{A\}};
+\node[state,accepting] at (270bp,156bp) (B) {\{B\}};
+\node[state] at (188bp,238bp) (C) {\{C\}};
+\node[state] at (259bp,332bp) (0) {$\emptyset$};
+\node[state,accepting] at (50bp,130bp) (AB) {\{AB\}};
+\node[state,color=red] at (106bp,199bp) (AC) {\{AC\}};
+\node[state,accepting] at (177bp,110bp) (BC) {\{BC\}};
+\node[state] at (99bp,32bp) (ABC) {\{ABC\}};
+
+
+\tikzedge{A}{C}{0}{}{}
+\tikzedge{A}{AB}{1}{}{}
+\tikzedge{AB}{ABC}{1}{}{}
+\tikzedge{AB}{BC}{0}{}{}
+\tikzedge{ABC}{BC}{0}{}{}
+\tikzloop{ABC}{1}{above}{}
+\tikzedge{BC}{B}{0}{}{}
+\tikzedge{BC}{C}{1}{}{}
+\tikzloop{B}{0}{above}{}
+\tikzedge{B}{C}{1}{}{}
+\tikzedge{C}{0}{0,1}{}{}
+\tikzloop{0}{0,1}{above}{}
+\path[->,color=red] (AC) edge node {0} (C);
+\path[->,color=red] (AC) edge node {1} (AB);
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-2}
+\end{center}
 \Mark{Beispiel 3.4}
 \end{beispiel}
 
@@ -705,7 +751,7 @@ denn dann folgt:
 \end{align*}
 Wir beweisen \textcircled{$\star$} durch \ac{vollst.} Induktion über die Wortlänge von $w$.
 Induktionsanfang: $w = \epsilon$ \ac{bzw.} $\betrag{w} = 0$.\\
-Laut \ac{Def.} von $\hat{\delta}_D$ \Todo{Ref to Definition} \ac{bzw.} $\hat{\delta}_N$ gilt:
+Laut \ac{Def.} von $\hat{\delta}_D$ auf Seite \pageref{def:Endliche_Automaten_DeltaHat} \ac{bzw.} $\hat{\delta}_N$ gilt:
 \[\hat{\delta}_N \rklamm{q_0, \epsilon} = \gklamm{q_0} = \hat{\delta}_D \rklamm{q_0, \epsilon}\]
 Induktionsschritt: Es gelte $\betrag{w} = n + 1$ \ac{bzw.} $w = \underline{u}a$. Laut Induktionsvoraussetzung gilt
 \[\hat{\delta}_N \rklamm{q_0, u} = \hat{\delta}_D \rklamm{\gklamm{q_0}, u} = \gklamm{q_1, q_2, \dots, q_R}\]
@@ -730,10 +776,71 @@ Neu:
 
 \section{Minimierung von Automaten}
 \Mark{Section 3.4}
-\Insert{GI-06.05.2009-IMG-1}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+  \node[state,initial,initial text=] at (73bp,175bp) (A) {A};
+  \node[state] at (152bp,203bp) (C) {C};
+  \node[state] at (84bp,95bp) (B) {B};
+  \node[state,accepting] at (57bp,23bp) (E) {E};
+  \node[state] at (159bp,121bp) (D) {D};
+  \node[state] at (154bp,283bp) (G) {G};
+  \node[state,accepting] at (232bp,212bp) (F) {F};
+  \node[state,accepting] at (231bp,116bp) (H) {H};
+    
+  \tikzedge{A}{B}{0}{}{};
+  \tikzedge{A}{C}{1}{}{};
+  
+  \tikzedge{B}{E}{0}{}{};
+  \tikzedge{B}{D}{1}{}{};
+  
+  \tikzedge{C}{F}{0}{}{};
+  \tikzedge{C}{D}{1}{}{};
+  
+  \tikzedge{G}{C}{0,1}{}{};
+  
+  \tikzloop{D}{0,1}{below}{};
+  \tikzloop{E}{0,1}{below}{};
+  \tikzloop{F}{0,1}{above}{};
+  \tikzloop{H}{0,1}{above}{};
+\end{tikzpicture}
+\Img{GI-06.05.2009-IMG-1}
+\end{center}
 Minimieren von Automaten bedeutet
 \begin{itemize}
-\item entfernen unerreichbarer Zustände \Todo{G und H mit rot durchstreichen in IMG-1}
+\item entfernen unerreichbarer Zustände \Solved{G und H mit rot durchstreichen in IMG-1}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+  \node[state,initial,initial text=] at (73bp,175bp) (A) {A};
+  \node[state] at (152bp,203bp) (C) {C};
+  \node[state] at (84bp,95bp) (B) {B};
+  \node[state,accepting] at (57bp,23bp) (E) {E};
+  \node[state] at (159bp,121bp) (D) {D};
+  \node[state] at (154bp,283bp) (G) {G};
+  \node[state,accepting] at (232bp,212bp) (F) {F};
+  \node[state,accepting] at (231bp,116bp) (H) {H};
+  
+  \draw[color=red,-] (G.north east) -- (G.south west);
+  \draw[color=red,-] (G.north west) -- (G.south east);
+
+  \draw[color=red,-] (H.north east) -- (H.south west);
+  \draw[color=red,-] (H.north west) -- (H.south east);
+  \tikzedge{A}{B}{0}{}{};
+  \tikzedge{A}{C}{1}{}{};
+  
+  \tikzedge{B}{E}{0}{}{};
+  \tikzedge{B}{D}{1}{}{};
+  
+  \tikzedge{C}{F}{0}{}{};
+  \tikzedge{C}{D}{1}{}{};
+  
+  \tikzedge{G}{C}{0,1}{}{};
+  
+  \tikzloop{D}{0,1}{below}{};
+  \tikzloop{E}{0,1}{below}{};
+  \tikzloop{F}{0,1}{above}{};
+  \tikzloop{H}{0,1}{above}{};
+\end{tikzpicture}
+\end{center}
 \item Zusammenfassen äquivalenter Zustände
 \end{itemize}
 \begin{fdefinition}
@@ -787,8 +894,72 @@ Offenbar gilt $p_i \equiv q_i$ ($1 \klgl i \klgl n$)
 \item $p \equiv q \Ra \forall a \in \Sigma:~\delta (p, a) \equiv \delta (q, a)$
 \item $p \equiv q \Ra p \in F \Lra q \in F$
 \end{enumerate}
-\Insert{GI(U)-07.05.2009-IMG-1}
-\Insert{GI(U)-07.05.2009-IMG-2}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\foreach \n/\pos/\np in {{A,E}/0/AE,{B,E}/1/BE,{D,E}/2/DE,{C,E}/3/CE}
+{
+\node[state] (\np) at (\pos*2,0) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{A,F}/0/AF,{B,F}/1/BF,{D,F}/2/DF,{C,F}/3/CF}
+{
+\node[state] (\np) at(\pos*2,-2) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{A,D}/0/AD,{C,D}/1/CD,{A,B}/2/AB}
+{
+\node[state] (\np) at(\pos*2,-4) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{B,D}/0/BD,{A,C}/1/AC}
+{
+\node[state] (\np) at(\pos*2,-6) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\node[state] (BC) at(8,-4) {B,C};
+\node[state] (EF) at(8,-6) {E,F};
+
+\tikzedge{AC}{BF}{0}{bend left}{left, near start};
+\tikzedge{AD}{CD}{1}{}{above};
+\tikzedge{AD}{BD}{1}{}{right};
+\tikzedge{AB}{CD}{1}{}{below};
+\tikzedge{CD}{DF}{1}{}{left};
+\tikzedge{AB}{BE}{0}{}{above, near end};
+\tikzedge{BD}{DE}{0}{bend left}{right, near end};
+\tikzedge{BC}{EF}{0}{}{right};
+\tikzloop{EF}{1,0}{below}{right};
+
+\node at (8,0) {
+\begin{tabular}{l}
+\large{B = C}\\
+\large{E = F}
+\end{tabular}};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-1}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (A) {A};
+\node[state] (BC) [right of=A] {BC};
+\node[state,accepting] (EF) [right of=BC] {EF};
+\node[state] (D) [below of=BC] {D};
+
+\tikzedge{A}{BC}{$1, 0$}{}{above};
+\tikzedge{BC}{EF}{$0$}{}{above};
+\tikzedge{BC}{D}{$1$}{}{right};
+\tikzloop{D}{$1, 0$}{below}{right};
+\tikzloop{EF}{$1, 0$}{above}{right};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-2}
+\end{center}
 \begin{center}
 \begin{tabular}{c|c|c|c|c|c}
   & F						& E & D 						& C & B\\\hline
@@ -799,6 +970,50 @@ D & \tc{x}						& \tc{x} &   						&   &  \\\hline
 E & \tiny{B,C}	&   &   		&   &  \\\hline
 \end{tabular}
 \end{center}
-\Insert{GI(U)-07.05.2009-TAB-3}
-\Insert{GI(U)-07.05.2009-IMG-4}
+\begin{center}
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{1}&\RM{1}\\
+&A&\RM{2}&\RM{1}\\
+&B&\RM{2}&\RM{1}\\
+&C&\RM{2}&\RM{1}\\
+&D&\RM{1}&\RM{1}\\\hline
+\RM{2}&E&\RM{2}&\RM{2}\\
+&F&\RM{2}&\RM{2}
+\end{tabular}
+$\Rightarrow$
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{2}&\RM{2}\\
+&D&\RM{1}&\RM{1}\\\hline
+\RM{2}&B&\RM{3}&\RM{1}\\
+&C&\RM{3}&\RM{1}\\\hline
+\RM{3}&E&\RM{3}&\RM{3}\\
+&F&\RM{3}&\RM{3}
+\end{tabular}
+$\Rightarrow$
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{3}&\RM{3}\\\hline
+\RM{2}&D&\RM{2}&\RM{2}\\\hline
+\RM{3}&B&\RM{4}&\RM{2}\\
+&C&\RM{4}&\RM{2}\\\hline
+\RM{4}&E&\RM{4}&\RM{4}\\
+&F&\RM{4}&\RM{4}\\
+\end{tabular}
+\end{center}
+\Img{GI(U)-07.05.2009-TAB-3}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (1) {\RM{1}};
+\node[state] (2) [right of=1] {\RM{2}};
+\node[state] (3) [right of=2] {\RM{3}};
+\node[state,accepting] (4) [right of=3] {\RM{4}};
+
+\tikzedge{1}{3}{$0, 1$}{bend left}{above};
+\tikzedge{3}{2}{$1$}{}{above};
+\tikzedge{3}{4}{$0$}{}{above};
+\tikzloop{2}{$0, 1$}{below}{right};
+\tikzloop{4}{$0, 1$}{above}{right};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-4}
 \end{beobachtung}

@@ -156,11 +156,11 @@
 \node[state, accepting] (B) [right of=A] {B};
 \node[state] (C) [below of=A] {C};
 
-\tikzloop{A}{$1$}{above}{right};
-\tikzloop{B}{$0$}{above}{right};
-\tikzedge{A}{B}{1}{}{above};
-\tikzedge{A}{C}{0}{}{right};
-\tikzedge{B}{C}{1}{}{right};
+\tikzloop{A}{$1$}{above}{};
+\tikzloop{B}{$0$}{above}{};
+\tikzedge{A}{B}{1}{}{};
+\tikzedge{A}{C}{0}{}{};
+\tikzedge{B}{C}{1}{}{};
 \end{tikzpicture}
 \Img{GI-05.05.2009-IMG-1}
 
