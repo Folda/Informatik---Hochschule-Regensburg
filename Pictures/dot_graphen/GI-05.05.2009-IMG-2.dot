@@ -1,6 +1,15 @@
 digraph GI05052009IMG2 {
-graph [overlap=false,start=2];
-edge [len=2];
+graph [overlap=false,start=1];
+edge [len=1.5];
+A [shape=circle];
+B [shape=doublecircle];
+C [shape=circle];
+0 [shape=circle];
+AB [shape=doublecircle];
+AC [shape=circle];
+BC [shape=doublecircle];
+ABC [shape=circle];
+
 
 A -> C [label=0];
 A -> AB [label=1];
