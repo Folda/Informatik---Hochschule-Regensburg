@@ -243,7 +243,9 @@ und
 \item $L_1 = \emptyset$
 \item $L_2 = \gklamm{\epsilon}$
 \item $L_3 = \gklamm{\epsilon, aa, bb, ab, ba}$
-\item $L_4 = \gklamm{a, b}^* = \gklamm{\epsilon, a, b, aa, ab, ba, bb, \dots}$
+\item $L_4 = \gklamm{a, b}^* = \{\epsilon, a, b, aa,$\\
+	  $ab, ba, bb, \dots\}$
+
 \item $L_5 = \gklamm{a}^* = \gklamm{\epsilon, a, aa, aaa, \dots} = \gklamm{a^0, a^1, a^2, \dots}$
 \item $L_6 = \gklamm{a^p \vert p = \text{ Primzahl}}$
 \item $L_7 = \gklamm{a^i b^{2i} a^i \vert i \in \mb{N}}$
@@ -368,7 +370,8 @@ kann aber durch $(01)^7$ kompakter dargestellt werden. Es reichen offenbar fünf 
 
 Das Auffinden einer kürzeren Darstellung für ein Wort nennt man \indexb{Komprimierung}.
 \begin{description}
-\item[Ziel:] Um den Informationsgehalt zweier Wörter zu vergleichen, könnten wir zunächst ein Standard-Komprimierungs Verfahren suchen.\\
+\item[Ziel:] Um den Informationsgehalt zweier Wörter zu vergleichen, könnten
+wir zunächst ein Standard Komprimierungs Verfahren suchen.\\
 \item[Problem:] Wie findet man ein Verfahren, welches immer die kleinstmögliche Darstellung garantiert?
 \end{description}
 

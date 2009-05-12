@@ -1027,7 +1027,21 @@ Reguläre Sprachen sind \ac{abgeschl.} unter Komplementbildung:
 Konstruktion: Gegeben $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ mit $L(M) = L$. Erhalten $M^{\mc{C}} = \rklamm{Q, \Sigma, \delta, q_0, Q \backslash F}$ mit $L(M^{\mc{C}}) = L^{\mc{C}}$.
 \end{beispiel}
 \begin{fbeweis}
-\Insert{GI-12.05.2009-IMG-1}
+\mbox{}\par
+\begin{center}
+\begin{tikzpicture}
+\draw[color=blue] (0,1.5) -- (0,-1.5);
+\draw[color=blue] (0,0) -- (-180:1.5);
+\draw[color=blue] (0,0) -- (0:1.5);
+\draw (0,0) circle (1.5);
+\draw (1,0.5) -- (1.5,1) node[right] {$\Sigma^*$};
+\node[shape=circle,color=blue,draw] at (130:1) {$q_0$};
+\node[shape=circle,color=green,draw] at (50:1) {$q_1$};
+\node[shape=circle,color=blue,draw] at (-50:1) {$q_2$};
+\node[shape=circle,color=green,draw] at (-130:1) {$q_3$};
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-1}
+\end{center}
 \end{fbeweis}
 \begin{fsatz}
 Seien $M_1 = \rklamm{Q_1, \Sigma, \delta_1, q_{0_1}, F_1}$ und $M_2 = \rklamm{Q_2, \Sigma, \delta_2, q_{0_2}, F_2}$ \ac{bel.} \ac{DEA}s. Für jede Operation $\odot \in \gklamm{\cup,\cap,-}$ \ac{ex.} ein \ac{DEA} $M$ mit
@@ -1064,7 +1078,8 @@ Problem: \ac{DEA} mit unendlich vielen Zuständen\\
 Angenommen es gibt \ac{DEA} $M$ mit 24 Zuständen, der $L$ erkennt.\\
 Betrachte $w = 0^{24} 1^{24}$\\
 Da $M$ nur 24 Zustände hat, muss er bei der Verarbeitung der Nullen eine Schleife durchlaufen haben.\\
-Angenommen Schleife sein ach Lesen von 17 Nullen erreicht, dann hat \ac{akzept.} \ac{Ber.} für $w$ die Gestalt
+Angenommen Schleife sei nach Lesen von 17 Nullen erreicht, dann hat
+\ac{akzept.} \ac{Ber.} für $w$ die Gestalt
 \Insert{GI-12.05.2009-IMG-3}
 Automat kann Schleife überspringen oder mehrfach durchlaufen.\\
 \Ra Falls Automat korrekt muss gelten:
