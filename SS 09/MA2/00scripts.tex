@@ -187,6 +187,8 @@
 \newcommand{\ggq}[1]{"`#1"'}
 \newcommand{\ural}[1]{\ensuremath{\displaystyle \matholongrightarrow_{#1}}}
 \newcommand{\textc}[1]{\textcircled{#1}}
+\newcommand{\fnewline}{\mbox{}\par}
+\newcommandtwoopt{\mathoeq}[2][][]{\ensuremath{\displaystyle \mathoeqivalent_{#1}^{#2}}
 
 %Todo, Insert, Mark, Img
 \newcommand{\Todo}[1]{\todo[inline]{TODO: #1}}
@@ -201,13 +203,16 @@ TODO: #2\\SOLVED: #1\fi}}
 \DeclareMathOperator{\spano}{span}
 \DeclareMathOperator{\lb}{lb}
 \DeclareMathOperator*{\matholongrightarrow}{\longrightarrow}
+\DeclareMathOperator{\mathoeqivalent}{=}
 
-\newcommand{\sinx}[1]{\ensuremath{\sin{\left(\if\blank{#1}x\else#1\fi\right)}}}
-\newcommand{\cosx}[1]{\ensuremath{\cos{\left(\if\blank{#1}x\else#1\fi\right)}}}
-\newcommand{\tanx}[1]{\ensuremath{\tan{\left(\if\blank{#1}x\else#1\fi\right)}}}
-\newcommand{\dimx}[1]{\ensuremath{\dim{\left(\if\blank{#1}x\else#1\fi\right)}}}
-\newcommand{\spanx}[1]{\ensuremath{\spano{\left(\if\blank{#1}x\else#1\fi\right)}}}
-\newcommand{\arccosx}[1]{\ensuremath{\arccos{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\sinx}[1][]{\ensuremath{\sin{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\cosx}[1][]{\ensuremath{\cos{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\tanx}[1][]{\ensuremath{\tan{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\dimx}[1][]{\ensuremath{\dim{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\spanx}[1][]{\ensuremath{\spano{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\arccosx}[1][]{\ensuremath{\arccos{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\expx}[1][]{\ensuremath{\exp{\left(\if\blank{#1}x\else#1\fi\right)}}}
+\newcommand{\lnx}[1][]{\ensuremath{\ln{\left(\if\blank{#1}x\else#1\fi\right)}}}
 
 %Schriften
 \newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}

@@ -1017,3 +1017,82 @@ $\Rightarrow$
 \end{tikzpicture}
 \Img{GI(U)-07.05.2009-IMG-4}
 \end{beobachtung}
+
+\section{Abschlusseigenschaften von regulären Sprachen}
+\Mark{Section 3.5}
+Sprache reguläre \Lra von \ac{DEA} erkennbar. Eine Operation auf regulären Sprachen heißt abgeschlossen, wenn das Ergebnis der Operation wieder eine reguläre Sprache ist.
+\begin{beispiel}
+Reguläre Sprachen sind \ac{abgeschl.} unter Komplementbildung:
+\[L \tx{ regulär} \Lra L^{\mc{C}} \tx{ regulär}\]
+Konstruktion: Gegeben $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ mit $L(M) = L$. Erhalten $M^{\mc{C}} = \rklamm{Q, \Sigma, \delta, q_0, Q \backslash F}$ mit $L(M^{\mc{C}}) = L^{\mc{C}}$.
+\end{beispiel}
+\begin{fbeweis}
+\Insert{GI-12.05.2009-IMG-1}
+\end{fbeweis}
+\begin{fsatz}
+Seien $M_1 = \rklamm{Q_1, \Sigma, \delta_1, q_{0_1}, F_1}$ und $M_2 = \rklamm{Q_2, \Sigma, \delta_2, q_{0_2}, F_2}$ \ac{bel.} \ac{DEA}s. Für jede Operation $\odot \in \gklamm{\cup,\cap,-}$ \ac{ex.} ein \ac{DEA} $M$ mit
+\[L(M) = L(M_1) \odot L(M_2) (\tx{Abgeschlossenheit unter } \odot)\]
+Konstruktion von $M$: Sei $M = \rklamm{Q_1 \times Q_2, \Sigma, \delta, \rklamm{q_{0_1}, q_{0_2}}, F_{\odot}}$, wobei
+\begin{enumerate}
+\item $\forall q_1 \in Q_1, q_2 \in Q_2, a \in \Sigma$:
+		\[\delta \rklamm{\rklamm{q_1, q_2}, a} = \rklamm{\delta_1 \rklamm{q_1, a}, \delta_2 \rklamm{q_2, a}}\]
+
+\item Für $F_{\odot}$ gilt:
+		\begin{itemize}
+		\item $\odot = \cup$: $F_{\cup} = F_1 \times Q_2 \cup Q_1 \times F_2$
+		\item $\odot = \cap$: $F_{\cap} = F_1 \times F_2$
+		\item $\odot = -$: $F_{-} = F_1 \times \rklamm{Q_2 - F_2}$
+		\end{itemize}
+\end{enumerate}
+\Mark{Satz 3.4}
+\end{fsatz}
+
+\begin{fbeweis}
+Es reicht folgende Gleicheit zu zeigen:
+\[\hat{\delta} \rklamm{\rklamm{q_{0_1}, q_{0_2}}, w} = \rklamm{\hat{\delta}_1 \rklamm{q_{0_1}, w}, \hat{\delta}_2 \rklamm{q_{0_2}, w}}\]
+rest selbst!
+\begin{bekannt}
+\ac{RS} abgeschlossen unter \fbox{$\space^{\mathcal{C}}, \space^{\mc{R}}, -, \cap, \cup, \space^*$}
+\end{bekannt}
+\end{fbeweis}
+
+\section{Nichtreguläre Sprachen/Pumping Lemma}
+Betrachte: $L = \gklamm{w \in \SigBs \vert w = 0^n 1^n \tx{ für } n \in \mb{N}}$
+Versuch:
+\Insert{GI-12.05.2009-IMG-2}
+Problem: \ac{DEA} mit unendlich vielen Zuständen\\
+Angenommen es gibt \ac{DEA} $M$ mit 24 Zuständen, der $L$ erkennt.\\
+Betrachte $w = 0^{24} 1^{24}$\\
+Da $M$ nur 24 Zustände hat, muss er bei der Verarbeitung der Nullen eine Schleife durchlaufen haben.\\
+Angenommen Schleife sein ach Lesen von 17 Nullen erreicht, dann hat \ac{akzept.} \ac{Ber.} für $w$ die Gestalt
+\Insert{GI-12.05.2009-IMG-3}
+Automat kann Schleife überspringen oder mehrfach durchlaufen.\\
+\Ra Falls Automat korrekt muss gelten:
+\[\forall i \in \mb{N}:~0^{17} \rklamm{0^3}^i 0^4 1^{24} \in L\]
+Aber:
+\[0^{17} \rklamm{0^3}^0 0^4 1^{24} = 0^{21} 1^{24} \notin L\]
+\Ra Automat erkennt $L$ nicht (er erkennt mehr).
+
+\begin{lemma}[\ac{PL} - einfache Version]
+\label{lemma:Endliche_Automaten_L_3_4}
+Es sei $L$ eine reguläre Sprache, dann gibt es eine natürliche zahl $n_0 \grgl 1$ ($n_0 \cong $ Zustandszahl), so dass gilt:\\
+Für jedes Wort $z \in L$ mit $\betrag{z} \grgl n_0$ (Automat für $L$ durchläuft Schleife) \ac{ex.} eine Zerlegung
+$z = u vw$ \Insert{GI-12.05.2009-IMG-4}
+mit
+\begin{itemize}
+\item $v \neq \epsilon$ \ac{bzw.} $\betrag{v \grgl 1}$
+\item $\forall k \in \mb{N}$: $u v^k w \in L$
+\end{itemize}
+\Mark{Lemma 3.4}
+\end{lemma}
+\begin{fbeweis}[Zu Lemma \vref{lemma:Endliche_Automaten_L_3_4}]
+Sei $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ ein \ac{DEA} mit $L(M) = L$. Setze $n_0 = \betrag{Q}$. Für jedes Wort $z = a_1 \dots a_m \in L$ mit $m \grgl n_0$  \ac{ex.} eine Berechnung
+\[\rklamm{q_0, a_1 \dots a_m} \vd \rklamm{p_1, a_2 \dots a_m} \vd \dots \vd \rklamm{q_{m - 1} a_m} \vd \gklamm{p_m, \epsilon}\]
+mit $p_i \in Q$, $a_i \in \Sigma$ für $1 \klgl i \klgl m$\\
+Da $m \grgl n_0$ können die $m + 1$ Zustände ($p_{\emptyset} - p_m$) nicht unterschiedlich sein.\\
+Folglich $\exists i < j$ mit $p_i = p_j$ ($1 \klgl i < j \klgl n$).
+\[\rklamm{q_0, \ub{uvw}{z}} \vd^* \rklamm{p_i = p_j, vw} \vd^* \rklamm{p_j = p_i, w} \vd^* \rklamm{p_m, \epsilon}\]
+\Ra Somit gilt $\rklamm{p_i = p_j, v^k} \vd^* \rklamm{p_j = p_i, \epsilon}$ für $k \in \mb{N}$\\
+\Ra $\forall k \in \mb{N}$ $uv^k w \in L$. \qed\\
+\ac{PL}: $L$ regulär \Ra $L$ pumpbar.
+\end{fbeweis}
