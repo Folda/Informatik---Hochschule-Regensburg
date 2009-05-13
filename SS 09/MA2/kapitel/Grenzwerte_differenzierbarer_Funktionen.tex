@@ -114,6 +114,20 @@ Lösung siehe \vref{sec:Grenzwerte_differenzierbarer_Funktionen_A4_10L}.
 \subsection{Aufgabe 4.9}
 \label{sec:Grenzwerte_differenzierbarer_Funktionen_A4_9L}
 Lösung zu Aufgabe \vref{sec:Grenzwerte_differenzierbarer_Funktionen_A4_9}.
+\begin{enumerate}[label=\alph*)]
+\item \[\lim_{x \ra 3} \frac{2x^2 - 5x - 3}{x^2 + x - 12} \mathoeq[\frac{\un}{\un}][\tx{L'H}] \frac{4x - 5}{2x + 1} = \frac{7}{7} = 1\]
+\item \begin{align*}
+		\lim_{x \ra 0} \frac{\sqrt{1 + x} - 1 - \frac{x}{2}}{x^2} &\mathoeq[\frac{\un}{\un}][\tx{L'H}] \lim_{x \ra 0} \frac{\frac{1}{2} (1 + x)^{- \frac{1}{2}} - \frac{1}{2}}{2x}\\
+		&=\lim_{x \ra 0} \frac{(1 + x)^{- \frac{1}{2}} - 1}{4x} \mathoeq[\frac{\un}{\un}][\tx{L'H}] \lim_{x \ra 0} \frac{- \frac{1}{2} \mal (1 + x)^{- \frac{3}{2}}}{4} = - \frac{1}{8}
+		\end{align*}
+
+\item \begin{align*}
+		\lim_{x \searrow 0} \rkl{\frac{1}{2} - \frac{1}{e^x - 1}} &= \lim_{x \searrow 0} \ub{\frac{1}{x}}{\ra \un} \ub{\rkl{1 - \frac{x}{e^x - 1}}}{\ra 0?}\\
+		&= \lim_{x \searrow 0} \frac{1 - \frac{x}{e^x - 1}}{\rkl{\frac{1}{x}}^{-1}} = \lim_{x \searrow 0} \frac{1 - \frac{x}{e^x - 1}}{x} = \lim_{x \searrow 0} \frac{\frac{e^x - 1 - x}{e^x - 1}}{x}\\
+		&= \lim_{x \searrow 0} \frac{e^x - 1 - x}{x \rkl{e^x - 1}} \mathoeq[\frac{0}{0}][\tx{L'H}] \lim_{x \searrow 0} \frac{e^x - 1}{\rkl{e^x - 1} + x \mal e^x}\\
+		&\mathoeq[\frac{\un}{\un}][\tx{L'H}] \lim_{x \searrow 0} \frac{e^x}{e^x + e^x + x \mal e^x} = \frac{\lim_{x \searrow 0} e^x}{\lim_{x \searrow 0} \rkl{e^x + e^x + x \mal e^x}} = \frac{1}{2}
+		\end{align*}
+\end{enumerate}
 
 \subsection{Aufgabe 4.10}
 \label{sec:Grenzwerte_differenzierbarer_Funktionen_A4_10L}

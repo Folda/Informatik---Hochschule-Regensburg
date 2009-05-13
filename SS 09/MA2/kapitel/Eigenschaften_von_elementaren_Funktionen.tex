@@ -1,0 +1,76 @@
+\chapter{Eigenschaften von elementaren Funktionen}
+\Mark{Chapter 4.3}
+\begin{fsatz}[Ableitung einer Potenzreihe]
+Sei $f(x) = \sum_{n = 0}^{\un} a_n (x - x_0)^n$ eine Potenzreihe mit Entwicklungspunkt $x_0$ und Konvergenzradius $r$. Dann ist $f$ in $(x_0 - r, x_0 + r)$ stetig und beliebig oft differenzierbar.\\
+Die Ableitung erhält man durch gliedweise Differentiation
+\begin{align*}
+f'(x) &= \frac{d}{dx} \rkl{\sum_{n = 0}^{\un} a_n \mal \rkl{x - x_0}^n} = \sum_{n = 0}^{\un} a_n \mal \frac{d}{dx} \rkl{x - x_0}^n\\
+&= \sum_{n = 1}^{\un} a_n \mal n \rkl{x - x_0}^{n - 1} = a_1 + + 2a_2 \rkl{x - x_0} + 3 a_3 \rkl{x - x_0}^2 + 4 \mal a_4 \rkl{x - x_0}^3 + \dots\\
+f''(x) &= \frac{d}{dx} f'(x) = \frac{d}{dx} \sum_{n = 1}^{\un} n \mal a_n \mal \rkl{x - x_0}^{n - 1}\\
+&= \sum_{n = 1}^{\un} n \mal a_n \mal \frac{d}{dx} \rkl{x - x_0}^{n - 1} = \sum_{n = 2}^{\un} n \mal (n - 1) \mal a_n \mal \rkl{x - x_0}^{n - 2}\\
+&\vdots\\
+f^{(k)} (x) &= \frac{d}{dx} f^{k - 1} (x) = \sum_{n = k}^{\un} n \mal (n - 1) \mal \dots \mal (n - k + 1) \mal a_n \mal \rkl{x - x_0}^{n - k}\\
+&= \sum_{n = k}^{\un} \frac{n!}{(n - k)!} \mal a_n \mal \rkl{x - x_0}^{n - k}
+\end{align*}
+Der Konvergenzradius von $f', f'', f''',$ ist gleich $r$.
+\Mark{Satz 4.10}
+\end{fsatz}
+
+\begin{fbeweis}[nur Konvergenzradius]
+Konvergenzradius von $f$ ist $r$, damit gilt:
+\begin{align*}
+&\lim_{n \ra \un} \sqrt[n]{\betrag{a_n}} = \frac{1}{r}
+\Ra& \lim_{n \ra \un} \sqrt[n]{\betrag{a_n \mal n}} = \lim_{n \ra \un} \sqrt[n]{\betrag{a_n}} \mal \sqrt[n]{n}\\
+&=\lim_{n \ra \un} \sqrt[n]{\betrag{a_n}} \mal \lim_{n \ra \un} \sqrt[n]{n} = \frac{1}{r} \mal 1 = \frac{1}{r}
+\end{align*}
+\Ra Konvergenzradius von $f'$ ist $r$.\\
+Für $f^{(k)}$ iterativ
+\end{fbeweis}
+
+\begin{fsatz}[Ableitung der $e$-Funktion]
+\begin{enumerate}[label=\roman*)]
+\item $\rkl{e^x}' = \frac{d}{dx} e^x = e^x$
+\item Die $e$-Funktion ist auf ganz $\R$ streng monoton wachsend
+\end{enumerate}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item bereits über \ac{Def.} der Ableitung gezeigt\\
+		nun über Satz 4.10 \Todo{ref zu Satz 4.10}
+		\begin{align*}
+		\frac{d}{dx} e^x &= \frac{d}{dx} \sum_{n = 0}^{\un} \frac{x^n}{n!} = \sum_{n = 0}^{\un} \frac{1}{n!} \mal \rac{d}{dx} \rkl{x^n} = \sum_{n = 1}^{\un} \frac{1}{n!} \mal n \mal x^{n - 1}\\
+		&= \sum_{n = 1}^{\un} \frac{1}{(n - 1)} \mal x^{n - 1} \ubl[16.5mm]{=}{$k = n - 1$\\$\Lra n = k + 1$} \sum_{n = 0}^{\un} \frac{x^k}{k!} = e^x
+		\end{align*}
+
+\item nach Satz 2.20 \Todo{ref zu Satz 2.20} gilt $\forall x \in \R:~ e^x > 0$\\
+		$\rkl{e^x}' = e^x > 0 \Ra $ (mit Folgerung aus Mittelwertsatz) $e^x$ ist streng monoton wachsend. \qed
+\end{enumerate}
+\end{fbeweis}
+
+\section{Aufgabe 4.8}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_8}
+Die Funktion $f$ sei differenzierbar in $(0, 2)$ und es sei $f(0) = -3$ sowie $f'(x) \klgl 5$ für alle $x \in (0,2)$. Bestimmen Sie den größtmöglichen Wert für $f(2)$.
+
+Lösung siehe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_8L}.
+
+\section{Aufgabe 4.11}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_11}
+Sei $\betrag{x} < 1$. Leiten Sie die geometrische Reihe $\sum_{n = 0}^{\un} x^n = \frac{1}{1 - x}$ ab.\\
+Folgen Sie daraus eine Potenzreihendarstellung für $\frac{1}{(2 - y)^2}$
+
+Lösung siehe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_11L}.
+
+\section{Lösungen}
+\subsection{Aufgabe 4.8}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_8L}
+Lösung zu Aufgabe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_8}.
+\Insert{MA2-13.05.2009-IMG-1}
+die Gerade $g$ liegt für $x \in \eklamm{0, 2}$ stets über der Funktion $f$ (\ac{bzw.} $f(x) \klgl g(x)$)\\
+\Ra $f(2) \klgl g(2) = 5 \mal 2 - 3 = 7$
+
+\subsection{Aufgabe 4.11}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_11L}
+Lösung zu Aufgabe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_11}.
+\Ra $\sum_{n = 1}^{\un} n \mal x^n \mal 1 = \frac{1}{(1 - x)^2} \stack{!}{=} \frac{1}{(2 - y)^2}$
