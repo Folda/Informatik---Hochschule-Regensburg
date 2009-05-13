@@ -227,7 +227,7 @@ ababc &= (ab)^2 c
 \index{Kleene-Stern}
 \index{$L$ (Sprache)}
 \begin{fdefinition}[Sprache, Konkatenation von Sprachen, Kleene-Stern]
-Sei $\Sigma$ ein Alphabet. Eine \indexn{Sprache} $L$ ist eine Teilmenge von $\Sigma^*$ ($L \subseteq \Sigma^*$) (potentiell unendlich!). Das Komplement $L^{\mathcal{C}}$ der Sprache $L$ bezüglich $\Sigma^*$ ist die Sprache $\Sigma* - L$. $L_{\emptyset}$ ist die leere Sprache; $L_{\epsilon} = \gklamm{\epsilon}$. Seien $L_1$ und $L_2$ Sprachen, dann ist
+Sei $\Sigma$ ein Alphabet. Eine \indexn{Sprache} $L$ ist eine Teilmenge von $\Sigma^*$ ($L \subseteq \Sigma^*$) (potentiell unendlich!). Das \indexb[Sprache!Komplement]{Komplement}\index{\space^{\mathcal{C}} (Komplement)} $L^{\mathcal{C}}$ der Sprache $L$ bezüglich $\Sigma^*$ ist die Sprache $\Sigma^* - L$. $L_{\emptyset}$ ist die leere Sprache; $L_{\epsilon} = \gklamm{\epsilon}$. Seien $L_1$ und $L_2$ Sprachen, dann ist
 \[L_1 \mal L_2 = L_1 L_2 = \gklamm{u \mal v \in \left(\Sigma_1 \cup \Sigma_2\right)^x \vert u \in L_1 \und v \in L_2}\]
 die Konkatenation von $L_1$ und $L_2$. Ferner definieren wir für eine Sprache $L$
 \[L^0 = L_{\epsilon} L^{i + 1} = L \mal L^i\]

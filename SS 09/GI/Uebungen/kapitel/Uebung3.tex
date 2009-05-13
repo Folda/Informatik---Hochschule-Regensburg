@@ -30,7 +30,7 @@
 
 		\begin{figure}[htb]
 		\centering
-		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 		\node[state,initial,initial text=,accepting] at (94bp,136bp) (A) {A};
 		\node[state] at (275bp,238bp) (C) {C};
 		\node[state,accepting] at (184bp,172bp) (B) {B};
@@ -102,6 +102,31 @@
 		\begin{figure}[htb]
 		\centering
 		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] (A) {\{A\}};
+		\node[state] (AB) [right of=A] {\{A, B\}};
+		\node[state] (ABC) [right of=AB] {\{A,B,C\}};
+		\node[state] (ABCD) [right of=ABC] {\{A,B,C,D\}};
+		\node[state] (ABCDE) [right of=ABCD] {\{A,B,C,D,E\}};
+		\node[state] (AD) [below of=ABC] {\{A,D\}};
+		\node[state] (ADE) [below of=ABCD] {\{A,D,E\}};
+		\node[state] (AE) [below of=ABCDE] {\{A,E\}};
+
+		\tikzedge{A}{AB}{0}{}{};
+		\tikzedge{AB}{ABC}{0}{}{};
+		\tikzedge{ABC}{ABCD}{0}{}{};
+		\tikzedge{ABCD}{ABCDE}{0}{}{};
+		
+		\tikzedge{ABC}{AD}{1}{}{};
+		\tikzedge{ABCD}{ADE}{1}{}{};
+		\tikzedge{ABCDE}{AE}{1}{}{};
+		\tikzedge{AD}{ADE}{0,1}{}{};
+		\tikzedge{ADE}{AE}{0,1}{}{};
+		
+		\tikzedge{AB}{A}{1}{bend left}{};
+		
+		\tikzloop{A}{1}{above}{};
+		\tikzloop{ABCDE}{1}{above}{};
+		\tikzloop{AE}{1}{below}{};
 		\end{tikzpicture}
 		\caption{Lösung für 2. Aufgabe (a) DEA}
 		\label{fig:Uebung3_2aDEA}
@@ -133,6 +158,7 @@
 				\caption{Lösung für 2. Aufgabe (a) $L_{2_A}$}
 				\label{fig:Uebung3_2b1A}
 				\end{figure}
+
 				\item[$L_{2_B}$] Siehe Abbildung \vref{fig:Uebung3_2b1B}.
 				\begin{figure}[htb]
 				\centering
@@ -156,18 +182,82 @@
 				\item Produktautomat
 				\end{itemize}
 
-		\item $\epsilon$-NEA da dieser für Vereinigungen von Automaten besser geeignet ist. Automat siehe Abbildung \vref{fig:Uebung3_2b3}.
+		\item $\epsilon$-NEA da dieser für Vereinigungen ($\cup$) von Automaten besser geeignet ist. Für den Automat siehe Abbildung \vref{fig:Uebung3_2b3}.
 				\begin{figure}[htb]
 				\centering
 				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\node[state,initial,initial text=] (epsilon) {};
+
+				\node[state,] (A) [above right of=epsilon] {A};
+				\node[state] (B) [right of=A] {B};
+				\node[state] (C) [right of=B] {C};
+				\node[state,accepting] (D) [right of=C] {D};
+
+				\path[->] (D) edge[loop above] node {0,1} ();
+		
+				\path[->] (A) edge node {0,1} (B);
+				\path[->] (B) edge node {0,1} (C);
+				\path[->] (C) edge node {0,1} (D);
+
+				\node[state,accepting] (E) [below right of=epsilon] {E};
+				\node[state] (F) [right of=E] {F};
+
+				\path[->] (E) edge[loop below] node {1} ();
+				\path[->] (F) edge[loop below] node {1} ();
+
+				\path[->] (E) edge[bend left] node {0} (F);
+				\path[->] (F) edge[bend left] node {0} (E);
+
+				\path[->] (epsilon) edge node {$\epsilon$} (A);
+				\path[->] (epsilon) edge node {$\epsilon$} (E);
 				\end{tikzpicture}
 				\caption{Lösung für 2. Aufgabe (b) 3)}
 				\label{fig:Uebung3_2b3}
 				\end{figure}
 		\end{enumerate}
+
+\item $L_3 = \rklamm{L_{2_B}^{\mathcal{C}}}^*$
+		\begin{enumerate}[label=\arabic*)]
+		\item Erstellung des Automaten für $L_{2_B}^{\mathcal{C}}$. Siehe Abbildung \vref{fig:Uebung3_2c1}.
+				\begin{figure}[htb]
+				\centering
+				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\node[state,initial,initial text=] (E) {};
+				\node[state,accepting] (F) [right of=E] {};
+
+				\path[->] (E) edge[loop below] node {1} ();
+				\path[->] (F) edge[loop below] node {1} ();
+
+				\path[->] (E) edge[bend left] node {0} (F);
+				\path[->] (F) edge[bend left] node {0} (E);
+				\end{tikzpicture}
+				\caption{Lösung für 2. Aufgabe (c) 1)}
+				\label{fig:Uebung3_2c1}
+				\end{figure}
+
+		\item Erstellung des Automaten für $L_3$ aus dem vorherigen Automaten für $L_{2_B}^{\mathcal{C}}$. Siehe Abbildung \vref{fig:Uebung3_2c2}.
+				\begin{figure}[htb]
+				\centering
+				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\node[state] (E) {};
+				\node[state,accepting] (F) [right of=E] {};
+				\node[state,initial,initial text=,accepting] (epsilon) [left of=E] {};
+
+				\path[->] (E) edge[loop below] node {1} ();
+				\path[->] (F) edge[loop below] node {0,1} ();
+
+				\path[->] (E) edge node {0} (F);
+
+				\path[->] (epsilon) edge node {$\epsilon$} (E);
+				\end{tikzpicture}
+				\caption{Lösung für 2. Aufgabe (c) 2)}
+				\label{fig:Uebung3_2c2}
+				\end{figure}
+		\end{enumerate}
 \end{enumerate}
 
 \section{3. Aufgabe (8 Punkte)}
+Lösung siehe Abbildung \vref{fig:Uebung3_3}.
 \begin{figure}[htb]
 \centering
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
@@ -192,4 +282,4 @@
 \caption{Lösung für 3. Aufgabe}
 \label{fig:Uebung3_3}
 \end{figure}
-\section{4. Aufgabe (10 Zusatzpunkte)}
+%\section{4. Aufgabe (10 Zusatzpunkte)}

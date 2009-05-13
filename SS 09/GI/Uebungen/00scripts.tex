@@ -106,6 +106,11 @@
 
 %Misc
 \newcommand{\mal}{\ensuremath{\cdot}}
+
+%Tikz Abkürzungen
+%%Für Automaten Graphen
+\newcommand{\tikzedge}[5]{\path[->] (#1) edge[#4] node[#5] {$#3$} (#2);}
+\newcommand{\tikzloop}[4]{\tikzedge{#1}{}{#2}{loop #3}{#4};}
 %</Abkürzungen>
 
 
