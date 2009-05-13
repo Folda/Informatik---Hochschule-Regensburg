@@ -28,6 +28,48 @@
 
 \item $L_2 = \left\{w \in \Sigma_{\text{Bool}}^* \vert w = \overleftarrow{w} \und \betrag{w} \klgl 3\right\}$. Lösung siehe Abbildung \vref{fig:Uebung3_1b}.
 
+		\begin{figure}[htb]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+		\node[state,initial,initial text=,accepting] at (94bp,136bp) (A) {A};
+		\node[state] at (275bp,238bp) (C) {C};
+		\node[state,accepting] at (184bp,172bp) (B) {B};
+		\node[state,accepting] at  (275bp,172bp) (E) {E};
+		\node[state,accepting] at (367bp,223bp) (D) {D};
+		\node[state,accepting] at (275bp,101bp) (G) {G};
+		\node[state,accepting] at (184bp,101bp) (F) {F};
+		\node[state,accepting] at (367bp,54bp) (I) {I};
+		\node[state] at (275bp,40bp) (H) {H};
+		\node[state] at (469bp,138bp) (DS) {DS};
+		  
+		\tikzedge{A}{F}{0}{}{};
+		\tikzedge{A}{B}{1}{}{};
+
+		\tikzedge{B}{C}{0}{}{};
+		\tikzedge{B}{E}{1}{}{};
+
+		\tikzedge{C}{DS}{0}{}{};
+		\tikzedge{C}{D}{1}{}{};
+		  
+		\tikzedge{D}{DS}{1,0}{}{};
+		 
+		\tikzedge{E}{DS}{0}{}{};
+		\tikzedge{E}{D}{1}{}{};
+		  
+		\tikzedge{F}{G}{0}{}{};
+		\tikzedge{F}{H}{1}{}{};
+		  
+		\tikzedge{G}{I}{0}{}{};
+		\tikzedge{G}{DS}{1}{}{};
+		  
+		\tikzedge{H}{I}{0}{}{};
+		\tikzedge{H}{DS}{1}{}{};
+		  
+		\tikzedge{I}{DS}{0,1}{below right}{};
+		\end{tikzpicture}
+		\caption{Lösung für 1. Aufgabe (b)}
+		\label{fig:Uebung3_1b}
+		\end{figure}
 \end{enumerate}
 
 \section{2. Aufgabe (5+10 Punkte)}
@@ -129,6 +171,23 @@
 \begin{figure}[htb]
 \centering
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] at (90bp,32bp) (A) {A};
+\node[state,accepting] at (350bp,32bp) (C) {C};
+\node[state] at (172bp,32bp) (B) {B};
+\node[state] at (263bp,86bp) (D) {D};
+
+\tikzedge{A}{B}{1}{}{};
+\tikzloop{A}{0,1}{above}{};
+\tikzedge{A}{C}{0,1}{bend right}{};
+\tikzedge{A}{D}{0}{bend left}{};
+
+\tikzedge{B}{C}{0}{}{};
+\tikzedge{B}{D}{0}{bend left}{};
+
+\tikzloop{C}{1}{above}{};
+
+\tikzedge{D}{C}{1}{}{};
+\tikzedge{D}{B}{1}{}{};
 \end{tikzpicture}
 \caption{Lösung für 3. Aufgabe}
 \label{fig:Uebung3_3}
