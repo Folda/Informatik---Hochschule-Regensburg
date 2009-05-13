@@ -1,2 +1,136 @@
 \chapter{3. Übung}
-\section{1. Aufgabe (2 + 2)}
+\section{1. Aufgabe (2+2 Punkte)}
+\begin{enumerate}[label=(\alph*)]
+\item $L_1 = \left\{w \in \Sigma_{\text{Bool}}^* \vert 1010 \text{ ist kein Teilwort von } w\right\}$. Lösung siehe Abbildung \vref{fig:Uebung3_1a}.
+		\begin{figure}[htb]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=,accepting] (A) {};
+		\node[state,accepting] (B) [right of=A] {};
+		\node[state,accepting] (C) [right of=B] {};
+		\node[state,accepting] (D) [right of=C] {};
+		\node[state] (DS) [right of=D] {};
+
+		\path[->] (A) edge[loop above] node {0} ();
+		\path[->] (B) edge[loop above] node[right] {1} ();
+
+		\path[->] (A) edge node {1} (B);
+		\path[->] (B) edge node {0} (C);
+		\path[->] (C) edge node {1} (D);
+		\path[->] (D) edge node {0} (DS);
+
+		\path[->] (C) edge[bend left] node {0} (A);
+		\path[->] (D) edge[bend right] node {1} (A);
+		\end{tikzpicture}
+		\caption{Lösung für 1. Aufgabe (a)}
+		\label{fig:Uebung3_1a}
+		\end{figure}
+
+\item $L_2 = \left\{w \in \Sigma_{\text{Bool}}^* \vert w = \overleftarrow{w} \und \betrag{w} \klgl 3\right\}$. Lösung siehe Abbildung \vref{fig:Uebung3_1b}.
+
+\end{enumerate}
+
+\section{2. Aufgabe (5+10 Punkte)}
+\begin{enumerate}[label=(\alph*)]
+\item $L_1 = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w = u00v, u, v \in \Sigma_{\tx{Bool}}^*, \betrag{v} \grgl 2}$
+		\begin{description}
+		\item[NEA] Siehe Abbildung \vref{fig:Uebung3_2aNEA}.
+		\begin{figure}[htb]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] (A) {A};
+		\node[state] (B) [right of=A] {B};
+		\node[state] (C) [right of=B] {C};
+		\node[state] (D) [right of=C] {D};
+		\node[state,accepting] (E) [right of=D] {E};
+
+		\path[->] (A) edge[loop above] node {0,1} ();
+		\path[->] (E) edge[loop above] node {0,1} ();
+
+		\path[->] (A) edge node {0} (B);
+		\path[->] (B) edge node {0} (C);
+		\path[->] (C) edge node {0,1} (D);
+		\path[->] (D) edge node {1,0} (E);
+		\end{tikzpicture}
+		\caption{Lösung für 2. Aufgabe (a) NEA}
+		\label{fig:Uebung3_2aNEA}
+		\end{figure}
+
+		\item[DEA] Siehe Abbildung \vref{fig:Uebung3_2aDEA}.
+		\begin{figure}[htb]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\end{tikzpicture}
+		\caption{Lösung für 2. Aufgabe (a) DEA}
+		\label{fig:Uebung3_2aDEA}
+		\end{figure}
+		\end{description}
+
+\item $L_2 = L_{2_A} \cup L_{2_B}$
+		\begin{align*}
+		&L_{2_A} = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w} > 2}\\
+		&L_{2_B} = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \betrag{w}_0 \mod 2 = 0}
+		\end{align*}
+		\begin{enumerate}[label=\arabic*)]
+		\item \begin{description}
+				\item[$L_{2_A}$] Siehe Abbildung \vref{fig:Uebung3_2b1A}.
+				\begin{figure}[htb]
+				\centering
+				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\node[state,initial,initial text=] (A) {A};
+				\node[state] (B) [right of=A] {B};
+				\node[state] (C) [right of=B] {C};
+				\node[state,accepting] (D) [right of=C] {D};
+
+				\path[->] (D) edge[loop above] node {0,1} ();
+		
+				\path[->] (A) edge node {0,1} (B);
+				\path[->] (B) edge node {0,1} (C);
+				\path[->] (C) edge node {0,1} (D);
+				\end{tikzpicture}
+				\caption{Lösung für 2. Aufgabe (a) $L_{2_A}$}
+				\label{fig:Uebung3_2b1A}
+				\end{figure}
+				\item[$L_{2_B}$] Siehe Abbildung \vref{fig:Uebung3_2b1B}.
+				\begin{figure}[htb]
+				\centering
+				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\node[state,initial,initial text=,accepting] (E) {E};
+				\node[state] (F) [right of=E] {F};
+
+				\path[->] (E) edge[loop below] node {1} ();
+				\path[->] (F) edge[loop below] node {1} ();
+
+				\path[->] (E) edge[bend left] node {0} (F);
+				\path[->] (F) edge[bend left] node {0} (E);
+				\end{tikzpicture}
+				\caption{Lösung für 2. Aufgabe (b) $L_{2_B}$}
+				\label{fig:Uebung3_2b1B}
+				\end{figure}
+				\end{description}
+
+		\item \begin{itemize}
+				\item $\epsilon$-NEA
+				\item Produktautomat
+				\end{itemize}
+
+		\item $\epsilon$-NEA da dieser für Vereinigungen von Automaten besser geeignet ist. Automat siehe Abbildung \vref{fig:Uebung3_2b3}.
+				\begin{figure}[htb]
+				\centering
+				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\end{tikzpicture}
+				\caption{Lösung für 2. Aufgabe (b) 3)}
+				\label{fig:Uebung3_2b3}
+				\end{figure}
+		\end{enumerate}
+\end{enumerate}
+
+\section{3. Aufgabe (8 Punkte)}
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\end{tikzpicture}
+\caption{Lösung für 3. Aufgabe}
+\label{fig:Uebung3_3}
+\end{figure}
+\section{4. Aufgabe (10 Zusatzpunkte)}
