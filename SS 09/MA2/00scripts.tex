@@ -75,6 +75,11 @@
 \ub{#2}{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#2}}\else#1\fi}\begin{center}\scriptsize{#3}\end{center}\end{minipage}}
 }
 
+%Overbrace mit viel text
+\newcommand{\obl}[3][]{
+\ob{#2}{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#2}}\else#1\fi}\begin{center}\scriptsize{#3}\end{center}\end{minipage}}
+}
+
 %Definitionen, Beispiele, Sätze
 \newenvironment{fshaded}[2]{%
 \def\FrameCommand{\fcolorbox{#1}{#2}}%
@@ -182,13 +187,14 @@
 \newcommand{\Z}{\ensuremath{\mb{Z}}}
 \newcommand{\stack}[2]{\ensuremath{\stackrel{#1}{#2}}}
 \newcommand{\ub}[2]{\ensuremath{\underbrace{#1}_{#2}}}
+\newcommand{\ob}[2]{\ensuremath{\overbrace{#1}^{#2}}}
 \newcommand{\un}{\ensuremath{\infty}}
 \newcommand{\rac}[2]{\ensuremath{\frac{#1}{#1}}}
 \newcommand{\ggq}[1]{"`#1"'}
 \newcommand{\ural}[1]{\ensuremath{\displaystyle \matholongrightarrow_{#1}}}
 \newcommand{\textc}[1]{\textcircled{#1}}
 \newcommand{\fnewline}{\mbox{}\par}
-%\newcommandtwoopt{\mathoeq}[2][][]{\ensuremath{\displaystyle \mathoeqivalent_{#1}^{#2}}}
+\newcommandtwoopt{\mathoeq}[2][][]{\ensuremath{\displaystyle \mathoeqivalent\if\blank{#1}\else_{#1}\fi\if\blank{#2}\else^{#2}\fi}}
 
 %Todo, Insert, Mark, Img
 \newcommand{\Todo}[1]{\todo[inline]{TODO: #1}}

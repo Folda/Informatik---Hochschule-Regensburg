@@ -106,10 +106,10 @@
 		\node[state] (AB) [right of=A] {\{A, B\}};
 		\node[state] (ABC) [right of=AB] {\{A,B,C\}};
 		\node[state] (ABCD) [right of=ABC] {\{A,B,C,D\}};
-		\node[state] (ABCDE) [right of=ABCD] {\{A,B,C,D,E\}};
+		\node[state,accepting] (ABCDE) [right of=ABCD] {\{A,B,C,D,E\}};
 		\node[state] (AD) [below of=ABC] {\{A,D\}};
-		\node[state] (ADE) [below of=ABCD] {\{A,D,E\}};
-		\node[state] (AE) [below of=ABCDE] {\{A,E\}};
+		\node[state,accepting] (ADE) [below of=ABCD] {\{A,D,E\}};
+		\node[state,accepting] (AE) [below of=ABCDE] {\{A,E\}};
 
 		\tikzedge{A}{AB}{0}{}{};
 		\tikzedge{AB}{ABC}{0}{}{};

@@ -398,6 +398,92 @@ $\Rightarrow$
 \end{tikzpicture}
 \Img{GI(U)-07.05.2009-IMG-4}
 
+\section{12.05.2009}
+\subsection{GI-12.05.2009-IMG-1}
+\begin{tikzpicture}
+\draw[color=blue] (0,1.5) -- (0,-1.5);
+\draw[color=blue] (0,0) -- (-180:1.5);
+\draw[color=blue] (0,0) -- (0:1.5);
+\draw (0,0) circle (1.5);
+\draw (1,0.5) -- (1.5,1) node[right] {$\Sigma^*$};
+\node[shape=circle,color=blue,draw] at (130:1) {$q_0$};
+\node[shape=circle,color=green,draw] at (50:1) {$q_1$};
+\node[shape=circle,color=blue,draw] at (-50:1) {$q_2$};
+\node[shape=circle,color=green,draw] at (-130:1) {$q_3$};
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-1}
+
+\subsection{GI-12.05.2009-IMG-2}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=,accepting] (A) {$\epsilon$};
+\node[state] (B) [right of=A] {};
+\node[state] (C) [right of=B] {};
+\node[state] (D) [below of=C] {};
+\node[state] (F) [below of=D] {};
+\node[state] (E) [left of=F] {};
+\node[state] (DS) [left of=E] {DS};
+\node (dots) [right of=C] {\dots};
+
+\tikzedge{A}{B}{0}{}{};
+\tikzedge{A}{DS}{1}{}{};
+
+\tikzedge{B}{C}{0}{}{};
+\tikzedge{B}{E}{1}{}{};
+
+\tikzedge{C}{D}{1}{}{};
+
+\tikzedge{D}{DS}{0}{}{};
+\tikzedge{D}{F}{1}{}{};
+
+\tikzedge{E}{DS}{0,1}{}{};
+
+\tikzedge{F}{DS}{0,1}{bend left}{};
+
+\tikzloop{DS}{0,1}{left}{};
+
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-2}
+
+\subsection{GI-12.05.2009-IMG-3}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node (q0) {$q_0$};
+\node (p1) [right of=q0] {$p$};
+\node (p2) [right of=p1] {$p$};
+\node (q1) [right of=p2] {$q \in F$};
+
+\path[->] (q0) edge node {$0^{17}$} (p1);
+\path[->] (p1) edge node {$0^{3}$} (p2);
+\path[->] (p2) edge node {$0^{4} 1^{24}$} (q1);
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-3.1}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (q0) {$q_0$};
+\node[state] (p) [right of=q0] {$p$};
+\node[state,accepting] (q) [right of=p] {$q$};
+\node[state] (p1) [below left of=p]{};
+\node[state] (p2) [below right of=p]{};
+
+\path[->] (q0) edge node {$0^{17}$} (p);
+\path[->] (p) edge node {$0^{4} 1^{24}$} (q);
+\path[->] (p) edge [bend right] node {$0$} (p1);
+\path[->] (p1) edge node {$0$} (p2);
+\path[->] (p2) edge [bend right] node {$0$} (p);
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-3.2}
+
+\subsection{GI-12.05.2009-IMG-4}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (initial) {};
+\node[state] (n1) [right of=initial] {};
+\node[state,accepting] [right of=n1] (n2) {};
+
+\tikzedge{initial}{n1}{0}{}{};
+\tikzedge{n1}{n2}{w}{}{};
+\tikzloop{n1}{v}{above}{};
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-4}
+
 \chapter{Mathematik 2}
 \section{22.04.2009}
 \subsection{MA2-22.04.2009-IMG-2}
@@ -530,36 +616,3 @@ $\Rightarrow$
 \draw[decorate] (7.2,4.5) -- (7.2,1) node[right, midway] {$f(b) - f(a)$};
 \end{tikzpicture}
 \Img{MA2-07.05.2009-IMG-1}
-
-\section{12.05.2009}
-\subsection{GI-12.05.2009-IMG-1}
-\begin{tikzpicture}
-\draw[color=blue] (0,1.5) -- (0,-1.5);
-\draw[color=blue] (0,0) -- (-180:1.5);
-\draw[color=blue] (0,0) -- (0:1.5);
-\draw (0,0) circle (1.5);
-\draw (1,0.5) -- (1.5,1) node[right] {$\Sigma^*$};
-\node[shape=circle,color=blue,draw] at (130:1) {$q_0$};
-\node[shape=circle,color=green,draw] at (50:1) {$q_1$};
-\node[shape=circle,color=blue,draw] at (-50:1) {$q_2$};
-\node[shape=circle,color=green,draw] at (-130:1) {$q_3$};
-\end{tikzpicture}
-\Img{GI-12.05.2009-IMG-1}
-
-\subsection{GI-12.05.2009-IMG-2}
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-
-\end{tikzpicture}
-\Img{GI-12.05.2009-IMG-2}
-
-\subsection{GI-12.05.2009-IMG-3}
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-
-\end{tikzpicture}
-\Img{GI-12.05.2009-IMG-3}
-
-\subsection{GI-12.05.2009-IMG-4}
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-
-\end{tikzpicture}
-\Img{GI-12.05.2009-IMG-4}

@@ -1074,14 +1074,71 @@ rest selbst!
 \section{Nichtreguläre Sprachen/Pumping Lemma}
 Betrachte: $L = \gklamm{w \in \SigBs \vert w = 0^n 1^n \tx{ für } n \in \mb{N}}$
 Versuch:
-\Insert{GI-12.05.2009-IMG-2}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=,accepting] (A) {$\epsilon$};
+\node[state] (B) [right of=A] {};
+\node[state] (C) [right of=B] {};
+\node[state] (D) [below of=C] {};
+\node[state] (F) [below of=D] {};
+\node[state] (E) [left of=F] {};
+\node[state] (DS) [left of=E] {DS};
+\node (dots) [right of=C] {\dots};
+
+\tikzedge{A}{B}{0}{}{};
+\tikzedge{A}{DS}{1}{}{};
+
+\tikzedge{B}{C}{0}{}{};
+\tikzedge{B}{E}{1}{}{};
+
+\tikzedge{C}{D}{1}{}{};
+
+\tikzedge{D}{DS}{0}{}{};
+\tikzedge{D}{F}{1}{}{};
+
+\tikzedge{E}{DS}{0,1}{}{};
+
+\tikzedge{F}{DS}{0,1}{bend left}{};
+
+\tikzloop{DS}{0,1}{left}{};
+
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-2}
+\end{center}
 Problem: \ac{DEA} mit unendlich vielen Zuständen\\
 Angenommen es gibt \ac{DEA} $M$ mit 24 Zuständen, der $L$ erkennt.\\
 Betrachte $w = 0^{24} 1^{24}$\\
 Da $M$ nur 24 Zustände hat, muss er bei der Verarbeitung der Nullen eine Schleife durchlaufen haben.\\
 Angenommen Schleife sei nach Lesen von 17 Nullen erreicht, dann hat
 \ac{akzept.} \ac{Ber.} für $w$ die Gestalt
-\Insert{GI-12.05.2009-IMG-3}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node (q0) {$q_0$};
+\node (p1) [right of=q0] {$p$};
+\node (p2) [right of=p1] {$p$};
+\node (q1) [right of=p2] {$q \in F$};
+
+\path[->] (q0) edge node {$0^{17}$} (p1);
+\path[->] (p1) edge node {$0^{3}$} (p2);
+\path[->] (p2) edge node {$0^{4} 1^{24}$} (q1);
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-3.1}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (q0) {$q_0$};
+\node[state] (p) [right of=q0] {$p$};
+\node[state,accepting] (q) [right of=p] {$q$};
+\node[state] (p1) [below left of=p]{};
+\node[state] (p2) [below right of=p]{};
+
+\path[->] (q0) edge node {$0^{17}$} (p);
+\path[->] (p) edge node {$0^{4} 1^{24}$} (q);
+\path[->] (p) edge [bend right] node {$0$} (p1);
+\path[->] (p1) edge node {$0$} (p2);
+\path[->] (p2) edge [bend right] node {$0$} (p);
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-3.2}
+\end{center}
 Automat kann Schleife überspringen oder mehrfach durchlaufen.\\
 \Ra Falls Automat korrekt muss gelten:
 \[\forall i \in \mb{N}:~0^{17} \rklamm{0^3}^i 0^4 1^{24} \in L\]
@@ -1093,7 +1150,19 @@ Aber:
 \label{lemma:Endliche_Automaten_L_3_4}
 Es sei $L$ eine reguläre Sprache, dann gibt es eine natürliche zahl $n_0 \grgl 1$ ($n_0 \cong $ Zustandszahl), so dass gilt:\\
 Für jedes Wort $z \in L$ mit $\betrag{z} \grgl n_0$ (Automat für $L$ durchläuft Schleife) \ac{ex.} eine Zerlegung
-$z = u vw$ \Insert{GI-12.05.2009-IMG-4}
+$z = u vw$
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (initial) {};
+\node[state] (n1) [right of=initial] {};
+\node[state,accepting] [right of=n1] (n2) {};
+
+\tikzedge{initial}{n1}{0}{}{};
+\tikzedge{n1}{n2}{w}{}{};
+\tikzloop{n1}{v}{above}{};
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-4}
+\end{center}
 mit
 \begin{itemize}
 \item $v \neq \epsilon$ \ac{bzw.} $\betrag{v \grgl 1}$
@@ -1145,7 +1214,7 @@ Wir müssen zwei Fälle unterscheiden, da sowohl $k_1 > k_2$ also auch $k_1 < k_2$
 				\[z = \ub{\epsilon}{u} \ub{0^2}{v} \ub{0^{\textcolor{blue}{k_1 - 2}} 1^{\textcolor{green}{k_2}}}{w}\]
 				so dass für \ac{bel.} $i \in \N$ $uv^i w \in L$ folgt, denn
 				\[\textcolor{blue}{u v^0 w \in L:~k_1 - 2 = (k_2 + 1) - 2 = k_2 - 1} \neq \textcolor{green}{k_2}\]
-				$\forall i \in N$ mit $i \grgl 1$: $u v^i w \in L$, da $2 \mal u + (k_1 - 2) \grgl k_2$
+				$\forall i \in N$ mit $i \grgl 1$: $u v^i w \in L$, da $2 \mal u + (k_1 - 2) \grgl k_2$ \label{item:Endliche_Automaten_Pumping_Lemma_Beispiel_1b}
 		\end{enumerate}
 
 \item mehr Einsen. Es ist $k_1 < k_2$ oder $k_2 = k_1 + j$.
@@ -1156,7 +1225,7 @@ Wir müssen zwei Fälle unterscheiden, da sowohl $k_1 > k_2$ also auch $k_1 < k_2$
 
 		\item $j = 1$, dann $k_2 = k_1 + 1$
 				\[z = \ub{0^{k_1} 1^{k_2 - 2}}{u} \ub{1^2}{v} \ub{\epsilon}{w}\]
-				(analog zu 1b) \Todo{ref zur stelle im enumerate}
+				(analog zu \vref{item:Endliche_Automaten_Pumping_Lemma_Beispiel_1b}) \Solved{ref zur stelle im enumerate}
 		\end{enumerate}
 \end{enumerate}
 \end{beispiel}
