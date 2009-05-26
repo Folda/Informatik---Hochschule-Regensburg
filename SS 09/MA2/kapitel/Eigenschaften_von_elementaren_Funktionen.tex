@@ -141,7 +141,6 @@ heißt natürlicher Logarithmus
 		\end{align*}
 
 \item analog zu i)
-\item 
 \end{enumerate}
 \end{fbeweis}
 
@@ -154,6 +153,62 @@ Zeigen Sie unter Verwendung von $\frac{d}{dx} \cosx = - \sinx$ und $\frac{d}{dx}
 \end{enumerate}
 
 Lösung siehe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_12L}.
+
+\begin{fsatz}[Ableitung der Umkehrfunktion der trigonometrischen Funktionen]
+\label{satz:Eigenschaften_von_elementaren_Funktionen_S4_16}
+\fnewline
+%\begin{itemize}[label=\roman*)]
+%\item für $y \in \rkl{-1, 1}:~\frac{d}{dy} \arcsin (y) = \frac{1}{\sqrt{1 - y^2}}$
+%\item für $y \in \rkl{-1, 1}:~\frac{d}{dy} \arccosx[y] = \frac{-1}{\sqrt{1 - y^2}}$
+%\item für $y \in \R:~ \frac{d}{dy} \arctan (y) = \frac{1}{1 + y^2}$
+%\end{itemize}
+\Todo{Fix This}
+\Mark{Satz 4.16}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{itemize}[label=\roman*)]
+\item $f(x) = \sinx$ $f'(x) = \cosx$ $f^{-1} (y) = \arcsin(y)$
+		\begin{align*}
+		\frac{d}{dy} f^{-1} (y) &= \frac{1}{f'\rkl{f^{-1} (y)}} = \frac{1}{\cosx[\arcsin(y)]}\\
+		&\arcsin (y) \in \rkl{- \frac{\pi}{2}, \frac{\pi}{2}} \tx{ und } \cosx \grgl 0 \tx{ für } x \in \rkl{-\frac{\pi}{2}, \frac{\pi}{2}} \Ra\\
+		&= \frac{1}{\sqrt{\cos^2 \rkl{\arcsin(y)}}} = \frac{1}{\sqrt{1 - \sin^2 \rkl{\arcsin(y)}}} = \frac{1}{\sqrt{1 - y^2}}
+		\end{align*}
+
+\item analog zu i)
+\item $\frac{d}{dy} \arctan (y)$ ($\frac{d}{dx} \tanx = 1 + \tan^2(x)$)
+		\[= \frac{1}{1 + \tan^2 \rkl{\arctan (y)} = \frac{1}{1 + y^2}\] \qed
+\end{itemize}
+\end{fbeweis}
+
+\begin{bemerkung}[zu Satz \vref{satz:Eigenschaften_von_elementaren_Funktionen_S4_16}]
+\[\lim_{y \ra \un} \arctan (y) = \frac{\pi}{2}, \lim_{y \ra -\un} \arctan (y) = - \frac{\pi}{2}\]
+\end{bemerkung}
+
+\begin{fbeweis}
+Wir wissen $\lim_{x \ra \frac{\pi}{2}} \tanx = \un$, $\lim_{x \ra -\frac{\pi}{2} \tanx = -\un$
+\Insert{MA2-19.05.2009-IMG-1}
+\begin{align*}
+&\lim_{y \ra \un} \arctan (y) = \lim_{x \ra \frac{\pi}{2}} \arctan \rkl{\tanx} = \lim_{x \ra \frac{\pi}{2}} x = \frac{\pi}{2}\\
+&\lim_{y \ra -\un} \arctan (y) = \lim{x \ra \frac{\pi}{2}} \arctan \rkl{\tanx} = \lim_{x \ra \frac{\pi}{2}} x = - \frac{\pi}{2}
+\end{align*}
+\end{fbeweis}
+
+\begin{table}[t]
+\centering
+\begin{tabular}{l|l}
+$f$ & $f'$\\
+$\sinx$ & $\cosx$\\
+$\cosx$ & $-\sinx$\\
+$\tanx$ & $\frac{1}{\cos^2 (x)} = 1 + \tan^2 (x)$\\
+$\arcsin(x)$ & $\frac{1}{\sqrt{1 - x^2}}$\\
+$\arccos(x)$ & $\frac{1}{\sqrt{1 - x^2}}$\\
+$\arctan(x)$ & $\frac{1}{1 + x^2}$\\
+$e^x$ & $e^x$\\
+$\ln (x)$ & $\frac{1}{x}$
+\end{tabular}
+\end{table}
 
 \section{Lösungen}
 \subsection{Aufgabe 4.8}

@@ -1247,3 +1247,215 @@ Sei $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ ein \ac{DEA} mit $L(M) = L$. Setzen
 mit $p_m \in F$. Ist $m \grgl n_0$, so können die $m + 1$ Zustände $p_0, \dots, p_m$ nicht verschieden sein. Es gibt daher ein $i < j \klgl n_0$ mit $p_i = p_j$\\
 \dots rest analog zu einfacher Version.
 \end{fbeweis}
+
+\begin{beispiel}
+$L = \gklamm{w \in \SigBs \vert w \in \gklamm{0}^n \gklamm{1}^m \tx{ für } m \neq n}$. Angenommen $L$ sei regulär, dann \ac{ex.} $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ mit $L(M) = L$ und $\betrag{Q} = n_0$.\\
+Betrachte $z = 0^{n_0} 1^{n_0 + k}$ für $k > 0$. Offenbar $z \in L$ und $\betrag{z} \grgl n_0$. Dann ist
+\[z = \ub{0^a}{u} \ub{0^b}{v} \ub{0^c 1^{n_0 + k}}{w}\]
+mit $a + b + c = n_0$, $a + b \klgl n_0$ und $b \grgl 1$ eine gültige Zerlegung.\\
+Wir wollen zeigen, dass $L$ nicht pumpbar ist. Wir müssen unabhängig von $a$, $b$, $c$ ein $i \in \N$ finden, so dass $u v^i w \notin L$; also
+\[\betrag{
+\begin{array}{rcrcrcl}
+a &+ &i \mal b &+ &c &= &n_0 + k\\
+a &+ &b &+ &c &= &n_0
+\end{array}}\]
+Subtraktion der beiden Gleichungen liefert
+\[i \mal b - b = k\]
+Auflösen nach $i$ liefert $i = \frac{k}{b} + 1$ ($1 \klgl b \klgl n_0$)\\
+$k$ muss daher so gewählt werden, dass es durch \ac{bel.} $1 \klgl b \klgl n_0$ teilbar ist. Versuchen wir $k = 1 \mal 2 \mal 3 \mal \dots \mal n_0 = n_0!$:
+\[a + \rklamm{\frac{n_0!}{b} + 1} \mal b + c = a + n_0! + b + c = n_0 + n_0!\]
+\begin{description}
+\item[Fazit] egal, wie man $a$, $b$ und $c$ wählt, man findet immer ein $i \in \N$, so dass $uvw \notin L$.
+		\begin{description}
+		\item[Beachte] Wahl von $k$ hängt nur von $n_0$ und nicht von Zerlegung ab.
+		\end{description}
+		$L$ ist nicht pumpbar und somit nicht regulär.
+\end{description}
+\Mark{Beispiel 3.7}
+\end{beispiel}
+
+\begin{beispiel}
+Sei $L$ eine \ac{bekanntem.} nicht reguläre Sprache. Dann ist
+\[L_{\sharp} = \Sigs \cup \rklamm{\rklamm{\sharp}^+ \mal \ubl[2em]{L}{nicht\\regulär}}\]
+nicht regulär.\\
+$L_{\sharp}$ erfüllt die Pumping-Eigenschaft des verschärften \ac{PL}. Sei $z \in L_{\sharp}$, dann $z \in \gklamm{\sharp}^+ L$ oder $z \in \Sigs$
+\begin{enumerate}
+\item $z \in \gklamm{\sharp}^+ L$: Betrachte $z = \ub{\epsilon}{u} \ub{\sharp^k}{v} \ub{s}{w}$ mit $1 \klgl k \klgl n_0$ und $s \in L \subseteq \Sigs$.\\
+		Für jedes $i \in \N$ gilt $u v^i w \in L$.
+
+\item $z \in \Sigs$. trivial
+\end{enumerate}
+\Mark{Beispiel 3.8}
+\end{beispiel}
+
+\begin{lemma}
+Eine Sprache $L \subseteq \Sigs$ ist regulär, genau dann wenn es eine natürliche Zahl $n_0 \grgl 1$ gibt, so dass gilt: für alle Wörter $z \in \Sigs$ mit $\betrag{z} \grgl n_0$ kann man eine Zerlegung $z = uvw$ finden, so dass
+\begin{itemize}
+\item $\betrag{v} \grgl 1$
+\item $\forall s \in \Sigs$ gilt: $zs \in L \Lra \forall i \in \N:~u v^i w s \in L$
+\end{itemize}
+\Mark{Lemma 3.6}
+\end{lemma}
+
+\begin{fbeweis}
+\fnewline
+\ggq{\Ra}: Übung!\\
+\ggq{\La}: Wir zeigen, wie man für eine \ac{bel.} Sprache, die Jaffe-pumpbar ist, einen \ac{DEA} $M = \gklamm{Q, \Sigma, \delta, q_0, F}$ konstruieren kann, der $L$ erkennt. Jeder Zustand aus $Q$ korrespondiert mit einem $z \in \Sigs$, dessen Länge kleiner als $n_0$ ist, \ac{d.h.}
+\[Q = \gklamm{q_s, s \in \Sigs \und \betrag{s} \klgl n_0 - 1}\]
+Als Startzustand wählen wir $q_{\epsilon}$; akzeptierende ZUstände sind $F = \gklamm{q_s \vert s \in L}$, Definiere $\delta$ wie folgt
+\begin{itemize}
+\item $\betrag{z} < n_0 - 1:~\forall a \in \Sigma \delta \rklamm{q_z, a} = q_{za}$ (Baum mit Grad $\betrag{\Sigma}$)
+\item $\betrag{z} = n_0 - 1$. Hier können wir $q_z \ural{}{a} q_{za}$ nicht hinzunehmen, da der Zustand $q_{za}$ nicht existiert. Wegen der Pumping-Eigenschaft von $L$ gibt es eine Zerlegung $za = uvw$ ($v \neq \epsilon$), so dass
+		\[\forall s \in \Sigs:~zas \in L \Lra \forall u \in \N u v^i w s \in L\]
+		Insbesondere:
+		\[\forall s \in \Sigs:~zas \in L \Lra u v^0 w s \in L\]
+		Es kann mehrere solche Zerlegungen geben; wähle die Zerlegung bei der $\betrag{uv}$ minimal ist. Dann setzen wir
+		\[\delta(q_z, a) = q_{uw} (\betrag{z} \grgl \betrag{uw})\]
+		\ac{bzw.}
+		\[\hat{\delta} \rklamm{q_0, za} = \hat{\delta} (q_0, uw)\]
+\end{itemize}
+Bleibt zu zeigen $L(M) = L$. Wir beweisen mittels Induktion über die Wortlänge von $z$.
+\begin{itemize}
+\item Für $\betrag{z} < n_0$ gilt \ac{gem.} Konstruktion $z \in L \Lra z \in L(M)$ ($q_z \in F$).
+\item Sei $\betrag{z} = n$ mit $n \grgl n_0$ und gelte $z' \in L \Lra z' \in L(M)$ für alle $z'$ mit $\betrag{z'} < n$. Angenommen $z = z_0 a s_0$ mit $\betrag{z_0 a} = n_0$.\\
+		Gemäß Konstruktion von $\delta$ (2. Fall) \Todo{Ref zur definition} ist
+		\[\hat{\delta} \rklamm{q_0, z_0 a} = \hat{\delta} \rklamm{q_0, uw}\]
+		für geeignete $a \in \Sigma$, $u, w \in \Sigs$ mit $z_0 = uvw$ ($v \in \Sigma^+$). Ferner gilt, da $L$ pumpbar ist (Index $i = 0$)
+		\[\forall s \in \Sigs:~ z_0 a s \in L \Lra uws \in L\]
+		Insbesondere
+		\[\mathbf{z_0 a} s_0 = z \in L \Lra \mathbf{u w} s_0 \in L\]
+		Da $u$ mit $uw$ und $z_0 a$~ den selben Zustand erreicht $(x)$ kommt man mit $z_0 a s_0$ und $u w s_0$ ebenfalls in denselben Zustand \ac{d.h.} $u w s_0 \in L(M) \Lra z_0 a s_0 \in L(M)$.\\
+		Da $\betrag{u w s_0} > n$ (weglassen von $v$) gilt für $u w s_0$ die \ac{IV}.
+		\[u w s_0 \in L(M) \Lra u w s_0 \in L\]
+		also:
+		\[u w s_0 \in L \stack{\tx{\ac{IV}}}{\Lra} u w s_0 \in L(M) \stack{\tx{Konstruktion von } \delta}{\Lra} z =z_0 a s_0 \in L(M)\]
+		\Todo{Make longstack command}
+\end{itemize}
+\end{fbeweis}
+
+\begin{beispiel}
+$L_{\sharp} = \gklamm{\sharp}^+ \mal L \cup \Sigs$ ist nicht regulär. Angenommen $L_{\sharp}$ sei regulär, dann muss $L_{\sharp}$ für ein $n_0 \in\N$ die Pumping-Eigenschaft erfüllen. Sei $z = \sharp 0^{n_0} 1^{n_0}$; betrachte alle Zerlegungen $z =uvw$ mit $\betrag{v} \grgl 1$.
+\begin{enumerate}
+\item $v$ enthält $\sharp$ nicht, also $v \in \gklamm{0}^+$, $v \in \gklamm{1}^+$ oder $v \in \gklamm{0}^+ \gklamm{1}^+$\\
+		Betrachte $s = \epsilon$, dann ist $z s \in L_{\sharp}$, aber $u v^2 w s \notin L_{\sharp}$
+
+\item $v$ enthält $\sharp$: Setze $s = 1$, dann $z s \notin L_{\sharp}$, aber $u v^0 w s \in L_{\sharp}$ (rauspumpen von $\sharp$).
+\end{enumerate}
+\end{beispiel}
+
+\section{Reguläre Ausdrücke und reguläre Sprachen}
+\Mark{Section 3.7}
+\begin{fdefinition}
+Syntax \ac{reg.} Ausdrücke. Sei $\Sigma$ ein Alphabet; die Menge $R_{\Sigma}$ der regulären Ausdrücke über $\Sigma$ ist induktiv \ac{def.} durch:
+\begin{itemize}
+\item $\emptyset \in R_{\Sigma}$
+\item $\epsilon \in R_{\Sigma}$
+\item $a \in \Sigma \Ra a \in R_{\Sigma}$
+\item $r_1, r_2 \in R_{\Sigma} \Ra \rklamm{r_1 + r_2} \in R_{\Sigma}$
+\item $r_1, r_2 \in R_{\Sigma} \Ra \rklamm{r_1 \mal r_2} \in R_{\Sigma}$
+\item $r_1 \in R_{\Sigma} \Ra \rklamm{r_1}^* \in R_{\Sigma}$ \qed
+\end{itemize}
+\Mark{Definition 3.16}
+\end{fdefinition}
+
+\begin{fdefinition}
+Semantik \ac{reg.} Ausdrücke. Die Semantik für \ac{reg.} Ausdrücke ist eine Abbildung $L$: $R_{\Sigma} \ra \mathcal{P} \rkl{\Sigs}$, die einem $rA$ über $\Sigma$ eine Sprache zuordnet. $L$ ist induktiv \ac{def.} durch
+\begin{itemize}
+\item $L(\emptyset) = \emptyset$
+\item $L(\epsilon) = \gklamm{\epsilon}$
+\item $L(a) = \gklamm{a}$
+\item $L \rklamm{\rklamm{r_1 + r_2}} = L\rklamm{r_1} \cup L\rklamm{r_2}$ für $r_1, r_2 \in R_{\Sigma}$
+\item $L \rklamm{\rklamm{r_1 \mal r_2}} = L\rklamm{r_1} \mal L\rklamm{r_2}$
+\item $L \rklamm{\rklamm{r}^*} = L\rklamm{r}^*$
+\end{itemize}
+\Mark{Definition 3. A.}
+\end{fdefinition}
+
+\begin{notation}
+Wir lassen zu, dass reguläre Ausdrücke klammerfrei geschrieben werden, dann werden die Operationen in der Reihenfolge Kleene-Stern, Konkatenation und Vereinigung ausgeführt. Anstelle von $r_1 \mal r_2$ schreiben wir $r_1 r_2$. Wir verwenden die abkürzende Schreibweise $r^+$ für $r r^*$.
+\end{notation}
+
+\begin{beispiel}
+\fnewline
+\begin{itemize}
+\item $0^* 1 0^* = \gklamm{w \in \SigBs \vert \betrag{w}_{1} = 1}$\\
+		$\rklamm{\rklamm{\rklamm{0}^* \mal 1} \mal \rklamm{0}^*}$
+
+\item $(0 + 1)^* 1 (0 + 1)^* = \gklamm{w \in \SigBs \vert \betrag{w}_{1} \grgl 1}$
+\item $(0 + 1)^* 10010 (0 + 1)^* = \gklamm{w \in \SigBs \vert w \tx{ enthält } 10010 \tx{ als Teilwort}}$
+\item $\eklamm{\rklamm{0 + 1} \rklamm{0 + 1} \rklamm{0 + 1}}^* = \gklamm{w \in \SigBs \vert \betrag{w} \mod 3 = 0}$
+\item $(1 + \epsilon) = \gklamm{1, \epsilon}$
+\item $(0 + \epsilon) 1^* = 01^* + 1^*$
+\item $(0 + \epsilon) (1 + \epsilon) = \gklamm{\epsilon, 0, 1, 01}$
+\item $\rklamm{\rklamm{\rklamm{100 + 011}^*}^*}^* \emptyset = \emptyset$
+\end{itemize}
+\end{beispiel}
+
+\begin{notation}
+Um eine Sprache anzudenken, schreibt man $r$ anstelle von $L(r)$.
+\end{notation}
+
+\begin{fsatz}[Kleene]
+Eine Sprache ist genau dann regulär (\ac{d.h.} wird von einem \ac{DEA} erkannt) \ac{gdw.} man sie durch einen regulären Ausdruck beschreiben kann.
+\end{fsatz}
+
+\begin{fbeweis}
+regulärer Ausdruck \ra endlicher Automat.\\
+Wir beweisen durch strukturelle Induktion, dass jeder \ac{RA} in einen $\epsilon$-\ac{NEA} umgewandelt werden kann.
+\begin{itemize}
+\item $r = a$ mit $a \in \Sigma$ \Insert{GI-26.05.2009-IMG-1}
+\item $r = \epsilon$ \Insert{GI-26.05.2009-IMG-2}
+\item $r = \emptyset$ \Insert{GI-26.05.2009-IMG-3}
+\item $r = \rkl{r_1 \mal r_2}$ Laut \ac{IV} \ac{ex.} $\epsilon$-\ac{NEA}, die $L(r_1)$ und $L(r_2)$ erkennen (siehe Abschlusseigenschaft)
+		\Insert{GI-26.05.2009-IMG-4}
+
+\item $r = \rkl{r_1 + r_2}$ \ac{IV} gilt wie vor.
+		\Insert{GI-26.05.2009-IMG-5}
+
+\item $r = \rkl{r_1}^*$
+		\Insert{GI-26.05.2009-IMG-6}
+
+\item \ac{DEA} \ra regulären Ausdruck.\\
+		Über Hilfskonstruktion G-\ac{NEA}
+\end{itemize}
+\end{fbeweis}
+
+\begin{fdefinition}
+Ein \ac{G-NEA} ist ein Quintupel $M = \rkl{Q, \Sigma, \delta, q_s, q_a}$
+\begin{itemize}
+\item $Q$, $\Sigma$ wie bei \ac{DEA}
+\item $\delta$: $\ubl{Q - \gklamm{q_a}}{Keine Kante verlässt $q_a$} \times \ubl{Q - \gklamm{q_s}}{Keine Kante kommt bei $q_s$ an} \ra \R_{\Sigma}$
+\item $q_s$ Startzustand
+\item $q_a$ \ac{akzept.} Zustand
+\end{itemize}
+\end{fdefinition}
+
+\begin{beispiel}
+\ac{DEA}: \Insert{GI-26.05.2009-IMG-7}
+\ac{G-NEA}: \Insert{GI-26.05.2009-IMG-8}
+\begin{idee}
+Sukzessives Eliminieren von Zuständen / Kompensation über Kante mit \ac{RA}.
+\end{idee}
+\Insert{GI-26.05.2009-IMG-9}
+
+Löschung von Knoten 1:
+\Insert{GI-26.05.2009-IMG-10}
+
+Löschung von Knoten 2:
+\Insert{GI-26.05.2009-IMG-11}
+\[\rkl{1 + 0 (1 + 00)^* 01 \eklamm{11 + (10 + 0) (1 + 00)^* (01)}^* \epsilon + (10 + 0) (1 + 00)^*} + 0 (1 + 00)^*\]
+Konstruktion eines regulären Ausdrucks, der die Sprache $(L) M$ für einen \ac{DEA} $M$ beschreibt.
+\begin{enumerate}
+\item Füge neue Zustände $q_s$ und $q_a$ ein. Verbinde $q_s$ über $\epsilon$-Transition mit $q_0$; Füge für alle $q \in F$ Transition $q \ural{}{\epsilon} q_a$ ein \ra enthalte \ac{G-NEA} $M'$ mit $L(M') = L(M)$
+\item Gewinne regulären Ausdruck für $L (M)$ wie folgt:
+		\begin{enumerate}
+		\item $k = \betrag{Q_G} \hat{=}$ Anzahl Zustände im \ac{G-NEA}
+		\item Falls $k = 2$, so besteht $M$ nur aus $q_s$ und $q_a$ erhalte $r$ aus Kantenbeschriftung $q_s \ra q_a$.
+		\item Wenn $k > 2$. Wähle \ac{bel.} Zustand $q_{rip} \in Q - \gklamm{q_a, q_s}$ aus, eliminiere $q_{rip}$ und erhalte neuen \ac{G-NEA} $M'' = \rkl{Q_G - \gklamm{q_{rip}}, \Sigma, \delta '', q_s, q_a}$ mit
+				\[\delta '' \rkl{q_i, q_j} = r_1 \rkl{r_2}^* r_3 + r_4 \tx{ für alle } q_i \in Q_G - \gklamm{q_a}, q_j \in Q_G - \gklamm{q_s}\]
+				für $r_1 = \delta ' \rkl{q_i, q_{rip}}$, $r_2 = \delta ' \rkl{q_{rip}, q_{rip}}$, $r_3 = \delta ' \rkl{q_{rip}, q_j}$ und $r_4 = \delta ' \rkl{q_i, q_{j}}$
+
+		\item Setze $M' = M''$ und fahre bei a) fort. \Todo{Ref zu a)}
+		\end{enumerate}
+\end{enumerate}
+\end{beispiel}

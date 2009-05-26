@@ -12,7 +12,7 @@
 \newcommand{\gklamm}[1]{\ensuremath{\left\{#1\right\}}}
 
 %In eckige Klammern setzen
-\newcommand{\eklamm}[1]{\ensuremath{\left\[#1\right\]}}
+\newcommand{\eklamm}[1]{\ensuremath{\left[#1\right]}}
 
 %In runde Klammern setzen
 \newcommand{\rklamm}[1]{\ensuremath{\left(#1\right)}}
@@ -138,6 +138,7 @@
 \newtheorem*{anmerkung}{Anmerkung}
 \newtheorem*{beobachtung}{Beobachtung}
 \newtheorem*{bekannt}{Bekannt}
+\newtheorem*{idee}{Idee}
 %%%%%%%%Arabische in Römische Zahl umwandeln
 \newcommand{\RM}[1]{\ensuremath{\mbox{\MakeUppercase{\romannumeral #1}}}}
 %</Commandos>
@@ -157,12 +158,18 @@
 \newcommand{\und}{\ensuremath{\wedge}}
 \newcommand{\ggq}[1]{"`#1"'}
 \newcommand{\tx}[1]{\ensuremath{\text{#1}}}
+\newcommand{\Sigs}{\ensuremath{\Sigma^*}}
 \newcommand{\SigB}{\ensuremath{\Sigma_{\tx{Bool}}}}
 \newcommand{\SigBs}{\ensuremath{\SigB^*}}
 \newcommand{\ub}[2]{\ensuremath{\underbrace{#1}_{#2}}}
 \newcommand{\tc}[2][red]{\textcolor{#1}{#2}}
 \newcommand{\R}{\ensuremath{\mb{R}}}
 \newcommand{\N}{\ensuremath{\mb{N}}}
+\newcommand{\seq}{\ensuremath{\subseteq}}
+\newcommand{\fnewline}{\mbox{}\par}
+\newcommand{\ural}[2]{\ensuremath{\displaystyle \matholongrightarrow_{#1}^{#2}}}
+\newcommand{\rkl}[1]{\ensuremath{\rklamm{#1}}}
+
 %Underbrace mit viel text
 \newcommand{\ubl}[3][]{
 \ub{#2}{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#2}}\else#1\fi}\begin{center}\scriptsize{#3}\end{center}\end{minipage}}
@@ -174,6 +181,7 @@
 \DeclareMathOperator{\ld}{ld}
 \DeclareMathOperator{\prog}{Prog}
 \DeclareMathOperator*{\vd}{\vdash}
+\DeclareMathOperator*{\matholongrightarrow}{\longrightarrow}
 
 \newcommand{\sinx}[1]{\ensuremath{\sin{\left(#1\right)}}}
 \newcommand{\cosx}[1]{\ensuremath{\cos{\left(#1\right)}}}

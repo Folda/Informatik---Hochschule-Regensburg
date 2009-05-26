@@ -10,8 +10,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=24
-CaretPos.Y=3
+CaretPos.X=0
+CaretPos.Y=0
 CharSet=def
 FileName=00acronyms.tex
 FoldedLines=
@@ -437,7 +437,7 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=56
+CaretPos.X=0
 CaretPos.Y=0
 CharSet=def
 FileName=00packages.tex
@@ -465,15 +465,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=197
+CaretPos.X=1
+CaretPos.Y=159
 CharSet=def
 FileName=kapitel\Eigenschaften_von_elementaren_Funktionen.tex
 FoldedLines=
 IsMainFile=no
 Opened=no
 ScrollPos.X=0
-ScrollPos.Y=204
+ScrollPos.Y=157
 SearchListCount=2
 
 [Files\20\SearchList\0]
@@ -497,6 +497,34 @@ TabOrder=-1
 UseThesaurus=yes
 WrapLine=yes
 
+[Files\21]
+ActiveFilters=
+Bookmark#0=0
+Bookmark#1=0
+Bookmark#2=0
+Bookmark#3=0
+Bookmark#4=0
+Bookmark#5=0
+Bookmark#6=0
+Bookmark#7=0
+Bookmark#8=0
+Bookmark#9=0
+CaretPos.X=39
+CaretPos.Y=173
+CharSet=def
+FileName=kapitel\Hoehere_Ableitungen_und_Taylor_Entwicklung.tex
+FoldedLines=
+IsMainFile=no
+Opened=yes
+ScrollPos.X=0
+ScrollPos.Y=152
+SearchListCount=0
+ShowSyntax=yes
+SpellChecking=yes
+TabOrder=4
+UseThesaurus=yes
+WrapLine=yes
+
 [Files\2]
 ActiveFilters=
 Bookmark#0=0
@@ -509,15 +537,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=41
-CaretPos.Y=211
+CaretPos.X=0
+CaretPos.Y=0
 CharSet=def
 FileName=00scripts.tex
 FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=195
+ScrollPos.Y=202
 SearchListCount=1
 
 [Files\2\SearchList\0]
@@ -574,15 +602,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=38
-CaretPos.Y=55
+CaretPos.X=0
+CaretPos.Y=0
 CharSet=def
 FileName=Informatik - SS2009 - MA2.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=43
+ScrollPos.Y=49
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -740,7 +768,7 @@ UseThesaurus=yes
 WrapLine=yes
 
 [Files]
-Count=21
+Count=22
 
 [ProjectDictionary]
 ac

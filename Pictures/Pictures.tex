@@ -60,6 +60,48 @@
 \newcommandtwoopt{\tikzcoor}[4][x][y]{\draw[<->,thick] (0,#4) node[right] {$#2$} -- (0,0) -- (#3,0) node[below] {$#1$};}
 
 \begin{document}
+\section{26.05.2009}
+\subsection{GI-26.05.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (s) {};
+\node[state, accepting] (a) [right of=s] {};
+\tikzedge{s}{a}{a}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-1}
+
+\subsection{GI-26.05.2009-IMG-2}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, accepting,initial,initial text=] {};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-2}
+
+\subsection{GI-26.05.2009-IMG-3}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] {};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-3}
+
+\subsection{GI-26.05.2009-IMG-4}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,semithick]
+\draw (0,-2) rectangle (2,2);
+\draw (4,-2) rectangle (6,2);
+
+\node[state,initial,initial text=,fill=white] at (0,0) (m1s) {};
+\node[state,fill=white] (m1n1) at (2,1.5) {};
+\node[state,fill=white] (m1n2) at (2,-1.5) {};
+
+\node[state,fill=white] (m2s) at (4,0) {};
+\node[state,accepting,fill=white] (m2n1) at (6,1.5) {};
+\node[state,accepting,fill=white] (m2n2) at (6,-1.5) {};
+
+\tikzedge{m1n1}{m2s}{\epsilon}{}{};
+\tikzedge{m1n2}{m2s}{\epsilon}{}{};
+
+\node[node distance=1cm, right of=m1s] {\Large{$M_1$}};
+\node[node distance=1cm, right of=m2s] {\Large{$M_2$}};
+
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-4}
 
 %\tableofcontents
 %\newpage

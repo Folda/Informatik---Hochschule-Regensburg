@@ -1,0 +1,202 @@
+\chapter{Höhere Ableitungen und Taylor-Entwicklung}
+\Mark{Chapter 4.4}
+\begin{fdefinition}
+Die Funktion $f$ heißt $n$-mal differenzierbar falls $f' \frac{d}{dx} f$, $f'' \frac{d}{dx} f'$, $f''' \frac{d}{dx} f''$, $f^{(n)} \frac{d}{dx} f^{(n - 1)}$ existieren.
+\Mark{Definition 4.17}
+\end{fdefinition}
+
+\begin{bemerkung}
+statt $f^{(n)}$ kann man auch schreiben
+\[\frac{d^n}{dx^n} f \rkl{=\frac{d}{dx} \mal \frac{d}{dx} \mal \dots \mal \frac{d}{dx} f}\]
+\end{bemerkung}
+
+\begin{fsatz}[Leibniz-Produktregel]
+Die Funktionen $f$ und $g$ seien $n$-mal differenzierbar. Dann ist auch das Produkt $f \mal g$ $n$-mal differenzierbar und es gilt:
+\[(f \mal g)^{(n)} (x) = \sum_{k = 0}^{n} \binom{n}{k} \mal f^{(k)} (x) \mal g^{(g - k)} (x)\]
+\end{fsatz}
+
+\begin{fbeweis}[Beweisskizze]
+zu zeigen:
+\begin{enumerate}
+\item Existenz der $n$-ten ABleitung von $f \mal g$
+\item Darstellung der Ableitung durch obige Summe
+\end{enumerate}
+zuerst 2. zeigen mit vollständiger Induktion (\ac{d.h.} falls \ggq{Ableitung} existiert hat sie diese Form)\\
+da alle Summanden der rechten Seite existieren \Ra Summe existiert \ra $(f \mal g)^{(n)}$ existiert.
+
+\begin{beispiel}
+$h(x) = \ub{x^2}{f(x)} \mal \ub{\cosx}{g(x)}$ gesucht $h^{(5)}$
+\begin{align*}
+&f(x) = x^2 & g(x) = \cosx\\
+&f'(x) = 2x & g'(x) = -\sinx\\
+&f''(x) = 2 & g''(x) = -\cosx\\
+&f'''(x) = 0 & g'''(x) = \sinx\\
+&f^{(4)}(x) = 0 & g^{(4)}(x) = \cosx\\
+&f^{(5)}(x) = 0 & g^{(5)}(x) = -\sinx
+\end{align*}
+\begin{align*}
+\rkl{f \mal g}^{(5)} (x) &= \sum_{k = 0}^{5} \binom{5}{k} f^{(k)} (x) \mal g^{(n - k)} (x)\\
+&= \binom{5}{0} \mal x^2 \mal \rkl{- \sinx} + \binom{5}{1} \mal 2x \cosx + \binom{5}{2} \mal 2 \mal \sinx\\
+&+ \binom{5}{3} \mal 0 \mal \rkl{- \cosx} + \binom{5}{4} \mal 0 \mal \rkl{-\sinx} + \binom{5}{5} \mal 0 \cosx\\
+&= - x^2 \sinx + 10x \mal \cosx + 20 \sinx\\
+&= \sinx \mal \rkl{20 - x^2} + 10x \cosx
+\end{align*}
+\end{beispiel}
+\end{fbeweis}
+
+\section{Aufgabe 4.13}
+\label{sec:Hoehere_Ableitungen_und_Taylor_Entwicklung_A4_13}
+Es soll die FUnktion $f(x) = \arcsin \rkl{x^2 -1}$ betrachtet werden.
+\begin{enumerate}[label=\alph*)]
+\item Bestimmen Sie den maximalen Definitionsbereich der Funktion $f$.
+\item Berechnen Sie die Ableitung $f'(x)$ und deren Definitionsbereich.
+\end{enumerate}
+
+Lösung siehe \vref{sec:Hoehere_Ableitungen_und_Taylor_Entwicklung_A4_13L}.
+
+\section{Reihendarstellung}
+Für eine oft differenzierbare Funktion hätte man gerne eine Darstellung durch eine Potenzreihe oder zumindest eine Näherung durch eine endliche Reihe.
+
+\subsection{Betrachten Potenzreihen}
+\begin{align*}
+f(x) &= \sum_{k = 0}^{\un} a_k \mal (x - x_0)^k\\
+f(x_0) &= \sum_{k = 0}^{\un} a_k \mal \ub{(x_0 - x_0)}{0}^k = a_0 \Ra a_0 = f(x_0)\\
+f'(x) &= \sum_{k = 1}^{\un} k \mal a_k \mal (x - x_0)^{k - 1}\\
+f'(x_0) &= \sum_{k = 1}^{\un} k \mal a_k \mal 0^{k - 1} = 1 \mal a_1 \Ra a_1 = f'(x_0)\\
+f''(x) &= \sum_{k = 2}^{\un} k \mal (k - 1) \mal a_k \mal (x - x_0)^{k - 2}\\
+f''(x_0) &= \sum_{k = 2}^{\un} a_k \mal 0^{k - 2} = 2 \mal 1 \mal a_2 \Ra a_2 = \frac{f''(x_0)}{2 \mal 1}\\
+f^{(n)} &= \sum_{k = n}^{\un} k \mal (k - 1) \mal \dots \mal (k - n + 1) \mal a_k (x - x_0)^{k - n}\\
+&= \sum_{k = n}^{\un} \frac{k!}{(k - n)!} a_k \mal (x - x_0)^{k - n}\\
+f^{(n)} (x_0) &= \sum_{k = n}^{\un} \frac{k!}{(k - n)!} \mal a_k \mal 0^{k - n} = \frac{n!}{0!} \mal a_n
+\Ra& a_n =\frac{f^{(n)} (x_0)}{n!}
+\end{align*}
+
+\begin{fdefinition}[Taylor-Polynom]
+Für eine $n$-mal differenzierbare Funktion $f$ heißt
+\[T_n(f,x) = \sum_{k = 0}^{n} \frac{f^{(k)} (x_0)}{k!} \mal (x - x_0)^{k}\]
+das $n$-te \indexb{Taylor-Polynom} von $f$ um $x_0$
+\Mark{Definition 4.19}
+\end{fdefinition}
+
+\begin{fsatz}[Satz von Taylor]
+Die Funktion $f$: $\eklamm{a, b} \ra \R$ sei $(n + 1)$-mal stetig differenzierbar (\ac{d.h.} $f$ ist $(n + 1)$-mal differenzierbar und $f^{(n + 1)}$ ist stetig) und $x_0 \in (a,b)$\\
+Dann gilt für alle $x \in \eklamm{a, b}$ die Taylor-Formel
+\[f(x) = \sum_{k = 0}^{n} \rac{f^{(k)} (x_0)}{k!} (x - x_0)^{k} + R_{n + 1} (x)\]
+und es existiert ein $\xi$ zwischen $x$ und $x_0$ so dass
+\[R_{n + 1} (x) = \frac{f^{(n + 1)} (\xi)}{(n + 1)!} \mal (x - x_0)^{n + 1}\]
+\indexb{Lagrange-Form des Restglieds}
+\Mark{Satz 4.20}
+\end{fsatz}
+
+\begin{bemerkung}
+Manchmal wird das zum Taylor-Polynom $n$-ter Ordnung gehörende Restglied auch mit $R_n$ (statt $R_{n + 1}$) bezeichnet.
+\end{bemerkung}
+
+\begin{fbeweis}
+-
+\end{fbeweis}
+
+\subsection[Spezialfälle}
+\begin{enumerate}
+\item $n = 0$
+		\begin{align*}
+		f(x) &= T_0 (f, x) + R_1 (x)\\
+		&= f(x_0) + \frac{f'(\xi)}{1!} \mal (x - x_0)^1
+		\end{align*}
+		mit $\xi$ zwischen $x$ und $x_0$\\
+		Wir formen um zu
+		\begin{align*}
+		&f(x) - f(x_0) = f'(\xi) \mal (x - x_0)\\
+		\Lra &\frac{f(x) - f(x_0)}{x - x_0} = f'(\xi) \ra \tx{Mittelwertsatz der Differentialrechnung}
+		\end{align*}
+
+\item $n = 1$
+		\begin{align*}
+		f(x) &= T_1(f, x) + R_2 (x)\\
+		&=f (x_0) + f'(x_0) \mal (x - x_0) + R_2 (x)
+		\end{align*}
+		Das Taylorpolynom $T_1(f, x)$ stellt die lineare Approximation der Funktion $f$ durch die Tangente in $x_0$ dar.
+
+\item $n = 2$
+		\begin{align*}
+		f(x) &= T_2(f, x) + R_3 (x)\\
+		&=f (x_0) + f'(x_0) \mal (x - x_0) + \frac{f'' (x_0)}{2} \mal (x - x_0)^2 + R_3 (x)
+		\end{align*}
+		$T_2(f,x)$ ist eine quadratische Näherung der Funktion $f$, also eine Näherung durch eine Parabel.
+\end{enumerate}
+
+\begin{fdefinition}[Taylorreihe]
+Ist eine Funktion beliebig oft differenzierbar, so heißt die Potenzreihe
+\[T(f, x) = \sum_{k = 0}^{\un} \frac{f^{(k)} (x_0)}{k!} (x - x_0)^k\]
+die Taylorreihe von $f$ mit Entwicklungspunkt $x_0$
+\end{fdefinition}
+
+\begin{bemerkung}
+\fnewline
+\begin{enumerate}
+\item Es gibt keine allgemeinen Aussagen über die Konvergenz von Taylorreihen (also ob ein Konvergenzradius $r > 0$ existiert und wie groß er gegebenenfalls ist).
+\item Im Fall der Konvergenz der Taylorreihe (also innerhalb des Konvergenzgebietes) gilt nicht immer $f(x) = T(f, x)$.
+\item Funktionen deren Taylorreihe konvergiert und für die im Konvergenzgebiet gilt $f(x) = T(f, x)$ nennt man \indexb{analytisch}. Viele gebräuchliche Funktionen sind analytisch: $e^x$, $\lnx$, $\sinx$, $\cosx$, $\tanx$, $\frac{1}{(1 - x)}$, $\rkl{\frac{1}{1 - x}}^2$, $\arcsin (x)$ \dots
+\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+\fnewline
+\begin{enumerate}
+\item $f(x) = \lnx$, $x_0 = 1$\\
+		Gesucht Taylorreihe mit Entwicklungspunkt $x_0$
+		\begin{align*}
+		f(x) = \lnx &\Ra f(1) = \lnx[1] = 0\\
+		f'(x) = \frac{1}{x} = x^{-1} &\Ra f'(1) = \frac{1}{1} = 1\\
+		f''(x) = (-1) \mal x^{-2} &\Ra f''(1) = (-1)\\
+		f'''(x) = (-1) (-2) x^{-3} &\Ra f'''(1) = 2 \mal x^{-3}\\
+		f^{(4)} (x) = (-1) \mal (-2) \mal (-3) \mal x^{-4} &\Ra f^{(4)} (1) = (-3) \mal 2\\
+		f^{(k)} (x) = x^{-k} \mal (k - 1)! \mal (-1)^{k - 1} &\Ra f^{(k)} (1) = (-1)^{k - 1} \mal (k - 1)!
+		\end{align*}
+		(könnte man mit vollständiger Induktion beweisen)
+		\[T(f, x) = \sum_{k = 0}^{\un} \frac{f^{(k)} (1)}{k!} (x - 1)^k = \sum_{k = 1}^{\un} (-1)^{k - 1} \mal \frac{(k - 1)!}{k!} \mal (x - 1)^k\]
+		\[= \sum_{k = 1}^{\un} \frac{(-1)^{k}{k} (x - 1)^k\]
+		Konvergenzgebiet
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+Taylorreihe für $\lnx = f(x)$, $x_0 = 1$
+\begin{align*}
+&\vdots\\
+&T \rkl{\lnx, x} = \sum_{k = 1}^{\un} \ub{(-1)^{k + 1} \mal \frac{1}{k}}{a_k} (x - 1)^k
+\end{align*}
+Konvergenzradius
+\begin{align*}
+w &= \lim_{k \ra \un} \sqrt[k]{\betrag{a_k}} = \lim_{k \ra \un} \sqrt[k]{\betrag{(-1)^{k + 1} \frac{1}{k}}}\\
+&= \lim_{k \ra \un} \sqrt[k]{\frac{1}{k}} = 1
+\end{align*}
+\Todo{Von Wolf nachtragen (26.05.2009)}
+\end{beispiel}
+
+\section{Lösungen}
+\subsection{Aufgabe 4.13}
+\subsection{Aufgabe 4.6}
+\label{sec:Hoehere_Ableitungen_und_Taylor_Entwicklung_A4_13L}
+Lösung zu Aufgabe \vref{sec:Hoehere_Ableitungen_und_Taylor_Entwicklung_A4_13}.
+
+$f(x) = \arcsin \rkl{x^2 - 1}$
+\begin{enumerate}[label=\alph*)]
+\item Definitionsbereich von $\arcsin(y)$ ist $\eklamm{-1, 1}$
+		\begin{align*}
+		&-1 \klgl x^2 - 1 \klgl 1 \Vert +1\\
+		\Lra &0 \klgl x^2 \klgl 2\\
+		\Lra &\ub{0 \klgl x^2}{\tx{gilt immer}} \und x^2 \klgl 2\\
+		\Lra &x^2 \klgl 2\\
+		\Lra &-\sqrt{2} \klgl x \klgl \sqrt{2}\\
+		\Ra & D = \eklamm{-\sqrt{2}, \sqrt{2}}
+		\end{align*}
+
+\item \begin{align*}
+		\frac{d}{dx} \arcsin \rkl{x^2 - 1} &= \frac{1}{\sqrt{1 - \rkl{x^2 - 1}^2}} \mal 2x\\
+		&= \frac{2}{\sqrt{1 - x^4 + 2x^2 - 1}} = \frac{2x}{\sqrt{x^2} \mal \sqrt{2 - x^2}}\\
+		&= \begin{cases}\frac{2}{\sqrt{2 - x^2}} & \tx{für } x > 0\\\frac{-2}{\sqrt{2 - x^2}} & \tx{für } x < 0\end{cases}
+		\end{align*}
+		Definitionsbereich der Ableitung\\
+		$\rkl{-\sqrt{2}, 0} \cup \rkl{0, \sqrt{2}}$
+\end{enumerate}

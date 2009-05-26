@@ -1,0 +1,18 @@
+digraph eingraph {
+graph [overlap=false,start=0,rankdir=LR,order=out];
+edge [len=2];
+start [shape=plaintext, label="", width=0]; 
+A [shape=doublecircle];
+E [shape=doublecircle];
+F [shape=circle];
+BF [shape=circle];
+BE [shape=doublecircle];
+EC [shape=doublecircle];
+CF [shape=circle];
+ED [shape=doublecircle];
+DF [shape=circle];
+
+start -> AD [len=1, label=start];
+
+
+}
