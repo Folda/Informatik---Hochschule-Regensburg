@@ -103,6 +103,68 @@
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-4}
 
+\subsection{GI-26.05.2009-IMG-5}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-5}
+
+\subsection{GI-26.05.2009-IMG-6}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,semithick]
+\draw (0,-2) rectangle (2,2);
+
+\node[state,fill=white] at (0,0) (m1s) {};
+\node[state,fill=white] (m1n1) at (2,1.5) {};
+\node[state,fill=white] (m1n2) at (2,0) {};
+\node[state,fill=white] (m1n3) at (2,-1.5) {};
+\node[state,initial,initial text=] (start) [left of=m1s] {};
+\node[state,accepting] (end) [right of=m1n2] {};
+
+\tikzedge{m1n1}{end}{\epsilon}{}{};
+\tikzedge{m1n2}{end}{\epsilon}{}{};
+\tikzedge{m1n3}{end}{\epsilon}{}{};
+\tikzedge{start}{end}{\epsilon}{bend left}{};
+\tikzedge{end}{start}{\epsilon}{bend left}{};
+\tikzedge{start}{m1s}{\epsilon}{}{};
+
+\node[node distance=1cm, right of=m1s] {\Large{$M_1$}};
+
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-6}
+
+\subsection{GI-26.05.2009-IMG-7}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (1) {1};
+\node[state, accepting] (2) [right of=1] {2};
+\node[state, accepting] (3) [below of=1] {3};
+
+\tikzloop{2}{1}{above}{};
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{2}{1}{0}{bend left}{};
+
+\tikzedge{1}{3}{1}{bend left}{};
+\tikzedge{3}{1}{1}{bend left}{};
+
+\tikzedge{3}{2}{0}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-7}
+
+\subsection{GI-26.05.2009-IMG-8}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (1) {1};
+\node[state, accepting] (2) [right of=1] {2};
+\node[state, accepting] (3) [below of=1] {3};
+
+\tikzloop{2}{1}{above}{};
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{2}{1}{0}{bend left}{};
+
+\tikzedge{1}{3}{1}{bend left}{};
+\tikzedge{3}{1}{1}{bend left}{};
+
+\tikzedge{3}{2}{0}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-8}
 %\tableofcontents
 %\newpage
 %\input{kapitel/IN2_SS2009.tex}

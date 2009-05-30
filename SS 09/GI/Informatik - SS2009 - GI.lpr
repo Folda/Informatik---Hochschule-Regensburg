@@ -10,8 +10,8 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=23
+CaretPos.Y=36
 CharSet=def
 FileName=00acronyms.tex
 FoldedLines=
@@ -31,7 +31,7 @@ Text=abgeschlossen
 [Files\0]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=3
+TabOrder=4
 UseThesaurus=yes
 WrapLine=yes
 
@@ -75,15 +75,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=34
+CaretPos.Y=144
 CharSet=def
 FileName=00scripts.tex
 FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=155
+ScrollPos.Y=134
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -132,14 +132,14 @@ Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
 CaretPos.X=0
-CaretPos.Y=0
+CaretPos.Y=97
 CharSet=def
 FileName=Informatik - SS2009 - GI.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=27
+ScrollPos.Y=95
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -159,15 +159,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=0
-CaretPos.Y=0
+CaretPos.X=14
+CaretPos.Y=1460
 CharSet=def
 FileName=kapitel\Endliche_Automaten.tex
 FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=1434
+ScrollPos.Y=1446
 SearchListCount=7
 
 [Files\5\SearchList\0]
@@ -222,7 +222,7 @@ Text=ersten
 [Files\5]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=4
+TabOrder=3
 UseThesaurus=yes
 WrapLine=yes
 
@@ -238,15 +238,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=14
-CaretPos.Y=221
+CaretPos.X=62
+CaretPos.Y=432
 CharSet=def
 FileName=kapitel\Grundlagen.tex
 FoldedLines=
 IsMainFile=no
-Opened=no
+Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=250
+ScrollPos.Y=432
 SearchListCount=2
 
 [Files\6\SearchList\0]
@@ -266,7 +266,7 @@ Text=\mathcal{c}
 [Files\6]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=-1
+TabOrder=5
 UseThesaurus=yes
 WrapLine=yes
 
@@ -335,12 +335,15 @@ ae
 bd
 bu
 ce
+cin
+cout
 df
 ef
 gi
 htb
 ij
 img
+lstlisting
 multicols
 nodeone
 nodetwo
