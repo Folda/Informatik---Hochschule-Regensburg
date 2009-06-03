@@ -1459,3 +1459,144 @@ Konstruktion eines regulären Ausdrucks, der die Sprache $(L) M$ für einen \ac{DE
 		\end{enumerate}
 \end{enumerate}
 \end{beispiel}
+
+\section{Anwendungen für Rabin-Scott-Automaten}
+\Mark{Section 3.8}
+\subsection{Textsuche}
+\Mark{Subsection 3.8.1}
+\Ra siehe AD (Knuth-Morris-Pralt Algorithmus)
+
+\subsection{Analyse von Programmen}
+\Mark{Subsection 3.8.2}
+\begin{lstlisting}[language=C++]
+x << cin;
+a = x; /* a.1 */
+b = x; /* b.1 */
+while (p(a))
+	a = f(a); /* a.2 */
+while (q(b)){
+	a = g(a); /* a.3 */
+	b = f(b); /* b.2 */
+}
+z = a; /* z.1 */
+cout << z;
+\end{lstlisting}
+\begin{frage}
+was berechnet obiges Programm?
+\end{frage}
+
+\begin{problem}
+\fnewline
+\begin{itemize}
+\item Typ von \lstinline{a}, \lstinline{b}, \lstinline{p}, \lstinline{q}, \lstinline{z} unbekannt
+\item Bedeutung der Prädikate \lstinline{p}, \lstinline{q} unklar.
+\end{itemize}
+\end{problem}
+
+\begin{also}
+Welche Berechnungen kann Programm überhaupt ausführen?
+\end{also}
+
+\begin{beobachtung}
+Da \lstinline{a} und \lstinline{b} mit \lstinline{x} initialisiert werden, entsteht das Ergebnis \lstinline{z} durch wiederholte Anwendung von \lstinline{f} und \lstinline{g} auf \lstinline{x}.
+\end{beobachtung}
+
+Wir definieren die Wertsprache $WS$ des obigen Programmes als
+\[WS(P) = \gklamm{w \in \gklamm{f, g}^* \vert C}\]
+mit $C = $ \ggq{es gibt ein $x$, so dass bei passender Interpretation von \lstinline{p}, \lstinline{q}, \lstinline{f} und \lstinline{g} das Programmschema $P$ bei Eingabe von \lstinline{x} nach endlich vielen Schritten hält, und $w$ die dabei entstandenen Folge von \lstinline{f(s)} und \lstinline{g(s)} ist, welche die Ausgabe \lstinline{z} = $w \rkl{x}$ liefert.}
+\[z = w(x) \tx{ für } w = a_1 \dots a_n ~~ a_1 \rkl{a_2\rkl{\dots \rkl{a_n (x)}} \dots}\]
+\Insert{GI-27.05.2009-IMG-1}
+$L(M) = f^* g^*$
+
+\subsection{Software-Engineering}
+\Mark{Subsection 3.8.3}
+\Ra \ac{z.B.} Statecharts
+
+\subsection{Verklemmung von Prozessen}
+\Mark{Subsection 3.8.4}
+Eine Bibliothek hat die folgenden Ausleihbedingungen:
+\begin{itemize}
+\item Jeder Entleiher darf Bücher mit nach Hause nehmen
+\item Es gibt keine Ausleihfristen
+\item Entleiher darf mehrere Bücher ausleihen; er kann Bücher vorbestellen und erhält diese sobald verfügbar.
+\end{itemize}
+Wir betrachten zwei Studenten $A$ und $B$, denen für ihre Bachelor Arbeit Aufsätze aus zwei Sammelbänden empfohlen wurden. Die Studenten kennen sich nicht und arbeiten daheim. Da die Aufsätze nicht voraussetzungslos sind, ist es möglich, dass in jedem der Sammelbände ein Aufsatz existiert, der das Verständnis eines AUfsatzes aus dem anderen Band erfordert.\\
+Ein Student der auf einen derartigen Aufsatz stößt wird seinen Sammelband also nicht zurückgeben, ehe er den anderen Sammelband nicht erhalten und den relevanten Aufsatz gelesen hat.\\
+Wir sollen untersuchen, ob die Ausleiheordnung der Bibliothek \ac{bzw.} das Verhalten der Studierenden sinnvoll ist. Dazu entwerfen wir ein Modell, welche das Verhalten der Studenten im System beschreibt (Automat):\\
+\ggq{Zustände}:
+\begin{description}
+\item[P] der Student macht Pause (kein Buch ausgeliehen, keines vorbestellt).
+\item[10] ein Buch ausgeliehen, kein Buch vorbestellt.
+\item[01] ein Buch ausgeliehen, ein Buch vorbestellt.
+\item[20] zwei Bücher ausgeliehen, kein Buch vorbestellt.
+\end{description}
+Das Verhalten lässt sich dann durch folgenden Automaten beschreiben:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (P) {P};
+\node[state] (10) [right of=P] {10};
+\node[state] (11) [right of=10] {11};
+\node[state] (20) [right of=11] {20};
+
+\tikzedge{P}{10}{a}{}{};
+\tikzedge{10}{11}{v}{}{};
+\tikzedge{11}{20}{a}{}{};
+
+\tikzedge{10}{P}{r}{bend right}{};
+\tikzedge{20}{10}{r}{bend left}{};
+
+\node (text) [right of=20, node distance=2.5cm] {
+\begin{minipage}{22.88mm}
+$a$-Ausleihen\\
+$v$-Vorbestellen\\
+$r$-Rückgabe
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+Bilde Produktautomaten zur Analyse des parallelen Prozesses:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (PP) {PP};
+\node[state] (P10) [right of=PP] {P10};
+\node[state] (P11) [right of=P10] {P11};
+\node[state] (P20) [right of=P11] {P20};
+\node[state] (10P) [below of=PP] {10P};
+\node[state] (1010) [below of=P10] {1010};
+\node[state] (1011) [below of=P11] {1011};
+\node[state] (11P) [below of=10P] {11P};
+\node[state] (1110) [below of=1010] {1110};
+\node[state, color=blue] (1111) [below of=1011] {1111};
+\node[state] (20P) [below of=11P] {20P};
+
+\tikzedge{PP}{P10}{a.B}{}{below};
+\tikzedge{PP}{10P}{a.A}{}{};
+
+\tikzedge{P10}{P11}{r.B}{}{};
+\tikzedge{P10}{1010}{a.A}{}{};
+\tikzedge{P10}{PP}{r.B}{bend right}{};
+
+\tikzedge{P11}{P20}{a.B}{}{};
+
+\tikzedge{P20}{P10}{r.B}{bend right}{};
+
+\tikzedge{10P}{1010}{a.B}{}{};
+\tikzedge{10P}{PP}{r.A}{bend left}{};
+\tikzedge{10P}{11P}{r.A}{}{};
+
+\tikzedge{1010}{P10}{r.A}{bend left}{};
+\tikzedge{1010}{1011}{r.B}{}{};
+\tikzedge{1010}{1110}{r.A}{}{};
+\tikzedge{1010}{10P}{r.B}{bend left}{};
+
+\tikzedge{1011}{P11}{r.A}{}{};
+\tikzedge{1011}{1111}{r.A}{}{};
+
+\tikzedge{11P}{20P}{a.A}{}{};
+\path[->, dashed, color=red] (11P) edge node {$a.B$} (1110);
+
+\tikzedge{1110}{1111}{v.B}{}{};
+\tikzedge{1110}{11P}{r.B}{bend left}{};
+
+\tikzedge{20P}{10P}{r.A}{bend left}{};
+\end{tikzpicture}
+\end{center}
