@@ -1403,17 +1403,105 @@ Eine Sprache ist genau dann regulär (\ac{d.h.} wird von einem \ac{DEA} erkannt) 
 regulärer Ausdruck \ra endlicher Automat.\\
 Wir beweisen durch strukturelle Induktion, dass jeder \ac{RA} in einen $\epsilon$-\ac{NEA} umgewandelt werden kann.
 \begin{itemize}
-\item $r = a$ mit $a \in \Sigma$ \Insert{GI-26.05.2009-IMG-1}
-\item $r = \epsilon$ \Insert{GI-26.05.2009-IMG-2}
-\item $r = \emptyset$ \Insert{GI-26.05.2009-IMG-3}
+\item $r = a$ mit $a \in \Sigma$
+       	\begin{center}
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] (s) {};
+		\node[state, accepting] (a) [right of=s] {};
+		\tikzedge{s}{a}{a}{}{};
+		\end{tikzpicture}
+		\end{center}
+		\Img{GI-26.05.2009-IMG-1}
+
+\item $r = \epsilon$
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state, accepting,initial,initial text=] {};
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-2}
+        \end{center}
+
+\item $r = \emptyset$
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] {};
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-3}
+        \end{center}
+
 \item $r = \rkl{r_1 \mal r_2}$ Laut \ac{IV} \ac{ex.} $\epsilon$-\ac{NEA}, die $L(r_1)$ und $L(r_2)$ erkennen (siehe Abschlusseigenschaft)
-		\Insert{GI-26.05.2009-IMG-4}
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,semithick]
+		\draw (0,-2) rectangle (2,2);
+		\draw (4,-2) rectangle (6,2);
+		
+		\node[state,initial,initial text=,fill=shadecolor_beweis] at (0,0) (m1s) {};
+		\node[state,fill=shadecolor_beweis] (m1n1) at (2,1.5) {};
+		\node[state,fill=shadecolor_beweis] (m1n2) at (2,-1.5) {};
+		
+		\node[state,fill=shadecolor_beweis] (m2s) at (4,0) {};
+		\node[state,accepting,fill=shadecolor_beweis] (m2n1) at (6,1.5) {};
+		\node[state,accepting,fill=shadecolor_beweis] (m2n2) at (6,-1.5) {};
+		
+		\tikzedge{m1n1}{m2s}{\epsilon}{}{};
+		\tikzedge{m1n2}{m2s}{\epsilon}{}{};
+		
+		\node[node distance=1cm, right of=m1s] {\Large{$M_1$}};
+		\node[node distance=1cm, right of=m2s] {\Large{$M_2$}};
+		
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-4}
+        \end{center}
 
 \item $r = \rkl{r_1 + r_2}$ \ac{IV} gilt wie vor.
-		\Insert{GI-26.05.2009-IMG-5}
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\draw (2,1) rectangle (4,4);
+		\draw (2,0) rectangle (4,-3);
+		
+		\node at(3,2.5) {\Large{$M_1$}};
+		\node at(3,-1.5) {\Large{$M_2$}};
+		
+		\node[state,initial,initial text=] at (0,0.5) (start) {};
+		\node[state,fill=shadecolor_beweis] at (2,2.5) (m1s) {};
+		\node[state,fill=shadecolor_beweis] at (2,-1.5) (m2s) {};
+		
+		\node[state,accepting,fill=shadecolor_beweis] at (4,3.5) {};
+		\node[state,accepting,fill=shadecolor_beweis] at (4,1.5) {};
+		
+		\node[state,accepting,fill=shadecolor_beweis] at (4,-0.5) {};
+		\node[state,accepting,fill=shadecolor_beweis] at (4,-2.5) {};
+		
+		\tikzedge{start}{m1s}{\epsilon}{}{};
+		\tikzedge{start}{m2s}{\epsilon}{}{};
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-5}
+        \end{center}
 
 \item $r = \rkl{r_1}^*$
-		\Insert{GI-26.05.2009-IMG-6}
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,semithick]
+		\draw (0,-2) rectangle (2,2);
+		
+		\node[state,fill=shadecolor_beweis] at (0,0) (m1s) {};
+		\node[state,fill=shadecolor_beweis] (m1n1) at (2,1.5) {};
+		\node[state,fill=shadecolor_beweis] (m1n2) at (2,0) {};
+		\node[state,fill=shadecolor_beweis] (m1n3) at (2,-1.5) {};
+		\node[state,initial,initial text=] (start) [left of=m1s] {};
+		\node[state,accepting] (end) [right of=m1n2] {};
+		
+		\tikzedge{m1n1}{end}{\epsilon}{}{};
+		\tikzedge{m1n2}{end}{\epsilon}{}{};
+		\tikzedge{m1n3}{end}{\epsilon}{}{};
+		\tikzedge{start}{end}{\epsilon}{bend left}{};
+		\tikzedge{end}{start}{\epsilon}{bend left}{};
+		\tikzedge{start}{m1s}{\epsilon}{}{};
+		
+		\node[node distance=1cm, right of=m1s] {\Large{$M_1$}};
+		
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-6}
+        \end{center}
 
 \item \ac{DEA} \ra regulären Ausdruck.\\
 		Über Hilfskonstruktion G-\ac{NEA}
@@ -1431,18 +1519,142 @@ Ein \ac{G-NEA} ist ein Quintupel $M = \rkl{Q, \Sigma, \delta, q_s, q_a}$
 \end{fdefinition}
 
 \begin{beispiel}
-\ac{DEA}: \Insert{GI-26.05.2009-IMG-7}
-\ac{G-NEA}: \Insert{GI-26.05.2009-IMG-8}
+\ac{DEA}:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=2.8cm,semithick] \node[state, initial, initial text=] (1) {1};
+\node[state, accepting] (2) [right of=1] {2};
+\node[state, accepting] (3) [below of=1] {3};
+
+\tikzloop{2}{1}{above}{};
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{2}{1}{0}{bend left}{};
+
+\tikzedge{1}{3}{1}{bend left}{};
+\tikzedge{3}{1}{1}{bend left}{};
+
+\tikzedge{3}{2}{0}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-7}
+\end{center}
+
+\ac{G-NEA}:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (1) {1};
+\node[state, accepting] (2) [right of=1] {2};
+\node[state, accepting] (3) [below of=1] {3};
+\node[state, color=blue] (qs) [left of=3] {$q_s$};
+\node[state, color=blue] (qa) [right of=3] {$q_a$};
+
+\tikzloop{2}{1}{above}{};
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{2}{1}{0}{bend left}{};
+
+\tikzedge{1}{3}{1}{bend left}{};
+\tikzedge{3}{1}{1}{bend left}{};
+
+\tikzedge{3}{2}{0}{}{};
+
+\path[->,color=blue] (qs) edge node {$\epsilon$} (1);
+
+\path[->,color=blue] (2) edge node {$\epsilon$} (qa);
+\path[->,color=blue] (3) edge node {$\epsilon$} (qa);
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-8}
+\end{center}
+
 \begin{idee}
 Sukzessives Eliminieren von Zuständen / Kompensation über Kante mit \ac{RA}.
 \end{idee}
-\Insert{GI-26.05.2009-IMG-9}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,color=blue] (qi) {$q_i$};
+\node[state,color=red] (qrip) [above right of=qi] {$q_{rip}$};
+\node[state,color=green] (qj) [below right of=qrip] {$q_j$};
+
+\tikzedge{qi}{qrip}{r_1}{}{};
+\tikzedge{qi}{qj}{r_4}{}{};
+\tikzedge{qrip}{qj}{r_3}{}{};
+\tikzloop{qrip}{r_2}{below}{};
+
+\node[state,color=blue] (qi2) [below of=qi, node distance=1.5cm] {$q_i$};
+\node[state,color=green] (qj2) [below of=qj, node distance=1.5cm] {$q_j$};
+
+\tikzedge{qi2}{qj2}{r_4 + r_1 \cdot (r_2)^* \cdot r_2}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-9}
+\end{center}
 
 Löschung von Knoten 1:
-\Insert{GI-26.05.2009-IMG-10}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=4cm,semithick] \node[state,initial,initial text=] (qs) {$q_s$};
+\node[state] (1) [below right of=qs] {$1$};
+\node[state] (2) [right of=1]{$2$};
+\node[state] (3) [below of=1]{$3$};
+\node[state,accepting] [right of=3](qa) {$q_a$};
+
+\tikzedge{qs}{1}{\epsilon}{}{};
+\path[->,color=gray] (qs) edge[bend left] node {$0$} (2);
+\path[->,color=gray] (qs) edge[bend right] node[left] {\parbox{2cm}{$\epsilon
+\cdot 1 + \emptyset = 1$ \textcolor{black}{\scriptsize{$(a_s \rightarrow 1
+\rightarrow 3)$}}}} (3);
+
+
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{1}{3}{1}{bend right}{};
+\draw[color=red,-] (1.north east) -- (1.south west);
+\draw[color=red,-] (1.north west) -- (1.south east);
+
+\tikzedge{2}{qa}{\epsilon}{bend left}{};
+\tikzloop{2}{1}{above}{};
+\path[->,color=gray] (2) edge[loop right] node {$1 + 00$ \textcolor{black}{$(2
+\rightarrow 1 \rightarrow 2)$}} ();
+\path[->,color=gray] (2) edge[bend left] node {
+\begin{minipage}{1cm}
+ \scriptsize{$01$ \textcolor{black}{$(2 \rightarrow 1 \rightarrow 3)$}}
+ \end{minipage}} (3);
+
+\tikzedge{3}{qa}{\epsilon}{}{};
+\tikzedge{3}{2}{0}{}{}
+\path[->,color=gray] (3) edge[bend left] node[left]
+{\begin{minipage}{1cm}
+ \scriptsize{$0+10$ \textcolor{black}{$(3+1 \rightarrow 2)$}}
+ \end{minipage}}
+(2);
+\path[->,color=gray] (3) edge[loop below] node {$11$} ();
+
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-10}
+\end{center}
 
 Löschung von Knoten 2:
-\Insert{GI-26.05.2009-IMG-11}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=4cm,semithick] \node[state,initial,initial text=] (qs) {$q_s$};
+\node[state] (2) [above right of=qs] {$2$};
+\node[state] (3) [below right of=qs] {$3$};
+\node[state] (qa) [above right of=3] {$q_a$};
+
+\tikzloop{3}{11 \textcolor{gray}{+ (10 + 0)(1 + 00)^* \cdot (01)}}{below}{};
+\tikzloop{2}{1 + 00}{above}{};
+
+\tikzedge{qs}{2}{0}{}{};
+\tikzedge{qs}{3}{1 \textcolor{gray}{+ 0 (1 + 00)^* 01} = r_1}{}{left};
+
+\tikzedge{2}{qa}{\epsilon}{}{};
+\tikzedge{2}{3}{01}{bend right}{left};
+
+\tikzedge{3}{2}{10 + 0}{bend right}{};
+\tikzedge{3}{qa}{\epsilon \textcolor{gray}{+(10 + 0) (1 + 00)} = r_2}{}{right};
+
+\path[->,color=gray] (qs) edge[bend right] node[above] {\scriptsize{$0 \cdot (1
++ 00)^* \cdot \epsilon \textcolor{black}{= r_4}$}} (qa);
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-11}
+\end{center}
+
 \[\rkl{1 + 0 (1 + 00)^* 01 \eklamm{11 + (10 + 0) (1 + 00)^* (01)}^* \epsilon + (10 + 0) (1 + 00)^*} + 0 (1 + 00)^*\]
 Konstruktion eines regulären Ausdrucks, der die Sprache $(L) M$ für einen \ac{DEA} $M$ beschreibt.
 \begin{enumerate}
@@ -1505,7 +1717,37 @@ Wir definieren die Wertsprache $WS$ des obigen Programmes als
 \[WS(P) = \gklamm{w \in \gklamm{f, g}^* \vert C}\]
 mit $C = $ \ggq{es gibt ein $x$, so dass bei passender Interpretation von \lstinline{p}, \lstinline{q}, \lstinline{f} und \lstinline{g} das Programmschema $P$ bei Eingabe von \lstinline{x} nach endlich vielen Schritten hält, und $w$ die dabei entstandenen Folge von \lstinline{f(s)} und \lstinline{g(s)} ist, welche die Ausgabe \lstinline{z} = $w \rkl{x}$ liefert.}
 \[z = w(x) \tx{ für } w = a_1 \dots a_n ~~ a_1 \rkl{a_2\rkl{\dots \rkl{a_n (x)}} \dots}\]
-\Insert{GI-27.05.2009-IMG-1}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (q0) {$q_0$};
+\node[state] (a1) [below left of=q0] {$a.1$};
+\node[state] (a2) [below of=a1] {$a.2$};
+\node[state] (a3) [below of=a2] {$a.3$};
+\node[state,accepting] (z1) [left of=a2] {$z.1$};
+
+\node[state] (b1) [below right of=q0] {$b.1$};
+\node[state] (b2) [below of=b1] {$b.2$};
+
+\tikzedge{q0}{a1}{\epsilon}{}{};
+\tikzedge{q0}{b1}{\epsilon}{}{};
+
+\tikzedge{a1}{a2}{f}{}{};
+\tikzedge{a1}{a3}{g}{bend left}{};
+\tikzedge{a1}{z1}{\epsilon}{}{};
+
+\tikzedge{a2}{z1}{\epsilon}{bend left}{};
+\tikzloop{a2}{f}{left}{};
+\tikzedge{a2}{a3}{g}{}{}
+
+\tikzedge{a3}{z1}{\epsilon}{}{};
+\tikzloop{a3}{g}{below}{};
+
+\tikzedge{b1}{b2}{f}{}{};
+
+\tikzloop{b2}{f}{right}{};
+\end{tikzpicture}
+\Img{GI-27.05.2009-IMG-1}
+\end{center}
 $L(M) = f^* g^*$
 
 \subsection{Software-Engineering}
@@ -1542,11 +1784,11 @@ Das Verhalten lässt sich dann durch folgenden Automaten beschreiben:
 \tikzedge{10}{11}{v}{}{};
 \tikzedge{11}{20}{a}{}{};
 
-\tikzedge{10}{P}{r}{bend right}{};
+\tikzedge{10}{P}{r}{bend right}{above};
 \tikzedge{20}{10}{r}{bend left}{};
 
 \node (text) [right of=20, node distance=2.5cm] {
-\begin{minipage}{22.88mm}
+\begin{minipage}{25mm}
 $a$-Ausleihen\\
 $v$-Vorbestellen\\
 $r$-Rückgabe
