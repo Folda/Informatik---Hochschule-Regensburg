@@ -180,6 +180,10 @@
 \ub{#2}{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#2}}\else#1\fi}\begin{center}\scriptsize{#3}\end{center}\end{minipage}}
 }
 
+%Stack mit viel text
+\newcommand{\stackl}[3][]{
+\stack{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#3}}\else#1\fi}\begin{center}\scriptsize{#2}\end{center}\end{minipage}}{#3}
+}
 %Sin, Cos, Tan, Dim, Span, Arccos
 \DeclareMathOperator{\spano}{span}
 \DeclareMathOperator{\bin}{Bin}

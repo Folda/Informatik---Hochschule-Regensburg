@@ -10,15 +10,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=38
-CaretPos.Y=39
+CaretPos.X=36
+CaretPos.Y=40
 CharSet=def
 FileName=00acronyms.tex
 FoldedLines=
 IsMainFile=no
 Opened=yes
 ScrollPos.X=0
-ScrollPos.Y=16
+ScrollPos.Y=19
 SearchListCount=1
 
 [Files\0\SearchList\0]
@@ -47,7 +47,7 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=16
+CaretPos.X=0
 CaretPos.Y=0
 CharSet=def
 FileName=00packages.tex
@@ -75,15 +75,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=44
-CaretPos.Y=64
+CaretPos.X=0
+CaretPos.Y=0
 CharSet=def
 FileName=00scripts.tex
 FoldedLines=
 IsMainFile=no
 Opened=yes
-ScrollPos.X=0
-ScrollPos.Y=157
+ScrollPos.X=10
+ScrollPos.Y=172
 SearchListCount=0
 ShowSyntax=yes
 SpellChecking=yes
@@ -131,15 +131,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=100
-CaretPos.Y=68
+CaretPos.X=0
+CaretPos.Y=25
 CharSet=def
 FileName=Informatik - SS2009 - GI.tex
 FoldedLines=
 IsMainFile=yes
 Opened=yes
-ScrollPos.X=4
-ScrollPos.Y=45
+ScrollPos.X=0
+ScrollPos.Y=22
 SearchListCount=1
 
 [Files\4\SearchList\0]
@@ -168,15 +168,15 @@ Bookmark#6=0
 Bookmark#7=0
 Bookmark#8=0
 Bookmark#9=0
-CaretPos.X=3
-CaretPos.Y=142
+CaretPos.X=29
+CaretPos.Y=1441
 CharSet=def
 FileName=kapitel\Endliche_Automaten.tex
 FoldedLines=
 IsMainFile=no
-Opened=yes
+Opened=no
 ScrollPos.X=0
-ScrollPos.Y=142
+ScrollPos.Y=1434
 SearchListCount=7
 
 [Files\5\SearchList\0]
@@ -231,7 +231,7 @@ Text=ersten
 [Files\5]
 ShowSyntax=yes
 SpellChecking=yes
-TabOrder=4
+TabOrder=-1
 UseThesaurus=yes
 WrapLine=yes
 
@@ -335,8 +335,45 @@ TabOrder=-1
 UseThesaurus=yes
 WrapLine=yes
 
+[Files\9]
+ActiveFilters=
+Bookmark#0=0
+Bookmark#1=0
+Bookmark#2=0
+Bookmark#3=0
+Bookmark#4=0
+Bookmark#5=0
+Bookmark#6=0
+Bookmark#7=0
+Bookmark#8=0
+Bookmark#9=0
+CaretPos.X=28
+CaretPos.Y=190
+CharSet=def
+FileName=kapitel\Grammatiken.tex
+FoldedLines=
+IsMainFile=no
+Opened=yes
+ScrollPos.X=0
+ScrollPos.Y=176
+SearchListCount=1
+
+[Files\9\SearchList\0]
+CaseSensitive=no
+Color=65535
+RegExp=no
+Show=1
+Text=\todo
+
+[Files\9]
+ShowSyntax=yes
+SpellChecking=yes
+TabOrder=4
+UseThesaurus=yes
+WrapLine=yes
+
 [Files]
-Count=9
+Count=10
 
 [Project]
 ActiveFilters=

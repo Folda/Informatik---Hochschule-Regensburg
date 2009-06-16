@@ -590,6 +590,46 @@ $\Rightarrow$
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-8}
 
+\subsection{GI-26.05.2009-IMG-9}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,color=blue] (qi) {$q_i$};
+\node[state,color=red] (qrip) [above right of=qi] {$q_{rip}$};
+\node[state,color=green] (qj) [below right of=qrip] {$q_j$};
+
+\tikzedge{qi}{qrip}{r_1}{}{};
+\tikzedge{qi}{qj}{r_4}{}{};
+\tikzedge{qrip}{qj}{r_3}{}{};
+\tikzloop{qrip}{r_2}{below}{};
+
+\node[state,color=blue] (qi2) [below of=qi, node distance=1.5cm] {$q_i$};
+\node[state,color=green] (qj2) [below of=qj, node distance=1.5cm] {$q_j$};
+
+\tikzedge{qi2}{qj2}{r_4 + r_1 \cdot (r_2)^* \cdot r_2}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-9}
+
+\subsection{GI-26.05.2009-IMG-11}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (qs) {$q_s$};
+\node[state] (2) [above right of=qs] {$2$};
+\node[state] (3) [below right of=qs] {$3$};
+\node[state] (qa) [above right of=3] {$q_a$};
+
+\tikzloop{3}{11 \textcolor{gray}{+ (10 + 0)(1 + 00)^* \cdot (01)}}{below}{};
+\tikzloop{2}{1 + 00}{above}{};
+
+\tikzedge{qs}{2}{0}{}{};
+\tikzedge{qs}{3}{1 \textcolor{gray}{+ 0 (1 + 00)^* 01} = r_1}{}{};
+\path[->,color=gray] (qs) edge[bend right] node {$0 \cdot (1 + 00)^* \cdot \epsilon \textcolor{black}{= r_4}$} (qa);
+
+\tikzedge{2}{qa}{\epsilon}{}{};
+\tikzedge{2}{3}{01}{bend right}{};
+
+\tikzedge{3}{2}{10 + 0}{bend right}{};
+\tikzedge{3}{qa}{\epsilon \textcolor{gray}{+(10 + 0) (1 + 00)} = r_2}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-11}
+
 \chapter{Mathematik 2}
 \section{22.04.2009}
 \subsection{MA2-22.04.2009-IMG-2}

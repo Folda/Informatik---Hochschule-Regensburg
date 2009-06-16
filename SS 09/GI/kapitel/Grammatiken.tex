@@ -1,0 +1,201 @@
+\chapter{Grammatiken}
+\Mark{Chapter 4}
+\section{Chomsky-Hierarchie}
+\Mark{Section 4.1}
+\begin{fdefinition}[Grammatik]
+Eine Grammatik $G$ ist ein Quadrupel $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ aus
+\begin{itemize}
+\item einem Alphabet $\Sigma_N$ (Nichtterminalsymbole)
+\item einem Alphabet $\Sigma_T$ (Terminalsymbole)
+\item einem Startsymbol $S \in \Sigma_N$
+\item einer endlichen Menge von Ersetzungsregeln (Produktionen)
+		\[P \subseteq \Sigma^* \Sigma_N \Sigma^* \times \Sigma^* \tx{ mit } \Sigma^* = \Sigma_T \cup \Sigma_N\]
+		statt $(\alpha, \beta) \in P$ schreiben wir $\alpha \ural{G}{} \beta$
+\end{itemize}
+\Mark{Definition 4.1}
+\end{fdefinition}
+
+\begin{beispiel}
+\fnewline
+\begin{align*}
+\ubl[5em]{S}{nicht terminal Symbole} \ra \epsilon,~S \ra \ubl[5em]{O}{terminal Symbol}S,~S \ra 1S~&\Vert Ableit-Regeln\\
+S \vd 1S \vd 11S \vd 11OS \vd 110~&\Vert Ableitung
+\end{align*}
+\end{beispiel}
+
+\begin{notation}
+\fnewline
+\begin{itemize}
+\item Terminalsymbole als Kleinbuchstaben $a$, $b$, $c$, $d$
+\item Wörter aus Terminalsymbole $u$ $v$ $w$
+\item Nichtterminalsymbole als Großbuchstaben $A$, $B$, $C$
+\item Wörter aus $(\Sigma_T \cup \Sigma_N)^*$ als griechische Buchstaben $\alpha$, $\beta$, $\gamma$
+\end{itemize}
+\end{notation}
+
+\section{Rechtslineare Grammatiken und reguläre Sprachen}
+\Mark{Section 4.2}
+Reguläre Sprachen (von \ac{DEA} erkennbar) \stack{?}{=} Typ-3 Sprachen.
+
+\begin{lemma}
+$\mathcal{L}_3$ enthält alle endlichen Sprachen
+\Mark{Lemma 4.1}
+\end{lemma}
+
+\begin{fbeweis}
+Sei $L = \gklamm{w_1, \dots, w_n}$ eine endliche Sprache über $\Sigma$, dann konstruieren wir eine Grammatik $G$ wie folgt
+\[G = \rkl{\gklamm{S}, \Sigma, \gklamm{S \ra w_1, \dots, S \ra w_n}, S}\]
+Offenbar gilt $L(G) = L$.
+\end{fbeweis}
+
+\begin{lemma}
+$\mathcal{L}_3$ ist abgeschlossen bezüglich der Vereinigung.
+\Mark{Lemma 4.2}
+\end{lemma}
+
+\begin{fbeweis}
+Seien $L_1$ und $L_2$ zwei \ac{bel.} Sprachen aus $\mathcal{L}_3$. Dann gibt es zwei Grammatiken:
+\[G_1 = \rkl{\Sigma_{N_1}, \Sigma_{T_1}, P_1, S_1}\]
+und
+\[G_2 = \rkl{\Sigma_{N_2}, \Sigma_{T_2}, P_2, S_2}\]
+mit $L(G_1) = L_1$ und $L(G_2) = L_2$.\\
+Nichtterminale können nach Bedarf umbenannt werden, daher nehmen wir \ac{o.B.d.A} an, dass $\Sigma_{N_1} \cap \Sigma_{N_2} = \emptyset$. Wir konstruieren eine Grammatik
+\[G_{\cup} = \rkl{\Sigma_{N_{\cup}}, \Sigma_{T_{\cup}}, P_{\cup}, S_{\cup}}\]
+mit $L(G_{\cup}) = L_1 \cup L_2$ mit
+\begin{itemize}
+\item $\Sigma_{N_{\cup}} = \gklamm{S_{\cup}} \cup \Sigma_{N_1} \cup \Sigma_{N_2}$
+\item $\Sigma_{T_{\cup}} = \Sigma_{T_1} \cup \Sigma_{T_2}$
+\item $P_{\cup} = P_1 \cup P_2 \cup \gklamm{S_{\cup} \ra S_1, S_{\cup} \ra S_2}$
+\end{itemize}
+Bleibt zu zeigen, dass $L(G_{\cup}) = L_{G_1} \cup L_{G_2}$
+\begin{enumerate}
+\item $L(G_1) \cup L(G_2) \subseteq L(G_{\cup})$. Sei $w$ ein \ac{bel.} Wort aus $L(G_1) \cup L(G_2)$. Wir unterscheiden zwei Fälle.
+		\begin{enumerate}[label=\roman*)]
+		\item $w \in L(G_1)$. Dann \ac{ex.} eine Ableitung
+				\[S_1 \vd^* w\]
+				von $w$ in $G_1$. Dann ist
+				\[S_{\cup} \vd S_1 \vd^* w\]
+				eine Ableitung von $w$ in $G_{\cup}$ da $G_{\cup}$ alle Produktionen aus $G_1$ enthält.
+
+		\item $w \in L(G_2)$ analog.
+		\end{enumerate}
+
+\item $L(G_{\cup}) \subseteq L(G_1) \cup L(G_2)$. Seien $w \in L(G_{\cup})$ und
+		\[S_{\cup} \vd \alpha_1 \vd \alpha_2 \vd \dots \vd \alpha_n = w\]
+		eine Ableitung für $w$ in $G_{\cup}$. Wir haben nur zwei Regeln um $S_{\cup}$ zur ersetzen: $S_{\cup} = S_1$ oder $L_1 = S_2$.
+		\begin{enumerate}[label=\roman*)]
+		\item $\alpha_1 = S_1$, so ist
+				\[S_1 \vd \alpha_2 \vd \dots \vd \alpha_n = w\]
+				eine Ableitung für $w$ in $G_1$, da $\Sigma_{N_1} \cap \Sigma_{N_2} = \emptyset$
+
+		\item $\alpha_1 = S_2$ analog
+		\end{enumerate}
+\end{enumerate}
+\end{fbeweis}
+
+\begin{lemma}
+$\mathcal{L}_3$ ist abgeschlossen bezüglich Konkatenation.
+\[x \ra u \Ra x \ra u S_2\]
+\Mark{Lemma 4.3}
+\end{lemma}
+
+\begin{fdefinition}[Normierte reguläre Grammatik]
+Eine reguläre Grammatik $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ heißt \ggq{normiert}, wenn alle Regeln der Grammatik nur eine der drei folgenden Formen hat:
+\begin{itemize}
+\item $S \ra \epsilon$
+\item $A \ra a$
+\item $B \ra bC$
+\end{itemize}
+für $A, B, C, S, \in \Sigma_{N}$; $a, b \in \Sigma_T$
+\Mark{Definition 4.4}
+\end{fdefinition}
+
+\begin{lemma}
+Jede reguläre Grammatik lässt sich in eine äquivalente Grammatik $G'$ überführen, die keine Kettenregeln $x \ra x$ enthält (wobei $x, y \in \Sigma_N$).
+\end{lemma}
+
+\begin{fbeweis}
+Sei $G = \rkl{\Sigma_N, \Sigma_T, P, S}$. Für jedes Nichtterminalsymbol $A \in \Sigma_N$ bestimmen wir die Menge $K(A)$ der NIchtterminale, die von $A$ ausgehend durch ausschließliche Anwendung von Kettenregeln erreicht werden können; formal
+\[K(A) = \gklamm{D \in \Sigma_N \vert A \vd^* D, \tx{wobei nur Kettenregeln angewendet werden}}\]
+Die Menge $K(A)$ kann algorithmisch folgendermaßen berechnet werden
+\begin{align*}
+K_0 (A) &= \gklamm{A}\\
+K_{i + 1} (A) &= K_i (A) \cup \gklamm{B \in \Sigma_N \vert \exists C \in K_i (A) \tx{ mit } C \ra B \in P}
+\end{align*}
+für $0 \klgl i \klgl \betrag{\Sigma_N} - 2$. Dann gilt offenbar
+\[K(A) = \bigcup_{i = 0}^{\un} K_i(A)\]
+Die Idee ist nun, alle Ableitungsketten der Form
+\[A \vd A_1 \vd A_2 \vd \dots \vd A_n \vd \alpha\]
+durch Hinzunahme der Regeln $A \ra \alpha$ zu verkürzen, wobei $\alpha \in \Sigma_r^* \cup \Sigma_r^+ \Sigma_N$\\
+Formal Konstruktion: $G' = \rkl{\Sigma_N, \Sigma_T, P', S}$ mit
+\[P' = \rkl{P - \Sigma_N \times \Sigma_N} \cup \bigcup_{A \in \Sigma_N} \gklamm{A \ra \alpha \vert \alpha \in \Sigma_r^* \cup \Sigma_r^+ \mal \Sigma_N \und \exists C \in K(A) \tx{ mit } C \ra \alpha}\]
+\end{fbeweis}
+
+\begin{lemma}
+Für jede reguläre Grammatik $G = \rklamm{\Sigma_N, \Sigma_T, P, S}$ existiert eine äquivalente Grammatik $G'$, die keine Regel $A \ra \epsilon$ mit $A \in \Sigma_N - \gklamm{S}$ enthält.
+\Mark{Lemma 4.5}
+\end{lemma}
+
+\begin{fbeweis}
+Wir nehmen an, dass $G$ bereits frei von Kettenregeln ist. Sei
+\[Q = \gklamm{A_1 \ra \epsilon, \dots, A_R \ra \epsilon}\]
+die Menge aller Regeln $P$ aus $\Sigma_N - \gklamm{S} \times \gklamm{\epsilon}$.\\
+Wir konstruieren $G' = \rkl{\Sigma_N, \Sigma_r, P', S}$ mit
+\[P' = \rkl{P - Q} \cup \bigcup_{i = 1}^k \gklamm{B \ra w \vert B \ra w A_i \in P}\]
+Die Idee der Konstruktion besteht darin, dass die Regeln $B \ra w A_i$ und $A_i \ra \epsilon$ eine Ableitung
+\[B \vd w A_i \vd w\]
+in $G$ ermöglichen. Mit Einführung der Regeln $B \ra w$ in $G'$ kann diese Ableitung in einem Schritt erfolgen:
+\[B \vd_{G'} w\]
+Wir zeigen $L(G) = L(G')$ wie üblich:
+\begin{enumerate}
+\item $L(G) \subseteq L(G')$. Sei $w \in L(G)$ und sei ferner
+		\[S \vd_G v_1 B_1 \vd_G v_1 v_2 B_2 \vd_G \dots \vd_G v_1 \dots v_{n - 2} B_{n - 2} \vd_G v_1 \dots v_{n - 1} B_{n - 1} \vd v_1 \dots v_n = w\]
+		mit $v_i \in \Sigma_T^*$ und $B_i \in \Sigma_N$ ($1 \klgl i \klgl n$) eine Ableitung von $w$ in $G$. Falls $v_n \neq \epsilon$ wurde keine Regel der Form $A \ra \epsilon$ mit $A \in \Sigma_N - \gklamm{S}$ verwendet - somit \ac{ex.} diese Ableitung auch in $G'$.\\
+		Falls jedoch $v_n = \epsilon$ war die letzte Regel $B_{n - 1} \ra \epsilon_i$; dann ist die Regel (laut Konstruktion) $B_{n - 2} \ra v_{n - 1} \in P'$ und
+		\[S \vd_{G'} v_1 B_1 \vd_{G'} \dots \vd_{G'} v_1 \dots v_{n - 2} B_{n - 2} \vd_{G'} v_1 \dots v_{n - 1} = w\]
+		eine Ableitung für $w$ in $G'$.
+
+\item $L(G') \subseteq L(G)$. Sei $w \in L(G')$ und sei
+		\[S \vd_{G'}^* v_1 D \vd_{G'} v_1 v_2 = w\]
+		eine Ableitung für $w \in G'$ mit $v_1, v_2 \in \Sigma_T^*$ und $D \in \Sigma_N$. Offenbar ist
+		\[S \vd_{G}^* v_1 D\]
+		eine Ableitung in $G$. Für den letzten Ableitungsschritt gibt es zwei Möglichkeiten
+		\begin{enumerate}
+		\item $D \ra v_2 \in P$. Dann gilt $v_1 D \vd v_1 v_2 = w$ eine Ableitung in $G$. Somit haben wir eine Ableitung von $w$ in $G$ gefunden.
+		\item $D \ra v_2 \notin P$ (Regel wurde in $G'$ hinzugefügt), dann \ac{ex.} $A_i \in \Sigma_N$ so dass
+				\[D \ra v_2 A_i, A_i \ra \Sigma \in P\]
+				Dann ist
+				\[S \vd_G^* v_1 D \stack{(D \ra v_2 A_i)}{\vd_G} v_1 v_2 A_i \stack{(A_i \ra \epsilon)}{\vd_G} v_1 v_2\]
+				eine Ableitung für $w$ in $G$.
+		\end{enumerate}
+\end{enumerate}
+Im letzten Schritt eliminieren wir Regeln der Formen $A \ra w$ und $B \ra wC$ mit $\betrag{w} \grgl 2$.
+\end{fbeweis}
+
+\begin{fsatz}
+Zu jeder regulären Grammatik \ac{ex.} eine äquivalente normierte Grammatik.
+\Mark{Satz 4.2}
+\end{fsatz}
+
+\begin{fbeweis}
+Sei $G$ eine reguläre Grammatik. WEnn man die Regeln aus Lemmata 4.4 und 4.5 \Todo{Ref zu Lemma} anwendet, erhält man eine Grammatik $G_0 = \rkl{\Sigma_N, \Sigma_T, P_0, S}$ mit folgenden Eigenschaften.
+\begin{enumerate}
+\item $L(G_0) = L(G)$
+\item $P_0$ enthält nur Regeln der Form
+		\begin{itemize}
+		\item $S \ra \epsilon$
+		\item $A \ra w$ $A \in \Sigma_N$, $w \in \Sigma_T^+$
+		\item $B \ra uC$ $B \in \Sigma_N$, $w \in \Sigma_T^+$
+		\end{itemize}
+\end{enumerate}
+\Insert{GI-16.06.2009-IMG-1}
+Um eine Grammatik in normierter Form zu erhalten müssen wir Regeln der Form $A \ra w$ und $B \ra uC$ mit $\betrag{w} \grgl 2$ \ac{bzw.} $\betrag{u} \grgl 2$ durch Regeln der Form $D \ra a$ und $D \ra aX$ ersetzen Idee dazu \ac{s.o.}
+\end{fbeweis}
+
+\begin{beispiel}
+$S \ra aB \vert bC$\\
+$B \ra b$\\
+$C \a aS \vert b$\\
+$S \vd a_1 N_1 \vd a_1 a_2 N_2 \dots$
+\Insert{GI-16.06.2009-IMG-2}
+\end{beispiel}

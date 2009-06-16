@@ -1318,7 +1318,7 @@ Bleibt zu zeigen $L(M) = L$. Wir beweisen mittels Induktion über die Wortlänge v
 \begin{itemize}
 \item Für $\betrag{z} < n_0$ gilt \ac{gem.} Konstruktion $z \in L \Lra z \in L(M)$ ($q_z \in F$).
 \item Sei $\betrag{z} = n$ mit $n \grgl n_0$ und gelte $z' \in L \Lra z' \in L(M)$ für alle $z'$ mit $\betrag{z'} < n$. Angenommen $z = z_0 a s_0$ mit $\betrag{z_0 a} = n_0$.\\
-		Gemäß Konstruktion von $\delta$ (2. Fall) \Todo{Ref zur definition} ist
+		Gemäß Konstruktion von $\delta$ (2. Fall) siehe \vref{def:Endliche_Automaten_Transitionsfunktion} \Solved{Ref zur definition} ist
 		\[\hat{\delta} \rklamm{q_0, z_0 a} = \hat{\delta} \rklamm{q_0, uw}\]
 		für geeignete $a \in \Sigma$, $u, w \in \Sigs$ mit $z_0 = uvw$ ($v \in \Sigma^+$). Ferner gilt, da $L$ pumpbar ist (Index $i = 0$)
 		\[\forall s \in \Sigs:~ z_0 a s \in L \Lra uws \in L\]
@@ -1328,8 +1328,8 @@ Bleibt zu zeigen $L(M) = L$. Wir beweisen mittels Induktion über die Wortlänge v
 		Da $\betrag{u w s_0} > n$ (weglassen von $v$) gilt für $u w s_0$ die \ac{IV}.
 		\[u w s_0 \in L(M) \Lra u w s_0 \in L\]
 		also:
-		\[u w s_0 \in L \stack{\tx{\ac{IV}}}{\Lra} u w s_0 \in L(M) \stack{\tx{Konstruktion von } \delta}{\Lra} z =z_0 a s_0 \in L(M)\]
-		\Todo{Make longstack command}
+		\[u w s_0 \in L \stack{\tx{\ac{IV}}}{\Lra} u w s_0 \in L(M) \stackl[\widthof{\scriptsize{Konstruktion}}]{Konstruktion von $\delta$}{\Lra} z =z_0 a s_0 \in L(M)\]
+		\Solved{Make longstack command}
 \end{itemize}
 \end{fbeweis}
 
@@ -1455,7 +1455,7 @@ Konstruktion eines regulären Ausdrucks, der die Sprache $(L) M$ für einen \ac{DE
 				\[\delta '' \rkl{q_i, q_j} = r_1 \rkl{r_2}^* r_3 + r_4 \tx{ für alle } q_i \in Q_G - \gklamm{q_a}, q_j \in Q_G - \gklamm{q_s}\]
 				für $r_1 = \delta ' \rkl{q_i, q_{rip}}$, $r_2 = \delta ' \rkl{q_{rip}, q_{rip}}$, $r_3 = \delta ' \rkl{q_{rip}, q_j}$ und $r_4 = \delta ' \rkl{q_i, q_{j}}$
 
-		\item Setze $M' = M''$ und fahre bei a) fort. \Todo{Ref zu a)}
+		\item Setze $M' = M''$ und fahre bei a) fort.
 		\end{enumerate}
 \end{enumerate}
 \end{beispiel}
