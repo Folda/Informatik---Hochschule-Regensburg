@@ -529,7 +529,24 @@ $\Rightarrow$
 
 \subsection{GI-26.05.2009-IMG-5}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\draw (2,1) rectangle (4,4);
+\draw (2,0) rectangle (4,-3);
 
+\node at(3,2.5) {$M_1$};
+\node at(3,-1.5) {$M_2$};
+
+\node[state,initial,initial text=] at (0,0.5) (start) {};
+\node[state,fill=white] at (2,2.5) (m1s) {};
+\node[state,fill=white] at (2,-1.5) (m2s) {};
+
+\node[state,accepting,fill=white] at (4,3.5) {};
+\node[state,accepting,fill=white] at (4,1.5) {};
+
+\node[state,accepting,fill=white] at (4,-0.5) {};
+\node[state,accepting,fill=white] at (4,-2.5) {};
+
+\tikzedge{start}{m1s}{\epsilon}{}{};
+\tikzedge{start}{m2s}{\epsilon}{}{};
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-5}
 
@@ -578,6 +595,8 @@ $\Rightarrow$
 \node[state, initial, initial text=] (1) {1};
 \node[state, accepting] (2) [right of=1] {2};
 \node[state, accepting] (3) [below of=1] {3};
+\node[state, color=blue] (qs) [left of=3] {$q_s$};
+\node[state, color=blue] (qa) [right of=3] {$q_a$};
 
 \tikzloop{2}{1}{above}{};
 \tikzedge{1}{2}{0}{bend left}{};
@@ -587,6 +606,11 @@ $\Rightarrow$
 \tikzedge{3}{1}{1}{bend left}{};
 
 \tikzedge{3}{2}{0}{}{};
+
+\path[->,color=blue] (qs) edge node {$\epsilon$} (1);
+
+\path[->,color=blue] (2) edge node {$\epsilon$} (qa);
+\path[->,color=blue] (3) edge node {$\epsilon$} (qa);
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-8}
 
@@ -608,6 +632,47 @@ $\Rightarrow$
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-9}
 
+\subsection{GI-26.05.2009-IMG-10}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=4cm,semithick] \node[state,initial,initial text=] (qs) {$q_s$};
+\node[state] (1) [below right of=qs] {$1$};
+\node[state] (2) [right of=1]{$2$};
+\node[state] (3) [below of=1]{$3$};
+\node[state,accepting] [right of=3](qa) {$q_a$};
+
+\tikzedge{qs}{1}{\epsilon}{}{};
+\path[->,color=gray] (qs) edge[bend left] node {$0$} (2);
+\path[->,color=gray] (qs) edge[bend right] node[left] {\parbox{2cm}{$\epsilon
+\cdot 1 + \emptyset = 1$ \textcolor{black}{\scriptsize{$(a_s \rightarrow 1
+\rightarrow 3)$}}}} (3);
+
+
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{1}{3}{1}{bend right}{};
+\draw[color=red,-] (1.north east) -- (1.south west);
+\draw[color=red,-] (1.north west) -- (1.south east);
+
+\tikzedge{2}{qa}{\epsilon}{bend left}{};
+\tikzloop{2}{1}{above}{};
+\path[->,color=gray] (2) edge[loop right] node {$1 + 00$ \textcolor{black}{$(2
+\rightarrow 1 \rightarrow 2)$}} ();
+\path[->,color=gray] (2) edge[bend left] node {
+\begin{minipage}{1cm}
+ \scriptsize{$01$ \textcolor{black}{$(2 \rightarrow 1 \rightarrow 3)$}}
+ \end{minipage}} (3);
+
+\tikzedge{3}{qa}{\epsilon}{}{};
+\tikzedge{3}{2}{0}{}{}
+\path[->,color=gray] (3) edge[bend left] node[left]
+{\begin{minipage}{1cm}
+ \scriptsize{$0+10$ \textcolor{black}{$(3+1 \rightarrow 2)$}}
+ \end{minipage}}
+(2);
+\path[->,color=gray] (3) edge[loop below] node {$11$} ();
+
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-10}
+
 \subsection{GI-26.05.2009-IMG-11}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state,initial,initial text=] (qs) {$q_s$};
@@ -619,16 +684,96 @@ $\Rightarrow$
 \tikzloop{2}{1 + 00}{above}{};
 
 \tikzedge{qs}{2}{0}{}{};
-\tikzedge{qs}{3}{1 \textcolor{gray}{+ 0 (1 + 00)^* 01} = r_1}{}{};
-\path[->,color=gray] (qs) edge[bend right] node {$0 \cdot (1 + 00)^* \cdot \epsilon \textcolor{black}{= r_4}$} (qa);
+\tikzedge{qs}{3}{1 \textcolor{gray}{+ 0 (1 + 00)^* 01} = r_1}{}{left};
 
 \tikzedge{2}{qa}{\epsilon}{}{};
-\tikzedge{2}{3}{01}{bend right}{};
+\tikzedge{2}{3}{01}{bend right}{left};
 
 \tikzedge{3}{2}{10 + 0}{bend right}{};
-\tikzedge{3}{qa}{\epsilon \textcolor{gray}{+(10 + 0) (1 + 00)} = r_2}{}{};
+\tikzedge{3}{qa}{\epsilon \textcolor{gray}{+(10 + 0) (1 + 00)} = r_2}{}{right};
+
+\path[->,color=gray] (qs) edge[bend right] node[above] {\scriptsize{$0 \cdot (1
++ 00)^* \cdot \epsilon \textcolor{black}{= r_4}$}} (qa);
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-11}
+
+\section{27.05.2009}
+\subsection{GI-27.05.2009-IMG-1}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (q0) {$q_0$};
+\node[state] (a1) [below left of=q0] {$a.1$};
+\node[state] (a2) [below of=a1] {$a.2$};
+\node[state] (a3) [below of=a2] {$a.3$};
+\node[state,accepting] (z1) [left of=a2] {$z.1$};
+
+\node[state] (b1) [below right of=q0] {$b.1$};
+\node[state] (b2) [below of=b1] {$b.2$};
+
+\tikzedge{q0}{a1}{\epsilon}{}{};
+\tikzedge{q0}{b1}{\epsilon}{}{};
+
+\tikzedge{a1}{a2}{f}{}{};
+\tikzedge{a1}{a3}{g}{bend left}{};
+\tikzedge{a1}{z1}{\epsilon}{}{};
+
+\tikzedge{a2}{z1}{\epsilon}{bend left}{};
+\tikzloop{a2}{f}{left}{};
+\tikzedge{a2}{a3}{g}{}{}
+
+\tikzedge{a3}{z1}{\epsilon}{}{};
+\tikzloop{a3}{g}{below}{};
+
+\tikzedge{b1}{b2}{f}{}{};
+
+\tikzloop{b2}{f}{right}{};
+\end{tikzpicture}
+\Img{GI-27.05.2009-IMG-1}
+
+\section{16.06.2009}
+\subsection{GI-16.06.2009-IMG-1}
+\begin{minipage}[t]{5cm}
+\begin{align*}
+A \rightarrow &a_1~\fbox{$a_2 a_3 a_4 C$}^{T_1}\\
+&\downarrow\\
+A \rightarrow &a_1 T_1\\
+T_1 \rightarrow &a_2~\fbox{$a_3 a_4 C$}^{T_2}\\
+&\downarrow\\
+A \rightarrow &a_1 T_1\\
+T_1 \rightarrow &a_2 T_2\\
+T_2 \rightarrow &a_3~\fbox{$a_4 C$}\\
+&\downarrow\\
+A \rightarrow &a_1 T_1\\
+T_1 \rightarrow &a_2 T_2\\
+T_2 \rightarrow &a_3 T_3\\
+T_3 \rightarrow &a_4 C
+\end{align*}
+\end{minipage}
+\begin{minipage}[t]{5cm}
+\begin{align*}
+B \rightarrow &aC\\
+B \rightarrow &b_1~\fbox{b_2 b_3}\\
+&\downarrow^*\\
+B \rightarrow & b_1 Q_1\\
+Q_1 \rightarrow & b_2 Q_2\\
+Q_2 \rightarrow & b_3
+\end{align*}
+\end{minipage}
+\Img{GI-16.06.2009-IMG-1}
+
+\subsection{GI-16.06.2009-IMG-2}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node [state,initial,initial text=](S) {$S$};
+\node [state] (B) [above right of=S] {$B$};
+\node [state] (C) [below right of=S] {$C$};
+\node [state,accepting](Fin) [above right of=C] {$Fin$};
+
+\tikzedge{S}{B}{a}{}{};
+\tikzedge{S}{C}{b}{}{};
+\tikzedge{B}{Fin}{b}{}{};
+\tikzedge{C}{Fin}{b}{}{};
+\tikzedge{C}{S}{a}{bend left}{};
+\end{tikzpicture}
+\Img{GI-16.06.2009-IMG-2}
 
 \chapter{Mathematik 2}
 \section{22.04.2009}
