@@ -3,12 +3,12 @@
 \section{Chomsky-Hierarchie}
 \Mark{Section 4.1}
 \begin{fdefinition}[Grammatik]
-Eine Grammatik $G$ ist ein Quadrupel $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ aus
+Eine \indexb{Grammatik $G$} ist ein Quadrupel $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ aus
 \begin{itemize}
-\item einem Alphabet $\Sigma_N$ (Nichtterminalsymbole)
-\item einem Alphabet $\Sigma_T$ (Terminalsymbole)
+\item einem Alphabet $\Sigma_N$ (\indexb{Nichtterminalsymbole})
+\item einem Alphabet $\Sigma_T$ (\indexb{Terminalsymbole})
 \item einem Startsymbol $S \in \Sigma_N$
-\item einer endlichen Menge von Ersetzungsregeln (Produktionen)
+\item einer endlichen Menge von \indexb{Ersetzungsregeln} (Produktionen)
 		\[P \subseteq \Sigma^* \Sigma_N \Sigma^* \times \Sigma^* \tx{ mit } \Sigma^* = \Sigma_T \cup \Sigma_N\]
 		statt $(\alpha, \beta) \in P$ schreiben wir $\alpha \ural{G}{} \beta$
 \end{itemize}
@@ -31,7 +31,39 @@ S \vd 1S \vd 11S \vd 11OS \vd 110~&\Vert Ableitung
 \item Nichtterminalsymbole als Großbuchstaben $A$, $B$, $C$
 \item Wörter aus $(\Sigma_T \cup \Sigma_N)^*$ als griechische Buchstaben $\alpha$, $\beta$, $\gamma$
 \end{itemize}
+
+$G_2 = \rkl{\gklamm{S}, I_{\tx{Bool}}, P_2, s}$, $p_2 = \gklamm{S \ra \epsilon, s \ra 0S1}$ Vereinfacht gilt oft nur die Produktion an $S \ra \epsilon \vert 0S1$
 \end{notation}
+
+\begin{fdefinition}
+Sei $G = \rkl{I_N, \Sigma_T, P, S}$ eine Grammatik und einen $\alpha, \beta \in \rkl{\Sigma_N \cup \Sigma_T}^*$
+\begin{enumerate}
+\item $\alpha \vd_G \beta \Lra \exists w_1, w_2 \wedge \exists \rkl{y, \delta} \in P$\\
+		$a = w_1 y w_2 \wedge \beta = w_1 \delta w_2$\\
+		wir sagen, dass $\beta$ aus $\alpha$ in einem Ableitungsschritt in $G$ ableitbar ist.
+
+\item $\alpha \vd_G^h \beta \Lra \exists w_0 \dots w_n \in \Sigs$, $w_0 = \alpha$ $w_n = \beta$, so dass
+		\[\forall i < n:~w_i \vd w_{i + 1}\]
+		wir sagen, dass $\beta$, $w_s$, $\alpha$ in $G$ in $n$ Schritten ableitbar ist. Die Folge $w_0 \vd_G w_1 \vd_G \dots \vd_G w_n$ heißt eine Ableitung in $G$.
+
+\item $a \vd_G^* \beta \Lra \exists n \in N_0:~ \alpha \vd_G^n \oder \alpha = \beta$
+\item Falls $S \vd_G^* w$ ($w \in \Sigma_T^*$) sagen wir, dass $w$ von $G$ erzeugt wird und $L(G) = \gklamm{w \in \Sigma_T^* \vert s \vd_G^* w}$ ist die von $G$ erzeugte Sprache.
+		\[S \ra \epsilon \vert 0 \vert 1 \vert SS \rkl{L(G) = \SigBs}\]
+\end{enumerate}
+\Mark{Definition 4.2}
+\end{fdefinition}
+
+\begin{fdefinition}[Chomsky-Hierarchic/Sprachfassen]
+\index{Chomsky-Hierarchic}\index{Sprachfassen}
+Sei $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ eine Grammatik
+\begin{enumerate}
+\item $G$ heißt Typ-0 Grammatik \index{Typ-0 Grammatik}
+\item $G$ heißt Typ-1 Grammatik, falls jede Produktion die Form $w_1 A w_2 \ra w_1 \beta w_2$ mit $\betrag{\beta} \grgl 1$, oder $S \ra \epsilon$ hat, $A \in \Sigma_N, w_1, w_2, \beta \in \rkl{\Sigma_T \cup \Sigma_N}^*$ \Ra kontextsensitive Grammatik \index{Typ-1 Grammatik}
+\item $G$ heißt Typ-2 Grammatik (kontextfreie Grammatik), falls $\forall \rkl{\alpha, \beta} \in P:~\alpha \in \Sigma_N \und \beta \in \rkl{\Sigma_T \cup \Sigma_N}^*$ \index{Typ-2 Grammatik}
+\item $G$ heißt Typ-3 Grammatik (reguläre oder rechtslineare Grammatik) wenn $\forall \rkl{\alpha, \beta} \in P:~\alpha \in \Sigma_N \und \beta \in \rkl{\Sigma_T^* \mal \Sigma_N} \cup \Sigma_T^*$ \index{Typ-3 Grammatik}
+\end{enumerate}
+\Mark{Definition 4.3}
+\end{fdefinition}
 
 \section{Rechtslineare Grammatiken und reguläre Sprachen}
 \Mark{Section 4.2}
@@ -100,6 +132,8 @@ $\mathcal{L}_3$ ist abgeschlossen bezüglich Konkatenation.
 \end{lemma}
 
 \begin{fdefinition}[Normierte reguläre Grammatik]
+\index{Normierte reguläre Grammatik}
+\index{Reguläre Grammatik}
 \label{definition:Grammatiken_D4.4}
 Eine reguläre Grammatik $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ heißt \ggq{normiert}, wenn alle Regeln der Grammatik nur eine der drei folgenden Formen hat:
 \begin{itemize}
@@ -234,10 +268,10 @@ $S \vd a_1 N_1 \vd a_1 a_2 N_2 \dots$
 
 \begin{center}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
-\node [state,initial,initial text=](S) {$S$};
-\node [state] (B) [above right of=S] {$B$};
-\node [state] (C) [below right of=S] {$C$};
-\node [state,accepting](Fin) [above right of=C] {$Fin$};
+\node [state,initial,initial text=](S) {S};
+\node [state] (B) [above right of=S] {B};
+\node [state] (C) [below right of=S] {C};
+\node [state,accepting](Fin) [above right of=C] {Fin};
 
 \tikzedge{S}{B}{a}{}{};
 \tikzedge{S}{C}{b}{}{};
@@ -248,3 +282,62 @@ $S \vd a_1 N_1 \vd a_1 a_2 N_2 \dots$
 \Img{GI-16.06.2009-IMG-2}
 \end{center}
 \end{beispiel}
+
+\begin{fsatz}
+Die Typ-3-Sprachen sind genau die Menge der regulären Sprachen
+\[\mathcal{L}_3 = \gklamm{L \vert L \tx{ ist regulär}}\]
+\Mark{Satz 4.3}
+\end{fsatz}
+
+\begin{fbeweis}
+Der Beweis erfolgt in zwei Schritten:
+\begin{enumerate}
+\item Es sei $L \in \mathcal{L}_3$, \ac{d.h.} für eine Typ-3-Grammatik $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ gilt $L(G) = L$. Es gilt $w \in L(G)$ \ac{gdw.} es eine Ableitung
+		\[S \vd w_1 B_1 \vd w_1 w_2 B_2 \vd \dots \vd w_1 \dots w_{n - 1} B_{n - 1} \vd w_1 \dots w_n = w\]
+		für ein Wort $w$ in $G$ für Produktionen $B_{i - 1} \ra w_i B_i \in P$ mit $w_i \in \Sigma_r^*$ und $B_i \in \Sigma_N$.\\
+		Wir konstruieren einen $\epsilon$-\ac{NEA} $M = \rkl{\Sigma_N \cup \Sigma_I \cup \gklamm{B_f}, \Sigma_T, \delta, S, \gklamm{B_f}}$ mit $\Sigma_N \cap \Sigma_I = \emptyset$, $\gklamm{B_f} \notsubseteq \Sigma_N \cup \Sigma_I$, der für jede dieser Ableitungen sukzessive die $w_i$ konsumiert. Betrachten wir Produktionen der Form
+		\[B_i \ra w_j B_j\]
+		Es gibt zwei Möglichkeiten:
+		\begin{enumerate}
+		\item $w_j = a_1 \dots a_m$ fügen wir nicht-akzeptierende Zustände $T_1, \dots T_{m - 1} \in \Sigma_I$ ein und setzen
+				\begin{align*}
+				\delta \rkl{B_i, a_1} &= T_1\\
+				\delta \rkl{T_1, a_a} &= T_2\\
+				&\vdots\\
+				\delta \rkl{T_{m - 1}, a_m} &= B_j
+				\end{align*}
+
+		\item $w_j = \epsilon$: wir setzen
+				\begin{align*}
+				\delta (B_i, \epsilon) = B_j
+				\end{align*}
+		\end{enumerate}
+		Für alle Produktionen der Form $B_i \ra w_j = a_1 \dots a_m$ fügen wir neue nicht-akzeptierende Zustände $T_1, \dots, T_{m - 1} \in \Sigma_I$ zu $M$ hinzu und setzen
+		\begin{align*}
+		\delta \rkl{B_i, a_1} &= T_1\\
+		\delta \rkl{T_1, a_2} &= T_2\\
+		&\vdots\\
+		\delta \rkl{T_{m - 1}, a_n} = B_f
+		\end{align*}
+		Falls $B_i \ra \epsilon$, so setzen wir
+		\[\delta \rkl{B_i, \epsilon} = B_f\]
+		Betrachten wir $w \in L(G)$ und die Ableitung von $w$ in $G$. Entsprechend der Konstruktion von $M$ gibt es einen Pfad von $S$ in den einzigen \ac{akzept.} ZUstand $B_f$ und somit ist $w \in L(M)$. Andersherum falls $w \in L(M)$, so wurde $M$ gerade so konstruiert, dass eine Berechnung in $M$ die Form
+		\[\rkl{S, w} \vd \rkl{T_1, a_2 \dots a_m w_2 \dots w_n} \vd \rkl{T_2, a_3 \dots a_m w_2 \dots w_m} \vd \dots \vd \rkl{B_f, \epsilon}\]
+		Damit ist in $G$
+		\[S \vd w_1 B_1 \vd \dots \vd w_1 \dots w_n\]
+		eine Ableitung von $w$ in $G$.
+
+\item Sei $L$ eine reguläre Sprache und $M = \rkl{Q, \Sigma, \delta, q_0, F}$ ein \ac{DEA} mit $L(M) = L$ und $Q = \gklamm{q_0, \dots, q_n}$ und $\Sigma = \gklamm{a_1, \dots, a_m}$. Wir konstruieren aus $M$ eine rechtslineare Grammatik $G = \rkl{\Sigma_N, \Sigma_T, P, S}$ mit
+		\begin{itemize}
+		\item $\Sigma_N = Q$
+		\item $\Sigma_T = \Sigma$
+		\item $S = q_0$
+		\end{itemize}
+		für jede Transition $\delta \rkl{q_i, a_j} = q_k$ fügen wir die Produktion
+		\[q_i \ra a_j q_k\]
+		Falls $q_k \in F$, nehmen wir zusätzlich die Produktion
+		\[q_k \ra \epsilon\]
+		in $P$ auf.\\
+		Korrektheit der Konstruktion trivial, selbst.
+\end{enumerate}
+\end{fbeweis}

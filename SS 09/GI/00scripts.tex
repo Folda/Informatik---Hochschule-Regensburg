@@ -143,6 +143,7 @@
 \newtheorem*{problem}{Problem}
 \newtheorem*{also}{Also}
 \newtheorem*{bemerkung}{Bemerkung}
+\newtheorem*{ziel}{Ziel}
 %%%%%%%%Arabische in Römische Zahl umwandeln
 \newcommand{\RM}[1]{\ensuremath{\mbox{\MakeUppercase{\romannumeral #1}}}}
 %</Commandos>
@@ -174,6 +175,10 @@
 \newcommand{\ural}[2]{\ensuremath{\displaystyle \matholongrightarrow_{#1}^{#2}}}
 \newcommand{\rkl}[1]{\ensuremath{\rklamm{#1}}}
 \newcommand{\un}{\ensuremath{\infty}}
+\newcommand{\notsubseteq}{\ensuremath{\not\subseteq}}
+\newcommand{\qacc}{\ensuremath{q_{\tx{accept}}}}
+\newcommand{\qrej}{\ensuremath{q_{\tx{reject}}}}
+\newcommand{\txcol}[2]{\textcolor{#1}{#2}}
 
 %Underbrace mit viel text
 \newcommand{\ubl}[3][]{
@@ -191,6 +196,9 @@
 \DeclareMathOperator{\prog}{Prog}
 \DeclareMathOperator*{\vd}{\vdash}
 \DeclareMathOperator*{\matholongrightarrow}{\longrightarrow}
+\DeclareMathOperator{\Konf}{Konf}
+\DeclareMathOperator{\Def}{Def}
+\DeclareMathOperator{\Code}{Code}
 
 \newcommand{\sinx}[1]{\ensuremath{\sin{\left(#1\right)}}}
 \newcommand{\cosx}[1]{\ensuremath{\cos{\left(#1\right)}}}

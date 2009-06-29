@@ -63,7 +63,7 @@ Sei $\Sigma$ ein Alphabet. Ein \indexn[Wort]{Wort}\index{$\lambda$ (Wort)} über 
 \begin{beispiel}
 $\overbrace{(0, 1, 0, 1, 0, 1, 0)}^{\text{Z}}$ ist ein Wort über $\Sigma_{\text{Bool}}$, $\Sigma_{\text{Tastatur}}$ und $\Sigma_{\text{logic}}$.
 \begin{itemize}
-\item Z ist \underline{Wort} über $\Sigma_{\text{Bool}}$
+\item Z ist \textbf{Wort} über $\Sigma_{\text{Bool}}$
 \item Z ist aus $\Sigma_{Bool}^*$
 \end{itemize}
 $\epsilon$ ist ein Wort über einem \ac{bel.} Alphabet ($\epsilon \in \Sigma^*$ für alle Alphabete $\Sigma^*$)
@@ -175,7 +175,7 @@ Sei $\Sigma$ ein Alphabet und seien $v, w \in \Sigma^*$
 		\end{center}
 		\Img{GI(V)-25-03.2009-IMG2}
 
-\item $v \neq \epsilon$ heißt \underline{echtes} Teilwort (Präfix/Suffix) von $w$ \ac{gdw.} $v \neq w$ und $v$ ist Teilwort (Präfix/Suffix) von $w$.
+\item $v \neq \epsilon$ heißt \textbf{echtes} Teilwort (Präfix/Suffix) von $w$ \ac{gdw.} $v \neq w$ und $v$ ist Teilwort (Präfix/Suffix) von $w$.
 \end{itemize} \qed
 \Mark{Definition 2.6}
 \end{fdefinition}
@@ -196,7 +196,7 @@ Sei $\Sigma$ ein Alphabet und sei $w = a_1 \mal a_2 \mal a_3 \dots a_n$ mit $a_i
 \begin{beispiel}
 $(\overline{a}\overline{b}\overline{c})^{\mathcal{R}}$ $v = \overline{a}\overline{b}\overline{c}$ $w = \overline{a}\overline{b}$ $a = \overline{c}$
 \begin{align*}
-\Ra v^{\mathcal{R}} &= \overline{c} \mal \underbrace{(\overline{a}\overline{b})^{\mathcal{R}}} v = \overline{a}\overline{b} w = \overline{a} a = \overline{b}\\
+\Ra v^{\mathcal{R}} &= \overline{c} \mal \underbrace{(\overline{a}\overline{b})^{\mathcal{R}}}_v = \overline{a}\overline{b} w = \overline{a} a = \overline{b}\\
 \Ra v^{\mathcal{R}} &= \overline{c} \overline{b} \mal (\overline{a})^{\mathcal{R}} v = \epsilon \mal \overline{a} w = \epsilon a = \overline{a}\\
 v^{\mathcal{R}} &= \overline{c} \mal \overline{b} \mal \overline{a} \mal (\epsilon)^{\mathcal{R}}\\
 &= \overline{c} \mal \overline{b} \mal \overline{a} \mal \epsilon\\
@@ -249,9 +249,9 @@ und
 \item $L_5 = \gklamm{a}^* = \gklamm{\epsilon, a, aa, aaa, \dots} = \gklamm{a^0, a^1, a^2, \dots}$
 \item $L_6 = \gklamm{a^p \vert p = \text{ Primzahl}}$
 \item $L_7 = \gklamm{a^i b^{2i} a^i \vert i \in \mb{N}}$
-\item $L_8 =$ alle syntaktisch korrekten \textit{JAVA}-Programme.
-\item $L_9 =$ alle typ-korrekter \textit{JAVA}-Programme.
-\item $L_{10} =$ alle terminierenden \textit{JAVA}-Programme.
+\item $L_8 =$ alle syntaktisch korrekten \lstinline{JAVA}-Programme.
+\item $L_9 =$ alle typ-korrekter \lstinline{JAVA}-Programme.
+\item $L_{10} =$ alle terminierenden \lstinline{JAVA}-Programme.
 \end{itemize}
 \end{multicols}
 \end{beispiel}
@@ -431,7 +431,7 @@ Es existiert eine Konstante $d$, so dass für jedes $w \in \Sigma_{\tx{Bool}}^*$ 
 
 \begin{fbeweis}
 Für jedes $w$ aus $\Sigma_{\tx{Bool}}^*$ nehmen wir folgendes \lstinline{C++} Programm:
-\[P(\underbrace{w}_{\tx{Zeichenkette}}) = \left\{
+\[P(\ub{w}{\tx{Zeichenkette}}) = \left\{
 \begin{minipage}{82mm}
 \begin{lstlisting}[language=C++]
 int main(int args, char** args) {

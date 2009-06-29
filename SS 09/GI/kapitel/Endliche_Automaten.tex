@@ -9,10 +9,10 @@ Ein \ac{DEA} ist ein Quintupel $M = (Q, \Sigma, \delta, q_0, F)$ aus
 \item einer \indexb[Endliche Automaten!$\delta$ Transitionsfunktion]{Transitionsfunktion} $\delta$: $Q \times \Sigma \ra Q$\label{def:Endliche_Automaten_Transitionsfunktion}
 \item einen \indexb[Endliche Automaten!$q_0$ Startzustand]{Startzustand} $q_0 \in Q$
 \item eine \indexb[Endliche Automaten!$F$ Menge von akzeptierenden Zuständen]{Menge von akzeptierenden Zuständen} $F \subseteq Q$\label{def:Endliche_Automaten_MengevonakzeptierendenZustaenden}\\
-		\begin{anmerkung}
-		$F$ kann leeres Element sein also kann der Automat auch keine Zustände annehmen!
-		\end{anmerkung}
 \end{itemize}
+\begin{anmerkung}
+$F$ kann leeres Element sein also kann der Automat auch keine Zustände annehmen!
+\end{anmerkung}
 \Mark{Definition 3.1}
 \end{fdefinition}
 
@@ -487,7 +487,7 @@ Effektive Berechnung: ohne Beweis.
 		\end{enumerate}
 
 \item $L(M) \subseteq L(M_\epsilon)$: Sei $w = a_1 \dots a_n \in L(M)$ und
-		\[q_0, a_1 \dots a_n) \vd_{\mu} (p_1, a_2 \dots a_n) \vd_{\mu} \dots \vd_{\mu} (p_n, \epsilon)\]
+		\[(q_0, a_1 \dots a_n) \vd_{\mu} (p_1, a_2 \dots a_n) \vd_{\mu} \dots \vd_{\mu} (p_n, \epsilon)\]
 		mit $p_n \in F$ eine \ac{akzept.} Berechnung des \ac{NEA} $M$. Gemäß \ac{Def.} von $\delta$ auf Seite \pageref{def:Endliche_Automaten_Transitionsfunktion} \Solved{ref auf definition} gilt nun aber auch, dass
 		\[(q_0, a_1 \dots a_n) \vd_{M_\epsilon}^* (p_1, a_2 \dots a_n) \vd_{M_\epsilon}^* \dots \vd_{M_\epsilon}^* (p_n, \epsilon)\]
 		eine \ac{akzept.} Berechnung des $\epsilon$-\ac{NEA} ist. Zwei Fälle sind zu unterscheiden:
@@ -770,9 +770,10 @@ Jetzt nutzen wir die \ac{IV} und die \ac{indukt.} \ac{Def.} von $\hat{\delta}_D$
 \ggq{Werkzeug}: $\epsilon_c$ ($\epsilon$-Hülle)\\
 Neu:
 \begin{itemize}
-\item $\delta_D \rklamm{S, a} = \gklamm{q \in Q_N \vert q \in \epsilon_c \rklamm{\delta_N \rklamm{r, a}} \tx{ für ein} r \in Q_N}$
+\item $\delta_D \rklamm{S, a} = \gklamm{q \in Q_N \vert q \in \epsilon_c \rklamm{\delta_N \rklamm{r, a}} \tx{ für ein } r \in Q_N}$
 \item $q_{0_D} = \epsilon_c \rklamm{q_{0_N}}$
 \end{itemize}
+\Todo{Verbesserung von Striegnitz Nachtragen}
 
 \section{Minimierung von Automaten}
 \Mark{Section 3.4}
@@ -868,7 +869,7 @@ $n$ & $T(n)$ ca.\\
 $10$ & $46.000$\\
 $11$ & $112.000$\\
 \vdots & \vdots\\
-$30$ & $467.077.00.000$
+$30$ & $467.077.000.000$
 \end{tabular}
 \end{center}
 \end{beispiel}
@@ -1184,13 +1185,13 @@ Jede endliche Sprache ist regulär.
 \end{fbeweis}
 
 \begin{beispiel}
-$L = \gklamm{w \in \SigBs \vert w = 0^n 1^n \tx{ für } n \in \N}$. Angenommen $L$ ist regulär, dann erfüllt $L$ die Umping-Eigenschaft, \ac{d.h.} es gibt ein $n_0$ mit den Eigenschaften aus dem \ac{PL}.\\
+$L = \gklamm{w \in \SigBs \vert w = 0^n 1^n \tx{ für } n \in \N}$. Angenommen $L$ ist regulär, dann erfüllt $L$ die Pumping-Eigenschaft, \ac{d.h.} es gibt ein $n_0$ mit den Eigenschaften aus dem \ac{PL}.\\
 Sei nun $2k \grgl n_0$. Da $0^k 1^k \in L$ (und $2k \grgl n_0$) muss es eine gültige Zerlegung $z = uvw = 0^k 1^k$ mit $\betrag{v} \grgl 1$ geben, so dass $\forall i \in \N:~u v^i w \in L$. Es gibt drei Möglichkeiten, wo die Schleife $v$ liegen kann:
 \begin{itemize}
 \item $z = \ub{0^{k_1}}{u} \ub{0^{k_2}}{v} \ub{0^{k_3} 1^k}{w}$ mit $k_1 + k_2 + k_3 = k$ und $k_2 \grgl 1$.\\
 		Dann ist $u v^0 w = 0^{k_1} \rklamm{0^{k_2}}^0 0^{k_3} 1^k = 0^{k_1 + k_3} 1^k \notin L$, da $k_1 + k_3 < k$ wegen $k_2 \grgl 1$.
 
-\item $z = \ub{0^k 1^k}{u} \ub{1^{k_2}}{v} \ub{1^{k_3}}{w}$ mit $k_1 + k_2 + k_3 = k$ und $k \grgl 1$.\\
+\item $z = \ub{0^k 1^k_1}{u} \ub{1^{k_2}}{v} \ub{1^{k_3}}{w}$ mit $k_1 + k_2 + k_3 = k$ und $k \grgl 1$.\\
 		Dann ist $u v^0 w = 0^k 1^{k_1 + k_3} \notin L$ da $k_1 + k_3 < k$
 
 \item $z = \ub{0^{k_1}}{u} \ub{0^{k_2} 1^{k'_1}}{v} \ub{1^{k'_2}}{w}$ mit $k_1 + k_2 = k$, $k'_1 + k'_2 = k$ und $k_2 + k'_1 \grgl 2 \und k_2 \grgl 1 \und k'_1 \grgl 1$.\\
@@ -1278,7 +1279,7 @@ $k$ muss daher so gewählt werden, dass es durch \ac{bel.} $1 \klgl b \klgl n_0$ 
 Sei $L$ eine \ac{bekanntem.} nicht reguläre Sprache. Dann ist
 \[L_{\sharp} = \Sigs \cup \rklamm{\rklamm{\sharp}^+ \mal \ubl[2em]{L}{nicht\\regulär}}\]
 nicht regulär.\\
-$L_{\sharp}$ erfüllt die Pumping-Eigenschaft des verschärften \ac{PL}. Sei $z \in L_{\sharp}$, dann $z \in \gklamm{\sharp}^+ L$ oder $z \in \Sigs$
+$L_{\sharp}$ erfüllt die Pumping-Eigenschaft des verschärften Pumping Lemmas. Sei $z \in L_{\sharp}$, dann $z \in \gklamm{\sharp}^+ L$ oder $z \in \Sigs$
 \begin{enumerate}
 \item $z \in \gklamm{\sharp}^+ L$: Betrachte $z = \ub{\epsilon}{u} \ub{\sharp^k}{v} \ub{s}{w}$ mit $1 \klgl k \klgl n_0$ und $s \in L \subseteq \Sigs$.\\
 		Für jedes $i \in \N$ gilt $u v^i w \in L$.
@@ -1302,7 +1303,7 @@ Eine Sprache $L \subseteq \Sigs$ ist regulär, genau dann wenn es eine natürliche
 \ggq{\Ra}: Übung!\\
 \ggq{\La}: Wir zeigen, wie man für eine \ac{bel.} Sprache, die Jaffe-pumpbar ist, einen \ac{DEA} $M = \gklamm{Q, \Sigma, \delta, q_0, F}$ konstruieren kann, der $L$ erkennt. Jeder Zustand aus $Q$ korrespondiert mit einem $z \in \Sigs$, dessen Länge kleiner als $n_0$ ist, \ac{d.h.}
 \[Q = \gklamm{q_s, s \in \Sigs \und \betrag{s} \klgl n_0 - 1}\]
-Als Startzustand wählen wir $q_{\epsilon}$; akzeptierende ZUstände sind $F = \gklamm{q_s \vert s \in L}$, Definiere $\delta$ wie folgt
+Als Startzustand wählen wir $q_{\epsilon}$; akzeptierende Zustände sind $F = \gklamm{q_s \vert s \in L}$, Definiere $\delta$ wie folgt
 \begin{itemize}
 \item $\betrag{z} < n_0 - 1:~\forall a \in \Sigma \delta \rklamm{q_z, a} = q_{za}$ (Baum mit Grad $\betrag{\Sigma}$)
 \item $\betrag{z} = n_0 - 1$. Hier können wir $q_z \ural{}{a} q_{za}$ nicht hinzunehmen, da der Zustand $q_{za}$ nicht existiert. Wegen der Pumping-Eigenschaft von $L$ gibt es eine Zerlegung $za = uvw$ ($v \neq \epsilon$), so dass
@@ -1385,7 +1386,7 @@ Wir lassen zu, dass reguläre Ausdrücke klammerfrei geschrieben werden, dann werd
 \item $(0 + 1)^* 10010 (0 + 1)^* = \gklamm{w \in \SigBs \vert w \tx{ enthält } 10010 \tx{ als Teilwort}}$
 \item $\eklamm{\rklamm{0 + 1} \rklamm{0 + 1} \rklamm{0 + 1}}^* = \gklamm{w \in \SigBs \vert \betrag{w} \mod 3 = 0}$
 \item $(1 + \epsilon) = \gklamm{1, \epsilon}$
-\item $(0 + \epsilon) 1^* = 01^* + 1^*$
+\item $(0 + \epsilon) 1^* = (01^* + \epsilon 1^*) = 01^* + 1^*$
 \item $(0 + \epsilon) (1 + \epsilon) = \gklamm{\epsilon, 0, 1, 01}$
 \item $\rklamm{\rklamm{\rklamm{100 + 011}^*}^*}^* \emptyset = \emptyset$
 \end{itemize}
@@ -1512,7 +1513,7 @@ Wir beweisen durch strukturelle Induktion, dass jeder \ac{RA} in einen $\epsilon
 Ein \ac{G-NEA} ist ein Quintupel $M = \rkl{Q, \Sigma, \delta, q_s, q_a}$
 \begin{itemize}
 \item $Q$, $\Sigma$ wie bei \ac{DEA}
-\item $\delta$: $\ubl{Q - \gklamm{q_a}}{Keine Kante verlässt $q_a$} \times \ubl{Q - \gklamm{q_s}}{Keine Kante kommt bei $q_s$ an} \ra \R_{\Sigma}$
+\item $\delta$: $\ubl{Q - \gklamm{q_a}}{Keine Kante verlässt $q_a$} \times \ubl{Q - \gklamm{q_s}}{Keine Kante kommt bei $q_s$ an} \ra R_{\Sigma}$
 \item $q_s$ Startzustand
 \item $q_a$ \ac{akzept.} Zustand
 \end{itemize}
@@ -1581,7 +1582,7 @@ Sukzessives Eliminieren von Zuständen / Kompensation über Kante mit \ac{RA}.
 \node[state,color=blue] (qi2) [below of=qi, node distance=1.5cm] {$q_i$};
 \node[state,color=green] (qj2) [below of=qj, node distance=1.5cm] {$q_j$};
 
-\tikzedge{qi2}{qj2}{r_4 + r_1 \cdot (r_2)^* \cdot r_2}{}{};
+\tikzedge{qi2}{qj2}{r_4 + r_1 \cdot (r_2)^* \cdot r_3}{}{};
 \end{tikzpicture}
 \Img{GI-26.05.2009-IMG-9}
 \end{center}
@@ -1598,7 +1599,7 @@ distance=4cm,semithick] \node[state,initial,initial text=] (qs) {$q_s$};
 \tikzedge{qs}{1}{\epsilon}{}{};
 \path[->,color=gray] (qs) edge[bend left] node {$0$} (2);
 \path[->,color=gray] (qs) edge[bend right] node[left] {\parbox{2cm}{$\epsilon
-\cdot 1 + \emptyset = 1$ \textcolor{black}{\scriptsize{$(a_s \rightarrow 1
+\cdot 1 = 1$ \textcolor{black}{\scriptsize{$(a_s \rightarrow 1
 \rightarrow 3)$}}}} (3);
 
 
@@ -1777,12 +1778,12 @@ Das Verhalten lässt sich dann durch folgenden Automaten beschreiben:
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
 \node[state, initial, initial text=] (P) {P};
 \node[state] (10) [right of=P] {10};
-\node[state] (11) [right of=10] {11};
-\node[state] (20) [right of=11] {20};
+\node[state] (01) [right of=10] {01};
+\node[state] (20) [right of=01] {20};
 
 \tikzedge{P}{10}{a}{}{};
-\tikzedge{10}{11}{v}{}{};
-\tikzedge{11}{20}{a}{}{};
+\tikzedge{10}{01}{v}{}{};
+\tikzedge{01}{20}{a}{}{};
 
 \tikzedge{10}{P}{r}{bend right}{above};
 \tikzedge{20}{10}{r}{bend left}{};
@@ -1834,7 +1835,9 @@ Bilde Produktautomaten zur Analyse des parallelen Prozesses:
 \tikzedge{1011}{1111}{r.A}{}{};
 
 \tikzedge{11P}{20P}{a.A}{}{};
-\path[->, dashed, color=red] (11P) edge node {$a.B$} (1110);
+\path[->, dashed, color=red] (11P) edge node (invalidnode) {$a.B$} (1110);
+\draw[-,color=red] (invalidnode.north east) -- (invalidnode.south west);
+\draw[-,color=red] (invalidnode.south east) -- (invalidnode.north west);
 
 \tikzedge{1110}{1111}{v.B}{}{};
 \tikzedge{1110}{11P}{r.B}{bend left}{};
