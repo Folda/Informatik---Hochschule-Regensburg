@@ -1,0 +1,77 @@
+\documentclass[oneside,a4paper,german,parskip=half]{scrreprt}
+\usepackage[latin1]{inputenc}
+
+%Neue Deutsche Rechtschreibung
+\usepackage{ngerman}
+
+%Seitenheader
+\usepackage{fancyhdr}
+\setlength{\headheight}{3em}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[ER,OL]{
+\begin{tabular}[b]{l}
+Alexander Thaller, Christian Folda, Timo Nöth -- Informatik \RM{2}\\
+Grundlagen Informatik - 5. Übung - \today
+\end{tabular}
+}
+\fancyfoot[OC]{\thepage/\pageref{LastPage}}
+
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[ER,OL]{
+\begin{tabular}[b]{l}
+Alexander Thaller, Christian Folda, Timo Nöth -- Informatik \RM{2}\\
+Grundlagen Informatik - 5. Übung - \today
+\end{tabular}
+}
+\fancyfoot[OC]{\thepage/\pageref{LastPage}}
+}
+
+%Standartfont
+\usepackage[T1]{fontenc}
+%\usepackage{fourier}
+%\usepackage{libertine}
+
+%Zusatzpaket für mathematische Ausdrücke
+\usepackage{amsmath}
+
+%Zusatzfonts für mathbb usw.
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+%Verbessertes Ref
+\usepackage[german]{varioref}
+
+%Links
+\usepackage{hyperref}
+
+%Stichwortverzeichnis
+\usepackage{makeidx}
+\makeindex
+
+%Acronyme
+\usepackage[nolist,nohyperlinks]{acronym}
+
+%Anpassbare Enumerates/Itemizes
+\usepackage{enumitem}
+
+%Tikz/PGF Zeichnenpaket
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc,arrows,automata}
+
+%Paket zum Berechnen von Textbreiten und Höhen
+\usepackage{calc}
+
+%BibTeX
+\usepackage{cite}
+\usepackage{bibgerm}
+\bibliographystyle{gerplain}
+
+%Für das manipulieren von Captions in Figuren
+\usepackage{caption}
+\captionsetup{labelformat=default}
+\DeclareCaptionLabelFormat{simplegraph}{Graph #2}
+
+%Für das ausgeben der Gesamtanzahl an Seiten
+\usepackage{lastpage}

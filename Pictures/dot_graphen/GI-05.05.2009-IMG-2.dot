@@ -1,0 +1,28 @@
+digraph GI05052009IMG2 {
+graph [overlap=false,start=1];
+edge [len=1.5];
+A [shape=circle];
+B [shape=doublecircle];
+C [shape=circle];
+0 [shape=circle];
+AB [shape=doublecircle];
+AC [shape=circle];
+BC [shape=doublecircle];
+ABC [shape=circle];
+
+
+A -> C [label=0];
+A -> AB [label=1];
+AB -> ABC [label=1];
+AB -> BC [label=0];
+ABC -> BC [label=0];
+ABC -> ABC [label=1];
+BC -> B [label=0];
+BC -> C [label=1];
+B -> B [label=0];
+B -> C [label=1];
+C -> 0 [label=0,1];
+0 -> 0 [label=1,0];
+AC -> AB [label=1];
+AC -> C [label=0];
+}

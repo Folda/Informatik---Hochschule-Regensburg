@@ -1,0 +1,42 @@
+digraph GIT05052009IMG1 {
+graph [overlap=false,start=0,rankdir=LR,order=out];
+edge [len=2];
+start [shape=plaintext, label="", width=0]; 
+AD [shape=doublecircle, group="g1"];
+BD [shape=circle, group="g1"];
+AE [shape=doublecircle, group="g1"];
+AF [shape=doublecircle, group="g1"];
+CE [shape=circle, group="g2"];
+BF [shape=doublecircle, group="g2"];
+CF [shape=doublecircle, group="g2"];
+BE [shape=circle, group="g2"];
+CD [shape=circle, group="g2"];
+
+start -> AD [len=1, label=start];
+AD -> BD [label=1];
+AD -> AE [label=0];
+
+BD -> AD [label=1];
+BD -> CE [label=0];
+
+AE -> BD [label=1];
+AE -> AF [label=0];
+
+AF -> BD [label=1];
+AF -> AF [label=0];
+
+CE -> CD [label=1];
+CE -> BF [label=0];
+
+BF -> AD [label=1];
+BF -> CF [label=0];
+
+CF -> CD [label=1];
+CF -> BF [label=0];
+
+BE -> AD [label=1];
+BE -> CF [label=0];
+
+CD -> CD [label=1];
+CD -> BE [label=0];
+}

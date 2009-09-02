@@ -1,0 +1,291 @@
+\chapter{Übungsblätter}
+\section{Lösungen}
+\subsection{Übung 1.1}
+\label{sec:Uebungsblaetter_1_1L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_1}.
+
+\begin{itemize}
+\item 3 Wagen 1. Klasse
+\item 5 Wagen 2. Klasse
+\item 2 Gepäckwagen
+\end{itemize}
+
+\begin{enumerate}[label=\alph*)]
+\item $\binom{10}{3} \mal \binom{7}{5} \mal \binom{2}{2} = \frac{10 \mal 9 \mal 8}{3!} \mal \frac{7 \mal 6 \mal 5 \mal 4 \mal 3}{5!} \mal \frac{2 \mal 1}{2!} = \frac{10!}{3! \mal 5! \mal 2!}$\\
+		$\binom{10}{3}$: Anzahl möglicher Plätze für 1. Klasse auszusuchen\\
+		$\binom{7}{5}$: Anzahl Möglichkeiten im Anschluss Plätze für 2. Klasse festzulegen\\
+		$\binom{2}{2}$: Letzte 2 Plätze im Gepäckwagen
+
+\item Wagen wie in a), alle 2. Klasse Wagen am Stück
+
+		%MA-02.04.2009-IMG-1
+		\begin{tikzpicture}[decoration=brace]
+		\draw[thick, ->] (0,0) -- (6,0) node[below] {$n$};
+		\draw[-|] (2,-0.2) node[below] {$n - 1$} -- (2,1.8) node[left]{$S_{n - 1}$};
+		\draw[-|] (3,-0.2) node[below] {$n$} -- (3,2.8) node[above]{$S_1$};
+		\draw[dashed] (2,1.8) -- (5,1.8);
+		\draw[dashed] (3,2.8) -- (5,2.8);
+		\draw[decorate] (2.5,2.8) -- (2.5,1.8) node[right, midway] {$\epsilon$};
+		\draw (3,2.8) -- (2.5,2.8);
+		
+		\draw[draw=red, <->] (5,2.8) node[right] {$S$} -- (5,1.8) node[right,midway] {$> \frac{\epsilon}{2}$};
+		\draw[draw=blue, <->] (6,0) node[right] {$S$} -- (6,2.8) node[right,midway] {$> \frac{\epsilon}{2}$};
+		\end{tikzpicture}
+
+		6 Möglichkeiten den Platz des ersten 2. Klasse Wagens festzulegen\\
+		$\binom{5}{3} \mal \binom{2}{2}$ Anzahl Möglichkeiten die Plätze für die anderen Wagen festzulegen\\
+		$6 \mal \binom{5}{3} \mal \binom{2}{2} = 6 \mal \frac{5 \mal 4 \mal 3}{1 \mal 2 \mal 3} = 60$
+\end{enumerate}
+
+\subsection{Übung 1.2 (Abwandlung)}
+\label{sec:Uebungsblaetter_1_2AL}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_2A}.
+
+\begin{itemize}
+\item 12 stellige Zahl mit Ziffern 1-9
+\item max zwei 9
+\item Summe der ersten beiden 16
+\end{itemize}
+
+\subsubsection*{ersten beiden Stellen}
+$\left.88\right\}$ \textcircled{1}\\
+$\left.\begin{array}{l}
+79\\
+97
+\end{array}\right\}$ \textcircled{2}
+
+\begin{enumerate}[label=\textcircled{\arabic*}]
+\item Möglichkeiten noch $2 \times 9$, $1 \times 9$, $0 \times 9$ in den 10 Stellen\\
+		$\binom{10}{2} \mal 8 + \binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}$\\
+		$8$ ist die Anzahl der Möglichkeiten pro Stelle\\
+		$\space^8$ ist die Anzahl der Stellen
+
+\item Möglichkeiten noch $1 \times 9$ oder $0 \times 9$ in 10 Stellen\\
+		$\binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}$\\
+		\Ra Totale Anzahl = $1 \mal \rkl{\rkl{\binom{10}{2} \mal 8^8 + \binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}} + 2 \mal \rkl{\binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}}}$
+\item 
+\end{enumerate}
+
+\subsection{Übung 1.3}
+\label{sec:Uebungsblaetter_1_3L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_3}.
+
+zu zeigen $\forall n \in \N_0: \sum_{k = 0}^n \binom{m + k}{k} = \binom{m + n + 1}{n}$
+\begin{description}
+\item[(IA)] $n = 0$
+		\[\left.\begin{array}{l}
+		\tx{LS} = \sum_{k = 0}^0 \binom{m + k}{k} = \binom{m + 0}{0} = 1\\
+		\tx{RS} = \binom{m + 0 + 1}{0} = 1
+		\end{array}\right\} \checkmark\]
+
+\item[(IS)] zu zeigen $\forall n \in \N: \underbrace{\sum_{k = 0}^n \binom{m + k}{k} = \binom{m + n + 1}{n}}_{= \tx{(IV)}}$ \Ra $\sum_{k = 0}^{n + 1} \binom{m + k}{k} = \binom{m + n + 2}{n + 1}$
+		\begin{align*}
+		&\sum_{k = 0}^{n + 1} \binom{m + k}{k} = \binom{m + n + 1}{n + 1} + \sum_{k = 0}^n \binom{m + k}{k}\\
+		\stack{=}{\tx{(IV)}} & \underbrace{\binom{m + n + 1}{n + 1}}_{\binom{m + n + 1}{m}} + \binom{m + n + 1}{n} \underbrace{=}_{\tx{Satz 1.3 iii)}} \binom{m + n + 2}{n + 1}
+		\end{align*}\qed
+\end{description}
+
+\subsection{Übung 1.4}
+\label{sec:Uebungsblaetter_1_4L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_4}.
+
+Für welche $(x, y) \in \mb{R}^2$ gilt:
+\[xy \klgl x^2 + y^2\]
+\textit{Behauptung:} Gilt für alle $(x, y) \in \mb{R}^2$
+\begin{description}
+\item[Fall 1] $xy \klgl 0$ (\ac{d.h.} $(x \klgl 0 \und y \grgl 0) \oder (x \klgl 0 \und y \grgl 0)$\\
+		\begin{align*}
+		&x y \klgl 0 \tx{ und } \underbrace{x^2}_{\grgl 0} + \underbrace{y^2}_{\grgl 0} \grgl 0\\
+		\Ra &xy \klgl x^2 + y^2
+		\end{align*}
+
+\item[Fall 2] $xy > 0 (\Lra (x > 0 \und y > 0) \oder (x < 0 \und y < 0)$
+		\begin{align*}
+		&xy \stack{\klgl}{!} x^2 + y^2~~~~\vert - xy\\
+		\Lra &0 \stack{\klgl}{!} x^2 - xy + y^2
+		\La &x^2 - xy + y^2 > x^2 - x - \underbrace{xy}_{> 0} + y^2 = (x - y)^2 \grgl 0
+		\end{align*}\qed
+\end{description}
+
+\subsection{Übung 1.5}
+\label{sec:Uebungsblaetter_1_5L}
+%Lösung zu Aufgabe \vref{sec:Uebungsblaetter_1_5}.
+
+$\betrag{\frac{3 - 2x}{2 + x}} \klgl 4$ $x \in \mb{R} \backslash \gklamm{-1}$\\
+\Lra $-4 \klgl \frac{3 - 2x}{1 + x} \klgl 4$
+\begin{description}
+\item[Fall 1] $1 + x > 0 (\Lra x > - 1)$
+		\begin{align*}
+		\Lra &-4(1 + x) \klgl 3 - 2x \klgl 4(1 + x)\\
+		\Lra &-4 -4x \klgl 3 - 2x \klgl 4 + 4x\\
+		\Lra &\matrixp{-4 -4x \klgl 3 - 2x \vert + 4x - 3\\\Lra - 7 \klgl 2x \vert : 2\\\Lra -\frac{7}{2} \klgl x} \und \matrixp{3 - 2x \klgl 4 + 4x \vert +2x - 4\\- 1 \klgl 6x \vert :6\\-\frac{1}{6} \klgl x}\\
+		&L_1 = \left[- \frac{1}{6}, \infty\right)
+		\end{align*}
+
+\item[Fall 2] $1 + x < 0$ ($\Lra x < - 1$)
+		\begin{align*}
+		\Lra &-4(1 + x) \grgl 3 - 2x \grgl 4(1 + x)\\
+		\Lra &-4 -4x \grgl 3 - 2x \grgl 4 + 4x\\
+		\Lra &\matrixp{-4 -4x \grgl 3 - 2x \vert + 4x - 3\\\Lra - 7 \grgl 2x \vert : 2\\\Lra -\frac{7}{2} \grgl x} \und \matrixp{3 - 2x \grgl 4 + 4x \vert +2x - 4\\- 1 \grgl 6x \vert :6\\-\frac{1}{6} \grgl x}\\
+		&L_2 = \left(\infty, -\frac{7}{2}\right]
+		\end{align*}
+\end{description}
+\[L = L_1 \cup L_2 ) \left(-\infty, -\frac{7}{2}\right] \cup \left[-\frac{1}{6}, \infty\right)\]
+
+\subsection{Übung 2.1}
+$a_{n + 1} = \frac{1}{2} \rkl{a_n + \frac{x_0}{a_n}} ~~ n \in \N$
+\begin{enumerate}[label=\alph*)]
+\item \ac{z.z.} $a_n > \sqrt{x_0}$
+		\begin{description}
+		\item[(IA)] $n = 1$ $a_1 > \sqrt{x_0}$ erfüllt nach Voraussetzung
+		\item[(IS)] \ac{z.z.} $a_n > \sqrt{x_0} \Ra a_{n + 1} > \sqrt{x_0}$
+				\begin{align*}
+				a_{n + 1} &= \frac{1}{2} \rkl{a_n + \frac{x_0}{a_n}} = \ub{\frac{1}{2a_n}}{> 0} \rkl{a_n^2 + x_0}\\
+				&= \frac{1}{2a_n} \rkl{a_n^2 - 2a_n \sqrt{x_0} + \rkl{\sqrt{x_0}}^2 + 2a_n \mal \sqrt{x_0}}\\
+				&= \frac{1}{2a_n} \rkl{a_n^2 - 2a_n \sqrt{x_0} + \rkl{\sqrt{x_0}}^2} + \sqrt{x_0}\\
+				&= \ub{\frac{1}{2a_n}}{>0} \ub{\rkl{\ub{a_n - \sqrt{x_0}}{> 0}}^2} + \sqrt{x_0} > \sqrt{x_0}\\
+				\Ra& (a_n)_{n \in \N} \tx{ monoton fallend}
+				\end{align*}
+		\end{description}
+
+\item \ac{z.z.} $(a_n)_{n \in \N}$ monoton fallend
+		\begin{align*}
+		a_{n + 1} - a_n &= \frac{1}{2} \rkl{a_n + \frac{x_0}{a_n}} - a_n = \frac{x_0}{2a_n} - \frac{1}{2} a_n\\
+		&= \frac{x_0 - a_n^2}{2a_n} = \ub{\frac{1}{2a_n}}{>0} \ub{\rkl{\sqrt{x_0} - a_n}}{<0} \mal \ub{\rkl{\sqrt{x_0} + a_n}}{>0} < 0
+		\end{align*}
+
+\item \ac{z.z.} $\lim_{n \ra \infty} a_n = \sqrt{x_0}$
+		\begin{align*}
+		&a = \lim_{n \ra \un} a_n = \lim_{n \ra \un} a_n + 1 = \lim_{n \ra \un} \rac{1}{2} \rkl{a_n + \frac{x_0}{a_n}} = \frac{1}{2} \rkl{a + \frac{x_0}{a}}\\
+		\Lra& \rac{1}{2} a = \frac{x_0}{2a} \Vert a \mal 2\\
+		\Lra& a^2 = x_0\\
+		\stack{a > 0}{\Lra}& a = \sqrt{x_0}
+		\end{align*}
+
+\item $a_1 = 2$, $x_0 = 2$\\
+		\[a_2 = \frac{1}{2} \rkl{a_1 + \frac{2}{a_1}} = \frac{1}{2} \rkl{2 + \frac{2}{2}} = \frac{3}{2}\]
+		\[a_3 = \frac{1}{2} \rkl{a_2 + \rac{2}{a_2}} = \frac{1}{2} \rkl{\frac{3}{2} + \rac{2 \mal 2}{3}} = \rac{9 + 8}{2 \mal 6} = \frac{17}{12}\]
+		\begin{align*}
+		\betrag{a - \sqrt{2}} &= a_3 - \sqrt{2} = \frac{a_3^2 - 2}{a_3 + \sqrt{2}} \klgl \frac{a_3^2 - 2}{a_3}\\
+		&= a_3 - \frac{2}{a_3} = \frac{17}{12} - \frac{2 \mal 12}{17} = \frac{289 - 288}{12 \mal 17} = \frac{1}{12 \mal 17}\\
+		\Ra& \sqrt{2} \in \eklamm{\ub{\frac{17}{12}}{a_3} - \frac{1}{12 \mal 17}, \ub{\frac{17}{12}}{a_3}}
+		\end{align*}
+\end{enumerate}
+
+\subsection{Übung 2.2}
+\begin{enumerate}[label=\alph*)]
+\item $a_n = n - \sqrt{n^2 - b}$
+		\begin{align*}
+		\lim_{n \ra \un} a_n &= \frac{\rkl{n - \sqrt{n^2 - 5n}} \mal \rkl{n + \sqrt{n^2 - 5n}}}{n + \sqrt{n^2 - 5n}}\\
+		&= \lim_{n \ra \un} \frac{n^2 - \rkl{n^2 - 5n}}{n + \sqrt{n^2 - 5n}} = \lim_{n \ra \un} \frac{5n}{n + \sqrt{n^2 - 5n}}\\
+		&= \lim_{n \ra \un} \frac{5}{1 + \sqrt{\frac{n^2}{n^2} - \frac{5n}{n^2}}} = \lim_{n \ra \un} \frac{5}{1 + \sqrt{1 - \frac{5}{n}}} = \frac{5}{2}
+		\end{align*}
+
+\item $b_n = \frac{\sinx{n}}{n}$
+		\begin{align*}
+		0 &\klgl \lim_{n \ra \un} \betrag{b_n} = \lim_{n \ra \un} \betrag{\frac{\sinx{n}}{n}} \klgl \lim_{n \ra \un} \frac{1}{n} = 0\\
+		&\Ra \lim_{n \ra \un} b_n = 0
+		\end{align*}
+
+\item $c_n = n \rkl{1 - \rkl{1 - \frac{1}{n}}^{42}}$
+		\begin{align*}
+		\lim_{n \ra \un} n \rkl{1 - \rkl{1 - \frac{1}{n}}^{42}} &= \lim_{n \ra \un} n \rkl{1 - \sum_{k = 0}^{42} \binom{42}{k} \rkl{-\frac{1}{n}}^k}\\
+		&= \lim_{n \ra \un} n \rkl{\sum_{k = 1}^{42} \binom{42}{k} \mal \rkl{-1}^{k - 1} \rkl{\frac{1}{n}}^k}\\
+		&= \lim_{n \ra \un} \sum_{k = 1}^{42} \binom{42}{k} \mal \rkl{-1}^{k - 1} \rkl{\frac{1}{n}}^{k - 1}\\
+		&= \binom{42}{1} + \sum_{k = 2}^{42} \mal (-1)^{k - 1} \mal \rkl{\ub{\lim_{n \ra \un} \rkl{\frac{1}{n}}}{=0}}^{k - 1} = \binom{42}{1} = 42
+		\end{align*}
+
+\item $d_n = \rkl{1 + \frac{1}{n}}^{n^2}$\\
+		Behauptung: $(d_n)_{n \in \N}$ ist divergent (genauer $\lim_{n \ra \un} d_n = \un$)
+		\begin{align*}
+		&\rkl{1 + \frac{1}{2}}^{n^2} = \rkl{\rkl{1 + \frac{1}{n}}^n}^n \ub{\grgl}{\tx{für $n$ genügend groß}} \rkl{\ub{\rkl{1 + \frac{1}{n}}^n}{\overrightarrow{n \ra \un} e}}^k\\
+		\Ra& \lim_{n \ra \un} \rkl{1 + \frac{1}{n}}^{n^2} \ub{\grgl}{\tx{für $\forall k \in \N$}} \rkl{\lim_{n \ra \un} \rkl{1 + \frac{1}{n}}^n}^k = e^k\\
+		&\forall K \in \R \exists k \in \N:~e^k > K
+		\end{align*}
+		\Ra $(d_n)$ ist nicht nach oben beschränkt und damit divergent
+
+\item $e_n = \sqrt[n]{\sqrt[n]{n!}}$
+		\begin{align*}
+		&\lim_{n \ra \un} e_n = \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n!}} = \tx{\textcircled{$\star$}}\\
+		&\tx{\textcircled{$\star$}} \grgl \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{1}}  = \lim_{n \ra \un} \sqrt[n]{1} = 1\\
+		&\tx{\textcircled{$\star$}} \klgl \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n^n}} = \lim_{n \ra \un} \sqrt[n]{n} = 1\\
+		\Ra& \lim_{n \ra \un} \sqrt[n]{\sqrt[n]{n!}} = 1
+		\end{align*}
+\end{enumerate}
+
+\subsection{Übung 2.3}
+\begin{enumerate}[label=\alph*)]
+\item gesucht $p, q \in \N$ mit $\frac{p}{qq} = 0,\overline{4711}$
+		\begin{align*}
+		0,\overline{4711} &= \frac{4711}{10^4} + \frac{4711}{10^8} + \frac{4711}{10^{12}} + \dots\\
+		&= 4711 \sum_{k = 1}^{\un} \rkl{\frac{1}{10^4}}^k = 4711 \frac{1}{10^4} \sum_{k = 0}^{\un} \rkl{\frac{1}{10^4}}^k\\
+		&= 4711 \frac{1}{10^4} \mal \frac{1}{1 - \frac{1}{10^4}} = 4711 \mal \frac{1}{10^4 - 1}\\
+		&= \frac{4711}{9999} \Ra p = 4711, q = 9999
+		\end{align*}
+
+\item $\frac{p}{q} = 0,1230\overline{443}$
+		\begin{align*}
+		\frac{p}{q} &= 0,1230\overline{443} = \frac{123}{1000} + \frac{443}{10^7} + \frac{443}{10^{10}} + \frac{443}{10^{13}} + \dots\\
+		&= \frac{123}{10^3} + \frac{443}{10^7} \sum_{k = 0}^{\un} \rkl{\frac{1}{10^3}}^k = \frac{123}{10^3} + \frac{443}{10^7} \mal \frac{1}{1 - \frac{1}{10^3}}\\
+		&= \frac{123}{10^3} + \frac{443}{10^4} \mal \frac{1}{999} = \frac{123 \mal 9990 + 443}{9990000}\\
+		&= \frac{1229213}{9990000}
+		\end{align*}
+\end{enumerate}
+
+\subsection{Übung 2.4}
+$a_n = $ In der $n$-ten Minute zurückgelegte Anteil am Gummiband\\
+$a_1 = \frac{25cm}{100cm} = \frac{1}{4}$\\
+$a_2 = \frac{25cm}{200cm} = \frac{1}{8}$\\
+$a_3 = \frac{25cm}{300cm} = \frac{1}{12}$\\
+$a_n = \frac{1}{4n}$
+bis und mit $n$-ter Minute zurückgelegter Anteil
+\[\sum_{n = 1}^{N} a_n = \sum_{n = 1}^{N} \frac{1}{4n} = \frac{1}{4} \ub{\sum_{n = 1}^{N} \frac{1}{n}}{\tx{harmonische Reihe}}\]
+\Ra die Ameise erreicht das Ende
+\[\frac{1}{4} \sum_{n = 1}^{N} \frac{1}{n} \grgl 1\]
+kleinstes $N$, welches die Bedingung erfüllt\\
+\Ra $N = 31min$
+
+\subsection{Übung 2.5}
+\begin{enumerate}[label=\alph*)]
+\item $\sum_{h = 0}^{\un} \frac{m!}{m^m}$ konvergent oder divergent?\\
+		Majorantenkriterium
+		\[
+		\sum_{m = 0}^{\un} \frac{m!}{m^m} = \sum_{m = 0}^{\un} \rkl{\ub{\frac{m}{m}}{=1} \mal \ub{\frac{(m - 1)}{m}}{<1} \mal \ub{\frac{3}{m}}{<1} \mal \frac{2}{m} \mal \frac{1}{m}} \klgl 1 + \ub{2 \mal \sum_{m = 1}^{\un} \frac{1}{m^2}}{\tx{konvergent}}
+		\]
+
+\item $\sum_{h = 0}^{\un} \frac{m!}{m^m}$ konvergent oder divergent?\\
+		notwendiges Kriterium 
+		\[
+		\sum_{m = 0}^{\un} \frac{m!}{m^m} = \sum_{m = 0}^{\un} \rkl{\ub{\frac{m}{m}}{=1} \mal \ub{\frac{(m - 1)}{m}}{<1} \mal \ub{\frac{3}{m}}{<1} \mal \frac{2}{m} \mal \frac{1}{m}} \klgl 1 + \ub{2 \mal \sum_{m = 1}^{\un} \frac{1}{m^2}}{\tx{konvergent}}
+		\]
+
+\item $\sum_{n = 1}^{\infty} \frac{\sinx{n}}{n^2}$ konvergent/divergent?\\
+		Majorantenkriterium
+		\[\betrag{\sum_{n = 1}^{\un} \frac{\sinx{x}}{n^2}} \klgl \sum_{n = 1}^{\un} \betrag{\frac{\sinx{n}}{n^2}} \klgl \sum_{n = 1}^{\un} \frac{1}{n^2}\]
+		verallgemeinerte harmonische Reihe mit\\
+		$\alpha = 2$ \Ra konvergent
+\end{enumerate}
+
+\subsection{Übung 2.6}
+\begin{enumerate}[label=\alph*)]
+\item $\sum_{n = 0}^{\un} \ub{\rkl{\frac{1}{2^n} + \frac{1}{3^n}}}{= a_n} \rkl{x - \ub{0}{= x_0}}^n$\\
+		Quotientenmethode
+		\begin{align*}
+		\lim_{n \ra \un} \betrag{\frac{a_n}{a_{n + 1}}} &= \lim_{n \ra \un} \rkl{\rkl{\frac{1}{2^n}} + \frac{1}{3^n}} \mal \rkl{\frac{1}{2^{n + 1}} + \frac{1}{3^{n + 1}}^{-1}}\\
+		&= \lim_{n \ra \un} \frac{\frac{1}{2^n} + \frac{1}{3^n}}{\frac{1}{2^{n + 1}} + \frac{1}{3^{n + 1}}} = \lim_{n \ra \un} \frac{\frac{3^n + 2^n}{6^n}}{\frac{3^{n + 1} + 2^{n + 1}}{6^{n + 1}}} = \lim_{n \ra \un} \frac{\rkl{3^n + 2^n} \mal 6^{n + 1}}{6^n \rkl{3^{n + 1} + 2^{n + 1}}}\\
+		&= 6 \mal \lim_{n \ra \un} \frac{3^n + 2^n}{3^{n + 1} + 2^{n + 1}} = 6 \mal \lim_{n \ra \un} \frac{1 + \rkl{\frac{2}{3}}^n}{3 + 2 \mal \rkl{\frac{2}{3}}^n}\\
+		&= 6 \mal \frac{lim_{n \ra \un} \rkl{1+ \rkl{\frac{2}{3}}^n}}{\lim_{n \ra \un} \rkl{3 + 2 \rkl{\frac{2}{3}}^n}} = 6 \mal \frac{1}{3} = 2
+		\end{align*}
+		Konvergenzradius $r = q = 2$
+
+\item $\sum_{k = 0}^{\un} \frac{\rkl{2k}!}{\rkl{k!}^k} \rkl{x + 2}^k = \sum_{k = 0}^{\un} \ub{\frac{\rkl{2k}!}{\rkl{k!}^k}}{=a_k} \mal \rkl{x - \ub{\rkl{-2}}{= x_0}}^k$\\
+		Wurzelmethode
+		\begin{align*}
+		0 \klgl \lim_{k \ra \un} \sqrt[k]{\betrag{a_k}} &= \lim_{k \ra \un} \sqrt[k]{\betrag{\frac{(2k)!}{(k!)^k}}} = \lim_{k \ra \un} \sqrt[k]{(2k)!} \mal \frac{1}{\sqrt[k]{k!^k}}\\
+		&= \lim_{k \ra \un} \frac{1}{k!} \mal \sqrt[k]{(2k)!} \klgl \lim_{k \ra \un} \frac{1}{k!} \sqrt[k]{(2k)^{2k}} = \lim_{k \ra \un} \frac{(2k)^2}{k!} = 0
+		\end{align*}
+		\Ra Konvergenzradius $r = \un$
+\item 
+\item 
+
+\end{enumerate}

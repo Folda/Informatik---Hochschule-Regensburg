@@ -1,0 +1,87 @@
+\documentclass[oneside,a4paper,german,parskip=half,draft]{scrbook}
+
+\usepackage[latin1]{inputenc}
+
+%Neue Deutsche Rechtschreibung
+\usepackage{ngerman}
+
+%Seitenheader
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\rhead{\nouppercase{\rightmark}}
+\lhead{\nouppercase{\leftmark}}
+
+%Standartfont
+\usepackage[T1]{fontenc}
+%\usepackage{fourier}
+\usepackage{libertine}
+
+%Zusatzpaket für mathematische Ausdrücke
+\usepackage{amsmath}
+
+%Zusatzfonts für mathbb usw.
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+%Verbessertes Ref
+\usepackage[german]{varioref}
+
+%Links
+\usepackage{hyperref}
+
+%Stichwortverzeichnis
+\usepackage{makeidx}
+\makeindex
+
+%Acronyme
+\usepackage[nolist,nohyperlinks]{acronym}
+
+%Anpassbare Enumerates/Itemizes
+\usepackage{enumitem}
+
+%Tikz/PGF Zeichnenpaket
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc,arrows,automata}
+
+%Für graphische Todos
+\usepackage[colorinlistoftodos, obeyDraft]{todonotes}
+
+%Paket zum Berechnen von Textbreiten und Höhen
+\usepackage{calc}
+
+%BibTeX
+%\usepackage{cite}
+%\usepackage{bibgerm}
+%\bibliographystyle{gerplain}
+
+%Für das manipulieren von Captions in Figuren
+\usepackage{caption}
+
+%Für das anpassen von theoremen
+\usepackage{amsthm}
+
+%Für die farbigen Boxen
+\usepackage{xcolor}
+\usepackage{framed}
+
+%Um die Seite in mehrere Spalten aufzuteilen
+\usepackage{multicol}
+
+%Für zwischenräume in Wörtern
+\usepackage{xspace}
+
+%Quellcode Einbindung
+\usepackage{listings}
+\lstset{
+basicstyle=\ttfamily
+}
+
+%Für das durchstreichen von Blöcken
+\usepackage{cancel}
+
+%Für Commandos mit zwei opotionalen Argumenten
+\usepackage{twoopt}
+
+%Für verschiedene Symbole (\cent, usw)
+\usepackage{wasysym}

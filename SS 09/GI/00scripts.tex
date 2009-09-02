@@ -1,0 +1,232 @@
+{\catcode`\!=8 % funny catcode so ! will be a delimiter 
+\catcode`\Q=3 % funny catcode so Q will be a delimiter 
+\long\gdef\given#1{88\fi\Ifbl@nk#1QQQ\empty!} 
+\long\gdef\blank#1{88\fi\Ifbl@nk#1QQ..!}% if null or spaces 
+\long\gdef\nil#1{\IfN@Ught#1* {#1}!}% if null 
+\long\gdef\IfN@Ught#1 #2!{\blank{#2}} 
+\long\gdef\Ifbl@nk#1#2Q#3!{\ifx#3}% same as above 
+}
+
+%<Commandos>
+%In geschweifte Klammern setzen
+\newcommand{\gklamm}[1]{\ensuremath{\left\{#1\right\}}}
+
+%In eckige Klammern setzen
+\newcommand{\eklamm}[1]{\ensuremath{\left[#1\right]}}
+
+%In runde Klammern setzen
+\newcommand{\rklamm}[1]{\ensuremath{\left(#1\right)}}
+
+%In Betragsstriche Setzen
+\newcommand{\betrag}[1]{\ensuremath{\left|#1\right|}}
+
+%Script zum Eingeben von längeren Beispielen
+\newcommand{\bsp}[3][]
+{
+\if\blank{#3}\textalign{\underline{#2}}{#1}\else
+\underline{#2} #1
+\par
+\begingroup
+\leftskip=1.28em
+\setlist[1]{labelindent=1.28em, leftmargin=*}
+#3
+\par
+\endgroup\fi
+}
+
+%Script um Text einzurücken
+\newcommand{\textalign}[2]{
+\begin{minipage}[b]{\widthof{#1} + \widthof{\space}}
+#1
+\end{minipage}
+\begin{minipage}[t]{\linewidth-\widthof{#1}-\widthof{\space}}
+#2
+\end{minipage}
+}
+
+%Script um Text einzurücken ohne Ausgabe
+\newcommand{\textfakealign}[3]{
+\begin{minipage}[b]{\widthof{#1} + \widthof{\space}}
+\if\blank{#2}$ $\else#2\fi
+\end{minipage}
+\begin{minipage}[t]{\linewidth-\widthof{#1}-\widthof{\space}}
+#3
+\end{minipage}
+}
+
+%Indexe
+%Normaler Index
+\newcommand{\indexn}[2][]{#2\if\blank{#1}\index{#2}\else\index{#1}\fi}
+%Unterstrichener Index
+\newcommand{\indexu}[2][]{\underline{#2}\if\blank{#1}\index{#2}\else\index{#1}\fi}
+%Kursiver Index
+\newcommand{\indexi}[2][]{\textit{#2}\if\blank{#1}\index{#2}\else\index{#1}\fi}
+%Fetter Index
+\newcommand{\indexb}[2][]{\textbf{#2}\if\blank{#1}\index{#2}\else\index{#1}\fi}
+
+%Definitionen, Beispiele, Sätze
+\newenvironment{fshaded}[2]{%
+\def\FrameCommand{\fcolorbox{#1}{#2}}%
+\MakeFramed {\FrameRestore}}%
+{\endMakeFramed}
+
+\theoremstyle{definition}
+\newtheorem{definition}{\ac{Def.}}[chapter]
+\newenvironment{fdefinition}[1][]{
+\definecolor{shadecolor_definition}{rgb}{.85882,.89803,.94509}
+%OLD: \definecolor{shadecolor_definition}{rgb}{.87,.94,.96}
+\definecolor{framecolor_definition}{rgb}{.30980,.50588,.74117}
+%OLD: \definecolor{framecolor_definition}{rgb}{0,0,0}
+\begin{fshaded}{framecolor_definition}{shadecolor_definition}\begin{definition}[#1]}{\end{definition}\end{fshaded}}
+
+\newtheorem{lemma}[definition]{Lemma}
+
+\newtheorem{satz}{Satz}[chapter]
+\newenvironment{fsatz}[1][]{
+\definecolor{shadecolor_satz}{rgb}{.91764,.94509,.86666}
+%OLD: \definecolor{shadecolor_satz}{rgb}{.87,.96,.56}
+\definecolor{framecolor_satz}{rgb}{.60784,.73333,.34901}
+%OLD: \definecolor{framecolor_satz}{rgb}{0,0,0}
+\begin{fshaded}{framecolor_satz}{shadecolor_satz}\begin{satz}[#1]}{\end{satz}\end{fshaded}}
+
+\newtheoremstyle{beweis}% name
+	{3pt}			%Space above
+	{3pt}			%Space below
+	{}				%Body font
+	{}				%Indent amount (empty = no indent, \parindent = para indent)
+	{\sc}	%Thm head font
+	{:}			%Punctuation after thm head
+	{.5em}		%Space after thm head: " " = normal interword space; \newline = linebreak
+	{}				%Thm head spec (can be left empty, meaning `normal')
+
+\theoremstyle{beweis}
+\newtheorem{beweis}{Beweis}[chapter]
+\newenvironment{fbeweis}[1][]{
+\definecolor{shadecolor_beweis}{rgb}{.94901,.85882,.85882}
+%OLD: \definecolor{shadecolor_beweis}{rgb}{1.00,.96,.92}
+\definecolor{framecolor_beweis}{rgb}{.75294,.31372,.30196}
+%OLD: \definecolor{framecolor_beweis}{rgb}{0,0,0}
+\begin{fshaded}{framecolor_beweis}{shadecolor_beweis}\begin{beweis}[#1]}{\end{beweis}\end{fshaded}}
+
+\theoremstyle{remark}
+\newtheorem{notation}{Notation}[chapter]
+
+\newtheoremstyle{note}% name
+	{3pt}			%Space above
+	{3pt}			%Space below
+	{}				%Body font
+	{}				%Indent amount (empty = no indent, \parindent = para indent)
+	{\bfseries}	%Thm head font
+	{:}			%Punctuation after thm head
+	{.5em}		%Space after thm head: " " = normal interword space; \newline = linebreak
+	{}				%Thm head spec (can be left empty, meaning `normal')
+
+\newtheoremstyle{notelite}% name
+	{3pt}			%Space above
+	{3pt}			%Space below
+	{}				%Body font
+	{}				%Indent amount (empty = no indent, \parindent = para indent)
+	{\itshape}	%Thm head font
+	{:}			%Punctuation after thm head
+	{.5em}		%Space after thm head: " " = normal interword space; \newline = linebreak
+	{}				%Thm head spec (can be left empty, meaning `normal')
+
+\theoremstyle{note}
+\newtheorem*{beispiel}{Beispiel}
+
+\theoremstyle{notelite}
+\newtheorem*{anmerkung}{Anmerkung}
+\newtheorem*{beobachtung}{Beobachtung}
+\newtheorem*{bekannt}{Bekannt}
+\newtheorem*{idee}{Idee}
+\newtheorem*{frage}{Frage}
+\newtheorem*{problem}{Problem}
+\newtheorem*{also}{Also}
+\newtheorem*{bemerkung}{Bemerkung}
+\newtheorem*{ziel}{Ziel}
+%%%%%%%%Arabische in Römische Zahl umwandeln
+\newcommand{\RM}[1]{\ensuremath{\mbox{\MakeUppercase{\romannumeral #1}}}}
+%</Commandos>
+
+%<Abkürzungen>
+\newcommand{\Ra}{\ensuremath{\Rightarrow}}
+\newcommand{\ra}{\ensuremath{\rightarrow}}
+\newcommand{\La}{\ensuremath{\Leftarrow}}
+\newcommand{\la}{\ensuremath{\leftarrow}}
+\newcommand{\Lra}{\ensuremath{\Leftrightarrow}}
+\newcommand{\lra}{\ensuremath{\leftrightarrow}}
+\newcommand{\hra}{\ensuremath{\hookrightarrow}}
+\newcommand{\mal}{\ensuremath{\cdot}}
+\newcommand{\klgl}{\ensuremath{\leq}}
+\newcommand{\grgl}{\ensuremath{\geq}}
+\newcommand{\oder}{\ensuremath{\vee}}
+\newcommand{\und}{\ensuremath{\wedge}}
+\newcommand{\ggq}[1]{"`#1"'}
+\newcommand{\tx}[1]{\ensuremath{\text{#1}}}
+\newcommand{\Sigs}{\ensuremath{\Sigma^*}}
+\newcommand{\SigB}{\ensuremath{\Sigma_{\tx{Bool}}}}
+\newcommand{\SigBs}{\ensuremath{\SigB^*}}
+\newcommand{\ub}[2]{\ensuremath{\underbrace{#1}_{#2}}}
+\newcommand{\tc}[2][red]{\textcolor{#1}{#2}}
+\newcommand{\R}{\ensuremath{\mb{R}}}
+\newcommand{\N}{\ensuremath{\mb{N}}}
+\newcommand{\seq}{\ensuremath{\subseteq}}
+\newcommand{\fnewline}{\mbox{}\par}
+\newcommand{\ural}[2]{\ensuremath{\displaystyle \matholongrightarrow_{#1}^{#2}}}
+\newcommand{\rkl}[1]{\ensuremath{\rklamm{#1}}}
+\newcommand{\un}{\ensuremath{\infty}}
+\newcommand{\notsubseteq}{\ensuremath{\not\subseteq}}
+\newcommand{\qacc}{\ensuremath{q_{\tx{accept}}}}
+\newcommand{\qrej}{\ensuremath{q_{\tx{reject}}}}
+\newcommand{\txcol}[2]{\textcolor{#1}{#2}}
+
+%Underbrace mit viel text
+\newcommand{\ubl}[3][]{
+\ub{#2}{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#2}}\else#1\fi}\begin{center}\scriptsize{#3}\end{center}\end{minipage}}
+}
+
+%Stack mit viel text
+\newcommand{\stackl}[3][]{
+\stack{\begin{minipage}{\if\blank{#1}\widthof{\ensuremath{#3}}\else#1\fi}\begin{center}\scriptsize{#2}\end{center}\end{minipage}}{#3}
+}
+%Sin, Cos, Tan, Dim, Span, Arccos
+\DeclareMathOperator{\spano}{span}
+\DeclareMathOperator{\bin}{Bin}
+\DeclareMathOperator{\ld}{ld}
+\DeclareMathOperator{\prog}{Prog}
+\DeclareMathOperator*{\vd}{\vdash}
+\DeclareMathOperator*{\matholongrightarrow}{\longrightarrow}
+\DeclareMathOperator{\Konf}{Konf}
+\DeclareMathOperator{\Def}{Def}
+\DeclareMathOperator{\Code}{Code}
+
+\newcommand{\sinx}[1]{\ensuremath{\sin{\left(#1\right)}}}
+\newcommand{\cosx}[1]{\ensuremath{\cos{\left(#1\right)}}}
+\newcommand{\tanx}[1]{\ensuremath{\tan{\left(#1\right)}}}
+\newcommand{\dimx}[1]{\ensuremath{\dim{\left(#1\right)}}}
+\newcommand{\spanx}[1]{\ensuremath{\spano{\left(#1\right)}}}
+\newcommand{\arccosx}[1]{\ensuremath{\arccos{\left(#1\right)}}}
+\newcommand{\stack}[2]{\ensuremath{\stackrel{#1}{#2}}}
+
+%Todo, Insert, Mark, Img, Solved
+\newcommand{\Todo}[1]{\todo[inline]{TODO: #1}}
+\newcommand{\Insert}[1]{\todo[inline, color=green!40]{INSERT: #1}}
+\newcommand{\Mark}[1]{\todo[inline, nolist, color=blue!40]{MARK: #1}}
+\newcommand{\Img}[1]{\todo[inline, nolist, color=black!40]{IMG: #1}}
+\newcommand{\Solved}[2][]{\todo[inline, nolist]{TODO: #2\if\empty{#1} -- DONE\else\\SOLVED: #1\fi}}
+
+%Schriften
+\newcommand{\mb}[1]{\ensuremath{\mathbb{#1}}}
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}}
+
+\newcommand{\matrixp}[1]{\ensuremath{\begin{pmatrix} #1 \end{pmatrix}}}
+
+%Tikz Abkürzungen
+%%Für Automaten Graphen
+\newcommand{\tikzedge}[5]{\path[->] (#1) edge[#4] node[#5] {$#3$} (#2);}
+\newcommand{\tikzloop}[4]{\tikzedge{#1}{}{#2}{loop #3}{#4};}
+
+%%Für Mathematische Graphen
+%%%Coordinatensystem
+\newcommandtwoopt{\tikzcoor}[4][x][y]{\draw[<->,thick] (0,#4) node[right] {$#2$} -- (0,0) -- (#3,0) node[below] {$#1$};}
+%</Abkürzungen>

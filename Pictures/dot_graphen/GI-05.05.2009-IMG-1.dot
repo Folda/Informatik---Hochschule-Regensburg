@@ -1,0 +1,8 @@
+digraph GI05052009IMG1 {
+graph [rankdir=LR]
+A -> B [label=1, weight=8];
+A -> C [label=0, weight=100];
+B -> C [label=1];
+A -> A [label=1];
+B -> B [label=0];
+}

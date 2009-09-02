@@ -1,0 +1,158 @@
+\chapter{Landau-Symbole}
+%Chapter: 4
+Die Landau-Symbole (\ac{bzw.} Landausche Symbole) beschreiben das Wachstum von Folgen (\ac{bzw.} auch Funktionen) für $n \ra \infty$ (\ac{bzw.} $x \ra x$)\\
+Sie werden beispielsweise bei der Laufzeitanalyse von Algorithmen eingesetzt. Die Laufzeit eines Algorithmuses  kann man als Folge $(a_n)_{n \in \mb{N}}$ betrachten, wobei der Index $n$ für die Größe der Eingabe steht (oft in Anzahl bit).
+
+\begin{fdefinition}[Landau-Symbole]
+%MARK: Definition 2.7
+Es seien zwei Folgen $(a_n)_{n \in \mb{N}}$ und $(b_n)_{n \in \mb{N}}$ gegeben
+\begin{enumerate}
+\item Die Folge $(a_n)_{n \in \mb{N}}$ ist "`groß-O"' von $(b_n)_{n \in \mb{N}}$ (geschrieben $a_n = 0 (b_n)$), selten auch $a_n \in O (b_n)$ falls die Quotientenfolge $\rklamm{\frac{a_n}{b_n}}_{n \in \mb{N}}$ beschränkt ist (\ac{d.h.} es $\exists K > 0: \forall n \in \mb{N}$ $\betrag{\frac{a_n}{b_n}} \klgl K$)
+
+		\textit{Anschaulich:} $(a_n)_{n \in \mb{N}}$ wächst höchstens so schnell wie $(b_n)_{n \in \mb{N}}$
+\item Die Folge $(a_n)_{n \in \mb{N}}$ ist "`klein o"' von $(b_n)_{n \in \mb{N}}$ (geschrieben $a_n = o(b_n)$, selten auch $a_n \in o(b_n)$), falls die Quotientenfolge $\rklamm{\frac{a_n}{b_n}}_{b \in \mb{N}}$ eine Nullfolge ist.
+
+		\textit{Anschaulich:} $(a_n)_{n \in \mb{N}}$ wächst langsamer als $(b_n)_{n \in \mb{N}}$
+\end{enumerate}
+\end{fdefinition}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{enumerate}
+\item $a_n = 7 \mal n^4 - 8 n^3 + 1738n - 17$
+		\begin{multicols}{2}
+		\begin{itemize}
+		\item $a_n = O(7n^5)$
+		\item $\underbrace{a_n = O(n^4)}_{\text{bestmögliche}}$
+		\item $a_n = o(n^5)$
+		\item $a_n = o(n^{4,1})$
+		\item $a_n = o(n^4 \log(n))$
+		\end{itemize}
+		\end{multicols}
+\item $a_n = n^3 + (\log(n))^7$\\
+		$a_n = O(n^3)$
+
+		$a_n = n^3 + 2^{\frac{n}{100}}$\\
+		$a_n = O \rklamm{2^{\frac{n}{100}}}$
+\end{enumerate}
+\end{beispiel}
+
+\begin{bemerkung}
+\mbox{}\par
+\begin{itemize}
+\item $a_n = o(b_n) \Ra a_n = O(b_n)$
+\item $a_n = O\rklamm{n^k} \Ra a_n = o\rklamm{n^{k + \epsilon}}$ für $\epsilon > 0$ beliebig
+\end{itemize}
+\end{bemerkung}
+
+\begin{bemerkung}[Für Landau-Symbole gilt]
+\mbox{}\par
+\begin{itemize}
+\item Term niedrigerer Ordnung sind unwichtig
+\item Konstante Faktoren sind unwichtig
+\end{itemize}
+\end{bemerkung}
+
+\begin{achtung}
+Landau-Symbole machen Aussagen für $n \ra \infty$, \ac{d.h.} für endliche $n$ können Vorfaktoren oder Terme niedrigerer Ordnung durchaus eine Rolle spielen. Zum Beispiel:
+\begin{align*}
+a_n &= 10^{100} n = O(n)\\
+a_n &= n + 1000 \sqrt{n}
+\end{align*}
+\end{achtung}
+
+\begin{bemerkung}
+\mbox{}\par
+\begin{enumerate}
+\item \begin{itemize}
+		\item Man nennt einen Algorithmus \indexb{effizient} wenn seine Komplexität/Laufzeit im "`worst case"' höchstens polynomial wächst.
+		\item Ist die Komplexität im "`worst case"' exponentiell nennt man den Algorithmus \indexb{ineffizient}
+		\item Es werden in der Praxis auch ineffiziente Algorithmen verwendet, weil \ac{z.B.} kein effizienter Algorithmus existiert oder der "`worst case"' nicht oder nur selten auftritt.
+		\end{itemize}
+
+\item \begin{enumerate}
+		\item Fester Prozessor/Vergrößerung des Problems um Faktor 10
+		\begin{table}[h]
+		\centering
+		\begin{tabular}{c|c}
+		Komplexität des Algorithmuses & Verlängerung der Laufzeit um Faktor\\
+		\hline
+		$O(n)$ & 10\\
+		$O(n^2)$ & 100\\
+		$La = c \mal 2^n$ & $2^{9n} (n = 100 \Ra 2^{900} = 10^{270})$\\
+		$Ln = c \mal 2^{10n}$ & \\
+		$\frac{Ln}{La} = \frac{c \mal 2^{10n}}{c \mal 2^n} = 2^{9n}$ & \\
+		\end{tabular}
+		\end{table}
+
+		\item Feste Laufzeit, um Faktor 100 besserer Prozessor
+		\begin{table}[h]
+		\centering
+		\begin{tabular}{c|c}
+		Komplexität des Algorithmuses & Vergrößerung des Problems um Faktor\\
+		\hline
+		$O(n)$ & 100\\
+		$O(n^2)$ & 10\\
+		$O(2^n)$ & $\frac{\lb (100)}{n} + 1 (n = 100 \Ra 1{,}06)$
+		\end{tabular}
+		\end{table}
+		\begin{align*}
+		&L_a = c \mal 2^n\\
+		&L_n = c \mal 2^{xn} = 100 \mal L_a = 100 \mal c \mal 2^n\\
+		\Lra &2^{xn} = 100 \mal 2^n\\
+		\Lra &2^{n (x - 1)} = 100\\
+		\Lra &n(x - 1) = \lb(100)\\
+		\Lra &x - 1 = \frac{\lb(100)}{n}\\
+		\Lra &x = \frac{\lb(100)}{n} + 1
+		\end{align*}
+		\end{enumerate}
+
+\item Die Komplexität eines (mathematischen) Problems definiert man durch die Komplexität des besten (bestmöglichen) Algorithmuses.
+\end{enumerate}
+\end{bemerkung}
+
+\section{Aufgabe 2.2}
+\label{sec:Landau_Symbole_A2_2}
+Bestimmen sie die Grenzwerte für $n$ gegen $\infty$ (falls diese existieren)
+\begin{enumerate}[label=\alph*)]
+\item $a_n \ceq \frac{\rklamm{2^n - 6}^n}{2 \mal 4^n + 1}$
+\item $b_n \ceq \rklamm{1 + \frac{1}{n}}^n + \rklamm{-1 - \frac{1}{n}}^n$
+\item $c_n \ceq \sqrt[n]{2^n + 3^n} \mal \rklamm{1 + \frac{1}{2n}}^{4n}$
+\end{enumerate}
+
+Lösung siehe \vref{sec:Landau_Symbole_A2_2L}.
+
+\section{Lösungen}
+\subsection{Aufgabe 2.2}
+\label{sec:Landau_Symbole_A2_2L}
+Lösung zu Aufgabe \vref{sec:Landau_Symbole_A2_2}.
+
+\begin{enumerate}[label=\alph*)]
+\item $a_n \ceq \frac{\rklamm{2^n - 6}^n}{2 \mal 4^n + 1}$
+		\begin{align*}
+		&\lim_{n \ra \infty} \frac{\rklamm{2^n}^2 - 2 \mal 2^n \mal 6 + 36}{2 \mal 4^n + 1} = \lim_{n \ra \infty} \frac{\rklamm{2^2}^n - 12 \mal 2^n + 36}{2 \mal 4^n + 1}\\
+		= &\lim_{n \ra \infty} \frac{1 - 12 \rklamm{\frac{2}{4}}^n + \frac{36}{4n}}{2 + \frac{1}{4^n}} = \frac{\lim_{n \ra \infty} \rklamm{1 - 12 \rklamm{\frac{1}{2}}^n + \frac{36}{4^n}}}{\lim_{n \ra \infty} \rklamm{2 + \frac{1}{4^n}}} = \frac{1}{2}
+		\end{align*}
+
+\item $b_n \ceq \rklamm{1 + \frac{1}{n}}^n + \rklamm{-1 - \frac{1}{n}}^n$
+		\begin{align*}
+		&\rklamm{1 + \frac{1}{n}}^n + \rklamm{-1 - \frac{1}{n}}^n = \rklamm{1 + \frac{1}{n}}^n + (-1)^n \mal \rklamm{1 + \frac{1}{n}}^n\\
+		= &\rkl{1 + \frac{1}{n}}^n \mal \rkl{1 + (-1)^n} = \begin{cases}0 \tx{ für } n \tx{ ungerade}\\2 \underbrace{\rkl{1 + \frac{1}{n}}^n}_{\ural{n \ra \infty} e} \tx{ für } n \tx{ gerade}\end{cases}
+		\end{align*}
+		unterschiedliche Grenzwerte für gerade \ac{bzw.} ungerade $n$
+		\begin{itemize}[label=\Ra]
+		\item $(b_n)_{n \in \mb{N}}$ divergiert
+		\end{itemize}
+
+\item $c_n \ceq \sqrt[n]{2^n + 3^n} \mal \rklamm{1 + \frac{1}{2n}}^{4n}$
+\[\underbrace{\lim_{n \ra \infty} \rkl{\sqrt[n]{2^n + 3^n}}}_{= \tx{(1)}} \mal \underbrace{\lim_{n \ra \infty} \rkl{1 + \frac{1}{2n}}^{4n}}_{= \tx{(2)}}\]
+\begin{align*}
+\tx{(1)} \grgl & \lim_{n \ra \infty} \sqrt[n]{3^n} = 3\\
+\tx{(1)} \klgl & \lim_{n \ra \infty} \sqrt[n]{2 \mal 3^n} = \overbrace{\lim_{n \ra \infty} \rkl{\sqrt[n]{2}}}^{= 1} \mal \overbrace{\lim_{n \ra \infty} \sqrt[n]{2^n}}^{= 3} = 3
+\end{align*}
+\begin{align*}
+\tx{(2)} = & \lim_{n \ra \infty} \rkl{\rkl{1 + \frac{1}{2n}}^{2n}}^2 = \rkl{\lim_{n \ra \infty} \rkl{1 + \frac{1}{n}}^{2n}}^2\\
+= & \rkl{\lim_{\substack{m \ra \infty\\m = 2n}} \rkl{1 + \frac{1}{m}}^m}^2 = e^2\\
+\Ra & \lim_{n \to \infty} c_n = 3e^2
+\end{align*}
+\end{enumerate}

@@ -1,0 +1,129 @@
+\chapter{Ergänzungsblätter}
+\section{Aufgabe E5}
+\label{sec:Ergaenzungsblaetter_E5}
+Wie viele 12-stellige Zahlen, bei denen die Ziffer 9 höchstens zweimal auftritt und die Summe der beiden ersten Ziffern genau 7 beträgt, lassen sich aus den Ziffern 1, 2, \dots, 9 bilden?\\
+(Die auftretenden Produkte brauchen nicht ausmultipliziert werden.)
+
+Lösung siehe \vref{sec:Ergaenzungsblaetter_E5L}.
+
+\section{Aufgabe E6}
+\label{sec:Ergaenzungsblaetter_E6}
+Bestimmen sie die Lösungsmenge der folgenden Ungleichungen:
+\begin{enumerate}[label=\alph*)]
+\item $\frac{x + 3}{x - 7} < 0$
+\item $\betrag{x - 5} = 3$
+\item $\betrag{5 - x} = 2x$
+\item $\betrag{5 - x} \klgl -x$
+\item $\betrag{\frac{1}{x}} + \frac{3}{2x} \grgl 5$
+\end{enumerate}
+
+Lösung siehe \vref{sec:Ergaenzungsblaetter_E6L}.
+
+\section{Aufgabe E7}
+\label{sec:Ergaenzungsblaetter_E7}
+Untersuchen sie die Folgen auf Monotonie ((streng) monoton wachsend/fallen oder nichts) und Beschränktheit (nach oben/unten beschränkt \ac{bzw.} beides oder nichts)
+\begin{enumerate}[label=\alph*)]
+\item $a_n \coloneqq n - \frac{1}{n}$
+\item $b_n \coloneqq \frac{n^2 + n}{n^2}$
+\item $c_n \coloneqq (-1)^n \mal \frac{n^2 + n}{n^2}$
+\item $d_n \ceq \frac{3^n}{4^n + (-1)^n n^2}$
+\item $e_n \ceq \frac{n^2}{2} - 4n + 1$
+\item $f_n \ceq 2n + \sinx{n}$
+\item $g_1 \ceq 1, g_2 \ceq 1; g_n \ceq g_{n - 1} + g_{n - 2}$ für $n \grgl 3$
+\end{enumerate}
+
+Lösung siehe \vref{sec:Ergaenzungsblaetter_E7L}.
+
+\section{Lösungen}
+\subsection{Aufgabe E5}
+\label{sec:Ergaenzungsblaetter_E5L}
+Lösung zu Aufgabe \vref{sec:Ergaenzungsblaetter_E5}.
+
+\begin{itemize}
+\item 6 Möglichkeiten die ersten beiden Ziffern mit Summe 7 zu wählen
+\item 10-stellige Zahl mit genau 2 9en und Ziffern 1-9
+		\[\binom{10}{2} \mal 8^8\]
+		$\binom{10}{2}$ ist die Anzahl der Möglichkeiten Plätze für 9en auszusuchen\\
+		$8$ ist die Anzahl der Möglichkeiten ohne 9\\
+		$\space^8$ ist die Anzahl der Stellen ohne 9
+
+\item 10-stellige Zahl mit genau einer 9
+		\[\binom{10}{1} \mal 8^9\]
+
+\item 10-stellige Zahl ohne 9en
+		\[\binom{10}{0} \mal 8^{10}\]
+\end{itemize}
+da niemals 2 neunen und 1 neun auftreten muss man addieren
+\[\Ra 8^8 \mal 6 \mal \binom{10}{2} + 8^9 \mal 6 \mal \binom{10}{1} \mal 8^{10} \mal 6 \mal \underbrace{\binom{10}{0}}_{= 1}\]
+\[\Ra 6 \mal \left(\binom{10}{2} \mal 8^9 + \binom{10}{1} \mal 8^9 + \binom{10}{0} \mal 8^{10}\right)\]
+\[= 6 \mal 8^8 \underbrace{45 + 80 + 64}_{189}\]
+
+\subsection{Aufgabe E6}
+\label{sec:Ergaenzungsblaetter_E6L}
+Lösung zu Aufgabe \vref{sec:Ergaenzungsblaetter_E6}.
+
+\begin{enumerate}[label=\alph*)]
+\item $\frac{x + 3}{x - 7} < 0$
+		\begin{description}
+		\item[Fall 1:] $x - 7 > 0 (\Lra x > 7)$
+				\begin{align*}
+				&\frac{x + 3}{x - 7} < 0~~~~\vert \mal (x - 7)\\
+				\Lra &x + 3 < 0~~~~\vert -3\\
+				\Lra &x < -3\\
+				&\Ra L_1 = \emptyset
+				\end{align*}
+		
+		\item[Fall 2:] $x - 7 < 0 (\Lra x < 7)$
+				\begin{align*}
+				&\frac{x - 3}{x - 7} < 0~~~~\vert \mal (x - 7)\\
+				\Lra &x + 3 > 0~~~~\vert -3\\
+				\Lra &x > -3\\
+				&\Ra L_2 = (-3; 7)\\
+				&\Ra L = L_1 \cup L_2 = (-3; 7)
+				\end{align*}
+		\end{description}
+
+\item $\betrag{x - 5} = 3$
+		\begin{itemize}
+		\item Erste Möglichkeit:
+		\begin{description}
+		\item[Fall 1:] $x - 5 = 3$
+		\begin{align*}
+		x - 5 &= 3\\
+		x &= 8
+		\end{align*}
+		
+		\item[Fall 2:] $x - 5 = -3$
+		\begin{align*}
+		x - 5 &= -3\\
+		x &= 2
+		\end{align*}
+		\end{description}
+		$\Ra L = \gklamm{2; 8}$
+		\item Zweite Möglichkeit:
+		TODO: Von Wolf nachtragen
+		\begin{description}
+		\item[Fall 1:] $(x - 5) > 0 \Lra x > 5$
+		\begin{align*}
+		&\betrag{x - 5} = 3\\
+		\Lra &x - 5 = 3
+		\end{align*}
+		\end{description}
+		\end{itemize}
+
+\item $\betrag{5 - x} = 2x$
+		\begin{align*}
+		\end{align*}
+
+\item $\betrag{5 - x} \klgl -x$
+		\begin{align*}
+		\end{align*}
+
+\item $\betrag{\frac{1}{x}} + \frac{3}{2x} \grgl 5$
+		\begin{align*}
+		\end{align*}
+\end{enumerate}
+
+\subsection{Aufgabe E7}
+\label{sec:Ergaenzungsblaetter_E7L}
+Lösung zu Aufgabe \vref{sec:Ergaenzungsblaetter_E7}.

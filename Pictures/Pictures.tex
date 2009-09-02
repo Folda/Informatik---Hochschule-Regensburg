@@ -1,0 +1,68 @@
+\documentclass[oneside,a4paper,german,parskip=half]{scrbook}
+\usepackage[latin1]{inputenc}
+
+%Standartfont
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+
+%Zusatzpaket für mathematische Ausdrücke
+\usepackage{amsmath}
+
+%Zusatzfonts für mathbb usw.
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+%Tikz/PGF Zeichnenpaket
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,trees,decorations,decorations.pathreplacing,decorations.pathmorphing,calc,arrows,automata}
+
+%Für graphische Todos
+\usepackage[colorinlistoftodos]{todonotes}
+\newcommand{\Img}[1]{\todo[inline, nolist, color=black!40]{IMG: #1}}
+
+%Links
+\usepackage{hyperref}
+
+%Für Commandos mit zwei opotionalen Argumenten
+\usepackage{twoopt}
+
+%Für das einfügen von Quelltext
+\usepackage{listings}
+\lstset{breaklines=true,basicstyle=\ttfamily}
+
+\usepackage{multirow}
+
+%Arabische in Römische Zahl umwandeln
+\newcommand{\RM}[1]{\ensuremath{\mbox{\MakeUppercase{\romannumeral #1}}}}
+\newcommand{\rM}[1]{\ensuremath{\mbox{\romannumeral #1}}}
+
+% \if\blank --- checks if parameter is blank (Spaces count as blank) 
+% \if\given --- checks if parameter is not blank: like \if\blank{#1}\else 
+% \if\nil --- checks if parameter is null (spaces are NOT null) 
+% use \if\given{ } ... \else ... \fi etc. 
+% Beispiel: \newcommand{\blah}[1]{\if\blank{#1}Leer\else#1\fi}
+% 
+{\catcode`\!=8 % funny catcode so ! will be a delimiter 
+\catcode`\Q=3 % funny catcode so Q will be a delimiter 
+\long\gdef\given#1{88\fi\Ifbl@nk#1QQQ\empty!} 
+\long\gdef\blank#1{88\fi\Ifbl@nk#1QQ..!}% if null or spaces 
+\long\gdef\nil#1{\IfN@Ught#1* {#1}!}% if null 
+\long\gdef\IfN@Ught#1 #2!{\blank{#2}} 
+\long\gdef\Ifbl@nk#1#2Q#3!{\ifx#3}% same as above 
+}
+
+%Tikz Abkürzungen
+%%Für Automaten Graphen
+\newcommand{\tikzedge}[5]{\path[->] (#1) edge[#4] node[#5] {$#3$} (#2);}
+\newcommand{\tikzloop}[4]{\tikzedge{#1}{}{#2}{loop #3}{#4};}
+
+%%Für Mathematische Graphen
+%%%Coordinatensystem
+\newcommandtwoopt{\tikzcoor}[4][x][y]{\draw[<->,thick] (0,#4) node[right] {$#2$} -- (0,0) -- (#3,0) node[below] {$#1$};}
+
+\begin{document}
+\tableofcontents
+\newpage
+\input{kapitel/IN2_SS2009.tex}
+\end{document}

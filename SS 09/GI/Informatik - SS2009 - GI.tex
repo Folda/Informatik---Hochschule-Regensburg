@@ -1,0 +1,54 @@
+\input{00packages.tex}
+\input{00scripts.tex}
+
+%<Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{colorlinks=false, linkcolor=black, breaklinks=true, bookmarksdepth=3,unicode=true,bookmarksnumbered=true,
+pdftitle={Hefter für Grundlagen der Informatik-- Stand: \today},
+pdfauthor={Thaller Alexander},
+pdfsubject={Hefter für das Fach Grundlagen der Informatik aus der Vorlesung von Professor Dr. rer. nat. Jorg Striegnitz (Str) für das 2. Semester der Informatik im Sommersemester 2009 an der Hochschule Regensburg.},
+pdfkeywords={informatik,studium,hefter,gi,sommersemester,2009,grundlagen der informatik}}
+%</Einstellung für Hyperref>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%<Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\titlehead{\includegraphics[width=34mm]{FH-Logo.pdf}}
+\subject{Informatik (Bachelor) 2. Semester}
+\author{Alexander Thaller}
+\title{Grundlagen der Informatik\footnote{Gefundene Fehler oder Verbesserungsvorschlge bitte hier \href{http://fhrein2ss09.codeplex.com}{http://fhrein2ss09.codeplex.com/} berichten oder alternativ mir eine E-Mail schreiben \href{mailto:alexander.thaller@stud.fh-regensburg.de}{alexander.thaller@stud.fh-regensburg.de}. Vielen Dank.}}
+\subtitle{Hefter des Sommersemesters 2009}
+\date{stand \today}
+\publishers{Aus der Vorlesung von Professor Dr. rer. nat. Jorg Striegnitz (Str)}
+%</Dokument Daten>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\frontmatter
+\input{00acronyms.tex}
+%\maketitle
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{3}
+\clearpage
+\pdfbookmark[0]{\contentsname}{tocanc}
+\tableofcontents
+\newpage
+\listoftodos
+\newpage
+%<Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\input{kapitel/Uebersicht.tex}
+\mainmatter
+%\input{kapitel/Grundlagen.tex}
+%\input{kapitel/Endliche_Automaten.tex}
+%\input{kapitel/Grammatiken.tex}
+\input{kapitel/Berechenbarkeitstheorie.tex}
+%\input{kapitel/Uebungen_und_Tutorium.tex}
+%</Text>%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\backmatter
+%Literaturverzeichnis
+%\newpage
+%\addcontentsline{toc}{part}{Literaturverzeichnis}
+%\bibliography{literatur}{}
+
+%Stichwortverzeichnis
+\newpage
+\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{part}{Stichwortverzeichnis}
+\printindex
+
+\end{document}

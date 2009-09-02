@@ -1,0 +1,1847 @@
+\chapter{Endliche Automaten}
+\Mark{Kapitel 3}
+\section{Deterministische endliche Automaten (DEA)}
+\begin{fdefinition}[\ac{DEA}]
+Ein \ac{DEA} ist ein Quintupel $M = (Q, \Sigma, \delta, q_0, F)$ aus
+\begin{itemize}
+\item einer endlichen \indexb[Endliche Automaten!$Q$ Menge von Zuständen]{Menge von Zuständen} $Q$
+\item einem \indexb[Endliche Automaten!$\Sigma$ Eingabealphabet]{Eingabealphabet} $\Sigma$
+\item einer \indexb[Endliche Automaten!$\delta$ Transitionsfunktion]{Transitionsfunktion} $\delta$: $Q \times \Sigma \ra Q$\label{def:Endliche_Automaten_Transitionsfunktion}
+\item einen \indexb[Endliche Automaten!$q_0$ Startzustand]{Startzustand} $q_0 \in Q$
+\item eine \indexb[Endliche Automaten!$F$ Menge von akzeptierenden Zuständen]{Menge von akzeptierenden Zuständen} $F \subseteq Q$\label{def:Endliche_Automaten_MengevonakzeptierendenZustaenden}\\
+\end{itemize}
+\begin{anmerkung}
+$F$ kann leeres Element sein also kann der Automat auch keine Zustände annehmen!
+\end{anmerkung}
+\Mark{Definition 3.1}
+\end{fdefinition}
+
+\begin{notation}
+Anstelle von $\delta(q, a) = q$ schreiben wir
+\[p \stack{a}{\longrightarrow}_M q\]
+\end{notation}
+
+\begin{beispiel}
+$M^*$
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+	\node[initial,accepting,state,initial text=] (q0) {$q_0$};
+	\node[state] (q1) [right of=q0] {$q_1$};
+	\node[state] (q2) [below of=q0] {$q_2$};
+	\node[accepting,state] (q3) [right of=q2] {$q_3$};
+
+	%q0
+	\path[->]
+	(q0) edge [bend right] node [below] {0} (q1)
+	(q0) edge [bend left] node [right] {1} (q2);
+
+	%q1
+	\path[->]
+	(q1) edge [bend right] node [above] {0} (q0)
+	(q1) edge [bend left] node [right] {1} (q3);
+
+	%p2
+	\path[->]
+	(q2) edge [bend left] node [above] {0} (q3)
+	(q2) edge [bend left] node [left] {1} (q0);
+
+	%q3
+	\path[->]
+	(q3) edge [bend left] node [below] {0} (q2)
+	(q3) edge [bend left] node [left] {1} (q1);
+\end{tikzpicture}
+\end{center}
+\Img{GI(V)-15.04.2009-DIA-1}
+
+$M = \rklamm{\gklamm{q_0, q_1, q_2, q_3}, \Sigma_{\tx{Bool}}m, \delta, q_0, \gklamm{q_0, q_3}}$ mit $\delta$:
+\begin{table}[htb]
+\begin{tabular}{c|c|c}
+& $0$ & $1$\\\hline
+$q_0$ & $q_1$ & $q_2$\\
+$q_1$ & $q_0$ & $q_3$\\
+$q_2$ & $q_3$ & $q_0$\\
+$q_3$ & $q_2$ & $q_1$
+\end{tabular}
+\end{table}
+\end{beispiel}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Eine \indexb{Konfiguration} von $M$ ist ein Paar aus $Q \times \Sigma^*$. $(q_0, w)$ heißt \indexb{Startkonfiguration} und $(q, \epsilon)$ \indexn{Endkonfiguration} (für \ac{bel.} $w \in \Sigma^*$). Gilt für eine Endkonfiguration $(q, \epsilon)$ das $q \in F$, so heißt diese akzeptierend, ansonsten verwerfend. \qed
+\Mark{Definition 3.2}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Ein \indexb{Konfigurationsübergang} (ein Schritt) ist eine Relation $\vd_M$: $(Q \times \Sigma^*) \times (Q \times \Sigma^*)$, die \ac{def.} ist durch
+\[(p, \underbrace{a}_{\tx{Lesekopf}}\overbrace{w}^{\tx{Band}}) \vd (q, w) \tx{ \ac{gdw.} } \delta(p, a) = q\]
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (nodeone) {$q$};
+\node[state] (nodetwo) [right of=nodeone] {$q$};
+
+\path[->] (nodeone) edge node[above] {$a$} (nodetwo);
+\end{tikzpicture}
+\end{center}
+
+mit $p, q \in Q$, $w \in \Sigma^*$ und $a \in \Sigma$. $\vd_u$ nennen wir \indexb{Schrittrelation}.
+\Mark{Definition 3.3}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA} und $w \in \Sigma^*$. Eine \indexb{Berechnung} $c$ von $M$ ist eine endliche Folge von Konfigurationen
+\[c = c_0, \dots, c_n \tx{ mit } c_i \vd c_{i + 1} (1 \klgl i \klgl n - 1)\]
+$c$ ist eine Berechnung von $M$ für eine Eingabe $w$, falls $c_0 = (q_0, w)$ (Startkonfiguration) und $c_n = (q, \epsilon)$ (Endkonfiguration). Falls $c_n$ \ac{akzept.} Endkonfiguration ist, so ist C \ac{akzept.} Berechnung; ansonsten verwerfende Berechnung.
+\Mark{Definition 3.4}
+\end{fdefinition}
+
+\begin{beispiel}
+\[(q_0, \underline{1}001) \vd (q_2, 001) \vd (q_3, 01) \vd (q_2, 1) \vd (\underbrace{q_0}_{\in F}, \epsilon)\]
+ist \ac{akzept.} Berechnung von $M^*$ (zu GI(V)-15.04.2009-DIA-1) auf $1001$
+\end{beispiel}
+
+\begin{fdefinition}
+\label{def:Endliche_Automaten_DeltaHat}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Wir definieren: $\vd_M^*$: $(Q \times \Sigma^*) \times (Q \times \Sigma^*)$ als reflexiven und transitiven Abschluss von $\vd$:
+\begin{itemize}
+\item $(q, w) \vd^* (q, w)$ $\forall q \in Q, w \in \Sigma^*$
+\item $(p, uv) \vd^* (q, v)$, falls $u = a_1 \dots a_n (a_i \in \Sigma)$ $\exists q_1, \dots, q_{n - 1} \in Q$, so dass
+		\[(p, a_1 \dots a_n v) \vd (q_1, a_1 \dots a_n v) \vd \dots \vd (q_{n - 1}, a_n v) \vd (q, v)\]
+		für $p, q \in Q$ $u, v \in \Sigma^*$
+\end{itemize}
+Die Fortsetzung $\hat{\delta}$: $Q \times \Sigma^* \ra Q$ der Transitionsfunktion $\delta$ auf Wörter \ac{def.} wir induktiv durch
+\begin{itemize}
+\item $\hat{\delta} (q, \epsilon) = q$
+\item $\hat{\delta} (q, wa) = \delta(\hat{\delta} (q, w))$ $\forall w \in \Sigma^*$, $a \in \Sigma$ und $q \in Q$
+\end{itemize}
+\Mark{Definition 3.5}
+\end{fdefinition}
+
+\begin{notation}
+Falls $\hat{\delta} (q, w) = p$, so schreiben wir
+\[q \stack{w}{\longrightarrow} p\]
+und sagen es existiert ein Pfad von $q$ nach $p$ mit Beschriftung $w$.
+\end{notation}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{DEA}. Die von $M$ akzeptierte Sprache $L(M)$ ergibt sich aus:
+\begin{align*}
+L(M) &= \gklamm{w \in \Sigma^* \vert \hat{\delta}(q_0, w) \in F}\\
+&= \gklamm{w \in \Sigma^* \vert q_0 \stack{w}{\longrightarrow} q \tx{ und } q \in F}\\
+&= \gklamm{w \in \Sigma^* \vert (q_0, w) \vd^* (q, \epsilon) \tx{ mit } q \in F}
+\end{align*}
+Sprachen, die von einem \ac{DEA} erkannt werden nennt man \indexb{reguläre Sprachen}. Zwei \ac{DEA}s $M_1$ und $M_2$ sind äquivalent \ac{gdw.} $L(M_1) = L(M_2)$
+\Mark{Definition 3.6}
+\end{fdefinition}
+
+\begin{lemma}
+Der \ac{DEA} $M_x = \rklamm{\Sigma_{\tx{Bool}}, Q, \delta, q_0, F}$ erkennt die Sprache
+\[L(M_x) = \gklamm{w \in \Sigma_{\tx{Bool}}^* \vert \rklamm{\betrag{w}_0 + \betrag{w}_1} \mod 2 = 0}\]
+\end{lemma}
+
+\begin{fbeweis}
+Für jedes Wort $w \in \Sigma_{\tx{Bool}}^*$ bleibt der Automat $M_x$ in einem bestimmten Zustand stehen. Betrachten wir für einen \ac{bel.} Zustand die Menge der Wörter, für die $M_x$ in exakt diesem Zustand terminiert.
+\[\mathcal{K} (q) = \gklamm{w \in \Sigma_{\tx{Bool}}^*\vert q_0 \stack{w}{\longrightarrow} q}\]
+Da $M_x$ deterministisch ist, kann ein Wort, welches in $\mathcal{K}(q)$ liegt nicht gleichzeitig in $\mathcal{K}\rklamm{q'}$ liegen (mit $q \neq q'$) - $\mathcal{K}(q) \cap \mathcal{K}\rklamm{q'} = \emptyset$. Die Menge der von $M_x$ erkannten Wörter entspricht der Vereinigung aller Mengen $\mathcal{K}(q)$, die sich auf akzeptierende Zustände beziehen.
+\[L(M_x) = \bigcup_{q \in F} \mathcal{K}(q)\]
+$\mathcal{K}$ ist eine Äquivalenzklasse folgender Relation $R_s$
+\begin{align*}
+&u R_{\delta} v = \hat{\delta} (q_0, u) = \hat{\delta} (q_0, u)\\
+&R_{\delta} (w, v)
+\end{align*}
+in $\mathcal{K} (q)$ befindet sich nur solche Wörter, die \ac{bzgl.} $R_{\delta}$ in Relation stehen.
+
+Beweisidee:
+\begin{itemize}[label=-]
+\item Ordne $q_i (0 \klgl i \klgl 3)$ konkrete Äquivalenz-Klassen zu \textcircled{$\star$}
+\item Zeige $\mathcal{K} (q_0) \cup \mathcal{K} (q_3) = L(u)$
+\item Zeige, dass \textcircled{$\star$} korrekt.
+\end{itemize}
+\Solved{Ändere \textcircled{*} in ein schöneres Symbol}{Replaced with \textcircled{$\star$}}
+Wir stellen folgende Induktionsannahme auf:
+\begin{align*}
+&\mathcal{K} (q_0) = \gklamm{w \in \Sigma_{\tx{Bool}}^*~\vert~\betrag{w}_0 \tx{ und } \betrag{w}_1 \tx{ sind gerade}}\\
+&\mathcal{K} (q_1) = \gklamm{w \in \Sigma_{\tx{Bool}}^*~\vert~\betrag{w}_0 \tx{ ungerade } \vert \betrag{w}_1 \tx{ gerade}}\\
+&\mathcal{K} (q_2) = \gklamm{w \in \Sigma_{\tx{Bool}}^*~\vert~\betrag{w}_0 \tx{ gerade } \vert \betrag{w}_1 \tx{ ungerade}}\\
+&\mathcal{K} (q_3) = \gklamm{w \in \Sigma_{\tx{Bool}}^*~\vert~\betrag{w}_0 \tx{ und } \betrag{w}_1 \tx{ ungerade}}
+\end{align*}
+
+\begin{enumerate}
+\item Induktionsanfang: wir zeigen, dass $\vert A$ für Wörter der Länge $\klgl 2$ gilt
+		\begin{align*}
+		0:~~&\delta \rklamm{q_0, \epsilon} = q_0 \Ra \epsilon \in \mathcal{K}(q_0) &\checkmark\\
+		1:~~&\delta (q_0, 1) = q_2, 1 \in \mathcal{K}(q_2) &\checkmark\\
+			&\delta (q_0, 0) = q_1, 0 \in \mathcal{K}(q_1) &\checkmark\\
+		2:~~&\hat{\delta} (q_0, 00) = q_0, 00 \in \mathcal{K} (q_0) &\checkmark\\
+			&\hat{\delta} (q_0, 01) = q_3, 01 \in \mathcal{K} (q_3) &\checkmark\\
+			&\hat{\delta} (q_0, 10) = q_3, 10 \in \mathcal{K} (q_3) &\checkmark\\
+			&\hat{\delta} (q_0, 11) = q_0, 11 \in \mathcal{K} (q_0) &\checkmark
+		\end{align*}
+\item Induktionsschluss: Wir setzen voraus, dass der Induktionsanfang für Wörter $\betrag{u} \klgl i$ gilt. Wir wollen jetzt zeigen, dass der Induktionsanfang dann auch für Wörter der Länge $i + 1$ gilt.\\
+		Sei also $w \in \Sigma_{\tx{Bool}}^{i + 1}$, also $w = u \mal a$ mit $u \in \Sigma_{\tx{Bool}}^{i}$ und $a \in \Sigma_{\tx{Bool}}$. Wir müssen vier Fälle unterscheiden:
+		\begin{enumerate}[label=\arabic*.]
+		\item $\betrag{u}_0$ gerade, $\betrag{u}_1$ gerade. Laut Induktionsvoraussetzung gilt $\hat{\delta} (q_0, u) = q_0$ \ac{bzw.} $u \in \mathcal{K} (q_0)$. Wir erhalten
+				\[\hat{\delta} (q_0, ua) = \delta \rklamm{\hat{\delta} (q_0, u), a} \stack{\tx{IV}}{=} \delta(q_0, a) = \begin{cases}q_1 \tx{ falls } a = 0\\q_2 \tx{ falls } a = 1\end{cases}\]
+				Da $\betrag{u1}_0$ gerade und $\betrag{u1}_1$ ungerade entspricht $\hat{\delta} (q_0, u1) = q_2$ der IA.\\
+				Da $\betrag{u0}_0$ ungerade und $\betrag{u0}_1$ gerade entspricht $\hat{\delta} (q_0, u0) = q_1$ der IA.
+		\item analog, trivial, selbst! 
+		\item analog, trivial, selbst!
+		\item analog, trivial, selbst!
+		\end{enumerate}
+\end{enumerate}
+\end{fbeweis}
+
+\section{Nichtdeterministische endliche Automaten (NEAs)}
+\Mark{Section 3.3}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+	\node[initial,state,initial text=] (A) {};
+	\node[state] (B) [right of=A] {};
+	\node[accepting,state] (C) [right of=B] {};
+
+	\path (A) edge [loop above] node {$0,1$} ();
+	\path (A) edge node {$0$} (B);
+	\path (B) edge node {$0$} (C);
+\end{tikzpicture}
+\end{center}
+\Img{IMG-GI-09-04-21-1}
+
+\begin{fdefinition}
+Ein \ac{NEA} $M$ ist ein Quintupel $(Q, \Sigma, \delta, q_0, F)$ aus
+\begin{itemize}
+\item $Q, \Sigma, q_0, F$ wie \ac{DEA}
+\item eine Transitionsfunktion $\delta$: $Q \times \Sigma \ra \mathcal{P} (Q)$
+\end{itemize}
+\end{fdefinition}
+
+\begin{notation}
+Falls $q \in \delta(p, a)$ schreiben wir $p \stack{a}{\ra} q$
+\end{notation}
+
+\begin{fdefinition}
+Konfiguration analog zu \ac{DEA} $Q \times \Sigma^*$
+\end{fdefinition}
+
+\begin{fdefinition}
+Schrittrelation kann ebenfalls übernommen werden, da $p \stack{a}{\ra} q$ für \ac{NEA} angepasst.
+\[(p, aw) \vd (q, w) \tx{\ac{gdw.}} p \stack{a}{\ra} q\]
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ eine \ac{NEA}. Eine Berechnung $C$ von $M$ ist eine Folge von Konfigurationen
+\[C = C_0, \dots, Q_n \tx{ mit } C_i \vd C_{i + 1} (0 \klgl i \klgl n - 1)\]
+$C$ ist eine Berechnung von $M$ für die Eingabe $w$, falls $C_0 = (q_0, w)$ Startkonfiguration ist und entweder
+\begin{itemize}
+\item $C_n = (q, \epsilon)$ eine Endkonfiguration ist, oder
+\item $C_n = (q, aw)$ und $\delta(q, a) = \emptyset$ gilt (der Automat \ggq{stürzt ab})
+\end{itemize}
+\ac{akzept.} und verwerfende \ac{Ber.} analog \ac{DEA}. Reflexiver und transitiver Abschluss von $\vd$ analog \ac{DEA}.
+\[(q,w) \vd^* (q,w)\]
+\[(q, a_1, a_2, a_3) \vd^* (q', \epsilon)\]
+\Mark{Definition 3.8}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{NEA}. Die Fortsetzung $\hat{\delta}: Q \times \Sigma^* \ra \mathcal{P}(Q)$ von $\delta$ auf Wörter ist \ac{def.} durch
+\begin{itemize}
+\item $\hat{\delta} (q, \epsilon) = \gklamm{q}$
+\item Sei $w = ua$ und $\hat{\delta} (q, u) = \gklamm{q_1, \dots, q_n}$, dann gilt
+		\[\hat{\delta} (q, ua) = \bigcup_{i = 1}^n \delta (q_i, a)\]
+		\[w, u \in \Sigma^*, a \in \Sigma, q_i, q \in Q, 1 \klgl i \klgl n\]
+\end{itemize}
+\Mark{Definition 3.9}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein \ac{NEA}. Die von $M$ \ac{akzept.} Sprache $L(M)$ ergibt sich aus
+\begin{align*}
+L(M) &= \gklamm{w \in \Sigma^* \vert (q_0, w) \vd^{*} (q, \epsilon) \tx{ mit } q_f \in F}\\
+&= \gklamm{w \in \Sigma^* \vert \hat{\delta} (q_0, w) \cap F \neq \emptyset}\\
+&= \gklamm{w \in \Sigma^* \vert q_0 \stack{w}{\ra} q_f \tx{ und } q_f \in F}
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (q0) {$q_0$};
+\node[state] (q1) [right of=q0] {$q_1$};
+\node[state, accepting] (q2) [right of=q1] {$q_2$};
+
+\path (q0) edge [loop above] node[left]{$1,0$} ();
+\path (q2) edge [loop above] node[right]{$1,0$} ();
+
+\path (q0) edge node[above] {$1$} (q1);
+\path (q1) edge node[above] {$1$} (q2);
+\end{tikzpicture}
+\end{center}
+\Mark{Definition 3.10}
+\end{fdefinition}
+
+\begin{lemma}
+$L(M_{11}) = \overbrace{\gklamm{w \in \Sigma_{\tx{Bool}}^* \vert w = u11v \tx{ mit } u,v \in \Sigma_{\tx{Bool}}^*}}^L$\\
+Wie üblich erfolgt der \ac{Bew.} in 2 Schritten
+\begin{itemize}
+\item $\gklamm{u11v \vert u, v \in \Sigma_{\tx{Bool}}^*} \subseteq L (M_{11})$. Sei $w \in L$; \ac{d.h.} $w = u11v$ für \ac{bel.} $u, v \in \Sigma_{\tx{Bool}}^*$. Zu zeigen: es gibt \ac{akz.} Berechnung von $M_{11}$ für $w$. Da $q_0 \in \delta(q_0, 0) \cap \delta (q_0, 1)$ \ac{ex.} für jedes $z \in \Sigma_{Bool}^*$ eine Berechnung
+		\[(q_0, z) \vd^* (q_0, \epsilon)\]
+		gleichermaßen
+		\[(q_2, z) \vd^* (q_2, \epsilon), \tx{ da } q_2 \in \delta (q_2, 0) \cap \delta(q_2, 1)\]
+		Damit erhalten wir für \ac{Ber.} für $w$ wie folgt
+		\[(q_0, u11v) \vd^* (q_0, 11v) \vd (q_1, 1v) \vd (q_2, v) \vd^* (q_2, \epsilon)\]
+
+\item $L(M_{11}) \subseteq L.$ Sei $w \in L(M_{11})$; \ac{d.h.} es \ac{ex.} eine \ac{akzept.} Berechnung von $M$ für $w$. Da $q_2$ einziger \ac{akzept.} Zustand, muss \ac{Ber.} in $q_0$ starten und in $q_2$ enden. Der einzige Pfad von $q_0$ zu $q_2$ führt über $q_1$:
+		\[(q_0, w) \vd^* (q_1, u) \vd^* (q_2, \epsilon)\]
+		Jede \ac{Berechn.} von $M$ kann höchstens einmal in eine Konfiguration mit Zustand $q_1$ gelangen, denn $q_1 \notin \delta(q_1, a)$ für $a \in \Sigma_{\tx{Bool}}$. Die Berechnung muss daher wie folgt aussehen:
+		\[(q_0, w) \vd^* (q_0, abu) \vd (q_1, bu), \vd (q_2, u) \vd^* (q_2, \epsilon)\]
+		mit $a, b \in \SigB$. Die einzige Möglichkeit zu $q_1$ zu gelangen, ist die \ac{Anw.} der Transition $q_0 \stack{1}{\ra} q_1$, und somit folgt $a = 1$. Die einzige \ac{Mögl.} $q_1$ zu verlassen ist $q_1 \stack{1}{\ra} q_2$; daher $b = 1$ gelten, also insgesamt
+		\[(q_0, w) \vd^* (q_0, 11u) \vd (q_1, 1u) \vd (q_2, u) \vd^* (q_2, \epsilon)\]
+		\Ra offenbar hat $w$ $11$ enthalten, also $w \in L$
+\end{itemize}
+\Mark{Lemma 3.2}
+\end{lemma}
+
+\section{\texorpdfstring{$\epsilon$-Nichtdeterministische Automaten}{Epsilon-Nichtdeterministische Automaten}}
+$\epsilon$-Transitionen\\
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (n0) {};
+\node[state] (n1) [right of=n0] {};
+\node[state] (n2) [right of=n1] {};
+\node[state,accepting] (n3) [right of=n2] {};
+
+\path[->] (n0) edge[loop below] node[right] {$1, 0$} ();
+\path[->] (n3) edge[loop below] node[right] {$1, 0$} ();
+\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$1$} (n2);
+\path[->] (n2) edge node[below] {$1$} (n3);
+\path[->] (n2) edge[bend left] node[above] {$\epsilon$} (n3);
+\end{tikzpicture}
+\end{center}
+\Img{GI-28.04.2009-IMG-1}
+
+\subsection{\texorpdfstring{NEAs mit $\epsilon$-Transitionen}{NEAs mit Epsilon-Transitionen}}
+\begin{fdefinition}
+Ein $\epsilon$-\ac{NEA} $\mu$ ist ein Quintupel $(Q, \Sigma, \delta, q_0, F)$.
+\begin{itemize}
+\item $Q, \Sigma, q, F$ wie \ac{NEA}
+\item $\delta$: $Q \times (\Sigma \cup \gklamm{\epsilon}) \ra \mathcal{P}(Q)$
+\end{itemize} \qed
+\end{fdefinition}
+
+\begin{notation}
+$q \in \delta (q, a)$ schreiben wir als $p \stack{a}{\ra} q$ $a \in \Sigma \cup \gklamm{\epsilon}$
+\end{notation}
+
+Übernehme Begriff \ggq{Konfiguration von \ac{NEA}}. Zur Definition der Schrittrelation; an Übergang
+\[(p, w) \vd (q, w)\]
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (n0) {$p$};
+\node[state] (n1) [right of=n0] {$p_1$};
+\node[state] (n2) [right of=n1] {\dots};
+\node[state] (n3) [right of=n2] {$p_4$};
+\node[state] (n4) [right of=n3] {$q$};
+
+\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$\epsilon$} (n2);
+\path[->] (n2) edge node[above] {$\epsilon$} (n3);
+\path[->] (n3) edge node[above] {$\epsilon$} (n4);
+\end{tikzpicture}
+\end{center}
+\Img{GI-28.04.2009-IMG-2}
+nicht zu erkennen, wie viele $\epsilon$-Transitionen benutzt wurden. \Ra Erlaube derartige Übergänge mit \ac{bel.} vielen $\epsilon$-Transitionen.
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein $\epsilon$-\ac{NEA}. Die $\epsilon$-Hülle $\epsilon_c$: $Q \ra \mathcal{P}(Q)$ ist \ac{def.} durch
+\[\epsilon_c (q) = \gklamm{q} \cup \bigcup_{q' \in \delta(q, \epsilon)} \epsilon_c(q')\]
+\Mark{Definition 3.13}
+\end{fdefinition}
+
+\begin{fdefinition}
+Sei $M = (Q, \Sigma, \delta, q_0, F)$ ein $\epsilon$-\ac{NEA}. Ein Konfigurationsübergang (ein Schritt) ist eine Relation $\vd:~(Q \times \Sigma^*) \times (Q \times \Sigma^*)$, die \ac{def.} ist durch
+\[(q, aw) \vd (p, w) \tx{ falls } p \in \delta(q, a)\]
+und
+\[(q, w) \vd (p, w) \tx{ falls } p \in \epsilon_c (q)\]
+wobei $a \in \Sigma, w \in \Sigma^*$ und $p, q \in Q$.
+\Mark{Definition 3.14}
+\end{fdefinition}
+
+\begin{fdefinition}
+für Berechnungen und von $\epsilon$-\ac{NEA} \ac{akzept.} Sprache analog zu \ac{NEA}.
+\end{fdefinition}
+
+\subsection{\texorpdfstring{Äquivalenz von $\epsilon$-NEA und NEA}{Äquivalenz von Epsilon-NEA und NEA}}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (n0) {$p$};
+\node[state] (n1) [right of=n0] {$q$};
+\node[state] (n2) [right of=n1] {$q'$};
+\node[state] (n3) [right of=n2] {$r$};
+
+\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$a$} (n2);
+\path[->] (n2) edge node[above] {$\epsilon$} (n3);
+\path[->] (n0) edge[bend right] node[below] {$a$} (n3);
+\end{tikzpicture}
+\end{center}
+\Img{GI-28.04.2009-IMG-3}
+
+\begin{beispiel}
+\mbox{}\par
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (n0) {$q_0$};
+\node[state] (n1) [right of=n0] {$q_1$};
+\node[state] (n4) [below right of=n1] {$q_4$};
+\node[state] (n2) [above right of=n4] {$q_2$};
+\node[state,accepting] (n3) [right of=n2] {$q_3$};
+\node[state] (n5) [below of=n4] {$q_5$};
+
+\path[->] (n1) edge[loop below] node[right] {$0$} ();
+\path[->] (n1) edge node[above] {$0$} (n2);
+\path[->] (n4) edge node[above] {$0$} (n3);
+\path[->] (n4) edge[bend right] node[left] {$1$} (n5);
+\path[->] (n5) edge[bend right] node[right] {$1$} (n4);
+
+\path[->,color=red] (n0) edge node[color=red, above] {$\epsilon$} (n1);
+\path[->,color=red] (n2) edge node[color=red, above] {$\epsilon$} (n3);
+\path[->,color=red] (n0) edge[bend right] node[color=red, above] {$\epsilon$} (n4);
+
+\path[->,color=green] (n0) edge[bend left] node[color=green, below right] {$0$} (n1);
+\path[->,color=green] (n1) edge[bend left] node[color=green, below] {$0$} (n3);
+\path[->,color=green] (n0) edge[bend right] node[color=green, above] {$1$} (n5);
+\path[->,color=green] (n0) edge[bend left] node[color=green, below] {$0$} (n2);
+\path[->,color=green] (n0) edge[bend left] node[color=green, above] {$0$} (n3);
+\end{tikzpicture}
+\end{center}
+\Img{GI-28.04.2009-IMG-4}
+\end{beispiel}
+
+\begin{fsatz}
+Zu jedem $\epsilon$-\ac{NEA} lässt sich \textbf{effektiv} ein \textbf{äquivalenter} NEA konstruieren.
+\Mark{Satz 3.1}
+\end{fsatz}
+
+\begin{fbeweis}
+Sei $M_{\epsilon} = (Q, \Sigma, \delta_{\epsilon}, q_0, F_{\epsilon})$ ein $\epsilon$-\ac{NEA}. Konstruktionsidee für \ac{NEA}: Eliminiere $\epsilon$-Transitionen und kompensiere durch Hinzunahme neuer Transitionen.\\
+Formal: Konstruiere NEA $M = (Q, \Sigma, \underline{\delta}, q_0, \underline{F})$ aus $M_{\epsilon}$ wie folgt:
+\[\textcolor{green}{r \in \delta(p, a)} \Lra \exists q, q' \in Q:~q \in \epsilon_c (p) \und r \in \epsilon_c (q') \und q' \in \delta (q, a)\]
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (n0) {$p$};
+\node[state] (n1) [right of=n0] {$q$};
+\node[state] (n2) [right of=n1] {$q'$};
+\node[state] (n3) [right of=n2] {$r$};
+
+\path[->, color=red] (n0) edge node[above, color=red] {$\epsilon$} (n1);
+\path[->] (n1) edge node[above] {$a$} (n2);
+\path[->, color=red] (n2) edge node[above, color=red] {$\epsilon$} (n3);
+\path[->, color=green] (n0) edge[bend right] node[below, color=green] {$a$} (n3);
+\end{tikzpicture}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (n0) {};
+\node[state,accepting] (n1) [right of=n0] {};
+\path[->] (n0) edge node[above] {$\epsilon^*$} (n1);
+\end{tikzpicture}
+\end{center}
+und
+\[F = \begin{cases}
+F_{\epsilon} \cup \gklamm{q_0} & \tx{falls } \epsilon_c (q_0) \cap F_{\epsilon} \neq \emptyset\\
+F_{\epsilon} & \tx{sonstige}
+\end{cases}\]
+Effektive Berechnung: ohne Beweis.
+
+\begin{enumerate}[label=\alph*)]
+\item Bleibt zu zeigen $L(M) = L(M_2)$.\\
+		$L(M_{\epsilon}) \subseteq L(M)$. Sei $w = a_1 \dots a_n \in L(M_\epsilon)$ und $q_0 \stack{w}{\ra} p_n$ (also: $w$ ist Pfadbeschreibung von $q_0$ nach $p_n$ \ac{incl.} der $\epsilon$-Transitionen). \ac{bzw.}
+		\[(q_0, a_1 \dots a_n) \vd_{M_{\epsilon}} (p_1, a_2 \dots a_n) \vd_{M_{\epsilon}} \dots \vd_{M_{\epsilon}} (p_{n - 1}, a_n) \vd (p_n, \epsilon)\]
+		ist eine \ac{akzept.} Berechnung von $M_{\epsilon}$ für $w$.
+		
+		Wir betrachten Indizes $i_1, \dots, i_m$ mit $a_{ij} \neq \epsilon$ ($1 \klgl j \klgl m$). Offenbar ist $a_{i1} a_{i2} \dots a_{im} = w$.
+		\begin{enumerate}[label=\roman*)]
+		\item $(m = 0)$ es gibt keinen solchen Index $i_m$ mit $a_{ij} \neq \epsilon$, dann ist $w = \epsilon$ und $p_n \in \epsilon_c (q_0)$ sowie $p_n \in F_{\epsilon}$. $F$ wurde für diesen Fall aber so konstruiert, dass $q_0 \in F$.\\
+				\Ra $\epsilon \in L(M)$
+		
+		\item $(m > 0)$ Gemäß \ac{Def.} von $\delta$ auf Seite \pageref{def:Endliche_Automaten_Transitionsfunktion}\Solved{ref zur definition} ist
+				\[\tx{\ac{NEA}: } (q_0, a_{i1} \dots a_{im}) \vd (p_{i1}, a_{i2} a_{i3} \dots a_{im}) \vd \dots \vd (p_{i_{m - 1}} a_{i_m}) \vd (p_n, \epsilon)\]
+				Machen wir uns das am \ac{Bsp.} des ersten Schritts nochmals klar:
+				\[(q_0, a_{i_1} \dots a_{i_m}) \vd (p_{i_1}, a_{i_2} \dots a_{i_m})\]
+				Angenommen es gibt im $\epsilon$-\ac{NEA} \textbf{keine} Transition
+				\[q_0 \stack{q_{i_1}}{\ra} q_{i_1}\]
+				\ac{d.h.} um \ac{NEA} wurde eine hinzugefügte Kante benutzt. Offenbar ist dann $i_2 - i_1 > 1$; \ac{d.h.} im $\epsilon$-\ac{NEA} wurden $\epsilon$-Transitionen benutzt. Dann muss es laut Konstruktion $\space^*$ von $\delta$ ein $q'$ mit $q' \in \epsilon_c (q_0)$ geben, so dass $\delta '' \in \delta_{\epsilon} (q', a)$ und $q_{i_1} \in \epsilon_c (q'')$:
+				\begin{center}
+				\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+				\node (n0) {$q_0$};
+				\node (n1) [right of=n0] {$q'$};
+				\node (n2) [right of=n1] {$q''$};
+				\node (n3) [right of=n2] {$p_{i_1}$};
+				
+				\path[->] (n0) edge node[above] {$\epsilon$} (n1);
+				\path[->] (n1) edge node[above] {$a$} (n2);
+				\path[->] (n2) edge node[above] {$\epsilon$} (n3);
+				\path[->] (n0) edge[bend left] node[above] {$a$} (n3);
+				\end{tikzpicture}
+				\end{center}
+				\Img{GI-29.04.2009-IMG-1}
+
+				sonst hätte $\epsilon$-\ac{NEA} Konfiguration ($p_{i_1}, a_{i_2} \dots a_{i_m}$) niemand erreicht. In der Konstruktion für $\delta$ haben wir für solche Fälle vereinbart, dass $p_{i_1} \in \delta(q_0, a_{i_1})$.
+		\end{enumerate}
+
+\item $L(M) \subseteq L(M_\epsilon)$: Sei $w = a_1 \dots a_n \in L(M)$ und
+		\[(q_0, a_1 \dots a_n) \vd_{\mu} (p_1, a_2 \dots a_n) \vd_{\mu} \dots \vd_{\mu} (p_n, \epsilon)\]
+		mit $p_n \in F$ eine \ac{akzept.} Berechnung des \ac{NEA} $M$. Gemäß \ac{Def.} von $\delta$ auf Seite \pageref{def:Endliche_Automaten_Transitionsfunktion} \Solved{ref auf definition} gilt nun aber auch, dass
+		\[(q_0, a_1 \dots a_n) \vd_{M_\epsilon}^* (p_1, a_2 \dots a_n) \vd_{M_\epsilon}^* \dots \vd_{M_\epsilon}^* (p_n, \epsilon)\]
+		eine \ac{akzept.} Berechnung des $\epsilon$-\ac{NEA} ist. Zwei Fälle sind zu unterscheiden:
+		\begin{enumerate}[label=\roman*)]
+		\item $p_n \in F_{\epsilon}$ folgt sofort $w \in L(M_{\epsilon})$
+		\item $p_n \in F - F_{\epsilon}$; \ac{d.h.} $p_n = q_0$: Gemäß \ac{Def.} von $F$ auf Seite \pageref{def:Endliche_Automaten_MengevonakzeptierendenZustaenden} \Solved{ref zur definition} folgt nun für ein $\hat{p} \in F_{\epsilon}$: $\hat{p} \in \epsilon_c (q_0)$ und somit \ac{ex.} eine Berechnung
+				\[(q_0, a_1 \dots a_n) \vd_{\mu}^* (p_1, a_2 \dots a_n) \vd_{\mu}^* \dots \vd_{\mu}^* (\hat{p}, \epsilon)\]
+		\end{enumerate}
+\end{enumerate} \qed
+\end{fbeweis}
+
+$L = \gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0 \und w = u111v \tx{ für } u, v \in \SigBs}$\\
+\ac{DEA} $M$ für $L$ gesucht!\\
+$L = \ub{\gklamm{w \in \SigBs \vert \tx{Zahlenwert}(w) \mod 3 = 0}}{L_1} \cap \ub{\gklamm{w \in \SigBs \vert w = u111v}}{L_2}$
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=, accepting] (n0) {$\overline{0}$};
+\node[state] (n1) [right of=n0] {$\overline{1}$};
+\node[state] (n2) [right of=n1] {$\overline{2}$};
+\node [left of=n0, node distance=1.5cm] {$M_1$:};
+
+\path[->] (n0) edge[loop above] node[right] {$0$} ();
+\path[->] (n2) edge[loop above] node[right] {$1$} ();
+
+\path[->] (n0) edge[bend left] node[above] {$1$} (n1);
+\path[->] (n1) edge[bend left] node[below] {$1$} (n0);
+\path[->] (n1) edge[bend left] node[above] {$0$} (n2);
+\path[->] (n2) edge[bend left] node[below] {$0$} (n1);
+\end{tikzpicture}
+\end{center}
+\Img{GI-29.04.2009-IMG-2.1}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (n0) {$\epsilon$};
+\node[state] (n1) [right of=n0] {$1$};
+\node[state] (n2) [right of=n1] {$11$};
+\node[state, accepting] (n3) [right of=n2] {$111$};
+\node [left of=n0, node distance=1.5cm] {$M_2$:};
+
+\path[->] (n0) edge[loop above] node[right] {$0$} ();
+\path[->] (n3) edge[loop above] node[right] {$0,1$} ();
+
+\path[->] (n0) edge node[above] {$1$} (n1);
+\path[->] (n1) edge node[above] {$1$} (n2);
+\path[->] (n2) edge node[above] {$1$} (n3);
+
+\path[->] (n1) edge[bend left] node[below] {$0$} (n0);
+\path[->] (n2) edge[bend right] node[above] {$0$} (n0);
+\end{tikzpicture}
+\end{center}
+\Img{Gi-29.04.2009-IMG-2.2}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (n0) {$\begin{array}{c}\overline{0}\\\epsilon\end{array}$};
+\node[state] (n1) [right of=n0] {$\begin{array}{c}\overline{1}\\1\end{array}$};
+\node[state] (n2) [right of=n1] {$\begin{array}{c}\overline{1}\\1\end{array}$};
+\node[state] (n3) [right of=n2] {$\begin{array}{c}\overline{2}\\\epsilon\end{array}$};
+\node[state] (n4) [below of=n1] {$\begin{array}{c}\overline{0}\\11\end{array}$};
+\node[state] (n5) [below of=n2] {$\begin{array}{c}\overline{2}\\1\end{array}$};
+\node (n6) [right of=n5] {$\dots$};
+\node[state, accepting] (n7) [right of=n6] {$\begin{array}{c}\overline{0}\\111\end{array}$};
+\node[left of=n0,node distance=2.0cm] {$M$:};
+
+\path[->] (n0) edge[loop above] node[right] {$0$} ();
+
+\path[->] (n0) edge node[above] {$1$} (n1);
+\path[->] (n1) edge node[above] {$0$} (n2);
+\path[->] (n2) edge node[above] {$0$} (n3);
+\path[->] (n1) edge node[right] {$1$} (n4);
+\path[->] (n2) edge node[right] {$1$} (n5);
+\end{tikzpicture}
+\end{center}
+\Img{GI-29.04.2009-IMG-3}
+
+\subsection{Äquivalenz von NEA und DEA}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node (n0) {$\epsilon$-NEA};
+\node (n1) [right of=n0] {NEA};
+\node (n2) [right of=n1] {DEA};
+
+\path[->] (n0) edge[bend left] (n1);
+\path[->] (n1) edge[bend left] (n2);
+\path[->] (n0) edge[bend right] (n2);
+\path[->] (n1) edge (n0);
+\path[->] (n2) edge (n1);
+\end{tikzpicture}
+\end{center}
+\Img{GI-30.04.2009-IMG-1}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (n0) {$A$};
+\node[state] (n1) [right of=n0] {$B$};
+\node[state,accepting] (n2) [right of=n1] {$C$};
+\node at (n2.east) [right,node distance=0.5cm] {$Q = \{A, B, C\}$};
+
+\path[->] (n0) edge[loop above] node[right] {$1, 0$} ();
+\path[->] (n0) edge node[above] {$0$} (n1);
+\path[->] (n1) edge node[above] {$0$} (n2);
+\end{tikzpicture}
+\end{center}
+\Img{GI-30.04.2009-IMG-2.1}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (n0) {$\{A\}$};
+\node[state] (n1) [right of=n0] {$\{A, B\}$};
+\node[state,accepting] (n2) [right of=n1] {$\{A, B, C\}$};
+\node at (n2.east) [right,node distance=0.5cm] {$Q_P = \mathcal{P} (Q)$};
+
+\path[->] (n0) edge[loop above] node[right] {$1, 0$} ();
+\path[->] (n0) edge[loop below] node[right] {$0$} ();
+\path[->] (n0) edge node[below] {$0$} (n1);
+\path[->] (n1) edge node[above] {$0$} (n2);
+\path[->] (n2) edge[bend right] node[above] {$1$} (n0);
+\path[->] (n1) edge[bend right] node[below] {$1$} (n0);
+\end{tikzpicture}
+\end{center}
+\Img{GI-30.04.2009-IMG-2.2}
+
+$L = \gklamm{w \in \SigBs \vert w^R \tx{ enthält an $n$-ten Stelle eine } 1}$ $Q_D = \mathcal{P}(Q)$
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (n0) {$S$};
+\node[state] (n1) [right of=n0] {$A$};
+\node[state] (n2) [right of=n1] {$T_1$};
+\node[state, accepting] (n3) [right of=n2] {$T_2$};
+
+\path[->] (n0) edge[loop above] node[right] {$1,0$} ();
+\path[->] (n0) edge node[above] {$1$} (n1);
+\path[->] (n1) edge node[above] {$1,0$} (n2);
+\path[->] (n2) edge node[above] {$1,0$} (n3);
+\end{tikzpicture}
+\end{center}
+\Img{GI-30.04.2009-IMG-3.1}
+
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial, initial text=] (n0) {$\{S\}$};
+\node[state] (n1) [right of=n0] {$\{S, A\}$};
+\node[state] (n2) [right of=n1] {$\{S, A, T_1\}$};
+\node[state,accepting] (n3) [right of=n2] {$\{S, A, T_1, T_2\}$};
+\node[state] (n4) [below of=n1] {$\{S, T_1\}$};
+\node[state] (n5) [below of=n2] {$\{S, A, T_2\}$};
+\node [right of=n5] {$\dots$};
+
+\tikzloop{n0}{0}{above}{right}
+
+\tikzedge{n0}{n1}{1}{}{above}
+\tikzedge{n1}{n2}{1}{}{above}
+\tikzedge{n2}{n3}{1}{}{above}
+\tikzedge{n1}{n4}{0}{}{right}
+\tikzedge{n4}{n5}{1}{}{above}
+\end{tikzpicture}
+\end{center}
+\Img{GI-30.04.2009-IMG-3.2}
+
+\begin{fdefinition}[Potenzmengenkonstruktion]
+Sei $M_N = \rklamm{Q_N, \Sigma, \delta_N, q_0, F_N}$ ein \ac{NEA}. WIr konstruieren aus $M_N$ einen \ac{DEA} $M_D = \rklamm{Q_D, \Sigma, \delta_D, \rklamm{q_0}, F_D}$ wie folgt:
+\begin{itemize}
+\item $Q_D = \mathcal{P}(Q_N)$
+\item $F_D = \gklamm{S \in Q_D \vert S \cap F_N \neq \emptyset}$
+\item Für jedes $S \in Q_D$ und jedes Eingabesymbol $a \in \Sigma$
+		\[\delta_D (S, a) = \bigcup_{q \in S} \delta_N (q, a)\]
+\end{itemize}
+Man sagt $M_D$ entsteht aus $M_N$ durch Anwendung der \ac{PMK}.
+\Mark{Definition 3.15}
+\end{fdefinition}
+
+\begin{beispiel}
+Gegeben Sei \ac{NEA} $M_N = \rklamm{\rklamm{A, B, C}, \SigB, \delta_N, A, \rklamm{B}}$ mit\\
+\begin{multicols}{2}
+$\delta_N (A, 0) = \rklamm{C}$\\
+$\delta_N (B, 0) = \rklamm{B}$\\
+$\delta_N (C, 0) = \emptyset$\\
+$\delta_N (A, 1) = \rklamm{A, B}$\\
+$\delta_N (B, 1) = \rklamm{C}$\\
+$\delta_N (C, 1) = \emptyset$
+\end{multicols}
+
+\begin{center}
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (A) {A};
+\node[state, accepting] (B) [right of=A] {B};
+\node[state] (C) [below of=A] {C};
+
+\tikzloop{A}{$1$}{above}{};
+\tikzloop{B}{$0$}{above}{};
+\tikzedge{A}{B}{1}{}{};
+\tikzedge{A}{C}{0}{}{};
+\tikzedge{B}{C}{1}{}{};
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-1}
+\end{center}
+
+Einen \ac{DEA} $M_D = \rklamm{\mathcal{P} \rklamm{\gklamm{A, B, C}}, \SigB, \delta_D \gklamm{A}, F_D}$ zu $M_N$ erhalten wir durch \ac{Anw.} der \ac{PMK} wie folgt:
+\begin{itemize}
+\item $Q_D = \gklamm{\emptyset, \gklamm{A}, \underline{\gklamm{B}}, \gklamm{C}, \gklamm{A, \underline{B}}, \gklamm{A, C}, \gklamm{\underline{B}, C}, \gklamm{A, \underline{B}, C}}$
+\item $F_D = \gklamm{\gklamm{B}, \gklamm{A, B}, \gklamm{B, C}, \gklamm{A, B, C}}$ denn $F_N = \gklamm{B}$.
+\item $\delta_D \rklamm{\emptyset, 0} = \emptyset$ $\delta_D \rklamm{\emptyset, 1} = \emptyset$ (Dead State)
+\item $\delta_D \rklamm{\gklamm{A}, 0} = \gklamm{C}$ $\delta_D \rklamm{\gklamm{A}, 1} = \gklamm{A, B} = \delta_D \rklamm{A, 1}$
+\item $\delta_D \rklamm{\gklamm{B}, 0} = \gklamm{B}$ $\delta_D \rklamm{\gklamm{B}, 1} = \gklamm{C}$\\
+		$\delta_D \rklamm{\gklamm{C}, 0} = \emptyset$ $\delta_D \rklamm{\gklamm{C}, 1} = \emptyset$\\
+		$\delta_D \rklamm{\gklamm{A, B}, 0} = \bigcup_{q \in \gklamm{A, B}} \delta_N (q, 0) = \delta_N (A, 0) \cup \delta_N (B, 0) = \gklamm{C} \cup \gklamm{B} = \gklamm{B, C}$\\
+		$\delta_D \rklamm{\gklamm{A, B}, 1} = \gklamm{A, B, C}$\\
+		$\vdots$
+\end{itemize}
+\begin{center}
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] at (56bp,262bp) (A) {\{A\}};
+\node[state,accepting] at (270bp,156bp) (B) {\{B\}};
+\node[state] at (188bp,238bp) (C) {\{C\}};
+\node[state] at (259bp,332bp) (0) {$\emptyset$};
+\node[state,accepting] at (50bp,130bp) (AB) {\{AB\}};
+\node[state,color=red] at (106bp,199bp) (AC) {\{AC\}};
+\node[state,accepting] at (177bp,110bp) (BC) {\{BC\}};
+\node[state] at (99bp,32bp) (ABC) {\{ABC\}};
+
+
+\tikzedge{A}{C}{0}{}{}
+\tikzedge{A}{AB}{1}{}{}
+\tikzedge{AB}{ABC}{1}{}{}
+\tikzedge{AB}{BC}{0}{}{}
+\tikzedge{ABC}{BC}{0}{}{}
+\tikzloop{ABC}{1}{above}{}
+\tikzedge{BC}{B}{0}{}{}
+\tikzedge{BC}{C}{1}{}{}
+\tikzloop{B}{0}{above}{}
+\tikzedge{B}{C}{1}{}{}
+\tikzedge{C}{0}{0,1}{}{}
+\tikzloop{0}{0,1}{above}{}
+\path[->,color=red] (AC) edge node {0} (C);
+\path[->,color=red] (AC) edge node {1} (AB);
+\end{tikzpicture}
+\Img{GI-05.05.2009-IMG-2}
+\end{center}
+\Mark{Beispiel 3.4}
+\end{beispiel}
+
+\begin{fsatz}
+Sei $M_N = \rklamm{Q_N, \Sigma, \delta_N, q_0, F_N}$ ein \ac{NEA} und $M_D = \rklamm{Q_D, \Sigma, \delta_D, \gklamm{q_0}, F_N}$ ein \ac{DEA} der durch \ac{PMK} aus $M_N$ entsteht. Dann gilt $L(M_N) = L(M_D)$.
+\Mark{Satz 3.2}
+\end{fsatz}
+
+\begin{fbeweis}
+Wir beweisen zunächst
+\[\hat{\delta}_D \rklamm{\gklamm{q_0}, w} = \hat{\delta}_N \rklamm{q_0, w} \tx{\textcircled{$\star$}}\]
+denn dann folgt:
+\begin{align*}
+\underline{w \in L\rklamm{M_N}} &\Lra \exists q_f \in F_N:~\rklamm{q_0, w} \vd_{M_N}^* \rklamm{q_f, \epsilon}\\
+&\Lra \exists q_f \in F_N:~q_f \in \hat{\delta}_N \rklamm{q_0, w}\\
+&\Lra \exists q_f \in F_N:~q_f \in \hat{\delta}_D \rklamm{\gklamm{q_0}, w}\\
+&\Lra \hat{\delta}_D \rklamm{\gklamm{q_0}, w} \cap F_N \neq \emptyset\\
+&\Lra \hat{\delta}_D \in F_D\\
+&\Lra \underline{w \in L(M_D)}
+\end{align*}
+Wir beweisen \textcircled{$\star$} durch \ac{vollst.} Induktion über die Wortlänge von $w$.
+Induktionsanfang: $w = \epsilon$ \ac{bzw.} $\betrag{w} = 0$.\\
+Laut \ac{Def.} von $\hat{\delta}_D$ auf Seite \pageref{def:Endliche_Automaten_DeltaHat} \ac{bzw.} $\hat{\delta}_N$ gilt:
+\[\hat{\delta}_N \rklamm{q_0, \epsilon} = \gklamm{q_0} = \hat{\delta}_D \rklamm{q_0, \epsilon}\]
+Induktionsschritt: Es gelte $\betrag{w} = n + 1$ \ac{bzw.} $w = \underline{u}a$. Laut Induktionsvoraussetzung gilt
+\[\hat{\delta}_N \rklamm{q_0, u} = \hat{\delta}_D \rklamm{\gklamm{q_0}, u} = \gklamm{q_1, q_2, \dots, q_R}\]
+Aus der induktiven Definition von $\hat{\delta}_N$ wissen wir
+\[\hat{\delta}_N \rklamm{q_0, ua} = \bigcup_{q \in \hat{\delta}_N (q_0, u)} \delta_N (q, a) = \bigcup_{i = 1}^k \delta_N (q_i, a)\]
+Die \ac{PMK} liefert uns andererseits
+\[\hat{\delta}_D \rklamm{\gklamm{q_1, \dots, q_k}, a} = \bigcup_{i = 1}^k \delta_N \rklamm{q_i, a}\]
+Jetzt nutzen wir die \ac{IV} und die \ac{indukt.} \ac{Def.} von $\hat{\delta}_D$ aus und erhalten
+\begin{align*}
+\hat{\delta}_D \rklamm{\gklamm{q_0}, ua} &\ubl[8mm]{=}{\ac{Def.} $\hat{\delta}_D$} \delta_D \rklamm{\hat{\delta}_D \rklamm{\gklamm{q_0}, u}, a} \ubl[8mm]{=}{\ac{IV}} \delta_D \rklamm{\hat{\delta}_D \rklamm{q_0, u}, a}\\
+&= \delta_D \rklamm{\gklamm{q_1, \dots, q_R}, a} = \ubl[8mm]{=}{\ac{PMK}} \bigcup_{i = 1}^k \delta_N \rklamm{q_i, a} \ubl[8mm]{=}{\ac{Def.} $\hat{\delta}_N$} \hat{\delta}_N \rklamm{q_0, uq} = \hat{\delta}_N \rklamm{q_0, w}
+\end{align*}
+\end{fbeweis}
+
+\subsection{\texorpdfstring{Ausdehnung auf $\epsilon$-NEAs}{Ausdehnung auf Epsilon-NEAs}}
+\ggq{Werkzeug}: $\epsilon_c$ ($\epsilon$-Hülle)\\
+Neu:
+\begin{itemize}
+\item $\delta_D \rklamm{S, a} = \gklamm{q \in Q_N \vert q \in \epsilon_c \rklamm{\delta_N \rklamm{r, a}} \tx{ für ein } r \in Q_N}$
+\item $q_{0_D} = \epsilon_c \rklamm{q_{0_N}}$
+\end{itemize}
+\Todo{Verbesserung von Striegnitz Nachtragen}
+
+\section{Minimierung von Automaten}
+\Mark{Section 3.4}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+  \node[state,initial,initial text=] at (73bp,175bp) (A) {A};
+  \node[state] at (152bp,203bp) (C) {C};
+  \node[state] at (84bp,95bp) (B) {B};
+  \node[state,accepting] at (57bp,23bp) (E) {E};
+  \node[state] at (159bp,121bp) (D) {D};
+  \node[state] at (154bp,283bp) (G) {G};
+  \node[state,accepting] at (232bp,212bp) (F) {F};
+  \node[state,accepting] at (231bp,116bp) (H) {H};
+    
+  \tikzedge{A}{B}{0}{}{};
+  \tikzedge{A}{C}{1}{}{};
+  
+  \tikzedge{B}{E}{0}{}{};
+  \tikzedge{B}{D}{1}{}{};
+  
+  \tikzedge{C}{F}{0}{}{};
+  \tikzedge{C}{D}{1}{}{};
+  
+  \tikzedge{G}{C}{0,1}{}{};
+  
+  \tikzloop{D}{0,1}{below}{};
+  \tikzloop{E}{0,1}{below}{};
+  \tikzloop{F}{0,1}{above}{};
+  \tikzloop{H}{0,1}{above}{};
+\end{tikzpicture}
+\Img{GI-06.05.2009-IMG-1}
+\end{center}
+Minimieren von Automaten bedeutet
+\begin{itemize}
+\item entfernen unerreichbarer Zustände \Solved{G und H mit rot durchstreichen in IMG-1}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+  \node[state,initial,initial text=] at (73bp,175bp) (A) {A};
+  \node[state] at (152bp,203bp) (C) {C};
+  \node[state] at (84bp,95bp) (B) {B};
+  \node[state,accepting] at (57bp,23bp) (E) {E};
+  \node[state] at (159bp,121bp) (D) {D};
+  \node[state] at (154bp,283bp) (G) {G};
+  \node[state,accepting] at (232bp,212bp) (F) {F};
+  \node[state,accepting] at (231bp,116bp) (H) {H};
+  
+  \draw[color=red,-] (G.north east) -- (G.south west);
+  \draw[color=red,-] (G.north west) -- (G.south east);
+
+  \draw[color=red,-] (H.north east) -- (H.south west);
+  \draw[color=red,-] (H.north west) -- (H.south east);
+  \tikzedge{A}{B}{0}{}{};
+  \tikzedge{A}{C}{1}{}{};
+  
+  \tikzedge{B}{E}{0}{}{};
+  \tikzedge{B}{D}{1}{}{};
+  
+  \tikzedge{C}{F}{0}{}{};
+  \tikzedge{C}{D}{1}{}{};
+  
+  \tikzedge{G}{C}{0,1}{}{};
+  
+  \tikzloop{D}{0,1}{below}{};
+  \tikzloop{E}{0,1}{below}{};
+  \tikzloop{F}{0,1}{above}{};
+  \tikzloop{H}{0,1}{above}{};
+\end{tikzpicture}
+\end{center}
+\item Zusammenfassen äquivalenter Zustände
+\end{itemize}
+\begin{fdefinition}
+Zwei Zustände $p$, $q$ heißen äquivalent \ac{gdw.}
+\[\forall w \in \Sigma^*:~\hat{\delta} (p, w) \in F \Lra \hat{\delta} (q, w) \in F\]
+(in Zeichen $p \equiv q$)
+\end{fdefinition}
+
+Problem $\Sigma^*$ enthält unendlich viele Wörter.\\
+Muss man wirklich alle prüfen?\\
+Nein denn ein Automat mit $\betrag{Q} = n$ Zuständen durchläuft mindestens einen Zustand zweimal, wenn er ein Wort $\betrag{w} \grgl n$ abarbeitet.\\
+Wie aufwändig ist dieses Verfahren? Wir müssen alle Zustandspaare untersuchen, das sind $\binom{n}{2}$.\\
+Für jedes Paar müssen alle Wörter der Länge $n$ getestet werden.
+
+\begin{beispiel}
+$\SigB$
+\begin{align*}
+T (n) = \binom{n}{2} \mal \sum_{i = 0}^{n - 1} 2^i &= \frac{n!}{(n - 2)! \mal 2!} \mal 2^{n} - 1\\
+&= \rklamm{n^2 - n} \mal \rklamm{2^{n - 1} - \frac{1}{2}}
+\end{align*}
+\begin{center}
+\begin{tabular}{c|c}
+$n$ & $T(n)$ ca.\\
+\hline
+$10$ & $46.000$\\
+$11$ & $112.000$\\
+\vdots & \vdots\\
+$30$ & $467.077.000.000$
+\end{tabular}
+\end{center}
+\end{beispiel}
+
+\subsection{Eigenschaften einer Äquivalenzrelation}
+\begin{itemize}
+\item $q \equiv q$ (Reflexivität)
+\item $q \equiv p \und p \equiv r \Ra q \equiv r$ (Transitivität)
+\item $q \equiv p \Lra \equiv q$ (Symmetrisch)
+\end{itemize}
+Angenommen $p \equiv q$, dann gilt
+\[\forall w \in \Sigma^*:~\hat{\delta} (p, w) \in F \Lra \hat{\delta} (q, w) \in F\]
+Betrachten wir zwei Berechnungen für konkretes $w = a_1 \dots a_n$:
+\begin{align*}
+&(p, a_1 \dots a_n) \vd (p_1, a_2 \dots a_n) \vd \dots \vd (p_n, \epsilon)\\
+&(q, a_1 \dots a_n) \vd (q_1, a_2 \dots a_n) \vd \dots \vd (q_n, \epsilon)
+\end{align*}
+Offenbar gilt $p_i \equiv q_i$ ($1 \klgl i \klgl n$)
+
+\begin{beobachtung}
+\mbox{}\par
+\begin{enumerate}
+\item $p \equiv q \Ra \forall a \in \Sigma:~\delta (p, a) \equiv \delta (q, a)$
+\item $p \equiv q \Ra p \in F \Lra q \in F$
+\end{enumerate}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\foreach \n/\pos/\np in {{A,E}/0/AE,{B,E}/1/BE,{D,E}/2/DE,{C,E}/3/CE}
+{
+\node[state] (\np) at (\pos*2,0) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{A,F}/0/AF,{B,F}/1/BF,{D,F}/2/DF,{C,F}/3/CF}
+{
+\node[state] (\np) at(\pos*2,-2) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{A,D}/0/AD,{C,D}/1/CD,{A,B}/2/AB}
+{
+\node[state] (\np) at(\pos*2,-4) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\foreach \n/\pos/\np in {{B,D}/0/BD,{A,C}/1/AC}
+{
+\node[state] (\np) at(\pos*2,-6) {$\n$};
+\draw[color=red,-] (\np.north west) -- (\np.south east);
+\draw[color=red,-] (\np.north east) -- (\np.south west);
+}
+
+\node[state] (BC) at(8,-4) {B,C};
+\node[state] (EF) at(8,-6) {E,F};
+
+\tikzedge{AC}{BF}{0}{bend left}{left, near start};
+\tikzedge{AD}{CD}{1}{}{above};
+\tikzedge{AD}{BD}{1}{}{right};
+\tikzedge{AB}{CD}{1}{}{below};
+
+\tikzedge{CD}{DF}{1}{}{left};
+\tikzedge{AB}{BE}{0}{}{above, near end};
+\tikzedge{BD}{DE}{0}{bend left}{right, near end};
+\tikzedge{BC}{EF}{0}{}{right};
+\tikzloop{EF}{1,0}{below}{right};
+
+\node at (8,0) {
+\begin{tabular}{l}
+\large{B = C}\\
+\large{E = F}
+\end{tabular}};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-1}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (A) {A};
+\node[state] (BC) [right of=A] {BC};
+\node[state,accepting] (EF) [right of=BC] {EF};
+\node[state] (D) [below of=BC] {D};
+
+\tikzedge{A}{BC}{$1, 0$}{}{above};
+\tikzedge{BC}{EF}{$0$}{}{above};
+\tikzedge{BC}{D}{$1$}{}{right};
+\tikzloop{D}{$1, 0$}{below}{right};
+\tikzloop{EF}{$1, 0$}{above}{right};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-2}
+\end{center}
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+  & F						& E & D 						& C & B\\\hline
+A & \tc{x}						& \tc{x} & \tc{x} 						& \tc{x} & \tc{x}\\\hline
+B & \tc{x}						& \tc{x} & \tc{x} \tiny{A,D}&   &  \\\hline
+C & \tc{x}						& \tc{x} & \tc{x} \tiny{A,D}&   &  \\\hline
+D & \tc{x}						& \tc{x} &   						&   &  \\\hline
+E & \tiny{B,C}	&   &   		&   &  \\\hline
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{1}&\RM{1}\\
+&A&\RM{2}&\RM{1}\\
+&B&\RM{2}&\RM{1}\\
+&C&\RM{2}&\RM{1}\\
+&D&\RM{1}&\RM{1}\\\hline
+\RM{2}&E&\RM{2}&\RM{2}\\
+&F&\RM{2}&\RM{2}
+\end{tabular}
+$\Rightarrow$
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{2}&\RM{2}\\
+&D&\RM{1}&\RM{1}\\\hline
+\RM{2}&B&\RM{3}&\RM{1}\\
+&C&\RM{3}&\RM{1}\\\hline
+\RM{3}&E&\RM{3}&\RM{3}\\
+&F&\RM{3}&\RM{3}
+\end{tabular}
+$\Rightarrow$
+\begin{tabular}{c|c|c|c|}
+&&0&1\\\hline
+\RM{1}&A&\RM{3}&\RM{3}\\\hline
+\RM{2}&D&\RM{2}&\RM{2}\\\hline
+\RM{3}&B&\RM{4}&\RM{2}\\
+&C&\RM{4}&\RM{2}\\\hline
+\RM{4}&E&\RM{4}&\RM{4}\\
+&F&\RM{4}&\RM{4}\\
+\end{tabular}
+\end{center}
+\Img{GI(U)-07.05.2009-TAB-3}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state] (1) {\RM{1}};
+\node[state] (2) [right of=1] {\RM{2}};
+\node[state] (3) [right of=2] {\RM{3}};
+\node[state,accepting] (4) [right of=3] {\RM{4}};
+
+\tikzedge{1}{3}{$0, 1$}{bend left}{above};
+\tikzedge{3}{2}{$1$}{}{above};
+\tikzedge{3}{4}{$0$}{}{above};
+\tikzloop{2}{$0, 1$}{below}{right};
+\tikzloop{4}{$0, 1$}{above}{right};
+\end{tikzpicture}
+\Img{GI(U)-07.05.2009-IMG-4}
+\end{beobachtung}
+
+\section{Abschlusseigenschaften von regulären Sprachen}
+\Mark{Section 3.5}
+Sprache reguläre \Lra von \ac{DEA} erkennbar. Eine Operation auf regulären Sprachen heißt abgeschlossen, wenn das Ergebnis der Operation wieder eine reguläre Sprache ist.
+\begin{beispiel}
+Reguläre Sprachen sind \ac{abgeschl.} unter Komplementbildung:
+\[L \tx{ regulär} \Lra L^{\mc{C}} \tx{ regulär}\]
+Konstruktion: Gegeben $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ mit $L(M) = L$. Erhalten $M^{\mc{C}} = \rklamm{Q, \Sigma, \delta, q_0, Q \backslash F}$ mit $L(M^{\mc{C}}) = L^{\mc{C}}$.
+\end{beispiel}
+\begin{fbeweis}
+\mbox{}\par
+\begin{center}
+\begin{tikzpicture}
+\draw[color=blue] (0,1.5) -- (0,-1.5);
+\draw[color=blue] (0,0) -- (-180:1.5);
+\draw[color=blue] (0,0) -- (0:1.5);
+\draw (0,0) circle (1.5);
+\draw (1,0.5) -- (1.5,1) node[right] {$\Sigma^*$};
+\node[shape=circle,color=blue,draw] at (130:1) {$q_0$};
+\node[shape=circle,color=green,draw] at (50:1) {$q_1$};
+\node[shape=circle,color=blue,draw] at (-50:1) {$q_2$};
+\node[shape=circle,color=green,draw] at (-130:1) {$q_3$};
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-1}
+\end{center}
+\end{fbeweis}
+\begin{fsatz}
+Seien $M_1 = \rklamm{Q_1, \Sigma, \delta_1, q_{0_1}, F_1}$ und $M_2 = \rklamm{Q_2, \Sigma, \delta_2, q_{0_2}, F_2}$ \ac{bel.} \ac{DEA}s. Für jede Operation $\odot \in \gklamm{\cup,\cap,-}$ \ac{ex.} ein \ac{DEA} $M$ mit
+\[L(M) = L(M_1) \odot L(M_2) (\tx{Abgeschlossenheit unter } \odot)\]
+Konstruktion von $M$: Sei $M = \rklamm{Q_1 \times Q_2, \Sigma, \delta, \rklamm{q_{0_1}, q_{0_2}}, F_{\odot}}$, wobei
+\begin{enumerate}
+\item $\forall q_1 \in Q_1, q_2 \in Q_2, a \in \Sigma$:
+		\[\delta \rklamm{\rklamm{q_1, q_2}, a} = \rklamm{\delta_1 \rklamm{q_1, a}, \delta_2 \rklamm{q_2, a}}\]
+
+\item Für $F_{\odot}$ gilt:
+		\begin{itemize}
+		\item $\odot = \cup$: $F_{\cup} = F_1 \times Q_2 \cup Q_1 \times F_2$
+		\item $\odot = \cap$: $F_{\cap} = F_1 \times F_2$
+		\item $\odot = -$: $F_{-} = F_1 \times \rklamm{Q_2 - F_2}$
+		\end{itemize}
+\end{enumerate}
+\Mark{Satz 3.4}
+\end{fsatz}
+
+\begin{fbeweis}
+Es reicht folgende Gleicheit zu zeigen:
+\[\hat{\delta} \rklamm{\rklamm{q_{0_1}, q_{0_2}}, w} = \rklamm{\hat{\delta}_1 \rklamm{q_{0_1}, w}, \hat{\delta}_2 \rklamm{q_{0_2}, w}}\]
+rest selbst!
+\begin{bekannt}
+\ac{RS} abgeschlossen unter \fbox{$\space^{\mathcal{C}}, \space^{\mc{R}}, -, \cap, \cup, \space^*$}
+\end{bekannt}
+\end{fbeweis}
+
+\section{Nichtreguläre Sprachen/Pumping Lemma}
+Betrachte: $L = \gklamm{w \in \SigBs \vert w = 0^n 1^n \tx{ für } n \in \mb{N}}$
+Versuch:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=,accepting] (A) {$\epsilon$};
+\node[state] (B) [right of=A] {};
+\node[state] (C) [right of=B] {};
+\node[state] (D) [below of=C] {};
+\node[state] (F) [below of=D] {};
+\node[state] (E) [left of=F] {};
+\node[state] (DS) [left of=E] {DS};
+\node (dots) [right of=C] {\dots};
+
+\tikzedge{A}{B}{0}{}{};
+\tikzedge{A}{DS}{1}{}{};
+
+\tikzedge{B}{C}{0}{}{};
+\tikzedge{B}{E}{1}{}{};
+
+\tikzedge{C}{D}{1}{}{};
+
+\tikzedge{D}{DS}{0}{}{};
+\tikzedge{D}{F}{1}{}{};
+
+\tikzedge{E}{DS}{0,1}{}{};
+
+\tikzedge{F}{DS}{0,1}{bend left}{};
+
+\tikzloop{DS}{0,1}{left}{};
+
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-2}
+\end{center}
+Problem: \ac{DEA} mit unendlich vielen Zuständen\\
+Angenommen es gibt \ac{DEA} $M$ mit 24 Zuständen, der $L$ erkennt.\\
+Betrachte $w = 0^{24} 1^{24}$\\
+Da $M$ nur 24 Zustände hat, muss er bei der Verarbeitung der Nullen eine Schleife durchlaufen haben.\\
+Angenommen Schleife sei nach Lesen von 17 Nullen erreicht, dann hat
+\ac{akzept.} \ac{Ber.} für $w$ die Gestalt
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node (q0) {$q_0$};
+\node (p1) [right of=q0] {$p$};
+\node (p2) [right of=p1] {$p$};
+\node (q1) [right of=p2] {$q \in F$};
+
+\path[->] (q0) edge node {$0^{17}$} (p1);
+\path[->] (p1) edge node {$0^{3}$} (p2);
+\path[->] (p2) edge node {$0^{4} 1^{24}$} (q1);
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-3.1}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (q0) {$q_0$};
+\node[state] (p) [right of=q0] {$p$};
+\node[state,accepting] (q) [right of=p] {$q$};
+\node[state] (p1) [below left of=p]{};
+\node[state] (p2) [below right of=p]{};
+
+\path[->] (q0) edge node {$0^{17}$} (p);
+\path[->] (p) edge node {$0^{4} 1^{24}$} (q);
+\path[->] (p) edge [bend right] node {$0$} (p1);
+\path[->] (p1) edge node {$0$} (p2);
+\path[->] (p2) edge [bend right] node {$0$} (p);
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-3.2}
+\end{center}
+Automat kann Schleife überspringen oder mehrfach durchlaufen.\\
+\Ra Falls Automat korrekt muss gelten:
+\[\forall i \in \mb{N}:~0^{17} \rklamm{0^3}^i 0^4 1^{24} \in L\]
+Aber:
+\[0^{17} \rklamm{0^3}^0 0^4 1^{24} = 0^{21} 1^{24} \notin L\]
+\Ra Automat erkennt $L$ nicht (er erkennt mehr).
+
+\begin{lemma}[\ac{PL} - einfache Version]
+\label{lemma:Endliche_Automaten_L_3_4}
+Es sei $L$ eine reguläre Sprache, dann gibt es eine natürliche zahl $n_0 \grgl 1$ ($n_0 \cong $ Zustandszahl), so dass gilt:\\
+Für jedes Wort $z \in L$ mit $\betrag{z} \grgl n_0$ (Automat für $L$ durchläuft Schleife) \ac{ex.} eine Zerlegung
+$z = u vw$
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,initial,initial text=] (initial) {};
+\node[state] (n1) [right of=initial] {};
+\node[state,accepting] [right of=n1] (n2) {};
+
+\tikzedge{initial}{n1}{0}{}{};
+\tikzedge{n1}{n2}{w}{}{};
+\tikzloop{n1}{v}{above}{};
+\end{tikzpicture}
+\Img{GI-12.05.2009-IMG-4}
+\end{center}
+mit
+\begin{itemize}
+\item $v \neq \epsilon$ \ac{bzw.} $\betrag{v \grgl 1}$
+\item $\forall k \in \mb{N}$: $u v^k w \in L$
+\end{itemize}
+\Mark{Lemma 3.4}
+\end{lemma}
+\begin{fbeweis}[Zu Lemma \vref{lemma:Endliche_Automaten_L_3_4}]
+Sei $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ ein \ac{DEA} mit $L(M) = L$. Setze $n_0 = \betrag{Q}$. Für jedes Wort $z = a_1 \dots a_m \in L$ mit $m \grgl n_0$  \ac{ex.} eine Berechnung
+\[\rklamm{q_0, a_1 \dots a_m} \vd \rklamm{p_1, a_2 \dots a_m} \vd \dots \vd \rklamm{q_{m - 1} a_m} \vd \gklamm{p_m, \epsilon}\]
+mit $p_i \in Q$, $a_i \in \Sigma$ für $1 \klgl i \klgl m$\\
+Da $m \grgl n_0$ können die $m + 1$ Zustände ($p_{\emptyset} - p_m$) nicht unterschiedlich sein.\\
+Folglich $\exists i < j$ mit $p_i = p_j$ ($1 \klgl i < j \klgl n$).
+\[\rklamm{q_0, \ub{uvw}{z}} \vd^* \rklamm{p_i = p_j, vw} \vd^* \rklamm{p_j = p_i, w} \vd^* \rklamm{p_m, \epsilon}\]
+\Ra Somit gilt $\rklamm{p_i = p_j, v^k} \vd^* \rklamm{p_j = p_i, \epsilon}$ für $k \in \mb{N}$\\
+\Ra $\forall k \in \mb{N}$ $uv^k w \in L$. \qed\\
+\ac{PL}: $L$ regulär \Ra $L$ pumpbar.\\
+Jede endliche Sprache ist regulär.
+\end{fbeweis}
+
+\begin{beispiel}
+$L = \gklamm{w \in \SigBs \vert w = 0^n 1^n \tx{ für } n \in \N}$. Angenommen $L$ ist regulär, dann erfüllt $L$ die Pumping-Eigenschaft, \ac{d.h.} es gibt ein $n_0$ mit den Eigenschaften aus dem \ac{PL}.\\
+Sei nun $2k \grgl n_0$. Da $0^k 1^k \in L$ (und $2k \grgl n_0$) muss es eine gültige Zerlegung $z = uvw = 0^k 1^k$ mit $\betrag{v} \grgl 1$ geben, so dass $\forall i \in \N:~u v^i w \in L$. Es gibt drei Möglichkeiten, wo die Schleife $v$ liegen kann:
+\begin{itemize}
+\item $z = \ub{0^{k_1}}{u} \ub{0^{k_2}}{v} \ub{0^{k_3} 1^k}{w}$ mit $k_1 + k_2 + k_3 = k$ und $k_2 \grgl 1$.\\
+		Dann ist $u v^0 w = 0^{k_1} \rklamm{0^{k_2}}^0 0^{k_3} 1^k = 0^{k_1 + k_3} 1^k \notin L$, da $k_1 + k_3 < k$ wegen $k_2 \grgl 1$.
+
+\item $z = \ub{0^k 1^k_1}{u} \ub{1^{k_2}}{v} \ub{1^{k_3}}{w}$ mit $k_1 + k_2 + k_3 = k$ und $k \grgl 1$.\\
+		Dann ist $u v^0 w = 0^k 1^{k_1 + k_3} \notin L$ da $k_1 + k_3 < k$
+
+\item $z = \ub{0^{k_1}}{u} \ub{0^{k_2} 1^{k'_1}}{v} \ub{1^{k'_2}}{w}$ mit $k_1 + k_2 = k$, $k'_1 + k'_2 = k$ und $k_2 + k'_1 \grgl 2 \und k_2 \grgl 1 \und k'_1 \grgl 1$.\\
+		Dann ist $u v^2 w = 0^{k_1} 0^{k_2} 1^{k'_1} 0^{k_2} 1^{k'_1} 1^{k'_2}$ offensichtlich nicht in $L$.
+\end{itemize}
+Folglich gibt es für $z$ keine gültige Zerlegung, die pumpbar ist und unsere Annahme ($L$ ist regulär) muss falsch gewesen sein.
+\end{beispiel}
+
+\begin{beispiel}
+$L = \gklamm{w \in \SigBs \vert w = 0^n 1^m \tx{ mit } n \neq m, n, m \in \N}$. Wir betrachten ein \ac{bel.} $n_0 \grgl 3$ und ein Wort $0^{k_1} 1^{k_2}$ mit $k_1 + k_2 \grgl n_0$ und $k_1 \neq k_2$. Offenbar $z \in L$ und $\betrag{z} \grgl n_0$. Sofern $L$ regulär ist, muss es \ac{gem.} \ac{PL} \textbf{eine} geeignete Zerlegung $z = uvw$ geben so dass wir \ggq{pumpen} können und in der Sprache bleiben.\\
+Wir müssen zwei Fälle unterscheiden, da sowohl $k_1 > k_2$ also auch $k_1 < k_2$ zu $0^{k_1} 1^{k_2} \in L$ führt.
+\begin{enumerate}
+\item mehr Nullen. Es ist $k_1 = k_2 + j$ mit $j \grgl 1$.\\
+		Wir unterscheiden wieder 2 Fälle:
+		\begin{enumerate}
+		\item $j > 1$. Dann gilt $\mathbf{k_1 - 1 > k_2}$ und wir können eine passende Zerlegung finden
+				\[z = \ub{\epsilon}{u} \ub{0}{v} \ub{0^{k_1 - 1} 1^{k_2}}{w}\]
+				Da bereits $k_1 - 1 > k_2$ folgt $\forall i \in \N u v^1 w \in L$
+
+		\item $j = 1$. Dann gilt $k_1 = k_2 + 1$ und wegen $k_1 + k_2 \grgl 3$ folgt $k_1 = k_2 + 1 \grgl 2$ gilt. Damit finden wir geeignete Zerlegung:
+				\[z = \ub{\epsilon}{u} \ub{0^2}{v} \ub{0^{\textcolor{blue}{k_1 - 2}} 1^{\textcolor{green}{k_2}}}{w}\]
+				so dass für \ac{bel.} $i \in \N$ $uv^i w \in L$ folgt, denn
+				\[\textcolor{blue}{u v^0 w \in L:~k_1 - 2 = (k_2 + 1) - 2 = k_2 - 1} \neq \textcolor{green}{k_2}\]
+				$\forall i \in N$ mit $i \grgl 1$: $u v^i w \in L$, da $2 \mal u + (k_1 - 2) \grgl k_2$ \label{item:Endliche_Automaten_Pumping_Lemma_Beispiel_1b}
+		\end{enumerate}
+
+\item mehr Einsen. Es ist $k_1 < k_2$ oder $k_2 = k_1 + j$.
+		\begin{enumerate}
+		\item $j > 1$, dann $k_2 - 1 > k_1$
+				\[z = \ub{0^{k_1} 1^{k_2 - 1}}{u} \ub{1}{v} \ub{\epsilon}{w}\]
+				Da $k_2 - 1 > k_1$ folgt $\forall i \in N:~u v^i w \in L$
+
+		\item $j = 1$, dann $k_2 = k_1 + 1$
+				\[z = \ub{0^{k_1} 1^{k_2 - 2}}{u} \ub{1^2}{v} \ub{\epsilon}{w}\]
+				(analog zu \vref{item:Endliche_Automaten_Pumping_Lemma_Beispiel_1b}) \Solved{ref zur stelle im enumerate}
+		\end{enumerate}
+\end{enumerate}
+\end{beispiel}
+
+\begin{lemma}
+Es sei $L$ eine reguläre Sprache, dann gibt es eine natürliche Zahl $n_0 \grgl 1$, so dass gilt:\\
+Jedes Wort $z \in L$ mit $\betrag{z} \grgl 0$ lässt sich zerlegen in $z = uvw$ mit:
+\begin{itemize}
+\item $v \neq \epsilon$ \ac{bzw.} $\betrag{v} > 1$
+\item $\betrag{uv} \klgl n_0$
+\item $\forall k \in \N$. $u v^k w \in L$
+\end{itemize}
+\Mark{Lemma 3.5}
+\end{lemma}
+
+\begin{fbeweis}
+Sei $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ ein \ac{DEA} mit $L(M) = L$. Setzen wir $n_0 = \betrag{Q}$. Für jedes Wort $z = a_1 \dots a_m \in L$ \ac{ex.} eine Berechnung
+\[\gklamm{\ub{q_0}{p_0}, a_1 \dots a_m} \vd \gklamm{p_1, a_2 \dots a_m} \vd \dots \vd \gklamm{q_{m - 1}, a_m} \vd {p_m, \epsilon}\]
+mit $p_m \in F$. Ist $m \grgl n_0$, so können die $m + 1$ Zustände $p_0, \dots, p_m$ nicht verschieden sein. Es gibt daher ein $i < j \klgl n_0$ mit $p_i = p_j$\\
+\dots rest analog zu einfacher Version.
+\end{fbeweis}
+
+\begin{beispiel}
+$L = \gklamm{w \in \SigBs \vert w \in \gklamm{0}^n \gklamm{1}^m \tx{ für } m \neq n}$. Angenommen $L$ sei regulär, dann \ac{ex.} $M = \rklamm{Q, \Sigma, \delta, q_0, F}$ mit $L(M) = L$ und $\betrag{Q} = n_0$.\\
+Betrachte $z = 0^{n_0} 1^{n_0 + k}$ für $k > 0$. Offenbar $z \in L$ und $\betrag{z} \grgl n_0$. Dann ist
+\[z = \ub{0^a}{u} \ub{0^b}{v} \ub{0^c 1^{n_0 + k}}{w}\]
+mit $a + b + c = n_0$, $a + b \klgl n_0$ und $b \grgl 1$ eine gültige Zerlegung.\\
+Wir wollen zeigen, dass $L$ nicht pumpbar ist. Wir müssen unabhängig von $a$, $b$, $c$ ein $i \in \N$ finden, so dass $u v^i w \notin L$; also
+\[\betrag{
+\begin{array}{rcrcrcl}
+a &+ &i \mal b &+ &c &= &n_0 + k\\
+a &+ &b &+ &c &= &n_0
+\end{array}}\]
+Subtraktion der beiden Gleichungen liefert
+\[i \mal b - b = k\]
+Auflösen nach $i$ liefert $i = \frac{k}{b} + 1$ ($1 \klgl b \klgl n_0$)\\
+$k$ muss daher so gewählt werden, dass es durch \ac{bel.} $1 \klgl b \klgl n_0$ teilbar ist. Versuchen wir $k = 1 \mal 2 \mal 3 \mal \dots \mal n_0 = n_0!$:
+\[a + \rklamm{\frac{n_0!}{b} + 1} \mal b + c = a + n_0! + b + c = n_0 + n_0!\]
+\begin{description}
+\item[Fazit] egal, wie man $a$, $b$ und $c$ wählt, man findet immer ein $i \in \N$, so dass $uvw \notin L$.
+		\begin{description}
+		\item[Beachte] Wahl von $k$ hängt nur von $n_0$ und nicht von Zerlegung ab.
+		\end{description}
+		$L$ ist nicht pumpbar und somit nicht regulär.
+\end{description}
+\Mark{Beispiel 3.7}
+\end{beispiel}
+
+\begin{beispiel}
+Sei $L$ eine \ac{bekanntem.} nicht reguläre Sprache. Dann ist
+\[L_{\sharp} = \Sigs \cup \rklamm{\rklamm{\sharp}^+ \mal \ubl[2em]{L}{nicht\\regulär}}\]
+nicht regulär.\\
+$L_{\sharp}$ erfüllt die Pumping-Eigenschaft des verschärften Pumping Lemmas. Sei $z \in L_{\sharp}$, dann $z \in \gklamm{\sharp}^+ L$ oder $z \in \Sigs$
+\begin{enumerate}
+\item $z \in \gklamm{\sharp}^+ L$: Betrachte $z = \ub{\epsilon}{u} \ub{\sharp^k}{v} \ub{s}{w}$ mit $1 \klgl k \klgl n_0$ und $s \in L \subseteq \Sigs$.\\
+		Für jedes $i \in \N$ gilt $u v^i w \in L$.
+
+\item $z \in \Sigs$. trivial
+\end{enumerate}
+\Mark{Beispiel 3.8}
+\end{beispiel}
+
+\begin{lemma}
+Eine Sprache $L \subseteq \Sigs$ ist regulär, genau dann wenn es eine natürliche Zahl $n_0 \grgl 1$ gibt, so dass gilt: für alle Wörter $z \in \Sigs$ mit $\betrag{z} \grgl n_0$ kann man eine Zerlegung $z = uvw$ finden, so dass
+\begin{itemize}
+\item $\betrag{v} \grgl 1$
+\item $\forall s \in \Sigs$ gilt: $zs \in L \Lra \forall i \in \N:~u v^i w s \in L$
+\end{itemize}
+\Mark{Lemma 3.6}
+\end{lemma}
+
+\begin{fbeweis}
+\fnewline
+\ggq{\Ra}: Übung!\\
+\ggq{\La}: Wir zeigen, wie man für eine \ac{bel.} Sprache, die Jaffe-pumpbar ist, einen \ac{DEA} $M = \gklamm{Q, \Sigma, \delta, q_0, F}$ konstruieren kann, der $L$ erkennt. Jeder Zustand aus $Q$ korrespondiert mit einem $z \in \Sigs$, dessen Länge kleiner als $n_0$ ist, \ac{d.h.}
+\[Q = \gklamm{q_s, s \in \Sigs \und \betrag{s} \klgl n_0 - 1}\]
+Als Startzustand wählen wir $q_{\epsilon}$; akzeptierende Zustände sind $F = \gklamm{q_s \vert s \in L}$, Definiere $\delta$ wie folgt
+\begin{itemize}
+\item $\betrag{z} < n_0 - 1:~\forall a \in \Sigma \delta \rklamm{q_z, a} = q_{za}$ (Baum mit Grad $\betrag{\Sigma}$)
+\item $\betrag{z} = n_0 - 1$. Hier können wir $q_z \ural{}{a} q_{za}$ nicht hinzunehmen, da der Zustand $q_{za}$ nicht existiert. Wegen der Pumping-Eigenschaft von $L$ gibt es eine Zerlegung $za = uvw$ ($v \neq \epsilon$), so dass
+		\[\forall s \in \Sigs:~zas \in L \Lra \forall u \in \N u v^i w s \in L\]
+		Insbesondere:
+		\[\forall s \in \Sigs:~zas \in L \Lra u v^0 w s \in L\]
+		Es kann mehrere solche Zerlegungen geben; wähle die Zerlegung bei der $\betrag{uv}$ minimal ist. Dann setzen wir
+		\[\delta(q_z, a) = q_{uw} (\betrag{z} \grgl \betrag{uw})\]
+		\ac{bzw.}
+		\[\hat{\delta} \rklamm{q_0, za} = \hat{\delta} (q_0, uw)\]
+\end{itemize}
+Bleibt zu zeigen $L(M) = L$. Wir beweisen mittels Induktion über die Wortlänge von $z$.
+\begin{itemize}
+\item Für $\betrag{z} < n_0$ gilt \ac{gem.} Konstruktion $z \in L \Lra z \in L(M)$ ($q_z \in F$).
+\item Sei $\betrag{z} = n$ mit $n \grgl n_0$ und gelte $z' \in L \Lra z' \in L(M)$ für alle $z'$ mit $\betrag{z'} < n$. Angenommen $z = z_0 a s_0$ mit $\betrag{z_0 a} = n_0$.\\
+		Gemäß Konstruktion von $\delta$ (2. Fall) siehe \vref{def:Endliche_Automaten_Transitionsfunktion} \Solved{Ref zur definition} ist
+		\[\hat{\delta} \rklamm{q_0, z_0 a} = \hat{\delta} \rklamm{q_0, uw}\]
+		für geeignete $a \in \Sigma$, $u, w \in \Sigs$ mit $z_0 = uvw$ ($v \in \Sigma^+$). Ferner gilt, da $L$ pumpbar ist (Index $i = 0$)
+		\[\forall s \in \Sigs:~ z_0 a s \in L \Lra uws \in L\]
+		Insbesondere
+		\[\mathbf{z_0 a} s_0 = z \in L \Lra \mathbf{u w} s_0 \in L\]
+		Da $u$ mit $uw$ und $z_0 a$~ den selben Zustand erreicht $(x)$ kommt man mit $z_0 a s_0$ und $u w s_0$ ebenfalls in denselben Zustand \ac{d.h.} $u w s_0 \in L(M) \Lra z_0 a s_0 \in L(M)$.\\
+		Da $\betrag{u w s_0} > n$ (weglassen von $v$) gilt für $u w s_0$ die \ac{IV}.
+		\[u w s_0 \in L(M) \Lra u w s_0 \in L\]
+		also:
+		\[u w s_0 \in L \stack{\tx{\ac{IV}}}{\Lra} u w s_0 \in L(M) \stackl[\widthof{\scriptsize{Konstruktion}}]{Konstruktion von $\delta$}{\Lra} z =z_0 a s_0 \in L(M)\]
+		\Solved{Make longstack command}
+\end{itemize}
+\end{fbeweis}
+
+\begin{beispiel}
+$L_{\sharp} = \gklamm{\sharp}^+ \mal L \cup \Sigs$ ist nicht regulär. Angenommen $L_{\sharp}$ sei regulär, dann muss $L_{\sharp}$ für ein $n_0 \in\N$ die Pumping-Eigenschaft erfüllen. Sei $z = \sharp 0^{n_0} 1^{n_0}$; betrachte alle Zerlegungen $z =uvw$ mit $\betrag{v} \grgl 1$.
+\begin{enumerate}
+\item $v$ enthält $\sharp$ nicht, also $v \in \gklamm{0}^+$, $v \in \gklamm{1}^+$ oder $v \in \gklamm{0}^+ \gklamm{1}^+$\\
+		Betrachte $s = \epsilon$, dann ist $z s \in L_{\sharp}$, aber $u v^2 w s \notin L_{\sharp}$
+
+\item $v$ enthält $\sharp$: Setze $s = 1$, dann $z s \notin L_{\sharp}$, aber $u v^0 w s \in L_{\sharp}$ (rauspumpen von $\sharp$).
+\end{enumerate}
+\end{beispiel}
+
+\section{Reguläre Ausdrücke und reguläre Sprachen}
+\Mark{Section 3.7}
+\begin{fdefinition}
+Syntax \ac{reg.} Ausdrücke. Sei $\Sigma$ ein Alphabet; die Menge $R_{\Sigma}$ der regulären Ausdrücke über $\Sigma$ ist induktiv \ac{def.} durch:
+\begin{itemize}
+\item $\emptyset \in R_{\Sigma}$
+\item $\epsilon \in R_{\Sigma}$
+\item $a \in \Sigma \Ra a \in R_{\Sigma}$
+\item $r_1, r_2 \in R_{\Sigma} \Ra \rklamm{r_1 + r_2} \in R_{\Sigma}$
+\item $r_1, r_2 \in R_{\Sigma} \Ra \rklamm{r_1 \mal r_2} \in R_{\Sigma}$
+\item $r_1 \in R_{\Sigma} \Ra \rklamm{r_1}^* \in R_{\Sigma}$ \qed
+\end{itemize}
+\Mark{Definition 3.16}
+\end{fdefinition}
+
+\begin{fdefinition}
+Semantik \ac{reg.} Ausdrücke. Die Semantik für \ac{reg.} Ausdrücke ist eine Abbildung $L$: $R_{\Sigma} \ra \mathcal{P} \rkl{\Sigs}$, die einem $rA$ über $\Sigma$ eine Sprache zuordnet. $L$ ist induktiv \ac{def.} durch
+\begin{itemize}
+\item $L(\emptyset) = \emptyset$
+\item $L(\epsilon) = \gklamm{\epsilon}$
+\item $L(a) = \gklamm{a}$
+\item $L \rklamm{\rklamm{r_1 + r_2}} = L\rklamm{r_1} \cup L\rklamm{r_2}$ für $r_1, r_2 \in R_{\Sigma}$
+\item $L \rklamm{\rklamm{r_1 \mal r_2}} = L\rklamm{r_1} \mal L\rklamm{r_2}$
+\item $L \rklamm{\rklamm{r}^*} = L\rklamm{r}^*$
+\end{itemize}
+\Mark{Definition 3. A.}
+\end{fdefinition}
+
+\begin{notation}
+Wir lassen zu, dass reguläre Ausdrücke klammerfrei geschrieben werden, dann werden die Operationen in der Reihenfolge Kleene-Stern, Konkatenation und Vereinigung ausgeführt. Anstelle von $r_1 \mal r_2$ schreiben wir $r_1 r_2$. Wir verwenden die abkürzende Schreibweise $r^+$ für $r r^*$.
+\end{notation}
+
+\begin{beispiel}
+\fnewline
+\begin{itemize}
+\item $0^* 1 0^* = \gklamm{w \in \SigBs \vert \betrag{w}_{1} = 1}$\\
+		$\rklamm{\rklamm{\rklamm{0}^* \mal 1} \mal \rklamm{0}^*}$
+
+\item $(0 + 1)^* 1 (0 + 1)^* = \gklamm{w \in \SigBs \vert \betrag{w}_{1} \grgl 1}$
+\item $(0 + 1)^* 10010 (0 + 1)^* = \gklamm{w \in \SigBs \vert w \tx{ enthält } 10010 \tx{ als Teilwort}}$
+\item $\eklamm{\rklamm{0 + 1} \rklamm{0 + 1} \rklamm{0 + 1}}^* = \gklamm{w \in \SigBs \vert \betrag{w} \mod 3 = 0}$
+\item $(1 + \epsilon) = \gklamm{1, \epsilon}$
+\item $(0 + \epsilon) 1^* = (01^* + \epsilon 1^*) = 01^* + 1^*$
+\item $(0 + \epsilon) (1 + \epsilon) = \gklamm{\epsilon, 0, 1, 01}$
+\item $\rklamm{\rklamm{\rklamm{100 + 011}^*}^*}^* \emptyset = \emptyset$
+\end{itemize}
+\end{beispiel}
+
+\begin{notation}
+Um eine Sprache anzudenken, schreibt man $r$ anstelle von $L(r)$.
+\end{notation}
+
+\begin{fsatz}[Kleene]
+Eine Sprache ist genau dann regulär (\ac{d.h.} wird von einem \ac{DEA} erkannt) \ac{gdw.} man sie durch einen regulären Ausdruck beschreiben kann.
+\end{fsatz}
+
+\begin{fbeweis}
+regulärer Ausdruck \ra endlicher Automat.\\
+Wir beweisen durch strukturelle Induktion, dass jeder \ac{RA} in einen $\epsilon$-\ac{NEA} umgewandelt werden kann.
+\begin{itemize}
+\item $r = a$ mit $a \in \Sigma$
+       	\begin{center}
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] (s) {};
+		\node[state, accepting] (a) [right of=s] {};
+		\tikzedge{s}{a}{a}{}{};
+		\end{tikzpicture}
+		\end{center}
+		\Img{GI-26.05.2009-IMG-1}
+
+\item $r = \epsilon$
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state, accepting,initial,initial text=] {};
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-2}
+        \end{center}
+
+\item $r = \emptyset$
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\node[state,initial,initial text=] {};
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-3}
+        \end{center}
+
+\item $r = \rkl{r_1 \mal r_2}$ Laut \ac{IV} \ac{ex.} $\epsilon$-\ac{NEA}, die $L(r_1)$ und $L(r_2)$ erkennen (siehe Abschlusseigenschaft)
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,semithick]
+		\draw (0,-2) rectangle (2,2);
+		\draw (4,-2) rectangle (6,2);
+		
+		\node[state,initial,initial text=,fill=shadecolor_beweis] at (0,0) (m1s) {};
+		\node[state,fill=shadecolor_beweis] (m1n1) at (2,1.5) {};
+		\node[state,fill=shadecolor_beweis] (m1n2) at (2,-1.5) {};
+		
+		\node[state,fill=shadecolor_beweis] (m2s) at (4,0) {};
+		\node[state,accepting,fill=shadecolor_beweis] (m2n1) at (6,1.5) {};
+		\node[state,accepting,fill=shadecolor_beweis] (m2n2) at (6,-1.5) {};
+		
+		\tikzedge{m1n1}{m2s}{\epsilon}{}{};
+		\tikzedge{m1n2}{m2s}{\epsilon}{}{};
+		
+		\node[node distance=1cm, right of=m1s] {\Large{$M_1$}};
+		\node[node distance=1cm, right of=m2s] {\Large{$M_2$}};
+		
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-4}
+        \end{center}
+
+\item $r = \rkl{r_1 + r_2}$ \ac{IV} gilt wie vor.
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+		\draw (2,1) rectangle (4,4);
+		\draw (2,0) rectangle (4,-3);
+		
+		\node at(3,2.5) {\Large{$M_1$}};
+		\node at(3,-1.5) {\Large{$M_2$}};
+		
+		\node[state,initial,initial text=] at (0,0.5) (start) {};
+		\node[state,fill=shadecolor_beweis] at (2,2.5) (m1s) {};
+		\node[state,fill=shadecolor_beweis] at (2,-1.5) (m2s) {};
+		
+		\node[state,accepting,fill=shadecolor_beweis] at (4,3.5) {};
+		\node[state,accepting,fill=shadecolor_beweis] at (4,1.5) {};
+		
+		\node[state,accepting,fill=shadecolor_beweis] at (4,-0.5) {};
+		\node[state,accepting,fill=shadecolor_beweis] at (4,-2.5) {};
+		
+		\tikzedge{start}{m1s}{\epsilon}{}{};
+		\tikzedge{start}{m2s}{\epsilon}{}{};
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-5}
+        \end{center}
+
+\item $r = \rkl{r_1}^*$
+		\begin{center}
+        \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm,semithick]
+		\draw (0,-2) rectangle (2,2);
+		
+		\node[state,fill=shadecolor_beweis] at (0,0) (m1s) {};
+		\node[state,fill=shadecolor_beweis] (m1n1) at (2,1.5) {};
+		\node[state,fill=shadecolor_beweis] (m1n2) at (2,0) {};
+		\node[state,fill=shadecolor_beweis] (m1n3) at (2,-1.5) {};
+		\node[state,initial,initial text=] (start) [left of=m1s] {};
+		\node[state,accepting] (end) [right of=m1n2] {};
+		
+		\tikzedge{m1n1}{end}{\epsilon}{}{};
+		\tikzedge{m1n2}{end}{\epsilon}{}{};
+		\tikzedge{m1n3}{end}{\epsilon}{}{};
+		\tikzedge{start}{end}{\epsilon}{bend left}{};
+		\tikzedge{end}{start}{\epsilon}{bend left}{};
+		\tikzedge{start}{m1s}{\epsilon}{}{};
+		
+		\node[node distance=1cm, right of=m1s] {\Large{$M_1$}};
+		
+		\end{tikzpicture}
+		\Img{GI-26.05.2009-IMG-6}
+        \end{center}
+
+\item \ac{DEA} \ra regulären Ausdruck.\\
+		Über Hilfskonstruktion G-\ac{NEA}
+\end{itemize}
+\end{fbeweis}
+
+\begin{fdefinition}
+Ein \ac{G-NEA} ist ein Quintupel $M = \rkl{Q, \Sigma, \delta, q_s, q_a}$
+\begin{itemize}
+\item $Q$, $\Sigma$ wie bei \ac{DEA}
+\item $\delta$: $\ubl{Q - \gklamm{q_a}}{Keine Kante verlässt $q_a$} \times \ubl{Q - \gklamm{q_s}}{Keine Kante kommt bei $q_s$ an} \ra R_{\Sigma}$
+\item $q_s$ Startzustand
+\item $q_a$ \ac{akzept.} Zustand
+\end{itemize}
+\end{fdefinition}
+
+\begin{beispiel}
+\ac{DEA}:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=2.8cm,semithick] \node[state, initial, initial text=] (1) {1};
+\node[state, accepting] (2) [right of=1] {2};
+\node[state, accepting] (3) [below of=1] {3};
+
+\tikzloop{2}{1}{above}{};
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{2}{1}{0}{bend left}{};
+
+\tikzedge{1}{3}{1}{bend left}{};
+\tikzedge{3}{1}{1}{bend left}{};
+
+\tikzedge{3}{2}{0}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-7}
+\end{center}
+
+\ac{G-NEA}:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (1) {1};
+\node[state, accepting] (2) [right of=1] {2};
+\node[state, accepting] (3) [below of=1] {3};
+\node[state, color=blue] (qs) [left of=3] {$q_s$};
+\node[state, color=blue] (qa) [right of=3] {$q_a$};
+
+\tikzloop{2}{1}{above}{};
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{2}{1}{0}{bend left}{};
+
+\tikzedge{1}{3}{1}{bend left}{};
+\tikzedge{3}{1}{1}{bend left}{};
+
+\tikzedge{3}{2}{0}{}{};
+
+\path[->,color=blue] (qs) edge node {$\epsilon$} (1);
+
+\path[->,color=blue] (2) edge node {$\epsilon$} (qa);
+\path[->,color=blue] (3) edge node {$\epsilon$} (qa);
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-8}
+\end{center}
+
+\begin{idee}
+Sukzessives Eliminieren von Zuständen / Kompensation über Kante mit \ac{RA}.
+\end{idee}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state,color=blue] (qi) {$q_i$};
+\node[state,color=red] (qrip) [above right of=qi] {$q_{rip}$};
+\node[state,color=green] (qj) [below right of=qrip] {$q_j$};
+
+\tikzedge{qi}{qrip}{r_1}{}{};
+\tikzedge{qi}{qj}{r_4}{}{};
+\tikzedge{qrip}{qj}{r_3}{}{};
+\tikzloop{qrip}{r_2}{below}{};
+
+\node[state,color=blue] (qi2) [below of=qi, node distance=1.5cm] {$q_i$};
+\node[state,color=green] (qj2) [below of=qj, node distance=1.5cm] {$q_j$};
+
+\tikzedge{qi2}{qj2}{r_4 + r_1 \cdot (r_2)^* \cdot r_3}{}{};
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-9}
+\end{center}
+
+Löschung von Knoten 1:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=4cm,semithick] \node[state,initial,initial text=] (qs) {$q_s$};
+\node[state] (1) [below right of=qs] {$1$};
+\node[state] (2) [right of=1]{$2$};
+\node[state] (3) [below of=1]{$3$};
+\node[state,accepting] [right of=3](qa) {$q_a$};
+
+\tikzedge{qs}{1}{\epsilon}{}{};
+\path[->,color=gray] (qs) edge[bend left] node {$0$} (2);
+\path[->,color=gray] (qs) edge[bend right] node[left] {\parbox{2cm}{$\epsilon
+\cdot 1 = 1$ \textcolor{black}{\scriptsize{$(a_s \rightarrow 1
+\rightarrow 3)$}}}} (3);
+
+
+\tikzedge{1}{2}{0}{bend left}{};
+\tikzedge{1}{3}{1}{bend right}{};
+\draw[color=red,-] (1.north east) -- (1.south west);
+\draw[color=red,-] (1.north west) -- (1.south east);
+
+\tikzedge{2}{qa}{\epsilon}{bend left}{};
+\tikzloop{2}{1}{above}{};
+\path[->,color=gray] (2) edge[loop right] node {$1 + 00$ \textcolor{black}{$(2
+\rightarrow 1 \rightarrow 2)$}} ();
+\path[->,color=gray] (2) edge[bend left] node {
+\begin{minipage}{1cm}
+ \scriptsize{$01$ \textcolor{black}{$(2 \rightarrow 1 \rightarrow 3)$}}
+ \end{minipage}} (3);
+
+\tikzedge{3}{qa}{\epsilon}{}{};
+\tikzedge{3}{2}{0}{}{}
+\path[->,color=gray] (3) edge[bend left] node[left]
+{\begin{minipage}{1cm}
+ \scriptsize{$0+10$ \textcolor{black}{$(3+1 \rightarrow 2)$}}
+ \end{minipage}}
+(2);
+\path[->,color=gray] (3) edge[loop below] node {$11$} ();
+
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-10}
+\end{center}
+
+Löschung von Knoten 2:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node
+distance=4cm,semithick] \node[state,initial,initial text=] (qs) {$q_s$};
+\node[state] (2) [above right of=qs] {$2$};
+\node[state] (3) [below right of=qs] {$3$};
+\node[state] (qa) [above right of=3] {$q_a$};
+
+\tikzloop{3}{11 \textcolor{gray}{+ (10 + 0)(1 + 00)^* \cdot (01)}}{below}{};
+\tikzloop{2}{1 + 00}{above}{};
+
+\tikzedge{qs}{2}{0}{}{};
+\tikzedge{qs}{3}{1 \textcolor{gray}{+ 0 (1 + 00)^* 01} = r_1}{}{left};
+
+\tikzedge{2}{qa}{\epsilon}{}{};
+\tikzedge{2}{3}{01}{bend right}{left};
+
+\tikzedge{3}{2}{10 + 0}{bend right}{};
+\tikzedge{3}{qa}{\epsilon \textcolor{gray}{+(10 + 0) (1 + 00)} = r_2}{}{right};
+
+\path[->,color=gray] (qs) edge[bend right] node[above] {\scriptsize{$0 \cdot (1
++ 00)^* \cdot \epsilon \textcolor{black}{= r_4}$}} (qa);
+\end{tikzpicture}
+\Img{GI-26.05.2009-IMG-11}
+\end{center}
+
+\[\rkl{1 + 0 (1 + 00)^* 01 \eklamm{11 + (10 + 0) (1 + 00)^* (01)}^* \epsilon + (10 + 0) (1 + 00)^*} + 0 (1 + 00)^*\]
+Konstruktion eines regulären Ausdrucks, der die Sprache $(L) M$ für einen \ac{DEA} $M$ beschreibt.
+\begin{enumerate}
+\item Füge neue Zustände $q_s$ und $q_a$ ein. Verbinde $q_s$ über $\epsilon$-Transition mit $q_0$; Füge für alle $q \in F$ Transition $q \ural{}{\epsilon} q_a$ ein \ra enthalte \ac{G-NEA} $M'$ mit $L(M') = L(M)$
+\item Gewinne regulären Ausdruck für $L (M)$ wie folgt:
+		\begin{enumerate}
+		\item $k = \betrag{Q_G} \hat{=}$ Anzahl Zustände im \ac{G-NEA}
+		\item Falls $k = 2$, so besteht $M$ nur aus $q_s$ und $q_a$ erhalte $r$ aus Kantenbeschriftung $q_s \ra q_a$.
+		\item Wenn $k > 2$. Wähle \ac{bel.} Zustand $q_{rip} \in Q - \gklamm{q_a, q_s}$ aus, eliminiere $q_{rip}$ und erhalte neuen \ac{G-NEA} $M'' = \rkl{Q_G - \gklamm{q_{rip}}, \Sigma, \delta '', q_s, q_a}$ mit
+				\[\delta '' \rkl{q_i, q_j} = r_1 \rkl{r_2}^* r_3 + r_4 \tx{ für alle } q_i \in Q_G - \gklamm{q_a}, q_j \in Q_G - \gklamm{q_s}\]
+				für $r_1 = \delta ' \rkl{q_i, q_{rip}}$, $r_2 = \delta ' \rkl{q_{rip}, q_{rip}}$, $r_3 = \delta ' \rkl{q_{rip}, q_j}$ und $r_4 = \delta ' \rkl{q_i, q_{j}}$
+
+		\item Setze $M' = M''$ und fahre bei a) fort.
+		\end{enumerate}
+\end{enumerate}
+\end{beispiel}
+
+\section{Anwendungen für Rabin-Scott-Automaten}
+\Mark{Section 3.8}
+\subsection{Textsuche}
+\Mark{Subsection 3.8.1}
+\Ra siehe AD (Knuth-Morris-Pralt Algorithmus)
+
+\subsection{Analyse von Programmen}
+\Mark{Subsection 3.8.2}
+\begin{lstlisting}[language=C++]
+x << cin;
+a = x; /* a.1 */
+b = x; /* b.1 */
+while (p(a))
+	a = f(a); /* a.2 */
+while (q(b)){
+	a = g(a); /* a.3 */
+	b = f(b); /* b.2 */
+}
+z = a; /* z.1 */
+cout << z;
+\end{lstlisting}
+\begin{frage}
+was berechnet obiges Programm?
+\end{frage}
+
+\begin{problem}
+\fnewline
+\begin{itemize}
+\item Typ von \lstinline{a}, \lstinline{b}, \lstinline{p}, \lstinline{q}, \lstinline{z} unbekannt
+\item Bedeutung der Prädikate \lstinline{p}, \lstinline{q} unklar.
+\end{itemize}
+\end{problem}
+
+\begin{also}
+Welche Berechnungen kann Programm überhaupt ausführen?
+\end{also}
+
+\begin{beobachtung}
+Da \lstinline{a} und \lstinline{b} mit \lstinline{x} initialisiert werden, entsteht das Ergebnis \lstinline{z} durch wiederholte Anwendung von \lstinline{f} und \lstinline{g} auf \lstinline{x}.
+\end{beobachtung}
+
+Wir definieren die Wertsprache $WS$ des obigen Programmes als
+\[WS(P) = \gklamm{w \in \gklamm{f, g}^* \vert C}\]
+mit $C = $ \ggq{es gibt ein $x$, so dass bei passender Interpretation von \lstinline{p}, \lstinline{q}, \lstinline{f} und \lstinline{g} das Programmschema $P$ bei Eingabe von \lstinline{x} nach endlich vielen Schritten hält, und $w$ die dabei entstandenen Folge von \lstinline{f(s)} und \lstinline{g(s)} ist, welche die Ausgabe \lstinline{z} = $w \rkl{x}$ liefert.}
+\[z = w(x) \tx{ für } w = a_1 \dots a_n ~~ a_1 \rkl{a_2\rkl{\dots \rkl{a_n (x)}} \dots}\]
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (q0) {$q_0$};
+\node[state] (a1) [below left of=q0] {$a.1$};
+\node[state] (a2) [below of=a1] {$a.2$};
+\node[state] (a3) [below of=a2] {$a.3$};
+\node[state,accepting] (z1) [left of=a2] {$z.1$};
+
+\node[state] (b1) [below right of=q0] {$b.1$};
+\node[state] (b2) [below of=b1] {$b.2$};
+
+\tikzedge{q0}{a1}{\epsilon}{}{};
+\tikzedge{q0}{b1}{\epsilon}{}{};
+
+\tikzedge{a1}{a2}{f}{}{};
+\tikzedge{a1}{a3}{g}{bend left}{};
+\tikzedge{a1}{z1}{\epsilon}{}{};
+
+\tikzedge{a2}{z1}{\epsilon}{bend left}{};
+\tikzloop{a2}{f}{left}{};
+\tikzedge{a2}{a3}{g}{}{}
+
+\tikzedge{a3}{z1}{\epsilon}{}{};
+\tikzloop{a3}{g}{below}{};
+
+\tikzedge{b1}{b2}{f}{}{};
+
+\tikzloop{b2}{f}{right}{};
+\end{tikzpicture}
+\Img{GI-27.05.2009-IMG-1}
+\end{center}
+$L(M) = f^* g^*$
+
+\subsection{Software-Engineering}
+\Mark{Subsection 3.8.3}
+\Ra \ac{z.B.} Statecharts
+
+\subsection{Verklemmung von Prozessen}
+\Mark{Subsection 3.8.4}
+Eine Bibliothek hat die folgenden Ausleihbedingungen:
+\begin{itemize}
+\item Jeder Entleiher darf Bücher mit nach Hause nehmen
+\item Es gibt keine Ausleihfristen
+\item Entleiher darf mehrere Bücher ausleihen; er kann Bücher vorbestellen und erhält diese sobald verfügbar.
+\end{itemize}
+Wir betrachten zwei Studenten $A$ und $B$, denen für ihre Bachelor Arbeit Aufsätze aus zwei Sammelbänden empfohlen wurden. Die Studenten kennen sich nicht und arbeiten daheim. Da die Aufsätze nicht voraussetzungslos sind, ist es möglich, dass in jedem der Sammelbände ein Aufsatz existiert, der das Verständnis eines AUfsatzes aus dem anderen Band erfordert.\\
+Ein Student der auf einen derartigen Aufsatz stößt wird seinen Sammelband also nicht zurückgeben, ehe er den anderen Sammelband nicht erhalten und den relevanten Aufsatz gelesen hat.\\
+Wir sollen untersuchen, ob die Ausleiheordnung der Bibliothek \ac{bzw.} das Verhalten der Studierenden sinnvoll ist. Dazu entwerfen wir ein Modell, welche das Verhalten der Studenten im System beschreibt (Automat):\\
+\ggq{Zustände}:
+\begin{description}
+\item[P] der Student macht Pause (kein Buch ausgeliehen, keines vorbestellt).
+\item[10] ein Buch ausgeliehen, kein Buch vorbestellt.
+\item[01] ein Buch ausgeliehen, ein Buch vorbestellt.
+\item[20] zwei Bücher ausgeliehen, kein Buch vorbestellt.
+\end{description}
+Das Verhalten lässt sich dann durch folgenden Automaten beschreiben:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (P) {P};
+\node[state] (10) [right of=P] {10};
+\node[state] (01) [right of=10] {01};
+\node[state] (20) [right of=01] {20};
+
+\tikzedge{P}{10}{a}{}{};
+\tikzedge{10}{01}{v}{}{};
+\tikzedge{01}{20}{a}{}{};
+
+\tikzedge{10}{P}{r}{bend right}{above};
+\tikzedge{20}{10}{r}{bend left}{};
+
+\node (text) [right of=20, node distance=2.5cm] {
+\begin{minipage}{25mm}
+$a$-Ausleihen\\
+$v$-Vorbestellen\\
+$r$-Rückgabe
+\end{minipage}};
+\end{tikzpicture}
+\end{center}
+Bilde Produktautomaten zur Analyse des parallelen Prozesses:
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,semithick]
+\node[state, initial, initial text=] (PP) {PP};
+\node[state] (P10) [right of=PP] {P10};
+\node[state] (P11) [right of=P10] {P11};
+\node[state] (P20) [right of=P11] {P20};
+\node[state] (10P) [below of=PP] {10P};
+\node[state] (1010) [below of=P10] {1010};
+\node[state] (1011) [below of=P11] {1011};
+\node[state] (11P) [below of=10P] {11P};
+\node[state] (1110) [below of=1010] {1110};
+\node[state, color=blue] (1111) [below of=1011] {1111};
+\node[state] (20P) [below of=11P] {20P};
+
+\tikzedge{PP}{P10}{a.B}{}{below};
+\tikzedge{PP}{10P}{a.A}{}{};
+
+\tikzedge{P10}{P11}{r.B}{}{};
+\tikzedge{P10}{1010}{a.A}{}{};
+\tikzedge{P10}{PP}{r.B}{bend right}{};
+
+\tikzedge{P11}{P20}{a.B}{}{};
+
+\tikzedge{P20}{P10}{r.B}{bend right}{};
+
+\tikzedge{10P}{1010}{a.B}{}{};
+\tikzedge{10P}{PP}{r.A}{bend left}{};
+\tikzedge{10P}{11P}{r.A}{}{};
+
+\tikzedge{1010}{P10}{r.A}{bend left}{};
+\tikzedge{1010}{1011}{r.B}{}{};
+\tikzedge{1010}{1110}{r.A}{}{};
+\tikzedge{1010}{10P}{r.B}{bend left}{};
+
+\tikzedge{1011}{P11}{r.A}{}{};
+\tikzedge{1011}{1111}{r.A}{}{};
+
+\tikzedge{11P}{20P}{a.A}{}{};
+\path[->, dashed, color=red] (11P) edge node (invalidnode) {$a.B$} (1110);
+\draw[-,color=red] (invalidnode.north east) -- (invalidnode.south west);
+\draw[-,color=red] (invalidnode.south east) -- (invalidnode.north west);
+
+\tikzedge{1110}{1111}{v.B}{}{};
+\tikzedge{1110}{11P}{r.B}{bend left}{};
+
+\tikzedge{20P}{10P}{r.A}{bend left}{};
+\end{tikzpicture}
+\end{center}

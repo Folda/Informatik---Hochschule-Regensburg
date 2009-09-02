@@ -1,0 +1,135 @@
+\chapter{Grenzwerte differenzierbarer Funktionen}
+\Mark{Chapter 4.2}
+Die Bestimmung von Grenzwerten der Form $\lim_{x \ra x_0} \frac{f(x)}{g(x)}$ macht Probleme, wenn
+\[\lim_{x \ra x_0} f(x) = \pm \un \und \lim_{x \ra x_0} g(x) = \pm \un\]
+oder
+\[\lim_{x \ra x_0} g(x) = \lim_{x \ra x_0} f(x) = 0\]
+Man spricht in diesen Fällen von unbestimmten Ausdrücken der Form \ggq{$\frac{\un}{\un}$} \ac{bzw.} \ggq{$\frac{0}{0}$}.
+
+\begin{fsatz}[Regel von de l'Hospital]
+Die Funktionen $f$ und $g$ seien in der Umgebung $U_{\delta} (x_0)$ differenzierbar und $g'(x) \neq 0 \forall x \in U_{\delta} (x_0)$
+\begin{description}
+\item[A1] $\lim_{x \ra x_0} f(x) = \lim_{x \ra x_0} g(x) = 0$
+\item[A2] $\lim_{x \ra x_0} g(x) = \pm \un$
+\end{description}
+Falls dann der Grenzwert $G \ceq \lim_{x \ra x_0} \frac{f'(x)}{g'(x)}$ existiert, dann gilt auch $\lim_{x \ra x_0} \frac{f(x)}{g(x)} = G$
+\Mark{Satz 4.9}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{description}
+\item[Fall A1] also $\lim_{x \ra x_0} f(x) = \lim_{x \ra x_0} g(x) = 0$
+		\begin{align*}
+		\frac{f(x)}{g(x)} = \frac{f(x) - f(x_0)}{g(x) - g(x_0)} = \frac{\frac{f(x) - f(x_0)}{x - x_0}}{\frac{g(x) - g(x_0)}{x - x_0}} \ural{x \ra x_0} \frac{f'(x_0)}{g'(x_0)}
+		\end{align*}
+
+\item[Fall A2] -
+\end{description}
+\end{fbeweis}
+
+\begin{bemerkung}
+\fnewline
+\begin{enumerate}
+\item Die Regeln von l'Hospital gilt analog für
+		\[\lim_{x \ra \mathbf{\pm} \un} \frac{f(x)}{g(x)}\]
+
+\item \label{item:Grenzwerte_differenzierbarer_Funktionen_HospitalProdukte}Die Regel von l'Hospital lässt sich auch auf Produkte $f \mal g$ mit $\lim_{x \ra x_0} f(x) = 0$ und $\lim_{x \ra x_0} g(x) = \pm \un$ anwenden, indem man wie folgt umformt
+\[f \mal g = \frac{f}{\frac{1}{g}} \oder f \mal g = \frac{g}{\frac{1}{f}}\]
+
+\item Die Regel von l'Hospital lässt sich auch auf Differenzen $f - g$ mit $\lim_{x \ra x_0} f(x) = \lim_{x \ra x_0} g(x) = \pm \un$ anwenden indem man ausklammert
+\[f - g = f \rkl{1 - \frac{g}{f}} \oder f - g = g \rkl{\frac{f}{g} - 1}\]
+\begin{description}
+\item[Fall 1] $\lim_{x \ra x_0} \frac{g(x)}{f(x)} \rkl{= \lim_{x \ra x_0} \frac{f(x)}{g(x)}} \neq 1$ dann bekommt man das Resultat sofort ($\in \pm \un$)
+
+\item[Fall 2] $\lim_{x \ra x_0} \frac{g(x)}{f(x)} = 1$ dann sind $\ub{f\rkl{1 - \frac{g}{f}}}{\ra \pm \un \ra 0}$ und $\ub{g}{\ra \pm \un} \ub{\rkl{\frac{f}{g} - 1}}{\ra 0}$ Produkte wie in \vref{item:Grenzwerte_differenzierbarer_Funktionen_HospitalProdukte}.
+
+\item L'Hospital kann auch auf Ausdrücke der Form \ggq{$1^{\un}$}, \ggq{$0^{0}$}, \ggq{$\un^{0}$} angewendet werden
+		\begin{align*}
+		\lim_{x \ra x_0} f(x)^{g(x)} &= \lim_{x \ra x_0} \expx{\lnx{f(x)^{g(x)}}}\\
+		&= \lim_{x \ra x_0} \expx{g(x) \mal \lnx{f(x)}}\\
+		&= \expx{\lim_{x \ra x_0} g(x) \mal \lnx{f(x)}}
+		\end{align*}
+		\ac{d.h.} wir betrachten ein Produkt der Art \ggq{$0 \mal \un$} wie in \vref{item:Grenzwerte_differenzierbarer_Funktionen_HospitalProdukte}.
+\end{description}
+\end{enumerate}
+\end{bemerkung}
+
+\begin{beispiel}
+\fnewline
+\begin{enumerate}
+\item $n \in \N$, $\alpha > 0$
+		\begin{align*}
+		\lim_{x \ra \un} \frac{e^{\alpha x}}{x^n} &\mathoeq{\tx{\ggq{$\frac{\un}{\un}$}}}{\tx{L'H}} \lim_{x \ra \un} \frac{e^{\alpha x} \mal \alpha}{n \mal x^{n - 1}}\\
+&\mathoeq{\tx{\ggq{$\frac{\un}{\un}$}}}{\tx{L'H}} \lim_{x \ra \un} \frac{\alpha^2 e^{\alpha x}}{n \mal (n - 1) x^{n - 2}} \mathoeq[\tx{L'H}] \dots \mathoeq^{\tx{L'H}} \lim_{x \ra \un} \frac{\alpha^n \mal e^{\alpha x}}{n! \mal \ub{x^0}{=1}} = \un
+		\end{align*}
+
+\item \begin{align*}
+		\lim_{x \ra \un} \rkl{\sqrt{x + 1} - \sqrt{x}} &= \lim_{x \ra \un} \sqrt{x} \mal \ub{\rkl{\sqrt{\frac{x + 1}{x}} - 1}}{\ra 0}\\
+		&= \lim_{x \ra \un} \frac{\sqrt{\frac{x + 1}{x}} - 1}{\frac{1}{\sqrt{x}}} = \lim_{x \ra \un} \frac{\rkl{1 + \frac{1}{x}}^{\frac{1}{2}} - 1}{(x)^{- \frac{1}{2}}}\\
+		&\mathoeq_{\tx{\ggq{$\frac{\un}{\un}$}}}^{\tx{L'H}} \lim_{x \ra \un} \frac{\frac{1}{2} \rkl{1 + \frac{1}{x}}^{- \frac{1}{2}} \mal \rkl{- \frac{1}{x^2}}}{-\frac{1}{2} \mal (x)^{- \frac{3}{2}}} = \lim_{x \ra \un} \frac{\rkl{\frac{x + 1}{x}}^{- \frac{1}{2}}}{x^2 \mal x^{- \frac{3}{2}}} = \lim_{x \ra \un} \frac{x^{\frac{1}{2}}}{(x + 1)^{\frac{1}{2}} x^{\frac{1}{2}}}\\
+		&= \lim_{x \ra \un} \frac{1}{\sqrt{x + 1}} = 0
+		\end{align*}
+
+\item \begin{align*}
+		\lim_{x \ra \un} \frac{e^x - e^{-x}}{e^x + e^{-x}} \mathoeq[\tx{\ggq{$\frac{\un}{\un}$}}][\tx{L'H}] \lim_{x \ra \un} \frac{e^x + e^{-x}}{e^x - e^{-x}}\\
+		&\mathoeq[\tx{\ggq{$\frac{\un}{\un}$}}][\tx{L'H}] \lim_{x \ra \un} \frac{e^x - e^{-x}}{e^x + e^{-x}}
+		\end{align*}
+		\begin{align*}
+		&\lim_{x \ra \un} \frac{f(x)}{g(x)} = \lim_{x \ra \un} \frac{g(x)}{f(x)} \in \gklamm{1,-1}\\
+		&\tx{da } \begin{cases}e^x > 1 & \tx{für } x > 0\\e^{-x} < 1 & \tx{für } x > 0\end{cases}\\
+		&\Ra \begin{cases}e^x - e^{-x} > 0 \tx{ für } x > 0\\e^x + e^{-x} > 0 \forall x \in \R\end{cases}\\
+		\Ra \frac{e^x - e^{-x}}{e^x + e^{-x}}
+		\end{align*}
+		Ändere Methode
+		\begin{align*}
+		\lim_{x \ra \un} \frac{e^x - e^{-x}}{e^x + e^{-x}} = \lim_{e \ra \un} \frac{1 - e^{-2x}}{1 + e^{-2x}} = \frac{\lim_{x \ra un} \rkl{1 - e^{-2x}}}{\lim_{x \ra \un} \rkl{1 + e^{-2x}}}\\
+		&= \frac{1}{1} = 1
+		\end{align*}
+\end{enumerate}
+\end{beispiel}
+
+\section{Aufgabe 4.9}
+\label{sec:Grenzwerte_differenzierbarer_Funktionen_A4_9}
+Berechnen Sie die folgenden Grenzwerte mit HIlfe der Regeln von de l'Hospital:
+\begin{enumerate}[label=\alph*)]
+\item $\lim_{x \ra \un} \frac{2x^3 + 3x^2 - 7x + 3}{7x^3 + 800x + 9}$
+\item $\lim_{x \ra 3} \frac{2x^2 - 5x - 3}{x^2 + x - 12}$
+\item $\lim_{x \ra 0} \frac{\sqrt{1 + x} - 1 - \frac{x}{2}}{x^2}$
+\item $\lim_{x \searrow \un} \rkl{\frac{1}{x} - \frac{1}{e^x - 1}}$
+\end{enumerate}
+
+Lösung siehe \vref{sec:Grenzwerte_differenzierbarer_Funktionen_A4_9L}.
+
+\section{Aufgabe 4.10}
+\label{sec:Grenzwerte_differenzierbarer_Funktionen_A4_10}
+Was ist von folgender Anwendung der Regeln von de l'Hospital zu halten?
+\begin{align*}
+\lim_{x \ra \un} \frac{x^2 + \sinx}{x^2} &\mathoeq[\frac{\un}{\un}] \lim_{x \ra \un} \frac{2 \mal x + \cosx}{2 \mal x}\\
+&\mathoeq[\frac{\un}{\un}] \lim_{x \ra \un} \frac{2 - \sinx}{2}
+\end{align*}
+
+Lösung siehe \vref{sec:Grenzwerte_differenzierbarer_Funktionen_A4_10L}.
+
+\section{Lösungen}
+\subsection{Aufgabe 4.9}
+\label{sec:Grenzwerte_differenzierbarer_Funktionen_A4_9L}
+Lösung zu Aufgabe \vref{sec:Grenzwerte_differenzierbarer_Funktionen_A4_9}.
+\begin{enumerate}[label=\alph*)]
+\item \[\lim_{x \ra 3} \frac{2x^2 - 5x - 3}{x^2 + x - 12} \mathoeq[\frac{\un}{\un}][\tx{L'H}] \frac{4x - 5}{2x + 1} = \frac{7}{7} = 1\]
+\item \begin{align*}
+		\lim_{x \ra 0} \frac{\sqrt{1 + x} - 1 - \frac{x}{2}}{x^2} &\mathoeq[\frac{\un}{\un}][\tx{L'H}] \lim_{x \ra 0} \frac{\frac{1}{2} (1 + x)^{- \frac{1}{2}} - \frac{1}{2}}{2x}\\
+		&=\lim_{x \ra 0} \frac{(1 + x)^{- \frac{1}{2}} - 1}{4x} \mathoeq[\frac{\un}{\un}][\tx{L'H}] \lim_{x \ra 0} \frac{- \frac{1}{2} \mal (1 + x)^{- \frac{3}{2}}}{4} = - \frac{1}{8}
+		\end{align*}
+
+\item \begin{align*}
+		\lim_{x \searrow 0} \rkl{\frac{1}{2} - \frac{1}{e^x - 1}} &= \lim_{x \searrow 0} \ub{\frac{1}{x}}{\ra \un} \ub{\rkl{1 - \frac{x}{e^x - 1}}}{\ra 0?}\\
+		&= \lim_{x \searrow 0} \frac{1 - \frac{x}{e^x - 1}}{\rkl{\frac{1}{x}}^{-1}} = \lim_{x \searrow 0} \frac{1 - \frac{x}{e^x - 1}}{x} = \lim_{x \searrow 0} \frac{\frac{e^x - 1 - x}{e^x - 1}}{x}\\
+		&= \lim_{x \searrow 0} \frac{e^x - 1 - x}{x \rkl{e^x - 1}} \mathoeq[\frac{0}{0}][\tx{L'H}] \lim_{x \searrow 0} \frac{e^x - 1}{\rkl{e^x - 1} + x \mal e^x}\\
+		&\mathoeq[\frac{\un}{\un}][\tx{L'H}] \lim_{x \searrow 0} \frac{e^x}{e^x + e^x + x \mal e^x} = \frac{\lim_{x \searrow 0} e^x}{\lim_{x \searrow 0} \rkl{e^x + e^x + x \mal e^x}} = \frac{1}{2}
+		\end{align*}
+\end{enumerate}
+
+\subsection{Aufgabe 4.10}
+\label{sec:Grenzwerte_differenzierbarer_Funktionen_A4_10L}
+Lösung zu Aufgabe \vref{sec:Grenzwerte_differenzierbarer_Funktionen_A4_10}.

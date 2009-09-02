@@ -1,0 +1,22 @@
+#render with dot
+digraph eingraph {
+graph [overlap=false,start=3,rankdir=LR,order=out];
+edge [len=2];
+start [shape=plaintext, label="", width=0]; 
+A [shape=doublecircle];
+B [shape=doublecircle];
+C [shape=doublecircle];
+D [shape=doublecircle];
+DS [shape=circle];
+
+start -> A [len=1, label=start,weight=9];
+A -> B [label=1,weight=9];
+B -> C [label=0,weight=9];
+C -> D [label=1,weight=9];
+D -> DS [label=0,weight=9];
+
+A -> A [label=0];
+B -> B [label=1];
+C -> A [label=0];
+D -> A [label=1];
+}

@@ -1,0 +1,253 @@
+\chapter{Eigenschaften von elementaren Funktionen}
+\Mark{Chapter 4.3}
+\begin{fsatz}[Ableitung einer Potenzreihe]
+Sei $f(x) = \sum_{n = 0}^{\un} a_n (x - x_0)^n$ eine Potenzreihe mit Entwicklungspunkt $x_0$ und Konvergenzradius $r$. Dann ist $f$ in $(x_0 - r, x_0 + r)$ stetig und beliebig oft differenzierbar.\\
+Die Ableitung erhält man durch gliedweise Differentiation
+\begin{align*}
+f'(x) &= \frac{d}{dx} \rkl{\sum_{n = 0}^{\un} a_n \mal \rkl{x - x_0}^n} = \sum_{n = 0}^{\un} a_n \mal \frac{d}{dx} \rkl{x - x_0}^n\\
+&= \sum_{n = 1}^{\un} a_n \mal n \rkl{x - x_0}^{n - 1} = a_1 + + 2a_2 \rkl{x - x_0} + 3 a_3 \rkl{x - x_0}^2 + 4 \mal a_4 \rkl{x - x_0}^3 + \dots\\
+f''(x) &= \frac{d}{dx} f'(x) = \frac{d}{dx} \sum_{n = 1}^{\un} n \mal a_n \mal \rkl{x - x_0}^{n - 1}\\
+&= \sum_{n = 1}^{\un} n \mal a_n \mal \frac{d}{dx} \rkl{x - x_0}^{n - 1} = \sum_{n = 2}^{\un} n \mal (n - 1) \mal a_n \mal \rkl{x - x_0}^{n - 2}\\
+&\vdots\\
+f^{(k)} (x) &= \frac{d}{dx} f^{k - 1} (x) = \sum_{n = k}^{\un} n \mal (n - 1) \mal \dots \mal (n - k + 1) \mal a_n \mal \rkl{x - x_0}^{n - k}\\
+&= \sum_{n = k}^{\un} \frac{n!}{(n - k)!} \mal a_n \mal \rkl{x - x_0}^{n - k}
+\end{align*}
+Der Konvergenzradius von $f', f'', f''',$ ist gleich $r$.
+\Mark{Satz 4.10}
+\end{fsatz}
+
+\begin{fbeweis}[nur Konvergenzradius]
+Konvergenzradius von $f$ ist $r$, damit gilt:
+\begin{align*}
+&\lim_{n \ra \un} \sqrt[n]{\betrag{a_n}} = \frac{1}{r}\\
+\Ra& \lim_{n \ra \un} \sqrt[n]{\betrag{a_n \mal n}} = \lim_{n \ra \un} \sqrt[n]{\betrag{a_n}} \mal \sqrt[n]{n}\\
+&=\lim_{n \ra \un} \sqrt[n]{\betrag{a_n}} \mal \lim_{n \ra \un} \sqrt[n]{n} = \frac{1}{r} \mal 1 = \frac{1}{r}
+\end{align*}
+\Ra Konvergenzradius von $f'$ ist $r$.\\
+Für $f^{(k)}$ iterativ
+\end{fbeweis}
+
+\begin{fsatz}[Ableitung der $e$-Funktion]
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item $\rkl{e^x}' = \frac{d}{dx} e^x = e^x$
+\item Die $e$-Funktion ist auf ganz $\R$ streng monoton wachsend
+\end{enumerate}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item bereits über \ac{Def.} der Ableitung gezeigt\\
+		nun über Satz 4.10 \Todo{ref zu Satz 4.10}
+		\begin{align*}
+		\frac{d}{dx} e^x &= \frac{d}{dx} \sum_{n = 0}^{\un} \frac{x^n}{n!} = \sum_{n = 0}^{\un} \frac{1}{n!} \mal \rac{d}{dx} \rkl{x^n} = \sum_{n = 1}^{\un} \frac{1}{n!} \mal n \mal x^{n - 1}\\
+		&= \sum_{n = 1}^{\un} \frac{1}{(n - 1)} \mal x^{n - 1} \ubl[16.5mm]{=}{$k = n - 1$\\$\Lra n = k + 1$} \sum_{n = 0}^{\un} \frac{x^k}{k!} = e^x
+		\end{align*}
+
+\item nach Satz 2.20 \Todo{ref zu Satz 2.20} gilt $\forall x \in \R:~ e^x > 0$\\
+		$\rkl{e^x}' = e^x > 0 \Ra $ (mit Folgerung aus Mittelwertsatz) $e^x$ ist streng monoton wachsend. \qed
+\end{enumerate}
+\end{fbeweis}
+
+\section{Aufgabe 4.8}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_8}
+Die Funktion $f$ sei differenzierbar in $(0, 2)$ und es sei $f(0) = -3$ sowie $f'(x) \klgl 5$ für alle $x \in (0,2)$. Bestimmen Sie den größtmöglichen Wert für $f(2)$.
+
+Lösung siehe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_8L}.
+
+\section{Aufgabe 4.11}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_11}
+Sei $\betrag{x} < 1$. Leiten Sie die geometrische Reihe $\sum_{n = 0}^{\un} x^n = \frac{1}{1 - x}$ ab.\\
+Folgen Sie daraus eine Potenzreihendarstellung für $\frac{1}{(2 - y)^2}$
+
+Lösung siehe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_11L}.
+
+\begin{fdefinition}[Natürlicher Logarithmus]
+Die Umkehrfunktion der Exponentialfunktion
+\begin{align*}
+\lnx{x}: \rkl{0, \un} &\ra \R\\
+x &\mapsto \lnx{x}
+\end{align*}
+heißt natürlicher Logarithmus
+\Insert{MA2-14.05.2009-IMG-1}
+\Mark{Definition 4.12}
+\end{fdefinition}
+
+\begin{fsatz}[Eigenschaften des \ac{natürl.} Logarithmus]
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item Die Logarithmusfunktion ist stetig
+\item $\lnx{x \mal y} = \lnx + \lnx[y]$ Funktionalgleichung des Logarithmus
+		\[\lnx[\frac{1}{x}] = -\lnx\]
+
+\item $\lnx[1] = 0$, $\lnx[e] = 1$
+\item $\lim_{x \ra \un} \lnx = \un$, $\lim_{x \searrow 0} \lnx = - \un$
+		\[\forall \alpha > 0:~\lim_{x \ra \un} \frac{\lnx}{x^{\alpha}} = 0\]
+
+\item $\rkl{\lnx}' = \frac{d}{dx} \lnx = \frac{1}{x} > 0$\\
+		\Ra $\lnx$ streng monoton wachsend
+\end{enumerate}
+\Mark{Satz 4.13}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item Folgt aus Satz von Umkehrfunktion \vref{satz:Differenzierbarkeit_S4_5}
+\item $\eta \ceq \lnx \Ra x = e^{\eta}$\\
+		$\xi \ceq \lnx[y] \Ra y = e^{\xi}$
+		\[\lnx[x \mal y] = \lnx[e^{\eta} \mal e^{\xi}] \obl[15mm]{=}{Funktionalgleichung der $e$-Funktion} \lnx{e^{\eta + \xi}} = \eta + \xi = \lnx + \lnx[y]\]
+		\[\lnx[\frac{1}{x}] = \lnx[\frac{1}{e^{\eta}}] = \lnx[e^{- \eta}] = - \eta = - \lnx\]
+
+\item $\lnx[1] = \lnx[e^0] = 0$, $\lnx[e] = \lnx[e^1] = 1$
+\item $\forall x > e^k \Ra \lnx > k$ ($k > 0$ beliebig)\\
+		\ac{d.h.} jede beliebig große Schranke $k$ wird irgendwann überschritten und nie mehr unterschritten\\
+		\Ra $\lim_{x \ra \un} \lnx = \un$
+		\begin{itemize}
+		\item $\lim_{x \searrow 0} \lnx = \lim_{y \ra \un} \rkl{\frac{1}{y}} = - \lim_{y \ra \un} \lnx[y] = - \un$
+		\item für $\rkl{x_n}_{n \in \N}$ mit $x_n > 0$ und $\lim_{n \ra \un} x_n = \un$\\
+				$y_n \ceq \alpha \mal \lnx[x_n]$ gilt $\lim_{n \ra \un} y_n = \un$\\
+				\[\lim_{n \ra \un} \frac{\lnx[x_n]}{x_n^{\alpha}} = \lim_{x \ra \un} \frac{y_n}{\alpha} \mal \rkl{e^{y_n}}^{-1} = \frac{1}{\alpha} \mal \lim_{n \ra \un} \frac{y_n}{e^{y_n}} \stack{*}{=} =\]
+				* da $e^x$ schneller wächst als jede Potenz von $x$ (insbesondere schneller als $x^1 = x$)
+		\end{itemize}
+
+\item Verwenden den Satz von Umkehrfunktion\\
+		$f(x) = e^x$, $f'(x) = e^x$, $f^{-1} (y) = \lnx[y]$\\
+		\[\frac{d}{dy} \lnx[y] = \frac{d}{dy} f^{-1} (y) = \frac{1}{f'\rkl{f^{-1} (y)}} = \frac{1}{e^{\lnx[y]}} = \frac{1}{y}\]
+		da $y \in (0, \un)$ \Ra $\frac{d}{dy} \lnx[y] > 0$\\
+		\Ra (aus Folgerung aus Mittelwertsatz) der Logarithmus ist streng monoton wachsend
+\end{enumerate} \qed
+\end{fbeweis}
+
+\begin{fsatz}[Ableitung der trigonometrischen Funktionen]
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item $\cos '(x) = \frac{d}{dx} \cosx = -\sinx$
+\item $\sin '(x) = \frac{d}{dx} \sinx = \cosx$
+\item $\tan '(x) = \frac{d}{dx} \tanx = \frac{1}{\cos^2(x)} = 1 + \tan^2 (x)$
+\end{enumerate}
+\Insert{MA2-14.05.2009-IMG-2}
+\Mark{Satz 4.14}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{enumerate}[label=\roman*)]
+\item \begin{align*}
+		\frac{d}{dx} \cosx &= \frac{d}{dx} \sum_{n = 0}^{\un} \rkl{-1}^n \mal \frac{x^{2n}}{(2n)!} = \sum_{n = 0}^{\un} \frac{(-1)^n}{(2n)!} \rkl{\frac{d}{dx} x^{2n}}\\
+		&= \sum_{n = 1}^{\un} \frac{(-1)^n}{(2n)!} \mal (2n) \mal x^{2n - 1} = \sum_{n = 1}^{\un} (-1)^n \mal \frac{1}{(2n - 1)!} \mal x^{2n - 1}\\
+		&\ubl[10mm]{=}{$k = n - 1$\\$\Lra n = k + 1$} \sum_{k = 0}^{\un} (-1)^{k + 1} \mal \frac{1}{(2k + 1)!} \mal x^{2k + 1} = - \sum_{k = 0}^{\un} (-1)^k \mal \frac{x^{2k + 1}}{(2k + 1)!} = -\sinx
+		\end{align*}
+
+\item analog zu i)
+\end{enumerate}
+\end{fbeweis}
+
+\section{Aufgabe 4.12}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_12}
+Zeigen Sie unter Verwendung von $\frac{d}{dx} \cosx = - \sinx$ und $\frac{d}{dx} \sinx = \cosx$, dass gilt:
+\begin{enumerate}[label=\alph*)]
+\item $\frac{d}{dx} \tanx = \frac{1}{\cos^2(x)} = 1 + \tan^2 (x)$
+\item $\sin^2 (x) + \cos^2 (x) = 1$
+\end{enumerate}
+
+Lösung siehe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_12L}.
+
+\begin{fsatz}[Ableitung der Umkehrfunktion der trigonometrischen Funktionen]
+\label{satz:Eigenschaften_von_elementaren_Funktionen_S4_16}
+\fnewline
+%\begin{itemize}[label=\roman*)]
+%\item für $y \in \rkl{-1, 1}:~\frac{d}{dy} \arcsin (y) = \frac{1}{\sqrt{1 - y^2}}$
+%\item für $y \in \rkl{-1, 1}:~\frac{d}{dy} \arccosx[y] = \frac{-1}{\sqrt{1 - y^2}}$
+%\item für $y \in \R:~ \frac{d}{dy} \arctan (y) = \frac{1}{1 + y^2}$
+%\end{itemize}
+\Todo{Fix This}
+\Mark{Satz 4.16}
+\end{fsatz}
+
+\begin{fbeweis}
+\fnewline
+\begin{itemize}[label=\roman*)]
+\item $f(x) = \sinx$ $f'(x) = \cosx$ $f^{-1} (y) = \arcsin(y)$
+		\begin{align*}
+		\frac{d}{dy} f^{-1} (y) &= \frac{1}{f'\rkl{f^{-1} (y)}} = \frac{1}{\cosx[\arcsin(y)]}\\
+		&\arcsin (y) \in \rkl{- \frac{\pi}{2}, \frac{\pi}{2}} \tx{ und } \cosx \grgl 0 \tx{ für } x \in \rkl{-\frac{\pi}{2}, \frac{\pi}{2}} \Ra\\
+		&= \frac{1}{\sqrt{\cos^2 \rkl{\arcsin(y)}}} = \frac{1}{\sqrt{1 - \sin^2 \rkl{\arcsin(y)}}} = \frac{1}{\sqrt{1 - y^2}}
+		\end{align*}
+
+\item analog zu i)
+\item $\frac{d}{dy} \arctan (y)$ ($\frac{d}{dx} \tanx = 1 + \tan^2(x)$)
+		\[= \frac{1}{1 + \tan^2 \rkl{\arctan (y)} = \frac{1}{1 + y^2}\] \qed
+\end{itemize}
+\end{fbeweis}
+
+\begin{bemerkung}[zu Satz \vref{satz:Eigenschaften_von_elementaren_Funktionen_S4_16}]
+\[\lim_{y \ra \un} \arctan (y) = \frac{\pi}{2}, \lim_{y \ra -\un} \arctan (y) = - \frac{\pi}{2}\]
+\end{bemerkung}
+
+\begin{fbeweis}
+Wir wissen $\lim_{x \ra \frac{\pi}{2}} \tanx = \un$, $\lim_{x \ra -\frac{\pi}{2} \tanx = -\un$
+\Insert{MA2-19.05.2009-IMG-1}
+\begin{align*}
+&\lim_{y \ra \un} \arctan (y) = \lim_{x \ra \frac{\pi}{2}} \arctan \rkl{\tanx} = \lim_{x \ra \frac{\pi}{2}} x = \frac{\pi}{2}\\
+&\lim_{y \ra -\un} \arctan (y) = \lim{x \ra \frac{\pi}{2}} \arctan \rkl{\tanx} = \lim_{x \ra \frac{\pi}{2}} x = - \frac{\pi}{2}
+\end{align*}
+\end{fbeweis}
+
+\begin{table}[t]
+\centering
+\begin{tabular}{l|l}
+$f$ & $f'$\\
+$\sinx$ & $\cosx$\\
+$\cosx$ & $-\sinx$\\
+$\tanx$ & $\frac{1}{\cos^2 (x)} = 1 + \tan^2 (x)$\\
+$\arcsin(x)$ & $\frac{1}{\sqrt{1 - x^2}}$\\
+$\arccos(x)$ & $\frac{1}{\sqrt{1 - x^2}}$\\
+$\arctan(x)$ & $\frac{1}{1 + x^2}$\\
+$e^x$ & $e^x$\\
+$\ln (x)$ & $\frac{1}{x}$
+\end{tabular}
+\end{table}
+
+\section{Lösungen}
+\subsection{Aufgabe 4.8}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_8L}
+Lösung zu Aufgabe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_8}.
+\Insert{MA2-13.05.2009-IMG-1}
+die Gerade $g$ liegt für $x \in \eklamm{0, 2}$ stets über der Funktion $f$ (\ac{bzw.} $f(x) \klgl g(x)$)\\
+\Ra $f(2) \klgl g(2) = 5 \mal 2 - 3 = 7$
+
+\subsection{Aufgabe 4.11}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_11L}
+Lösung zu Aufgabe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_11}.
+$\sum_{n = 1}^{\un} n \mal x^n \mal 1 = \frac{1}{(1 - x)^2}$\\
+$\sum_{n = 1}^{\un} n \mal x^{n - 1} = \frac{0 \mal (1 - x) - 1 \mal (-1)}{(1 - x)^2} = \frac{1}{(1 - x)^2}$\\
+Potenzreihendarstellung für $\frac{1}{(2 - y)^2}$
+\begin{align*}
+&\frac{1}{(1 - x)^2} \stack{!}{=} \frac{1}{(2 - y)^2}\\
+\Lra& (2 - y)^2 \stack{!}{=} (1 - x)^2\\
+\Lra& 2 - y = 1 - x \oder 2 - y = x - 1\\
+\Lra& x = y - 1 \oder 3 - y = x\\
+\Ra& \frac{1}{(2 - y)^2} = \sum_{n = 1}^{\un} n \mal (y - 1)^{n - 1} = \sum_{n = 1}^{\un} n \mal (3 - y)^{n -1}
+\end{align*}
+
+\subsection{Aufgabe 4.12}
+\label{sec:Eigenschaften_von_elementaren_Funktionen_A4_12L}
+Lösung zu Aufgabe \vref{sec:Eigenschaften_von_elementaren_Funktionen_A4_12}.
+\begin{enumerate}[label=\alph*)]
+\item \begin{align*}
+		\frac{d}{dx} \tanx &= \frac{d}{dx} \frac{\sinx}{\cosx} = \frac{\cosx \mal \cosx - \sinx \mal (- \sinx)}{\cos^2(x)} = \frac{1}{\cos^2(x)}\\
+		&=\frac{\cos^2(x)}{\cos^2(x)} + \frac{\sin^2(x)}{\cos^2(x)} = 1 + \rkl{\frac{\sinx}{\cosx}}^2 = 1 + \rkl{\tanx}^2
+		\end{align*}
+
+\item \ac{z.z.} $\ub{\sin^2(x) + \cos^2(x)}{=f(x)} = 1$
+		\begin{align*}
+		&\tx{\ac{z.z.} } f(x) = \tx{const. und const. } = 1\\
+		\Lra& f'(x) = 0, f(x_0) = 1\\
+		f'(x) = 2 \mal \sinx \mal \cosx + 2 \mal \cosx \mal (-\sinx) = 0
+		\end{align*}
+		\Todo{Nachtragen vom 14.05.2009}
+\end{enumerate}
+
+\Insert{MA2-14.05.2009-BL1}
