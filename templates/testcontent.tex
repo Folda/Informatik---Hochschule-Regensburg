@@ -1,0 +1,144 @@
+\part{Grundlagen}
+\chapter{Mengen}
+Die folgende Definition einer Menge, als Grundlage der \enquote{naiven Mengenlehre} stammt von Georg Cantor:
+\begin{definition}
+Eine Menge $M$ ist eine beliebige Zusammenfassung von bestimmten wohlunterschiedenen Objekten unserer Anschauung oder unseres Denkens zu einem Ganzen.
+\end{definition}
+
+\begin{bemerkung}
+Die in einer Menge $M$ zusammengefassten Objekte nennt man die \emph{Elemente} der Menge. Es muss eindeutig feststellbar sein, ob ein Element zu der Menge gehört oder nicht. Eine Menge kann \emph{endlich} oder \emph{unendlich} sein, wobei eine exakte Definition von unendlich nicht ganz einfach ist.
+\end{bemerkung}
+
+Eine Menge kann man auf verschiedenen Arten beschreiben:
+\begin{enumerate}
+\item Bei einer endlichen Menge kann man alle Elemente angeben. $M \ceq \gklamm{a_1, a_2, \dots, a_n}$. Die Reihenfolge der Aufzählung spielt keine Rolle und jedes Element wird einmal genannt. Bei der Verwendung von \enquote{\dots} sollte man wissen, was sich dahinter verbirgt.
+\item Eine Menge kann durch die ANgaben einer Eigenschaft definiert werden, die alle ihre Elemente haben. $M \ceq \gk{x \vert x \tx{ hat die Eigenschaft } E}$ oder auch $M \ceq \gk{x : x \tx{ hat } E}$.
+\end{enumerate}
+
+Hierbei wurde das Zeichen \enq{$\ceq$} als Abkürzung für \enq{ist definiert durch} verwendet, um es vom Gleichheitszeichen \enq{$=$} zu unterscheiden. Wenn die Bedeutung aus dem Zusammenhang klar ist, wird manchmal das \enq{$:$} weggelassen. Solche \enq{Schlampereien} sind in der Mathematik möglich, beim PRogrammieren sollte man dies vermeiden.
+
+Ist $A$ eine Menge und $a$ ein Element der Menge $A$, so schreibt man $a \in A$. Gehört $a$ nicht zu der Menge $A$, so wird dies mit $a \notin A$ bezeichnet. Die Menge $B$ heißt \emph{Teilmenge} von $A$, in Zeichen $B \subset A$, wenn jedes Element von $B$ auch Element von $A$ ist. $A$ heißt in diesem Fall auch \emph{Obermenge} von $B$. Zwei Mengen $A$ und $B$ sind gleich, wenn sie die selben Elemente enthalten. Dies ist gleichbedeutend mit $A \subset B$ \emph{und} $B \subset A$. Hierbei ist folgendes zu beachten: Es wird kein expliziter Unterschied zwischen \enq{$\subset$} und \enq{$\subseteq$} gemacht. Dies ist in den meisten Fällen nicht nötig.
+
+Eine Menge, die kein Element enthält heißt \emph{leere Menge} und wird mit $\emptyset$ oder $\{\}$ bezeichnet. Da die leere Menge kein Element enthält, besitzt sie alle Eigenschaften, die man sich wünschen kann. Aus diesem Grund ist es wichtig sich davon zu überzeugen, dass die Mengen, mit denen man vernünftige Dinge machen möchte, von der leeren Menge verschieden sind.
+
+Mit Hilfe von \enq{Venn-Diagrammen} (Darstellung von Mengen durch Blasen) kann man die Beziehungen zwischen Mengen und die unten definierten Mengenoperationen anschaulich darstellen.
+
+\begin{definition}
+Es seien $A$ und $B$ beliebige Mengen. Damit sind die folgenden Mengenoperationen definiert:
+\begin{enumerate}
+\item Der \emph{Durchschnitt} von $A$ und $B$ enthält alle Elemente, die sowohl zur Menge $A$ als auch zur Menge $B$ gehören: $A \cap B \ceq \gk{x : x \in A \tx{ und } x \in B}$.
+\item Die \emph{Vereinigung} von $A$ und $B$ umfasst alle Elemente, die zu $A$ oder zu $B$ gehören. Dabei ist \enq{oder} nicht exsklusiv: $A \cup B \ceq \gk{x : x \in A \tx{ oder } x \in B}$.
+\item Die \emph{Differenz} von $A$ und $B$ enthält dijenigen Elemente von $A$, die nicht zur Menge $B$ gehren: $A \backslash B \ceq \gk{x : x \in A \tx{ und } x \notin B}$. Im Allgemeinen ist $A \backslash B \neq B \backslash A$.
+\item Das \emph{Komplement} der Menge $A$ bezüglich einer Obermenge $X$ besteht aus allen Elementen von $X$, die nicht zu $A$ gehören: $\bar{A} \ceq \gk{ x \in X : x \notin A} = X \backslash A$. Für $\bar{A}$ wird auch die Bezeichnung $A^{\mathcal{C}}$ verwendet.
+\item Die \emph{symmetrische Differenz} von $A$ und $B$ besteht aus den Elementen, die zu genau einer der beiden Mengen $A$ und $B$ gehören: $A \bigtriangleup B = \rk{A \cup B} \backslash \rk{A \cap B}$.
+\item Die \emph{Produktmenge} von $A$ und $B$ ist die Menge aller (geordneten) Paare von Elementen von $A$ und $B$: $A \times B \ceq \gk{\rk{a, b} : a \in A, b \in B}$.
+\end{enumerate}
+\end{definition}
+
+Ist $M$ eine Menge und sind $A, B, C \subset M$ Teilmengen von $M$, so gelten die Rechenregeln in der Tabelle~\vref{tab:Rechenregeln_fuer_Operationen_cap-cup-bar} für die Operationen $\cap$, $\cup$ und $\bar{M}$.
+\begin{table}[htb]
+\centering
+\begin{tabular}{cc}
+\toprule
+\multicolumn{2}{c}{\emph{Assoziativgesetze}}\\
+$\rk{A \cap B} \cap C = A \cap \rk{B \cap C}$ & $\rk{A \cup B} \cup C = A \cup \rk{B \cup C}$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Kommutativgesetze}}\\
+$A \cap B = B \cap A$ & $A \cup B = B \cup A$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Distributivgesetze}}\\
+$A \cap \rk{B \cup C} = \rk{A \cap B} \cup \rk{A \cap C}$ & $A \cup \rk{B \cap C} = \rk{A \cup B} \cap \rk{A \cup C}$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Idempotenzgesetze}}\\
+$A \cap A = A$ & $A \cup A = A$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Absorptionsgesetze}}\\
+$A \cap \rk{B \cup A} = A$ & $A \cup \rk{B \cap A} = A$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Null und Eins}}\\
+$A \cap \emptyset = \emptyset$ & $A \cup \emptyset = A$\\
+$A \cap M = A$ & $A \cup M = M$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Komplementgesetze}}\\
+$A \cap \bar{A} = \emptyset$ & $A \cup \bar{A} = M$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Gesetze von de Morgan}}\\
+$\overline{A \cap B} = \bar{A} \cup \bar{B}$ & $\overline{A \cup B} = \bar{A} \cap \bar{B}$\\
+\bottomrule
+\end{tabular}
+\label{tab:Rechenregeln_fuer_Operationen_cap-cup-bar}
+\caption{Rechenregeln für Operationen $\cap$, $\cup$ und $\bar{M}$}
+\end{table}
+
+\begin{bemerkung}~
+\begin{enumerate}
+\item Zwei Mengen $A$ und $B$ heißen \emph{disjunkt}, falls $A \cap B = \emptyset$ gilt.
+\item Für den Durchschnitt der $n$ Mengen $A_1, \dots, A_n$ schreibt man \[A_1 \cap A_2 \cap \dots \cap A_n = \bigcap_{i = 1}^{n} A_i\]
+\item Für die Vereinigung der $n$ Mengen $A_1, \dots, A_n$ schreibt man \[A_1 \cup A_2 \cup \dots \cup A_n = \bigcup_{i = 1}^{n} A_i\]
+\item Sind die Mengen $A_1, \dots, A_n$ alle Teilmengen von $M$, so gelten die verallgemeinerten Gesetze von de Morgan:
+	\[\overline{\bigcup_{i = 1}^{n} A_1} = \bigcap_{i = 1}^{n} \bar{A_i}
+	\tx{ und }
+	\overline{\bigcap_{i = 1}^{n} A_1} = \bigcup_{i = 1}^{n} \bar{A_i}\]
+
+\item Ist $M$ eine Menge, so heißt die Menge aller Teilmengen von $M$ auch die \emph{Potenzmenge} $\mathcal{P}(M)$ von $M$. Hat $M$ genau $n$ Elemente, so umfaßt $\mathcal{P}(M)$ $2^n$ Mengen. Ist \ac{z.B.} $M = \gk{a, b}$, so ist $\mathcal{P}(M) = \gk{\emptyset, \gk{a}, \gk{b}, \gk{a, b}}$.
+\end{enumerate}
+\end{bemerkung}
+
+\chapter{Logik}
+Die mathematischen Inhalte werden durch \emph{Aussagen} ausgedrückt. Eine \emph{Aussage} ist ein Satz, von dem eindeutig festgestellt werden kann, ob er richtig (r) oder falsch (f) ist. Aus verschiedenen Aussagen werden die \emph{Definitionen}, \emph{Sätze} und \emph{Beweise} zusammengesetzt.
+\begin{itemize}
+\item In einer \emph{Definition} wird ein neuer Begriff oder eine Bezeichnung eingeführt. Dieser neue Begriff kann nur durch Beziehungen zu schon vorhandenen Begriffen erklärt werden. Dabei stößt man irgendwann auf Grundbegriffe, die sich nicht definieren lassen. Diese Grundbegriffe können axiomatisch festgelegt werden. Von einem Axiomensystem fordert man die \emph{Widerspruchsfreiheit} und die \emph{Unabhängigkeit}. Dies kann in vielen Fällen nicht nachgewiesen werden. Die Existenz gewisser mathematischer Objekte ist in gewissem Sinne eine Glaubensfrage.
+\item \emph{Satz (Theorem)}: Aussage und Behauptung über Eigenschaften von matheamtischen Objekten und die Beziehungen zwischen Objekten, die mittels logischer Schlüsse zu beweisen ist.
+\item \emph{Beweis}: Nachweis eines Satzes mit Mitteln der Logik. In einigen modernen Gebieten der Matheamtik sind die Beweise so umfangreich und komplex, dass es zum Teil nicht möglich ist, deren Korrektheit zu überprüfen.
+\end{itemize}
+
+\begin{beispiel}
+Folgende Sätze sind Beispiele von Aussagen aber auch von sprachlichen Gebilden, die keine Aussage im mathematischen Sinn darstellen:
+\begin{enumerate}
+\item 5 ist kleiner als 3.
+\item Paris ist die Hauptstadt von Frankreich.
+\item Das Studium der Informatik ist schwer.
+\item Nachts ist es kälter als draußen.
+\item Jede gerade Zahl größer als 2 ist die Summe von zwei Primzahlen.
+\end{enumerate}
+\end{beispiel}
+
+Im Folgenden werden Verknüpfungen von Aussagen mittels der Logik untersucht. Dabei spielt die jeweilige Bedeutung der AUssagen keine Rolle. Anstelle einer formal exakten Behandlung wird hier ein \enq{naiver} Zugang gewählt, der nur einen \enq{gesunden Menschenverstand} und einige Sorgfalt erfordert. Im Folgenden werden die Aussagen mit $A$, $B$, \dots bezeichnet. Diese Zeichen sind \emph{Aussagevariablen}, die die Werte richtig oder falsch annehmen können.
+
+Zur Definition der Verknüpfungen von Aussagen stellt man eine \emph{Wahrheitstabelle} auf. In dieser Tabelle werden zu allen möglichen Kombinationen der Wahrheitswerte $r$ und $f$ der einzelnen Aussagen die resultierenden Wahrheitswerte der zusammengesetzen Aussagen eingetragen. Die wichtigsten Verknüpfungen von Aussagen sind:
+\begin{enumerate}
+\item Die \emph{Negation} oder Verneinung der Aussagen $A$ ist die Aussage \enq{nicht $A$}, in Zeichen $\neg A$. Die Negation ist definiert durch Tabelle~\vref{tab:Logiktabelle_zu_Negation-Verneinung}.
+	\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|c}
+	$A$ & $\neg A$\\
+	\hline
+	$r$ & $f$\\
+	$f$ & $r$
+	\end{tabular}
+	\label{tab:Logiktabelle_zu_Negation-Verneinung}
+	\caption{Logiktabelle zur Negation oder Verneinung}
+	\end{table}
+
+\item Die \emph{Konjunktion} der Aussagen $A$ und $B$ ist die Aussage \enq{$A$ und $B$}, in Zeichen $A \und B$. Sie ist genau dann richtig, wenn sowohl $A$ als auch $B$ richtig sind. Die Konjunktion ist definiert durch Tabelle~\vref{tab:Logiktabelle_zu_Konjunktion}.
+	\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|c|c}
+	$A$ & $\neg A$ & $A \und B$\\
+	\hline
+	$r$ & $r$ & $r$\\
+	$r$ & $f$ & $f$\\
+	$f$ & $r$ & $f$\\
+	$f$ & $f$ & $f$\\
+	\end{tabular}
+	\label{tab:Logiktabelle_zu_Konjunktion}
+	\caption{Logiktabelle zur Konjunktion zweier Aussagen}
+	\end{table}
+\end{enumerate}

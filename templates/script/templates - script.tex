@@ -1,10 +1,23 @@
-\documentclass[draft]{scrbook}
-\input{includes/packages.tex}
-\input{includes/scripts.tex}
+\documentclass[
+%draft,
+oneside,parskip=half]{scrbook}
+
 \input{includes/metadata.tex}
+\input{includes/packages.tex}
+\input{includes/setup.tex}
+\input{includes/scripts.tex}
 
 \begin{document}
 \input{includes/acronyms.tex}
+\frontmatter
 \maketitle
+\clearpage
+\tableofcontents
+\newpage
+\mainmatter
 
+\input{../testcontent.tex}
+
+\backmatter
+\listoftables
 \end{document}
