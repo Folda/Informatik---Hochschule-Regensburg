@@ -1,21 +1,21 @@
 \part{Grundlagen}
 \chapter{Mengen}
-Die folgende Definition einer Menge, als Grundlage der \enquote{naiven Mengenlehre} stammt von Georg Cantor:
+Die folgende Definition einer Menge, als Grundlage der \enq{naiven Mengenlehre} stammt von Georg Cantor:
 \begin{definition}
-Eine Menge $M$ ist eine beliebige Zusammenfassung von bestimmten wohlunterschiedenen Objekten unserer Anschauung oder unseres Denkens zu einem Ganzen.
+Eine Menge $M$ ist eine beliebige Zusammenfassung von bestimmten wohl-unterschiedenen Objekten unserer Anschauung oder unseres Denkens zu einem Ganzen.
 \end{definition}
 
-\begin{bemerkung}
+\begin{note}
 Die in einer Menge $M$ zusammengefassten Objekte nennt man die \emph{Elemente} der Menge. Es muss eindeutig feststellbar sein, ob ein Element zu der Menge gehört oder nicht. Eine Menge kann \emph{endlich} oder \emph{unendlich} sein, wobei eine exakte Definition von unendlich nicht ganz einfach ist.
-\end{bemerkung}
+\end{note}
 
 Eine Menge kann man auf verschiedenen Arten beschreiben:
 \begin{enumerate}
 \item Bei einer endlichen Menge kann man alle Elemente angeben. $M \ceq \gklamm{a_1, a_2, \dots, a_n}$. Die Reihenfolge der Aufzählung spielt keine Rolle und jedes Element wird einmal genannt. Bei der Verwendung von \enquote{\dots} sollte man wissen, was sich dahinter verbirgt.
-\item Eine Menge kann durch die ANgaben einer Eigenschaft definiert werden, die alle ihre Elemente haben. $M \ceq \gk{x \vert x \tx{ hat die Eigenschaft } E}$ oder auch $M \ceq \gk{x : x \tx{ hat } E}$.
+\item Eine Menge kann durch die Angaben einer Eigenschaft definiert werden, die alle ihre Elemente haben. $M \ceq \gk{x \vert x \tx{ hat die Eigenschaft } E}$ oder auch $M \ceq \gk{x : x \tx{ hat } E}$.
 \end{enumerate}
 
-Hierbei wurde das Zeichen \enq{$\ceq$} als Abkürzung für \enq{ist definiert durch} verwendet, um es vom Gleichheitszeichen \enq{$=$} zu unterscheiden. Wenn die Bedeutung aus dem Zusammenhang klar ist, wird manchmal das \enq{$:$} weggelassen. Solche \enq{Schlampereien} sind in der Mathematik möglich, beim PRogrammieren sollte man dies vermeiden.
+Hierbei wurde das Zeichen \enq{$\ceq$} als Abkürzung für \enq{ist definiert durch} verwendet, um es vom Gleichheitszeichen \enq{$=$} zu unterscheiden. Wenn die Bedeutung aus dem Zusammenhang klar ist, wird manchmal das \enq{$:$} weggelassen. Solche \enq{Schlampereien} sind in der Mathematik möglich, beim Programmieren sollte man dies vermeiden.
 
 Ist $A$ eine Menge und $a$ ein Element der Menge $A$, so schreibt man $a \in A$. Gehört $a$ nicht zu der Menge $A$, so wird dies mit $a \notin A$ bezeichnet. Die Menge $B$ heißt \emph{Teilmenge} von $A$, in Zeichen $B \subset A$, wenn jedes Element von $B$ auch Element von $A$ ist. $A$ heißt in diesem Fall auch \emph{Obermenge} von $B$. Zwei Mengen $A$ und $B$ sind gleich, wenn sie die selben Elemente enthalten. Dies ist gleichbedeutend mit $A \subset B$ \emph{und} $B \subset A$. Hierbei ist folgendes zu beachten: Es wird kein expliziter Unterschied zwischen \enq{$\subset$} und \enq{$\subseteq$} gemacht. Dies ist in den meisten Fällen nicht nötig.
 
@@ -27,8 +27,8 @@ Mit Hilfe von \enq{Venn-Diagrammen} (Darstellung von Mengen durch Blasen) kann m
 Es seien $A$ und $B$ beliebige Mengen. Damit sind die folgenden Mengenoperationen definiert:
 \begin{enumerate}
 \item Der \emph{Durchschnitt} von $A$ und $B$ enthält alle Elemente, die sowohl zur Menge $A$ als auch zur Menge $B$ gehören: $A \cap B \ceq \gk{x : x \in A \tx{ und } x \in B}$.
-\item Die \emph{Vereinigung} von $A$ und $B$ umfasst alle Elemente, die zu $A$ oder zu $B$ gehören. Dabei ist \enq{oder} nicht exsklusiv: $A \cup B \ceq \gk{x : x \in A \tx{ oder } x \in B}$.
-\item Die \emph{Differenz} von $A$ und $B$ enthält dijenigen Elemente von $A$, die nicht zur Menge $B$ gehren: $A \backslash B \ceq \gk{x : x \in A \tx{ und } x \notin B}$. Im Allgemeinen ist $A \backslash B \neq B \backslash A$.
+\item Die \emph{Vereinigung} von $A$ und $B$ umfasst alle Elemente, die zu $A$ oder zu $B$ gehören. Dabei ist \enq{oder} nicht exklusiv: $A \cup B \ceq \gk{x : x \in A \tx{ oder } x \in B}$.
+\item Die \emph{Differenz} von $A$ und $B$ enthält diejenigen Elemente von $A$, die nicht zur Menge $B$ gehören: $A \backslash B \ceq \gk{x : x \in A \tx{ und } x \notin B}$. Im Allgemeinen ist $A \backslash B \neq B \backslash A$.
 \item Das \emph{Komplement} der Menge $A$ bezüglich einer Obermenge $X$ besteht aus allen Elementen von $X$, die nicht zu $A$ gehören: $\bar{A} \ceq \gk{ x \in X : x \notin A} = X \backslash A$. Für $\bar{A}$ wird auch die Bezeichnung $A^{\mathcal{C}}$ verwendet.
 \item Die \emph{symmetrische Differenz} von $A$ und $B$ besteht aus den Elementen, die zu genau einer der beiden Mengen $A$ und $B$ gehören: $A \bigtriangleup B = \rk{A \cup B} \backslash \rk{A \cap B}$.
 \item Die \emph{Produktmenge} von $A$ und $B$ ist die Menge aller (geordneten) Paare von Elementen von $A$ und $B$: $A \times B \ceq \gk{\rk{a, b} : a \in A, b \in B}$.
@@ -77,7 +77,7 @@ $\overline{A \cap B} = \bar{A} \cup \bar{B}$ & $\overline{A \cup B} = \bar{A} \c
 \caption{Rechenregeln für Operationen $\cap$, $\cup$ und $\bar{M}$}
 \end{table}
 
-\begin{bemerkung}~
+\begin{note}~
 \begin{enumerate}
 \item Zwei Mengen $A$ und $B$ heißen \emph{disjunkt}, falls $A \cap B = \emptyset$ gilt.
 \item Für den Durchschnitt der $n$ Mengen $A_1, \dots, A_n$ schreibt man \[A_1 \cap A_2 \cap \dots \cap A_n = \bigcap_{i = 1}^{n} A_i\]
@@ -87,19 +87,19 @@ $\overline{A \cap B} = \bar{A} \cup \bar{B}$ & $\overline{A \cup B} = \bar{A} \c
 	\tx{ und }
 	\overline{\bigcap_{i = 1}^{n} A_1} = \bigcup_{i = 1}^{n} \bar{A_i}\]
 
-\item Ist $M$ eine Menge, so heißt die Menge aller Teilmengen von $M$ auch die \emph{Potenzmenge} $\mathcal{P}(M)$ von $M$. Hat $M$ genau $n$ Elemente, so umfaßt $\mathcal{P}(M)$ $2^n$ Mengen. Ist \ac{z.B.} $M = \gk{a, b}$, so ist $\mathcal{P}(M) = \gk{\emptyset, \gk{a}, \gk{b}, \gk{a, b}}$.
+\item Ist $M$ eine Menge, so heißt die Menge aller Teilmengen von $M$ auch die \emph{Potenzmenge} $\mathcal{P}(M)$ von $M$. Hat $M$ genau $n$ Elemente, so umfasst $\mathcal{P}(M)$ $2^n$ Mengen. Ist \ac{z.B.} $M = \gk{a, b}$, so ist $\mathcal{P}(M) = \gk{\emptyset, \gk{a}, \gk{b}, \gk{a, b}}$.
 \end{enumerate}
-\end{bemerkung}
+\end{note}
 
 \chapter{Logik}
 Die mathematischen Inhalte werden durch \emph{Aussagen} ausgedrückt. Eine \emph{Aussage} ist ein Satz, von dem eindeutig festgestellt werden kann, ob er richtig (r) oder falsch (f) ist. Aus verschiedenen Aussagen werden die \emph{Definitionen}, \emph{Sätze} und \emph{Beweise} zusammengesetzt.
 \begin{itemize}
 \item In einer \emph{Definition} wird ein neuer Begriff oder eine Bezeichnung eingeführt. Dieser neue Begriff kann nur durch Beziehungen zu schon vorhandenen Begriffen erklärt werden. Dabei stößt man irgendwann auf Grundbegriffe, die sich nicht definieren lassen. Diese Grundbegriffe können axiomatisch festgelegt werden. Von einem Axiomensystem fordert man die \emph{Widerspruchsfreiheit} und die \emph{Unabhängigkeit}. Dies kann in vielen Fällen nicht nachgewiesen werden. Die Existenz gewisser mathematischer Objekte ist in gewissem Sinne eine Glaubensfrage.
-\item \emph{Satz (Theorem)}: Aussage und Behauptung über Eigenschaften von matheamtischen Objekten und die Beziehungen zwischen Objekten, die mittels logischer Schlüsse zu beweisen ist.
-\item \emph{Beweis}: Nachweis eines Satzes mit Mitteln der Logik. In einigen modernen Gebieten der Matheamtik sind die Beweise so umfangreich und komplex, dass es zum Teil nicht möglich ist, deren Korrektheit zu überprüfen.
+\item \emph{Satz (Theorem)}: Aussage und Behauptung über Eigenschaften von mathematischen Objekten und die Beziehungen zwischen Objekten, die mittels logischer Schlüsse zu beweisen ist.
+\item \emph{Beweis}: Nachweis eines Satzes mit Mitteln der Logik. In einigen modernen Gebieten der Mathematik sind die Beweise so umfangreich und komplex, dass es zum Teil nicht möglich ist, deren Korrektheit zu überprüfen.
 \end{itemize}
 
-\begin{beispiel}
+\begin{example}
 Folgende Sätze sind Beispiele von Aussagen aber auch von sprachlichen Gebilden, die keine Aussage im mathematischen Sinn darstellen:
 \begin{enumerate}
 \item 5 ist kleiner als 3.
@@ -108,11 +108,11 @@ Folgende Sätze sind Beispiele von Aussagen aber auch von sprachlichen Gebilden,
 \item Nachts ist es kälter als draußen.
 \item Jede gerade Zahl größer als 2 ist die Summe von zwei Primzahlen.
 \end{enumerate}
-\end{beispiel}
+\end{example}
 
-Im Folgenden werden Verknüpfungen von Aussagen mittels der Logik untersucht. Dabei spielt die jeweilige Bedeutung der AUssagen keine Rolle. Anstelle einer formal exakten Behandlung wird hier ein \enq{naiver} Zugang gewählt, der nur einen \enq{gesunden Menschenverstand} und einige Sorgfalt erfordert. Im Folgenden werden die Aussagen mit $A$, $B$, \dots bezeichnet. Diese Zeichen sind \emph{Aussagevariablen}, die die Werte richtig oder falsch annehmen können.
+Im Folgenden werden Verknüpfungen von Aussagen mittels der Logik untersucht. Dabei spielt die jeweilige Bedeutung der Aussagen keine Rolle. Anstelle einer formal exakten Behandlung wird hier ein \enq{naiver} Zugang gewählt, der nur einen \enq{gesunden Menschenverstand} und einige Sorgfalt erfordert. Im Folgenden werden die Aussagen mit $A$, $B$, \dots bezeichnet. Diese Zeichen sind \emph{Aussage-variablen}, die die Werte richtig oder falsch annehmen können.
 
-Zur Definition der Verknüpfungen von Aussagen stellt man eine \emph{Wahrheitstabelle} auf. In dieser Tabelle werden zu allen möglichen Kombinationen der Wahrheitswerte $r$ und $f$ der einzelnen Aussagen die resultierenden Wahrheitswerte der zusammengesetzen Aussagen eingetragen. Die wichtigsten Verknüpfungen von Aussagen sind:
+Zur Definition der Verknüpfungen von Aussagen stellt man eine \emph{Wahrheitstabelle} auf. In dieser Tabelle werden zu allen möglichen Kombinationen der Wahrheitswerte $r$ und $f$ der einzelnen Aussagen die resultierenden Wahrheitswerte der zusammengesetzten Aussagen eingetragen. Die wichtigsten Verknüpfungen von Aussagen sind:
 \begin{enumerate}
 \item Die \emph{Negation} oder Verneinung der Aussagen $A$ ist die Aussage \enq{nicht $A$}, in Zeichen $\neg A$. Die Negation ist definiert durch Tabelle~\vref{tab:Logiktabelle_zu_Negation-Verneinung}.
 	\begin{table}[htb]
@@ -131,7 +131,7 @@ Zur Definition der Verknüpfungen von Aussagen stellt man eine \emph{Wahrheitsta
 	\begin{table}[htb]
 	\centering
 	\begin{tabular}{c|c|c}
-	$A$ & $\neg A$ & $A \und B$\\
+	$A$ & $B$ & $A \und B$\\
 	\hline
 	$r$ & $r$ & $r$\\
 	$r$ & $f$ & $f$\\
@@ -141,4 +141,150 @@ Zur Definition der Verknüpfungen von Aussagen stellt man eine \emph{Wahrheitsta
 	\label{tab:Logiktabelle_zu_Konjunktion}
 	\caption{Logiktabelle zur Konjunktion zweier Aussagen}
 	\end{table}
+
+\item Die \emph{Disjunktion} von $A$ und $B$ ist die Aussage \enq{$A$ oder $B$}, in Zeichen $A \oder B$. Das \enq{oder} ist hierbei nicht ausschließend. $A \oder B$ ist genau dann falsch, wenn sowohl $A$ als auch $B$ falsch sind. Dieses mathematische \enq{oder} ist kein exklusives XOR, sondern beinhaltet auch den Falle des \enq{und}. Die Disjunktion ist definiert durch Tabelle~\vref{tab:Logiktabelle_zu_Disjunktion}.
+	\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|c|c}
+	$A$ & $B$ & $A \oder B$\\
+	\hline
+	$r$ & $r$ & $r$\\
+	$r$ & $f$ & $r$\\
+	$f$ & $r$ & $r$\\
+	$f$ & $f$ & $f$\\
+	\end{tabular}
+	\label{tab:Logiktabelle_zu_Disjunktion}
+	\caption{Logiktabelle zur Disjunktion zweier Aussagen}
+	\end{table}
+
+\item Die \emph{Implikation} aus den beiden Aussagen $A$ und $B$ ist die Aussage \enq{wenn $A$, dann $B$}, \enq{aus $A$ folgt $B$} oder \enq{es sei $A$, dann gilt auch $B$}, in Zeichen $A \Ra B$. Die Implikation ist genau dann falsch, wenn $A$ richtig und $B$ falsch ist. Die Implikation $A \Ra B$ ist gleichwertig mit der Aussage $\rk{\neg A} \oder B$. Die Implikation ist definiert durch Tabelle~\vref{tab:Logiktabelle_zu_Implikation}.
+	\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|c|c}
+	$A$ & $B$ & $A \Ra B$\\
+	\hline
+	$r$ & $r$ & $r$\\
+	$r$ & $f$ & $f$\\
+	$f$ & $r$ & $r$\\
+	$f$ & $f$ & $r$\\
+	\end{tabular}
+	\label{tab:Logiktabelle_zu_Implikation}
+	\caption{Logiktabelle zur Implikation zweier Aussagen}
+	\end{table}
+
+	Man nennt $A$ die Voraussetzung und $B$ die Schlussfolgerung und sagt auch, dass $A$ eine hinreichende Bedingung für $B$ ist und dass $B$ eine notwendige Bedingung für $A$ ist. Aus der Gleichwertigkeit von $A \Ra B$ und der Aussage $\rk{\neg A} \oder B$ folgt, dass die beiden Implikationen $A \Ra B$ und $\rk{\neg B} \Ra \rk{\neg A}$ gleichbedeutend sind. Zum Beweis von einem Satz der Form $A \Ra B$ gibt es folgende wichtige Beweismethoden:
+	\begin{itemize}
+	\item \emph{Direkter Beweis}: Zum Beweis der Aussage $B$ geht man von einer bereits bewiesenen Aussage $A$ aus und folgert daraus die Aussage $B$. Man zeigt, dass die Aussagen $A$ und $A \Ra B$ beide richtig sind, und daraus folgt dann die Richtigkeit von $B$.
+	\item \emph{Indirekter Beweis (Beweis durch Kontraposition)}: Man nimmt an, dass $B$ falsch ist (und damit $\neg B$ richtig ist) und zeigt, dass dann auch $A$ falsch (\ac{bzw.} $\neg A$ richtig) sein muss. Dadurch hat man nachgewiesen, dass die Implikation $\rk{\neg B} \Ra \rk{\neg A}$ richtig ist. Dies wiederum ist gleichbedeutend mit $A \Ra B$.
+	\item \emph{Widerspruchsbeweis}: Der Widerspruchsbeweis ist eine \enq{destruktive Variante} des indirekten Beweises. Man nimmt an, dass die Aussage $A$ richtig ist und dass die Aussage $B$ falsch ist (dies ist der einzige Fall, in dem die Aussage $A \Ra B$ falsch ist). Aus diesen Annahmen wird ein Widerspruch der Form $P \und \neg P$ hergeleitet. Damit ist gezeigt, dass die Annahme ($A$ richtig, $B$ falsch) nicht zutreffen kann. Es wird also der einzige Fall ausgeschlossen, in dem die Implikation $A \Ra B$ falsch ist. Damit ist nachgewiesen, dass $A \Ra B$ richtig sein muss.
+	\end{itemize}
+
+\item Die \emph{Äquivalenz} der beiden Aussagen $A$ und $B$ ist die Aussage \enq{$A$ gilt genau dann, wenn $B$ gilt} oder \enq{$A$ gilt dann und nur dann, wenn $B$ gilt}, in Zeichen $A \Lra B$. Die Äquivalenz von $A$ und $B$ ist gleichwertig zu der Aussage $\rk{A \Ra B} \und \rk{B \Ra A}$. Die Äquivalenz ist definiert durch die Tabelle~\vref{tab:Logiktabelle_zu_Aequivalenz}.
+	\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|c|c}
+	$A$ & $B$ & $A \Lra B$\\
+	\hline
+	$r$ & $r$ & $r$\\
+	$r$ & $f$ & $f$\\
+	$f$ & $r$ & $f$\\
+	$f$ & $f$ & $r$\\
+	\end{tabular}
+	\label{tab:Logiktabelle_zu_Aequivalenz}
+	\caption{Logiktabelle zur Äquivalenz zweier Aussagen}
+	\end{table}
+
+	Soll die Äquivalenz $A \Lra B$ bewiesen werden, so ist es in den meisten Fällen am einfachsten, die beiden Implikationen $A \Ra B$ und $B \Ra A$ zu beweisen. Die Beweise dieser beiden Implikationen werden oft mit unterschiedlichen Techniken durchgeführt. Im englischen verwendet man für Äquivalenz anstelle von \enq{if and only if} häufig nur \enq{iff}.
 \end{enumerate}
+
+Werden mehrere Aussagen mit den obigen Operationen verknüpft, so müssen Klammern gesetzt werden, um den Ausdruck eindeutig festzulegen. Es sind zum Beispiel die Aussagen $\neg \rk{A \oder B}$ und $\rk{\neg A} \oder B$ verschieden. Um die Formel mit möglichst wenig Klammern zu schreiben, wird eine Hierarchie der Stärke der Bindung der Operationen festgelegt. Nach abnehmender Stärke geordnet hat man die Reihenfolge $\neg$, $\und$, $\oder$, $\Ra$ und $\Lra$. Damit kann man statt $\rk{\neg A} \oder B$ auch $\neg A \oder B$ schreiben. In einigen Fällen sollte man zu besseren Strukturierung und leichteren Lesbarkeit der Formeln auch Klammern setzen, die nicht notwendig sind.
+
+\begin{theorem}
+Es gelten die Rechenregeln in Tabelle~\vref{tab:Rechenregeln_fuer_Operationen_neg-und-oder} für $\neg$, $\und$ und $\oder$:
+\begin{table}[htb]
+\centering
+\begin{tabular}{cc}
+\toprule
+\multicolumn{2}{c}{\emph{Assoziativgesetze}}\\
+$\rk{A \und B} \und C \Lra A \und \rk{B \und C}$ & $\rk{A \oder B} \oder C \Lra A \oder \rk{B \oder C}$
+\\\midrule
+
+\multicolumn{2}{c}{\emph{Kommutativgesetze}}\\
+$A \und B \Lra B \und A$ & $A \oder B \Lra B \oder A$
+\\\midrule
+
+\multicolumn{2}{c}{\emph{Distributivgesetze}}\\
+$A \und \rk{B \oder C} \Lra \rk{A \und B} \oder \rk{A \und C}$ & $A \oder \rk{B \und C} \Lra \rk{A \oder B} \und \rk{A \oder C}$
+\\\midrule
+
+\multicolumn{2}{c}{\emph{Idempotenzgesetze}}\\
+$A \und A \Lra A$ & $A \oder A \Lra A$
+\\\midrule
+
+\multicolumn{2}{c}{\emph{Absorptionsgesetze}}\\
+$A \und \rk{B \oder A} \Lra A$ & $A \oder \rk{B \und A} \Lra A$
+\\\midrule
+
+\multicolumn{2}{c}{\emph{Gesetze von de Morgan}}\\
+$\neg \rk{A \und B} \Lra \neg A \oder \neg B$ & $\neg \rk{A \oder B} \Lra \neg A \und \neg B$
+\\\bottomrule
+\end{tabular}
+\label{tab:Rechenregeln_fuer_Operationen_neg-und-oder}
+\caption{Rechenregeln für Operationen $\neg$, $\und$ und $\oder$}
+\end{table}
+\end{theorem}
+
+\begin{proof}
+Zum Beweis dieser Formeln stellt man für die Ausdrücke rechts und links der Äquivalenzpfeile jeweils eine Wahrheitstafel auf. Stimmen die Ergebnisspalten der Tabellen überein, so ist die Äquivalenz nachgewiesen.
+\end{proof}
+
+Die Aussage $A \und \neg A$ ist immer falsch und die Aussage $A \oder \neg A$ ist immer richtig.
+
+\begin{example}
+Berechnung von Schaltjahr. Es sei eine natürliche Zahl $x$ (Jahreszahl) gegeben. Das Jahr $x$ ist ein Schaltjahr, wenn $x$ durch 4 teilbar ist, außer wenn $x$ durch 100 aber nicht durch 400 teilbar ist. (Das Jahr 1900 war ein Schaltjahr, das Jahr 200 nicht, das Jahr 2008 ist wieder ein Schaltjahr). Um diesen Sachverhalt mit logischen Verknüpfungen zu beschreiben, benötigt man Aussagen, die von der Eingabegröße $x$ abhängen, und zwar:
+\begin{align*}
+A(x)\tx{: } & x \tx{ ist durch } 4 \tx{ teilbar}\\
+B(x)\tx{: } & x \tx{ ist durch } 100 \tx{ teilbar}\\
+C(x)\tx{: } & x \tx{ ist durch } 400 \tx{ teilbar}\\
+S(x)\tx{: } & x \tx{ ist ein Schaltjahr}
+\end{align*}
+Zunächst wird die Ausnahme \enq{$x$ ist durch 100 aber nicht durch 400 teilbar} als neue Aussage zusammengefasst:
+\[D(x) \Lra x \tx{ ist durch } 100 \tx{ aber nicht durch } 400 \tx{ teilbar} \Lra B(x) \und \neg C(x)\]
+Damit kann man die Bedingung für Schaltjahr schreiben als:
+\[S(x) \Lra A(x) \und \neg D(x) \Lra A(x) \und \neg \rk{B(x) \und \neg C(x)}\]
+\end{example}
+
+Wie in diesem Beispiel gibt es oft Aussagen, die von einer oder mehreren Variablen abhängen, die Werte aus einer vorgegebenen Grundmenge annehmen können. Die Aussage kann für manche Werte der Variablen richtig und für andere falsch sein. ist \ac{z.B.} $n$ eine natürliche Zahl, so ist die Aussage \enq{$n$ ist durch 7 teilbar} nur für manche Werte von $n$ richtig, die Aussage \enq{$n$ ist größer als 0} ist für alle möglichen Werte von $n$ richtig während die Aussage \enq{$n$ ist negativ} für keinen Wert von $n$ richtig ist.
+
+Zur Abkürzung von Aussagen mit Variablen sind folgende Abkürzungen für wichtige Spezialfälle üblich
+\begin{enumerate}
+\item Gilt für die Aussage $A(x)$ \emph{für alle} möglichen Werte von $x$, so schreibt man $\forall x : A(x)$ (\enq{für alle $x$ gilt $A(x)$}). $\forall$ heißt \emph{Allquantor}.
+\item Ist die Aussage $A(x)$ \emph{für mindestens einen} Wert von $x$ erfüllt, so schreibt man $\exists x : A(x)$ (\enq{es gibt ein $x$ mit $A(x)$}). $\exists$ heißt \emph{Existenzquantor}.
+\item Wenn die Aussage $A(x)$ \emph{für genau einen} Wert von $x$ so schreibt man auch $\exists^1 x : A(x)$ (\enq{es gibt genau ein $x$ für das gilt: $A(x)$}).
+\end{enumerate}
+
+Für die Verneinung der Quantoren gelten die folgenden Regeln:
+\begin{enumerate}
+\item $\neg \rk{\forall x : A(x)} \Lra \exists x : \rk{\neg A(x)}$
+\item $\neg \rk{\exists x : A(x)} \Lra \forall x : \rk{\neg A(x)}$
+\end{enumerate}
+
+Bei einer Verneinung werden also zunächst die Quantoren $\forall$ und $\exists$ gegeneinander vertauscht. Dann wird die danach folgende Aussage verneint.
+
+Um in den Aussagen die verschiedenartigen Objekte besser kennzeichnen zu können, werden die verschiedenen Objekte mit Buchstaben aus verschiedenen Alphabeten bezeichnet. So ist ohne Zusatzinformation oft klar, was für ein Typ von Objekt gemeint ist. Hierzu werden sehr häufig griechische Buchstaben verwendet. Daher ist die Kenntnis des griechischen Alphabets wichtig. Für eine Übersicht sind alle Griechischen Zeichen in Tabelle~\vref{tab:Griechische_Buchstaben} abgebildet.
+\begin{table}[htb]
+\centering
+\begin{tabular}{lll}
+\toprule
+$\Alpha$ $\alpha$ Alpha		& $\Iota$ $\iota$ Jota		& $\Rho$ $\rho$ Rho			\\\midrule
+$\Beta$ $\beta$ Beta			& $\Kappa$ $\kappa$ Kappa		& $\Sigma$ $\sigma$ Sigma		\\\midrule
+$\Gamma$ $\gamma$ Gamma		& $\Lambda$ $\lambda$ Lambda		& $\Tau$ $\tau$ Tau			\\\midrule
+$\Delta$ $\delta$ Delta		& $\Mu$ $\mu$ My			& $\Upsilon$ $\upsilon$ Ypsilon	\\\midrule
+$\Epsilon$ $\epsilon$ Epsilon	& $\Nu$ $\nu$ Ny 			& $\Phi$ $\phi$ Phi 			\\\midrule
+$\Zeta$ $\zeta$ Zeta			& $\Xi$ $\xi$ Xi			& $\Chi$ $\chi$ Chi			\\\midrule
+$\Eta$ $\eta$ Eta			& $\Omicron$ $\omicron$ Omikron	& $\Psi$ $\psi$ Psi			\\\midrule
+$\Theta$ $\theta$ Theta		& $\Pi$ $\pi$ Pi			& $\Omega$ $\omega$ Omega		\\\bottomrule
+\end{tabular}
+\label{tab:Griechische_Buchstaben}
+\caption{Griechische Buchstaben}
+\end{table}

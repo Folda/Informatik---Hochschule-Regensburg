@@ -1,10 +1,13 @@
 %Theoreme
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
-\newtheorem{beispiel}{Beispiel}[chapter]
+\newtheorem{example}{Beispiel}[chapter]
 
 \theoremstyle{remark}
-\newtheorem*{bemerkung}{Bemerkung}
+\newtheorem*{note}{Bemerkung}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Satz}[chapter]
 
 %Klammern
 \newcommand{\gklamm}[1]{\ensuremath{\left\{#1\right\}}}	%Geschweifte Klammern
@@ -12,6 +15,22 @@
 
 %Mathematische Zeichen
 \newcommand{\coloneqq}{\mathrel{\mathop:\!\!=}}		%Zeichen für "ist definiert durch"
+
+%Griechische Buchstaben
+\newcommand{\Alpha}{\ensuremath{\mbox{A}}}
+\newcommand{\Beta}{\ensuremath{\mbox{B}}}
+\newcommand{\Iota}{\ensuremath{\mbox{I}}}
+\newcommand{\Rho}{\ensuremath{\mbox{R}}}
+\newcommand{\Kappa}{\ensuremath{\mbox{K}}}
+\newcommand{\Tau}{\ensuremath{\mbox{T}}}
+\newcommand{\Mu}{\ensuremath{\mbox{M}}}
+\newcommand{\Epsilon}{\ensuremath{\mbox{E}}}
+\newcommand{\Nu}{\ensuremath{\mbox{N}}}
+\newcommand{\Zeta}{\ensuremath{\mbox{Z}}}
+\newcommand{\Chi}{\ensuremath{\mbox{X}}}
+\newcommand{\Eta}{\ensuremath{\mbox{H}}}
+\newcommand{\Omicron}{\ensuremath{\mbox{O}}}
+\newcommand{\omicron}{\ensuremath{\mbox{o}}}
 
 %Abkürzungen
 \newcommand{\ceq}{\ensuremath{\coloneqq}}		%Abkürzung zu coloneqq
@@ -21,3 +40,5 @@
 \newcommand{\enq}[1]{\enquote{#1}}			%Abkürzung für enquote
 \newcommand{\oder}{\ensuremath{\vee}}			%Abkürzung für vee (oder Zeichen)
 \newcommand{\und}{\ensuremath{\wedge}}			%Abkürzung für wedge (und Zeichen)
+\newcommand{\Ra}{\ensuremath{\Rightarrow}}		%Abkürzung für Rightarrow
+\newcommand{\Lra}{\ensuremath{\Leftrightarrow}}		%Abkürzung für Leftrightarrow
