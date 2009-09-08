@@ -9,6 +9,11 @@
 \theoremstyle{plain}
 \newtheorem{theorem}{Satz}[chapter]
 
+%Umgebungen
+\newenvironment{automat}[1][2.8cm]
+{\begin{tikzpicture}[>=stealth',auto,node distance=#1,semithick,initial text=]}
+{\end{tikzpicture}} %Tikz Picture - Automaten
+
 %Klammern
 \newcommand{\gklamm}[1]{\ensuremath{\left\{#1\right\}}}	%Geschweifte Klammern
 \newcommand{\rklamm}[1]{\ensuremath{\left(#1\right)}}	%Runde Klammern
@@ -42,3 +47,5 @@
 \newcommand{\und}{\ensuremath{\wedge}}			%Abkürzung für wedge (und Zeichen)
 \newcommand{\Ra}{\ensuremath{\Rightarrow}}		%Abkürzung für Rightarrow
 \newcommand{\Lra}{\ensuremath{\Leftrightarrow}}		%Abkürzung für Leftrightarrow
+\newcommand{\klgl}{\ensuremath{\leq}}			%Abkürzung für leq (kleiner gleich)
+\newcommand{\grgl}{\ensuremath{\geq}}			%Abkürzung für geq (größer gleich)
