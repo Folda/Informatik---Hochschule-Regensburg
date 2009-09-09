@@ -1,0 +1,111 @@
+\part{Grundlagen der Informatik}
+\chapter{Grundlagen}
+\section{Alphabet}
+\begin{definition}[Alphabet]
+Eine endliche Menge, die nicht leer ist, von Symbolen $\Sigma$ heißt Alphabet. Die Elemente von $\Sigma$ heißen Buchstaben (Zeichen, Symbole).
+\end{definition}
+
+\begin{example}~
+\begin{itemize}
+\item $\Sigma_{\tx{RGB}}$ = \gk{\tx{\ul{rot}}, \tx{\ul{grün}}, \tx{\ul{blau}}}
+\item $\Sigma_{\tx{Bool}}$ = \gk{0, 1} das Boole'sche Alphabet
+\item $\Sigma_{\tx{lat}}$ = \gk{a, b, c, \dots, z} das lateinische Alphabet
+\item $\Sigma_{\tx{Tastatur}}$ = \gk{A, B, \dots, Z, \tx{\textvisiblespace}, <, >, (, ), \dots}
+\item $\Sigma_{\tx{m}}$ =  \gk{0, \dots, m -1} für $m \grgl 1$ die $m$-adische Darstellung einer Zahl.
+\item $\Sigma_{\tx{logic}}$ = \gk{0, 1, x, (, ), \oder, \und, \neg} ein Alphabet für logische Ausdrücke
+\end{itemize}
+\end{example}
+
+\section{Wort}
+\begin{definition}[Wort]
+Sei $\Sigma$ ein Alphabet. Ein Wort über $\Sigma$ ist eine endliche (evenetuell leere) Folge von Buchstaben. Das leere Wort $\epsilon$ (oder manchmal auch $\lambda$) ist die leere Buchstabenfolge. Die Menge aller Wörter über $\Sigma$ bezeichnen wir mit $\Sigma^*$. Ferner sei $\Sigma^+ = \Sigma^* - \gk{\epsilon}$. Fortan gehen wir davon aus, dass $\epsilon \notin \Sigma$ gilt.
+\end{definition}
+
+\begin{example}
+$\ub{(0, 1, 0, 1, 0, 1, 0)}{z}$ ist ein Wort über $\Sigma_{\tx{Bool}}$, $\Sigma_{\tx{Tastatur}}$ und $\Sigma_{\tx{logic}}$.
+\end{example}
+
+$\epsilon$ ist ein Wort über einem beliebigen Alphabet ($\epsilon \in \Sigma^*$ für alle Alphabete $\Sigma^*$)
+
+\begin{notation}
+Wörter werden künftig ohne Kommata geschrieben und lassen auch die Klammern weg. Also zum Beispiel $01010$ statt $(0, 1, 0, 1 , 0)$. Hierbei muss der unterschied zwischen dem Wort als Folge von Symbolen $00101$ und dem Wort als sprachliche Einheit \enq{Deutsch} beachtet werden.
+\end{notation}
+
+\subsection{Wortlänge}
+\begin{definition}[Wortlänge]
+Sei $\Sigma$ ein Alphabet und $w \in \Sigma^*$. Die Wortlänge $\btg{w}$ ist die Länge des Wortes als Folge. Für $A \in \Sigma$ bezeichnet $\btg{w}_a$ Die Anzahl der Vorkommen von $a$ in $w$.
+\end{definition}
+
+\begin{example}~
+\begin{itemize}
+\item $\btg{001001} = 6$
+\item $\btg{001001}_1 = 2$
+\item $\btg{\epsilon} = 0$
+\item $\btg{\textvisiblespace} = 1$
+\end{itemize}
+\end{example}
+
+\section{Konkatenation und Verkettung}
+\begin{definition}[Konkatenation/Verkettung]
+Die Konkatenation für ein Alphabet $\Sigma$ ist eine Abbildung (oder auch Funktion) $K$:
+\[\Sigma^* \times \Sigma^* \ra \Sigma^* \tx{, so dass } K \rk{u, v} = uv\]
+für alle $u, v \in \Sigma^*$. Anstelle von $K \rk{i, v}$ schreiben wir $u \mal v$.
+\end{definition}
+
+\begin{note}
+Konkatenation ist assoziativ.
+\[\Ra \rk{a \mal b} \mal c = a \mal \rk{b \mal c}\]
+Ferner gilt:
+\[\epsilon \mal w = w = w \mal \epsilon \tx{ (Monoid)}\]
+\end{note}
+
+\section{Induktive Definitionen}
+\begin{definition}[Induktive Definition des Wortbegriffes]
+Die Menge aller Wörter über $\Sigma \rk{\Sigma^*}$ ist induktiv definiert durch:
+\begin{enumerate}
+\item $\epsilon \in \Sigma^*$
+\item sei $w \in \Sigma^*$ und $a \in \Sigma$, so $w \mal a \in \Sigma^*$
+\end{enumerate}
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}
+\node{}
+child[draw, rectangle]{
+child[draw, rectangle]{
+child[draw, rectangle]{
+child{node[draw, rectangle]{$\epsilon$}}
+child{node[draw, circle]{a}}}
+child{node[draw, circle]{b}}}
+child{node[draw, circle]{c}}};
+\end{tikzpicture}
+\caption{Graphische Darstellung der induktiven Definition des Wortbegriffes}
+\label{fig:Graphische_Darstellung_der_induktiven_Definition_des_Wortbegriffes}
+\end{figure}
+Für eine einfacheres Verständnis ist der Aufbau eines induktiven Wortes in Abbildung~\vref{fig:Graphische_Darstellung_der_induktiven_Definition_des_Wortbegriffes} dargestellt.
+\end{definition}
+
+\begin{definition}[Induktive Definition der Wortlänge]~
+\begin{enumerate}
+\item für $w = \epsilon$ sei $\btg{w} = 0$
+\item für $w = v \mal x$ ist $\btg{w} = \btg{v} + 1$
+\end{enumerate}
+\label{def:Induktive_Definition_der_Wortlaenge}
+\end{definition}
+
+\begin{example}[zu Definition~\vref{def:Induktive_Definition_der_Wortlaenge}]
+$w = \epsilon a b c$
+\begin{align*}
+\btg{w} = \btg{\ub{\epsilon a b}{v} \ub{c}{x}} &= \btg{\ub{\epsilon a}{v} \ub{b}{x}} + 1\\
+&= \btg{\ub{\epsilon}{v} \ub{a}{x}} + 1 + 1\\
+&= \btg{\epsilon} + 1 + 1 + 1\\
+&= 0 + 1 + 1 + 1\\
+&= 3
+\end{align*}
+\end{example}
+
+\section{Kanonische Ordnung}
+Um alle Wörter aus $\Sigma^*$ systematisch aufzuzählen, ordnen wir Alphabet und Wörter.
+\begin{definition}[Kanonische Ordnung]
+Sei $\Sigma = \gk{a_1, a_2, \dots, a_n}$ und $<$: $\Sigma \times \Sigma$ eine Ordnung auf $\Sigma$ mit $a_1 < a_2 < a_3 < \dots < a_n$. Wir definieren die kanonische Ordnung auf $\Sigma^*$ wie folgt:
+\[u < v \Ra \btg{u} < \btg{v} \oder \btg{u} = \btg{v} \und u = wa_i u_1 \und\]\[ v w a_j u_2 \tx{ für } u, v \in \Sigma^* w, u_1, u_2 \in \Sigma^* \tx{ und } a_i < a_j \rk{i < j}\]
+\end{definition}

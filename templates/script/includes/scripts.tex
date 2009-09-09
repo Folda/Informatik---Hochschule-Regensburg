@@ -5,6 +5,7 @@
 
 \theoremstyle{remark}
 \newtheorem*{note}{Bemerkung}
+\newtheorem{notation}{Notation}[chapter]
 
 \theoremstyle{plain}
 \newtheorem{theorem}{Satz}[chapter]
@@ -17,6 +18,7 @@
 %Klammern
 \newcommand{\gklamm}[1]{\ensuremath{\left\{#1\right\}}}	%Geschweifte Klammern
 \newcommand{\rklamm}[1]{\ensuremath{\left(#1\right)}}	%Runde Klammern
+\newcommand{\betrag}[1]{\ensuremath{\left|#1\right|}}	%Betragsstriche
 
 %Mathematische Zeichen
 \newcommand{\coloneqq}{\mathrel{\mathop:\!\!=}}		%Zeichen für "ist definiert durch"
@@ -46,6 +48,15 @@
 \newcommand{\oder}{\ensuremath{\vee}}			%Abkürzung für vee (oder Zeichen)
 \newcommand{\und}{\ensuremath{\wedge}}			%Abkürzung für wedge (und Zeichen)
 \newcommand{\Ra}{\ensuremath{\Rightarrow}}		%Abkürzung für Rightarrow
+\newcommand{\ra}{\ensuremath{\rightarrow}}		%Abkürzung für rightarrow
+\newcommand{\La}{\ensuremath{\Leftarrow}}		%Abkürzung für Leftarrow
+\newcommand{\la}{\ensuremath{\leftarrow}}		%Abkürzung für leftarrow
 \newcommand{\Lra}{\ensuremath{\Leftrightarrow}}		%Abkürzung für Leftrightarrow
+\newcommand{\lra}{\ensuremath{\leftrightarrow}}		%Abkürzung für leftrightarrow
 \newcommand{\klgl}{\ensuremath{\leq}}			%Abkürzung für leq (kleiner gleich)
 \newcommand{\grgl}{\ensuremath{\geq}}			%Abkürzung für geq (größer gleich)
+\newcommand{\ul}[1]{\underline{#1}}			%Abkürzung für underline
+\newcommand{\ob}[2]{\ensuremath{\overbrace{#1}^{#2}}}	%Abkürzung für overbrace
+\newcommand{\ub}[2]{\ensuremath{\underbrace{#1}_{#2}}}	%Abkürzung für overbrace
+\newcommand{\btg}[1]{\ensuremath{\betrag{#1}}}		%Abkürzung für betrag
+\newcommand{\mal}{\ensuremath{\cdot}}
