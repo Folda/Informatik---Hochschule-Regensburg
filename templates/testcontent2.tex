@@ -3,9 +3,10 @@
 \section{Alphabet}
 \begin{definition}[Alphabet]
 Eine endliche Menge, die nicht leer ist, von Symbolen $\Sigma$ heißt Alphabet. Die Elemente von $\Sigma$ heißen Buchstaben (Zeichen, Symbole).
+\label{def:Alphabet}
 \end{definition}
 
-\begin{example}~
+\begin{example}[Zu Definition~\vref{def:Alphabet}]~
 \begin{itemize}
 \item $\Sigma_{\tx{RGB}}$ = \gk{\tx{\ul{rot}}, \tx{\ul{grün}}, \tx{\ul{blau}}}
 \item $\Sigma_{\tx{Bool}}$ = \gk{0, 1} das Boole'sche Alphabet
@@ -19,13 +20,12 @@ Eine endliche Menge, die nicht leer ist, von Symbolen $\Sigma$ heißt Alphabet. 
 \section{Wort}
 \begin{definition}[Wort]
 Sei $\Sigma$ ein Alphabet. Ein Wort über $\Sigma$ ist eine endliche (evenetuell leere) Folge von Buchstaben. Das leere Wort $\epsilon$ (oder manchmal auch $\lambda$) ist die leere Buchstabenfolge. Die Menge aller Wörter über $\Sigma$ bezeichnen wir mit $\Sigma^*$. Ferner sei $\Sigma^+ = \Sigma^* - \gk{\epsilon}$. Fortan gehen wir davon aus, dass $\epsilon \notin \Sigma$ gilt.
+\label{def:Wort}
 \end{definition}
 
-\begin{example}
-$\ub{(0, 1, 0, 1, 0, 1, 0)}{z}$ ist ein Wort über $\Sigma_{\tx{Bool}}$, $\Sigma_{\tx{Tastatur}}$ und $\Sigma_{\tx{logic}}$.
+\begin{example}[Zu Definition~\vref{def:Wort}]
+$\ub{(0, 1, 0, 1, 0, 1, 0)}{z}$ ist ein Wort über $\Sigma_{\tx{Bool}}$, $\Sigma_{\tx{Tastatur}}$ und $\Sigma_{\tx{logic}}$. $\epsilon$ ist ein Wort über einem beliebigen Alphabet ($\epsilon \in \Sigma^*$ für alle Alphabete $\Sigma^*$).
 \end{example}
-
-$\epsilon$ ist ein Wort über einem beliebigen Alphabet ($\epsilon \in \Sigma^*$ für alle Alphabete $\Sigma^*$)
 
 \begin{notation}
 Wörter werden künftig ohne Kommata geschrieben und lassen auch die Klammern weg. Also zum Beispiel $01010$ statt $(0, 1, 0, 1 , 0)$. Hierbei muss der unterschied zwischen dem Wort als Folge von Symbolen $00101$ und dem Wort als sprachliche Einheit \enq{Deutsch} beachtet werden.
@@ -92,7 +92,7 @@ Für eine einfacheres Verständnis ist der Aufbau eines induktiven Wortes in Abb
 \label{def:Induktive_Definition_der_Wortlaenge}
 \end{definition}
 
-\begin{example}[zu Definition~\vref{def:Induktive_Definition_der_Wortlaenge}]
+\begin{example}[Zu Definition~\vref{def:Induktive_Definition_der_Wortlaenge}]
 $w = \epsilon a b c$
 \begin{align*}
 \btg{w} = \btg{\ub{\epsilon a b}{v} \ub{c}{x}} &= \btg{\ub{\epsilon a}{v} \ub{b}{x}} + 1\\
@@ -107,6 +107,117 @@ $w = \epsilon a b c$
 Um alle Wörter aus $\Sigma^*$ systematisch aufzuzählen, ordnen wir Alphabet und Wörter.
 \begin{definition}[Kanonische Ordnung]
 Sei $\Sigma = \gk{a_1, a_2, \dots, a_n}$ und $<$: $\Sigma \times \Sigma$ eine Ordnung auf $\Sigma$ mit $a_1 < a_2 < a_3 < \dots < a_n$. Wir definieren die kanonische Ordnung auf $\Sigma^*$ wie folgt:
-\[u < v \Ra \btg{u} < \btg{v} \oder \btg{u} = \btg{v} \und u = wa_i u_1 \und\]\[ v w a_j u_2 \tx{ für } u, v \in \Sigma^* w, u_1, u_2 \in \Sigma^* \tx{ und } a_i < a_j \rk{i < j}\]
+\[u < v \tx{ \ac{gdw} } \btg{u} < \btg{v} \oder \btg{u} = \btg{v} \und u = wa_i u_1 \und\]\[ v w a_j u_2 \tx{ für } u, v \in \Sigma^* w, u_1, u_2 \in \Sigma^* \tx{ und } a_i < a_j \rk{i < j}\]
 \end{definition}
 
+\section{Teilwort, Präfixe, Suffixe}
+\begin{definition}[Teilwort, Präfixe, Suffixe]
+Sei $\Sigma$ ein Alphabet und seien $v, w \in \Sigma^*$
+\begin{itemize}
+\item $v$ heißt Teilwort von $w$ \ac{gdw} $\exists s, t \in \Sigma^* : w = svt$
+\item $v$ heißt Suffix von $w$ \ac{gdw} $\exists s \in \Sigma^* : w = sv$
+\item $v$ heißt Präfix von $w$ \ac{gdw} $\exists t \in \Sigma^* : w = vt$
+\item $v \neq \epsilon$ heißt \emph{echtes} Teilwort (Präfix/Suffix) von $w$ \ac{gdw} $v \neq w$ und $v$ ist Teilwort (Präfix/Suffix) von $w$.
+\end{itemize}
+\end{definition}
+
+\section{Wortumkehr}
+\begin{definition}[Wortumkehr]
+Sei $\Sigma$ ein Alphabet und sei $w = a_1 \mal a_1 \mal a_3 \dots a_n$ mit $a_i \in \Sigma_{1 \klgl i \klgl n}$ ein Wort. Dann ist die Wortumkehr $w^{\mathcal{R}}$ von $w$ definiert durch $w^{\mathcal{R}} = a_n a_{n - 1} \dots a_2 a_1$
+\end{definition}
+
+\begin{definition}[Induktive Definition der Wortumkehr]~
+\begin{itemize}
+\item $\epsilon^{\mathcal{R}} = \epsilon$
+\item falls $v = w \mal a$, so $v^{\mathcal{R}} = aw^{\mathcal{R}}$
+\end{itemize}
+\label{def:Induktive_Definition_der_Worumkehr}
+\end{definition}
+
+\begin{example}[Beispiel zur Definition~\vref{def:Induktive_Definition_der_Worumkehr}]
+$\rk{\ol{a} \ol{b} \ol{c}}^{\mathcal{R}} v = \ol{a} \ol{b} \ol{c} w = \ol{a} \ol{b} a = \ol{c}$
+\begin{align*}
+\Ra v^{\mathcal{R}} &= \ol{c} \mal \ub{\rk{\ol{a} \ol{b}}^\mathcal{R}}{v} = \ol{a} \ol{b} w = \ol{a} a = \ol{b}\\
+\Ra v^{\mathcal{R}} &= \ol{c} \ol{b} \mal \rk{\ol{a}}^{\mathcal{R}} v = \epsilon \mal \ol{a} w = \epsilon a = \ol{a}\\
+&= \ol{c} \mal \ol{b} \mal \ol{a} \mal \rk{\epsilon}^{\mathcal{R}}\\
+&= \ol{c} \mal \ol{b} \mal \ol{a} \mal \epsilon\\
+&= \ol{c} \mal \ol{b} \mal \ol{a}
+\end{align*}
+\end{example}
+
+\section{Iteration}
+\begin{definition}[Iteration]
+Sei $\Sigma$ ein Alphabet. Für alle Wörter $w \in \Sigma^*$ und $i \in \N$ definieren wir die $i$-te Iteration $w^i$ als
+\[w^0 = \epsilon \tx{, } w^1 = w\]
+und
+\[w^i = w \mal w^{i - 1}\]
+\label{def:Iteration}
+\end{definition}
+
+\begin{example}[Zu Definition~\vref{def:Iteration}]
+\begin{align*}
+aabb \mal bbab &= aabbbab\\
+&= a^2 b^4 ab\\
+ababc &= \rk{ab}^2 c
+\end{align*}
+\end{example}
+
+\section{Sprachen}
+\begin{definition}[Sprache, Konkatenation von Sprachen, Kleene-Stern]
+Sei $\Sigma$ ein Alphabet. Eine Sprache $L$ ist eine Teilmenge von $\Sigma^* \rk{L \subseteq \Sigma^*}$ (potentiell unendlich!). Das \emph{Komplement} $L^{\mathcal{C}}$ der Sprache $L$ bezüglich $\Sigma^*$ ist die Sprache $\Sigma^* - L$. $L_{\emptyset}$ ist die Leere Sprache; $L_{\epsilon} = \gk{\epsilon}$. Seien $L_1$ und $L_2$ Sprachen, dann ist
+\[L_1 \mal L_2 = L_1 L_2 = \rk{u \mal v \in \rk{\Sigma_1 \cup \Sigma_2}^x \vert u \in L_1 \und v \in L_2}\]
+die Konkatenation von $L_1$ und $L_2$. Ferner definieren wir für eine Sprache $L$
+\[L^0 = L_{\epsilon} L^{i + 1} = L \mal L^i\]
+und
+\[L^* = \bigcup_{i \in \N} L^i \tx{ und } L^+ = \bigcup_{i \in \N - \rk{0}} L^i = L \mal L^*\]
+\label{def:Sprache_Konkatenation_von_Sprachen_Kleene-Stern}
+\end{definition}
+
+\begin{example}[Zu Definition~\vref{def:Sprache_Konkatenation_von_Sprachen_Kleene-Stern}]~
+\begin{itemize}
+\item $L_1 = \emptyset$
+\item $L_2 = \gk{\epsilon}$
+\item $L_3 = \gk{\epsilon, aa, bb, ab, ba}$
+\item $L_4 = \gk{a, b}^* = \gk{\epsilon, a, b, aa, ab, ba, bb, \dots}$
+\item $L_5 = \gk{a}^* = \gk{\epsilon, a, aa, aaa, \dots} = \gk{a^0, a^1, a^2, \dots}$
+\item $L_6 = \gk{a^p \vert p = \tx{ Primzahl}}$
+\item $L_7 = \gk{a^i b^{2i} a^i \vert i \in \N}$
+\item $L_8 =$ alle syntaktisch korrekten \lstinline!JAVA!-Programme.
+\item $L_9 =$ alle typ-korrekten \lstinline!JAVA!-Programme.
+\item $L_{10} =$ alle terminierenden \lstinline!JAVA!-Programme.
+\end{itemize}
+\end{example}
+
+\begin{lemma}
+Seien $L_1$, $L_2$ und $L_3$ Sprachen über einem Alphabet $\Sigma$. Dann gilt
+\[L_1 \mal L_2 \cup L_1 \mal L_3 = L_2 \mal \rk{L_2 \cup L_3}\]
+\label{lem:Sprachen_Lemma_1}
+\end{lemma}
+
+\begin{proof}[Beweis zu Lemma~\vref{lem:Sprachen_Lemma_1}]~
+\begin{itemize}
+\item $L_1 \mal L_2 \cup L_1 \mal L_3 \subseteq L_1 \mal \rk{L_2 \cup L_3}$
+	\begin{itemize}
+	\item $L_1 \mal L_2 \subseteq L_1 \mal \rk{L_2 \cup L_3}$
+		\begin{align*}
+		L_1 \mal L_2 &= \gk{uv \vert u \in L_1 \und v \in L_2}\\
+		&\subseteq \gk{uv \vert u \in L_1 \und L_2 \cup L_3}\\
+		&= L_1 \mal \rk{L_2 \cup L_3}
+		\end{align*}
+
+	\item $L_1 \mal L_3 \subseteq L_1 \mal \rk{L_2 \cup L_3}$ analog
+	\end{itemize}
+
+\item $L_1 \mal \rk{L_2 \cup L_3} \subseteq L_1 \mal L_2 \cup L_1 \mal L_3$
+	\begin{align*}
+	&x \in L_1 \mal \rk{L_2 \cup L_3}\\
+	&\Lra x \in \gk{uv | u \in L_1 \und v \in L_2 \cup L_3}\\
+	&\Lra \exists u \in L_1 \und \exists v \in L_2 \cup L_3 : x = uv\\
+	&\Lra \exists u \in L_1 \und \rk{\exists v \in L_2 \oder \exists v \in L_3} : x = uv\\
+	&\Lra \rk{\exists u \in L_1 \und \exists v \in L_2 : x = uv} \oder \rk{\exists u \in L_1 \oder \exists v \in L_3 : x = uv}\\
+	&\Lra x \in \ub{\gk{uv | u \in L_1 \und v \in L_2}}{=L_1 \mal L_2} \oder x \in \ub{\gk{uv \vert u \in L_1 \und v \in L_3}}{= L_1 \mal L_3}\\
+	&\Lra x \in L_1 \mal L_2 \oder x \in L_1 \mal L_3\\
+	&\Lra x \in L_1 \mal L_2 \cup L_1 \mal L_3
+	\end{align*}
+\end{itemize}
+\end{proof}

@@ -2,13 +2,14 @@
 \usepackage[utf8x]{inputenc}
 
 %Sets the language of the document to german
+%\usepackage[ngerman]{babel}
 \usepackage[ngerman]{babel}
 
 %Use german quotes
-\usepackage[babel,german=quotes]{csquotes}
+\usepackage[babel=true]{csquotes}
 
 %For better usage of the typorgaphic features of pdftex
-\usepackage{microtype}
+\usepackage[tracking=true,kerning=true,spacing=true,final,babel]{microtype}
 
 %For support of inserting graphics (jpeg, png, ...)
 \usepackage{graphicx}
@@ -19,6 +20,9 @@
 
 %For mathematical symbols
 \usepackage{amsmath}
+
+%For mathematical fonts like mathbb
+\usepackage{amsfonts}
 
 %For customizable theoremes
 \usepackage{amsthm}
@@ -38,3 +42,9 @@
 %For TikzPictures
 \usepackage{pgf}
 \usepackage{tikz}
+
+%For multiple columns in the text
+\usepackage{multicol}
+
+%For sourcecode
+\usepackage{listings}
