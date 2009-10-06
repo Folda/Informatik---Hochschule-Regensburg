@@ -1,7 +1,7 @@
 \part{Wintersemester 2009}
 \chapter{Physik (PH)}
 \section{2009.10.05}
-\section{IMG1}
+\subsection{IMG1}
 \begin{tikzpicture}
 \foreach \x in {0.2,0.6,...,4}
 {
@@ -13,7 +13,7 @@
 \draw decorate [decoration=brace] {(4,-0.1) -- (0,-0.1) node[below,midway] {$e$}};
 \end{tikzpicture}
 
-\section{IMG2}
+\subsection{IMG2}
 \begin{tikzpicture}
 %Negative Ladungen
 \foreach \x/\y in
@@ -48,7 +48,7 @@
 
 \end{tikzpicture}
 
-\section{IMG3}
+\subsection{IMG3}
 \begin{tikzpicture}
 %Negative Ladungen
 \foreach \x/\y in
@@ -58,7 +58,14 @@
 2.7/0.63,
 2/2,
 1.3/0.7,
-1.1/2.3
+1.1/2.3,
+3.3/2.5,
+3.7/3.3,
+3.7/1.6,
+3.3/0.8,
+3/3.5,
+1/3.3,
+2/3.8
 }
 {
 	\draw[color=blue] (\x,\y) circle (0.2);
@@ -68,7 +75,8 @@
 %Positive Ladungen
 \foreach \x/\y in
 {
-1.5/1.5
+1.5/1.5,
+2.1/3.3
 }
 {
 	\draw[color=red] (\x,\y) circle (0.2);
@@ -86,5 +94,92 @@
 
 \end{tikzpicture}
 
-
 \chapter{Mathematik 1 (MA1)}
+\section{2009.10.05}
+\subsection{IMG1}
+\begin{tikzpicture}
+\def\firstcircle{(0,0) circle (1)}
+\def\secondcircle{(1.5,0) circle (1)}
+
+\draw \firstcircle;
+\draw \secondcircle;
+
+\node at (-1,0) [left] {$A$};
+\node at (2.5,0) [right] {$B$};
+
+\begin{scope}
+\clip \firstcircle;
+\fill[gray] \secondcircle;
+\end{scope}
+
+\node[color=gray] at (0.75,-1) [below] {$A \cap B$};
+\end{tikzpicture}
+
+\subsection{IMG2}
+\begin{tikzpicture}
+\def\firstcircle{(0,0) circle (1)}
+\def\secondcircle{(1.5,0) circle (1)}
+
+\draw \firstcircle;
+\draw \secondcircle;
+
+\node at (-1,0) [left] {$A$};
+\node at (2.5,0) [right] {$B$};
+
+\begin{scope}
+\fill[gray] \firstcircle;
+\fill[gray] \secondcircle;
+\end{scope}
+
+\node[color=gray] at (0.75,-1) [below] {$A \cup B$};
+\end{tikzpicture}
+
+\subsection{IMG3}
+\begin{tikzpicture}
+\def\firstcircle{(0,0) circle (1)}
+\def\secondcircle{(1.5,0) circle (1)}
+
+\draw \firstcircle;
+\draw \secondcircle;
+
+\node at (-1,0) [left] {$A$};
+\node at (2.5,0) [right] {$B$};
+
+\begin{scope}[even odd rule]% first circle without the second
+\clip \secondcircle (-1,1) rectangle (2.5,-1);
+\fill[gray] \firstcircle;
+\end{scope}
+
+\node[color=gray] at (0.75,-1) [below] {$A \backslash B$};
+\end{tikzpicture}
+
+\subsection{IMG4}
+\begin{tikzpicture}
+\def\firstcircle{(0,0) circle (1)}
+\def\secondcircle{(1.5,0) circle (1)}
+
+\draw[fill=gray] \firstcircle;
+\draw[fill=gray] \secondcircle;
+
+\node at (-1,0) [left] {$A$};
+\node at (2.5,0) [right] {$B$};
+
+\begin{scope}
+\clip \firstcircle;
+\fill[white] \secondcircle;
+\end{scope}
+
+\node[color=gray] at (0.75,-1) [below] {$A \triangle B$};
+\end{tikzpicture}
+
+\subsection{IMG5}
+\begin{tikzpicture}
+\def\firstcircle{(0,0) circle (1)}
+
+\draw[fill=gray] (-2,-1.5) rectangle (2,1.5) node[right] {$M$};
+\draw[fill=white] \firstcircle;
+
+\node at (-1,0) [left] {$A$};
+
+\node[color=gray] at (0,-1.5) [below] {$\neg A$};
+\end{tikzpicture}
