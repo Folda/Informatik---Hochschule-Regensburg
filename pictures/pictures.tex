@@ -14,6 +14,40 @@ oneside,a4paper,parskip=half]{scrbook}
 %\input{pictures/TeXampledotnet.tex}
 %\input{pictures/IN1_WS2008.tex}
 %\input{pictures/IN2_SS2009.tex}
-\input{pictures/WS2009.tex}
+%\input{pictures/WS2009.tex}
+
+\section{2009.10.07}
+\subsection{IMG1}
+\begin{tikzpicture}
+\node at (0,0)
+{
+\begin{tabular}{ccccccc}
+&&& \large{$B = $} &&\\
+&& $b_1$ & $b_2$ & \dots & $b_n$\\
+&$a_1$& \textcolor{gray}{$\rk{a_1, b_1}$} & \textcolor{gray}{$\rk{a_1, b_2}$} & \textcolor{gray}{\dots} & \textcolor{gray}{$\rk{a_1, b_n}$}\\
+\large{$A =$} &$a_2$   & \textcolor{gray}{$\rk{a_2, b_1}$} & \textcolor{gray}{$\rk{a_2, b_2}$} & \textcolor{gray}{\dots} & \textcolor{gray}{$\rk{a_2, b_n}$} & \textcolor{gray}{\large{$= A \times B$}}\\
+&\vdots & \textcolor{gray}{\vdots}& \textcolor{gray}{\vdots}& \textcolor{gray}{\vdots}& \textcolor{gray}{\vdots}\\
+&$a_n$& \textcolor{gray}{$\rk{a_n, b_1}$} & \textcolor{gray}{$\rk{a_n, b_2}$} & \textcolor{gray}{\dots} & \textcolor{gray}{$\rk{a_n, b_n}$}
+\end{tabular}
+};
+\end{tikzpicture}
+
+\subsection{IMG2}
+\begin{tikzpicture}
+\draw (0,0) node[left] {$1$} -- (4,0);
+\draw (0,2) node[left] {$2$} -- (4,2);
+\draw (0,0) node[below] {$0$} -- (0,2);
+\draw (2,0) node[below] {$1$} -- (2,2);
+\draw (4,0) node[below] {$2$} -- (4,2);
+\end{tikzpicture}
+
+\subsection{IMG3}
+\begin{tikzpicture}
+\draw (0,0) circle (1);
+\draw (1.5,0) circle (1);
+\draw (0.75,-1) circle (1);
+\end{tikzpicture}
+\subsection{IMG4}
+\subsection{IMG5}
 
 \end{document}

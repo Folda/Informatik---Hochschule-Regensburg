@@ -1,0 +1,52 @@
+%Umgebungen
+\newenvironment{automat}[1][2.8cm]
+{\begin{tikzpicture}[>=stealth',auto,node distance=#1,semithick,initial text=]}
+{\end{tikzpicture}} %Tikz Picture - Automaten
+
+%Klammern
+\newcommand{\gklamm}[1]{\ensuremath{\left\{#1\right\}}}	%Geschweifte Klammern
+\newcommand{\rklamm}[1]{\ensuremath{\left(#1\right)}}	%Runde Klammern
+\newcommand{\betrag}[1]{\ensuremath{\left|#1\right|}}	%Betragsstriche
+
+%Mathematische Zeichen
+\newcommand{\coloneqq}{\mathrel{\mathop:\!\!=}}		%Zeichen für "ist definiert durch"
+
+%Griechische Buchstaben
+\newcommand{\Alpha}{\ensuremath{\mbox{A}}}
+\newcommand{\Beta}{\ensuremath{\mbox{B}}}
+\newcommand{\Iota}{\ensuremath{\mbox{I}}}
+\newcommand{\Rho}{\ensuremath{\mbox{R}}}
+\newcommand{\Kappa}{\ensuremath{\mbox{K}}}
+\newcommand{\Tau}{\ensuremath{\mbox{T}}}
+\newcommand{\Mu}{\ensuremath{\mbox{M}}}
+\newcommand{\Epsilon}{\ensuremath{\mbox{E}}}
+\newcommand{\Nu}{\ensuremath{\mbox{N}}}
+\newcommand{\Zeta}{\ensuremath{\mbox{Z}}}
+\newcommand{\Chi}{\ensuremath{\mbox{X}}}
+\newcommand{\Eta}{\ensuremath{\mbox{H}}}
+\newcommand{\Omicron}{\ensuremath{\mbox{O}}}
+\newcommand{\omicron}{\ensuremath{\mbox{o}}}
+
+%Abkürzungen
+\newcommand{\ceq}{\ensuremath{\coloneqq}}		%Abkürzung zu coloneqq
+\newcommand{\gk}[1]{\ensuremath{\gklamm{#1}}}		%Abkürzung für gklamm
+\newcommand{\rk}[1]{\ensuremath{\rklamm{#1}}}		%Abkürzung für rklamm
+\newcommand{\tx}[1]{\ensuremath{\text{#1}}}		%Abkürzung für text
+\newcommand{\enq}[1]{\enquote{#1}}			%Abkürzung für enquote
+\newcommand{\oder}{\ensuremath{\vee}}			%Abkürzung für vee (oder Zeichen)
+\newcommand{\und}{\ensuremath{\wedge}}			%Abkürzung für wedge (und Zeichen)
+\newcommand{\Ra}{\ensuremath{\Rightarrow}}		%Abkürzung für Rightarrow
+\newcommand{\ra}{\ensuremath{\rightarrow}}		%Abkürzung für rightarrow
+\newcommand{\La}{\ensuremath{\Leftarrow}}		%Abkürzung für Leftarrow
+\newcommand{\la}{\ensuremath{\leftarrow}}		%Abkürzung für leftarrow
+\newcommand{\Lra}{\ensuremath{\Leftrightarrow}}		%Abkürzung für Leftrightarrow
+\newcommand{\lra}{\ensuremath{\leftrightarrow}}		%Abkürzung für leftrightarrow
+\newcommand{\klgl}{\ensuremath{\leq}}			%Abkürzung für leq (kleiner gleich)
+\newcommand{\grgl}{\ensuremath{\geq}}			%Abkürzung für geq (größer gleich)
+\newcommand{\ul}[1]{\underline{#1}}			%Abkürzung für underline
+\newcommand{\ob}[2]{\ensuremath{\overbrace{#1}^{#2}}}	%Abkürzung für overbrace
+\newcommand{\ub}[2]{\ensuremath{\underbrace{#1}_{#2}}}	%Abkürzung für overbrace
+\newcommand{\btg}[1]{\ensuremath{\betrag{#1}}}		%Abkürzung für betrag
+\newcommand{\mal}{\ensuremath{\cdot}}			%Abkürzunf für cdot
+\newcommand{\ol}[1]{\ensuremath{\overline{#1}}}		%Abkürzung für overline
+\newcommand{\N}{\ensuremath{\mathbb{N}}}			%Abkürzung für die Menge der Natürlichen Zahlen
