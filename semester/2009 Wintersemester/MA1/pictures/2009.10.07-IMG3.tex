@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+\def\firstcircle{(0,0) circle (1)}
+\def\secondcircle{(1.5,0) circle (1)}
+\def\thirdcircle{(0.75,-1) circle (1)}
+
+\node at (-1,0) [left] {$A$};
+\node at (2.5,0) [right] {$B$};
+\node at (0.75,-2) [below] {$C$};
+
+\draw \firstcircle;
+\draw[fill=gray] \secondcircle;
+\draw[fill=gray] \thirdcircle;
+
+\begin{scope}
+\clip \firstcircle;
+\clip \secondcircle;
+\fill[semitransparent,blue] \secondcircle;
+\end{scope}
+\begin{scope}
+\clip \firstcircle;
+\clip \thirdcircle;
+\fill[semitransparent,blue] \thirdcircle;
+\end{scope}
+\end{tikzpicture}
