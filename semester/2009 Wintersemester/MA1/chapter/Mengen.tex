@@ -128,6 +128,10 @@ Seien $A$ und $B$ beliebige Mengen und $M$ eine Menge mit $A \subseteq M$ und $B
 Die Bildchen in Definition~\vref{def:1.4} nennt man Venn-Diagramme.
 \end{note}
 
+\begin{note}
+Die Mengenoperationen $\cap$, $\cup$, $\triangle$ sind symmetrisch, $A \times B$ hingegen nicht.
+\end{note}
+
 \begin{theorem}[Rechenregeln für $\cap$, $\cup$, $\bar{M}$]
 Seien $A$, $B$, $C$ beliebige Mengen und $M$ eine Menge mit $A, B, C \subseteq M$. Für die verschiedenen Gesetze siehe Tabelle~\vref{tab:Rechenregeln_fuer_Operationen_cap-cup-bar}.
 \begin{table}[htb]
@@ -172,7 +176,7 @@ $\overline{A \cap B} = \bar{A} \cup \bar{B}$ & $\overline{A \cup B} = \bar{A} \c
 \end{table}
 \end{theorem}
 
-\begin{proof}[Exemplarisch zum Distributivgesetz]
+\begin{proof}[Exemplarischer Beweis zum Distributivgesetz]
 \ac{z.z.}
 \[A \cap \rk{B \cup C} = A \cap B \cup A \cap C\]
 Für die Zugehörigen Venn-Diagramme siehe Abbildungen~\vref{fig:2009.10.07-IMG3} und \vref{fig:2009.10.07-IMG4}.
@@ -196,10 +200,49 @@ Für die Zugehörigen Venn-Diagramme siehe Abbildungen~\vref{fig:2009.10.07-IMG3
 \item Die Mengen $A$ und $B$ heißen \emph{disjunkt} falls $A \cap B = \emptyset$.
 \item Für den Schnitt der Mengen $A_1$, $A_2$, \dots, $A_n$ schreibt man \[A_1 \cap A_2 \cap \dots \cap A_n \eqc \bigcap_{j = 1}^{n} A_j\]
 \item Für die Vereinigung der Mengen $A_1$, $A_2$, \dots, $A_n$ schreibt man \[A_1 \cup A_2 \cup \dots \cup A_n \eqc \bigcup_{j = 1}^{n} A_j\]
-\item Ist $M$ eine endliche Menge oder eine abzählbare Menge (\ac{z.B.} \N, \Z, \Q aber nicht \R) dann nennt man die Menge aller Teilmengen von $M$ die Potenzmenge $\pmeng{M}$.
+\item Ist $M$ eine endliche Menge oder eine abzählbare Menge (\ac{z.B.} $\N$, $\Z$, $\Q$ aber nicht $\R$) dann nennt man die Menge aller Teilmengen von $M$ die Potenzmenge $\pmeng{M}$. Hat die Menge $M$ genau $n$ Element, dann hat die Potzenzmenge $\pmeng{M}$ genau $2^n$ Elemente.
+	\begin{example}
+	$M = \gk{0, 1, 2}$
+	\begin{align*}
+	&\pmeng{M} = \gk{\emptyset, \gk{0}, \gk{1}, \gk{2}, \gk{0,1}, \gk{0,2}, \gk{1,2}, \gk{0,1,2}}\\
+	&\pmeng{\N} = \gk{\emptyset, \gk{1}, \gk{2}, \gk{3}, \gk{1,2}, \gk{1,3}, \dots}
+	\end{align*}
+	\end{example}
+
+\item Es muss beachtet werden, dass $\gk{\emptyset}$ oder $\gk{\gk{}} \neq \emptyset$.
+\item Falls $A \cap B = \emptyset$ mit $A$, $B$ endlich, gilt: \[\betrag{A \cup B} = \betrag{A} + \betrag{B}\]
+\item Falls $B \subseteq A$ mit $A$, $B$ endlich, gilt: \[\betrag{A \backslash B} = \betrag{A} - \betrag{B}\]
 \end{enumerate}
 \end{definition}
 
+\begin{example}
+$M = \gk{1, 2, 3}$
+\begin{align*}
+&\pmeng{M} = \gk{\emptyset, \gk{1}, \gk{2}, \gk{3}, \gk{1,2}, \gk{1,3}, \gk{2,3}, \gk{1,2,3}}\\
+&\betrag{M} = 3 \Ra \betrag{\pmeng{M}} = 2^3 = 8
+\end{align*}
+Man kann Teilmengen der 3-elementigen Menge $M$ als binäre Zahlen mit drei Stellen betrachten:
+
+1 Stelle 0 dann 1 nicht in Teilmenge\\
+1 Stelle 1 dann 1 in Teilmenge\\
+2 Stelle 0 dann 2 nicht in Teilmenge\\
+2 Stelle 1 dann 2 in Teilmenge\\
+3 Stelle 0 dann 3 nicht in Teilmenge\\
+3 Stelle 1 dann 3 in Teilmenge
+
+Es gibt genau acht binäre Zahlen mit drei Stellen.
+\end{example}
+
 \begin{note}
-Hat die Menge $M$ genau $n$ Element, dann hat die Potzenzmenge $\pmeng{M}$ genau $2^n$ Elemente.
+$M = \emptyset$ \[\pmeng{M} = \pmeng{\emptyset} = \gk{\emptyset} \neq \emptyset\]
 \end{note}
+
+\begin{theorem}[Verallgemeinerte Regeln von de Morgan]
+Seien $A_1$, $A_2$, $A_3$, \dots, $A_n$ beliebige Mengen mit $A_1, A_2, \dots \subseteq M$ so gilt:
+\[\ol{\bigcap_{j = 1}^{n} A_j} = \bigcup_{j = 1}^{n} \bar{A_j} \tx{ \ac{bzw.} } \ol{\bigcup_{j = 1}^{n} A_j} = \bigcap_{j = 1}^{n} \bar{A_j}\]
+\label{the:Verallgemeinerte_Regeln_von_de_Morgan}
+\end{theorem}
+
+\begin{proof}[Beweis zu Satz~\vref{the:Verallgemeinerte_Regeln_von_de_Morgan}]
+Folgt Später
+\end{proof}

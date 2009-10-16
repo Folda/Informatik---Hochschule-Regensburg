@@ -1,0 +1,250 @@
+\section{Logik}
+Mathematische Inhalte werden durch Aussagen ausgedrückt. Eine Aussage beschreibt einen Sachverhalt, der eindeutig entweder wahr ($w$) oder falsch ($f$) ist.
+\begin{enumerate}
+\item Außer wahr oder falsch sind keine weiteren Wahrheitswerte zugelassen (Prinzip des ausgeschlossenen Dritten).
+\item Es trifft genau einer der Wahrheitswerte zu (Prinzip vom ausgeschlossenen Widerspruch).
+\end{enumerate}
+
+\begin{example}~
+\begin{enumerate}
+\item 5 ist kleiner als 3, Aussage falsch.
+\item Bonn ist die Hauptstadt der BRD, Aussage (heute) falsch.
+\item Der einige Satz dieser Zeile ist falsch, keine Aussage da Widerspruch.
+\item Jeder gerade Zahl größer 2 lässt sich als Summe von zwei Primzahlen schreiben, Aussage wahr.
+\item Das Studium der Informatik ist schwer, keine Aussage da nicht objektiv beantwortbar (eventuell auch nicht von jedem mit wahr oder falsch beantwortbar).
+\end{enumerate}
+\end{example}
+
+Die Mathematik setzt sich zusammen aus Axiomen, Definitionen, Sätzen und Beweisen.\\
+In einer \emph{Definition} wird ein Begriff festgelegt oder eine Bezeichnung eingeführt.
+
+In einem \emph{Satz/Theorem} wird eine wahre Aussage über eine Eigenschaft eines mathematischen Objektes oder über das Verhältnis von verschiedenen mathematischen Objekten untereinander gemacht. Diese Aussagen müssen über logische Schlüsse aus anderen wahren Aussagen hergeleitet und damit bewiesen werden.
+
+\emph{Axiome} sind grundlegende Aussagen von denen man \emph{annimmt} sie seien wahr. Aus diesen Aussagen werden alle anderen Aussagen hergeleitet. Ein Axiomensystem erfüllt folgende Bedingungen
+\begin{enumerate}
+\item es ist widerspruchsfrei
+\item es ist vollständig
+\item die Axiome sind unabhängig voneinander (Minimalität des Axiomensystems)
+\item alle Aussagen sind entscheidbar wahr oder falsch
+\end{enumerate}
+
+\begin{example}[Axiomensystem der Algebra der natürlichen Zahlen (Axiomensystem nach Peano (1854--1938)]~
+\begin{enumerate}
+\item 1 ist eine natürliche Zahl.
+\item Jede natürliche Zahl hat einen Nachfolger.
+\item Keine natürliche Zahl hat 1 als Nachfolger.
+\item Die Nachfolger von verschiedenen natürlichen Zahlen sind verschieden.
+\item Eine Menge, die die 1 enthält und zu jeder natürlichen Zahl $n$ auch ihren Nachfolger $n' = n + 1$ enthält, enthält alle natürlichen Zahlen (dieses Axiom ist die Grundlage für das Beweisprinzip der vollständigen Induktion).
+\end{enumerate}
+\end{example}
+
+\begin{note}
+Auch ein Hilfssatz, ein Lemma oder ein Korollar sind vom Typ eines Satzes.
+\end{note}
+
+Im Folgenden stehen $A$, $B$, $C$, \dots falls nicht explizit festgelegt für Aussage\emph{variablen}, die jeweils die Werte wahr oder falsch annehmen können.
+
+Zur Definition von Verknüpfungen verwendet man \emph{Wahrheitstabellen}. IN einer solchen Tabelle wird für jede Kombination von Wahrheitswerten der zu verknüpfenden Variablen der Wahrheitswert der Verknüpfung festgelegt.
+
+\begin{definition}[Verknüpfung von Aussagen]~
+\begin{enumerate}
+\item Die \emph{Negation} oder \emph{Verneinung} der Aussage $A$ ist die Aussage \enq{nicht $A$} in Zeichen $\neg A$, sie ist definiert durch Tabelle~\vref{tab:Wahrheitstabelle_der_Negation}.
+	\begin{table}[htb]
+	\center
+	\begin{tabular}{c||c}
+	$A$ & $\neg A$\\\hline
+	$w$ & $f$\\
+	$f$ & $w$
+	\end{tabular}
+	\caption{Wahrheitstabelle der Negation}
+	\label{tab:Wahrheitstabelle_der_Negation}
+	\end{table}
+
+	\begin{example}
+	$A \ceq$ heute ist Montag\\
+	$\neg A =$ heute ist nicht Montag $=$ heute ist ein Tag aus $\gk{\tx{Di}, \tx{Mi}, \dots, \tx{Sa}, \tx{So}} = \gk{\tx{Mo}}^{\mathcal{C}} = \ol{\gk{\tx{Mo}}}$.
+	\end{example}
+
+\item Die \emph{Konjunktion} der Aussagen $A$ und $B$, ist die Aussage \enq{$A$ und $B$}, in Zeichen $A \und B$. Sie ist definiert durch Tabelle~\vref{tab:Wahrheitstabelle_der_Konjunktion}.
+	\begin{table}[htb]
+	\center
+	\begin{tabular}{c|c||c}
+	$A$ & $B$ & $A \und B$\\\hline
+	$w$ & $w$ & $w$\\
+	$w$ & $f$ & $f$\\
+	$f$ & $w$ & $f$\\
+	$f$ & $f$ & $f$\\
+	\end{tabular}
+	\caption{Wahrheitstabelle der Konjunktion}
+	\label{tab:Wahrheitstabelle_der_Konjunktion}
+	\end{table}
+	$A \und B$ ist genau dann wahr, wenn $A$ und $B$ wahr sind.
+
+	\begin{example}
+	$A \ceq$ heute ist Montag, $B \ceq$ heute ist Monats Erster
+	\end{example}
+
+\item Die \emph{Disjunktion} der Aussagen $A$ und $B$, ist die Aussage \enq{$A$ oder $B$} (diese \enq{oder} ist nicht ausschließend), in Zeichen $A \oder B$. Sie ist definiert durch Tabelle~\vref{tab:Wahrheitstabelle_der_Disjunktion}.
+	\begin{table}[htb]
+	\center
+	\begin{tabular}{c|c||c}
+	$A$ & $B$ & $A \oder B$\\\hline
+	$w$ & $w$ & $w$\\
+	$w$ & $f$ & $w$\\
+	$f$ & $w$ & $w$\\
+	$f$ & $f$ & $f$\\
+	\end{tabular}
+	\caption{Wahrheitstabelle der Disjunktion}
+	\label{tab:Wahrheitstabelle_der_Disjunktion}
+	\end{table}
+	$A \oder B$ ist genau dann falsch, wenn $A$ und $B$ falsch sind.
+
+	\begin{example}
+	$A \ceq$ heute ist Montag, $B \ceq$ heute ist Monats Erster
+	\end{example}
+
+\item Die \emph{Implikation} von $A$ nach $B$, ist die Aussage \enq{wenn $A$ dann $B$} oder \enq{aus $A$ folgt $B$}, in Zeichen $A \Ra B$. Sie ist definiert durch Tabelle~\vref{tab:Wahrheitstabelle_der_Implikation}.
+	\begin{table}[htb]
+	\center
+	\begin{tabular}{c|c||c}
+	$A$ & $B$ & $A \Ra B$\\\hline
+	$w$ & $w$ & $w$\\
+	$w$ & $f$ & $f$\\
+	$f$ & $w$ & $w$\\
+	$f$ & $f$ & $w$\\
+	\end{tabular}
+	\caption{Wahrheitstabelle der Implikation}
+	\label{tab:Wahrheitstabelle_der_Implikation}
+	\end{table}
+	Man nennt $A$ die Voraussetzung und $B$ die (Schluss-)Folgerung. Man sagt auch $A$ ist eine \emph{hinreichende} Bedingung für $B$ und $B$ ist eine \emph{notwendige} Bedingung für $A$.
+
+	\begin{example}~
+	\begin{enumerate}
+	\item $A \ceq$ es regnet\\$B \ceq$ die Straße ist nass
+	\item $A \ceq$ 5 ist kleiner als 3\\$B \ceq$ Regensburg liegt in Hessen\\$A \Ra B$ wahr
+	\end{enumerate}
+	\end{example}
+
+\item Die \emph{Äquivalenz} der Aussagen $A$ und $B$, ist die Aussage \enq{$A$ gilt genau dann wenn $B$ gilt} oder \enq{$A$ gilt dann und nur dann wenn $B$ gilt}, in Zeichen $A \Lra B$ (gesprochen $A$ äquivalent zu $B$). Sie ist definiert durch Tabelle~\vref{tab:Wahrheitstabelle_der_Aequivalenz}.
+	\begin{table}[htb]
+	\center
+	\begin{tabular}{c|c||c}
+	$A$ & $B$ & $A \Lra B$\\\hline
+	$w$ & $w$ & $w$\\
+	$w$ & $f$ & $f$\\
+	$f$ & $w$ & $f$\\
+	$f$ & $f$ & $w$\\
+	\end{tabular}
+	\caption{Wahrheitstabelle der Äquivalenz}
+	\label{tab:Wahrheitstabelle_der_Aequivalenz}
+	\end{table}
+	Die Aussage $A \Lra B$ kann man auch schreiben als $\rk{A \Ra B} \und \rk{B \Ra A}$ siehe Tabelle~\vref{tab:Alternative_Wahrheitstabelle_der_Aequivalenz}.
+	\begin{table}[htb]
+	\center
+	\begin{tabular}{c|c||c|c|c}
+	$A$ & $B$ & $A \Ra B$ & $B \Ra A$ & $\rk{A \Ra B} \und \rk{B \Ra A}$\\\hline
+	$w$ & $w$ & $w$ & $w$ & $w$\\
+	$w$ & $f$ & $f$ & $w$ & $f$\\
+	$f$ & $w$ & $w$ & $f$ & $f$\\
+	$f$ & $f$ & $w$ & $w$ & $w$\\
+	\end{tabular}
+	\caption{Alternative Wahrheitstabelle der Äquivalenz}
+	\label{tab:Alternative_Wahrheitstabelle_der_Aequivalenz}
+	\end{table}
+
+	\begin{example}~
+	\begin{enumerate}
+	\item $A \ceq$ $x$ ist gerade\\$B \ceq$ $x$ ist durch 2 teilbar\\je nach $x$ Zeile 1 oder 4 in Tabelle~\vref{tab:Alternative_Wahrheitstabelle_der_Aequivalenz} wahr, damit $A \Lra B$ wahr. 
+	\item $A \ceq$ 5 ist kleiner als 3\\$B \ceq$ Regensburg liegt in Hessen\\$A \Lra B$ wahr
+	\end{enumerate}
+	\end{example}
+\end{enumerate}
+\end{definition}
+
+\begin{note}
+Zwei immer wahre oder falsche Aussagen sind \emph{äquivalent}.
+\end{note}
+
+\begin{definition}[Tautologie und Kontradiktion]~
+\begin{enumerate}
+\item Eine Aussage, die immer wahr ist heißt \emph{Tautologie}.
+\item Eine Aussage, die immer falsch ist nennt man \emph{Kontradiktion}.
+\end{enumerate}
+\end{definition}
+
+\begin{example}[zu Tautologie]~
+\begin{enumerate}
+\item $A \oder \neg A$ (Prinzip der ausgeschlossenen Dritten)
+\item $A \Lra \neg \rk{\neg A}$ (Prinzip der doppelten Verneinung)
+\end{enumerate}
+\end{example}
+
+\begin{example}[zu Kontradiktion]~
+\begin{enumerate}
+\item $A \und \neg A$ (Prinzip vom ausgeschlossenen Widerspruch)
+\item $A \Lra \neg A$
+\end{enumerate}
+\end{example}
+
+\begin{exercise}
+Es seien $A$ und $B$ zwei Aussagen. Bestimmen Sie die Wahrheitswerte der Aussagen
+\begin{multicols}{3}
+\begin{enumerate}
+\item $\rk{A \oder B} \und \neg A$ \label{exc:Aufgabe_1_2_a}
+\item $\rk{A \und B} \oder \neg A$ \label{exc:Aufgabe_1_2_b}
+\item $\rk{\neg A \oder \neg B} \und A$ \label{exc:Aufgabe_1_2_c}
+\end{enumerate}
+\end{multicols}
+Für die Lösung siehe \vref{loe:Aufgabe_1_2}.
+\label{exc:Aufgabe_1_2}
+\end{exercise}
+
+\begin{exercise}
+Sind die folgenden Aussagen richtig oder falsch?
+\begin{enumerate}
+\item Wenn 18 durch 12 teilbar ist, dann ist 18 durch 3 teilbar. \label{exc:Aufgabe_1_3_a}
+\item 3 ist genau dann Teiler von 8, wenn 14 eine Primzahl ist. \label{exc:Aufgabe_1_3_b}
+\end{enumerate}
+Für die Lösung siehe \vref{loe:Aufgabe_1_3}.
+\label{exc:Aufgabe_1_3}
+\end{exercise}
+
+\begin{theorem}[Rechenregeln für $\und$, $\oder$, $\neg$, $\Lra$, $\Ra$]
+Alle Aussagen auf Tabelle~\vref{tab:Rechenregeln_fuer_und_oder_neg_Lra_Ra} sind wahr.
+\begin{table}[htb]
+\centering
+\begin{tabular}{cc}
+\toprule
+\multicolumn{2}{c}{\emph{Assoziativgesetze}}\\
+$\rk{A \cap B} \cap C = A \cap \rk{B \cap C}$ & $\rk{A \cup B} \cup C = A \cup \rk{B \cup C}$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Kommutativgesetze}}\\
+$A \cap B = B \cap A$ & $A \cup B = B \cup A$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Distributivgesetze}}\\
+$A \cap \rk{B \cup C} = \rk{A \cap B} \cup \rk{A \cap C}$ & $A \cup \rk{B \cap C} = \rk{A \cup B} \cap \rk{A \cup C}$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Idempotenzgesetze}}\\
+$A \cap A = A$ & $A \cup A = A$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Absorptionsgesetze}}\\
+$A \cap \rk{B \cup A} = A$ & $A \cup \rk{B \cap A} = A$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Regeln von de' Morgan}}\\
+$A \cap \emptyset = \emptyset$ & $A \cup \emptyset = A$\\
+$A \cap M = A$ & $A \cup M = M$\\
+\midrule
+
+\multicolumn{2}{c}{\emph{Kontraposition}}\\
+$A \cap \bar{A} = \emptyset$ & $A \cup \bar{A} = M$\\
+\bottomrule
+\end{tabular}
+\label{tab:Rechenregeln_fuer_und_oder_neg_Lra_Ra}
+\caption{Rechenregeln für $\und$, $\oder$, $\neg$, $\Lra$, $\Ra$}
+\end{table}
+\end{theorem}
