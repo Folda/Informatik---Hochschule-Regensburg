@@ -1,4 +1,4 @@
-\section{Logik}
+\chapter{Logik}
 Mathematische Inhalte werden durch Aussagen ausgedrückt. Eine Aussage beschreibt einen Sachverhalt, der eindeutig entweder wahr ($w$) oder falsch ($f$) ist.
 \begin{enumerate}
 \item Außer wahr oder falsch sind keine weiteren Wahrheitswerte zugelassen (Prinzip des ausgeschlossenen Dritten).
@@ -210,41 +210,132 @@ Für die Lösung siehe \vref{loe:Aufgabe_1_3}.
 \end{exercise}
 
 \begin{theorem}[Rechenregeln für $\und$, $\oder$, $\neg$, $\Lra$, $\Ra$]
-Alle Aussagen auf Tabelle~\vref{tab:Rechenregeln_fuer_und_oder_neg_Lra_Ra} sind wahr.
+Alle Aussagen in Tabelle~\vref{tab:Rechenregeln_fuer_und_oder_neg_Lra_Ra} sind wahr.
 \begin{table}[htb]
 \centering
-\begin{tabular}{cc}
+\begin{tabular}{ccc}
 \toprule
-\multicolumn{2}{c}{\emph{Assoziativgesetze}}\\
-$\rk{A \cap B} \cap C = A \cap \rk{B \cap C}$ & $\rk{A \cup B} \cup C = A \cup \rk{B \cup C}$\\
+\multicolumn{3}{c}{\emph{Assoziativgesetze}}\\
+\multicolumn{3}{c}{$\rk{\rk{A \und B} \und C} \Lra \rk{A \und \rk{B \und C}}$}\\
+\multicolumn{3}{c}{$\rk{\rk{A \oder B}} \oder C \Lra \rk{A \oder \rk{B \oder C}}$}\\
+\multicolumn{3}{c}{$\rk{\rk{A \Lra B} \Lra C} \Lra \rk{A \Lra \rk{B \Lra C}}$}\\
 \midrule
 
-\multicolumn{2}{c}{\emph{Kommutativgesetze}}\\
-$A \cap B = B \cap A$ & $A \cup B = B \cup A$\\
+\multicolumn{3}{c}{\emph{Kommutativgesetze}}\\
+$\rk{A \und B} \Lra \rk{B \und A}$ &
+$\rk{A \oder B} \Lra \rk{B \oder A}$ &
+$\rk{A \Lra B} \Lra \rk{B \Lra A}$\\
 \midrule
 
-\multicolumn{2}{c}{\emph{Distributivgesetze}}\\
-$A \cap \rk{B \cup C} = \rk{A \cap B} \cup \rk{A \cap C}$ & $A \cup \rk{B \cap C} = \rk{A \cup B} \cap \rk{A \cup C}$\\
+\multicolumn{3}{c}{\emph{Distributivgesetze}}\\
+\multicolumn{3}{c}{$\rk{A \und \rk{B \oder C}} \Lra \rk{\rk{A \und B} \oder \rk{A \und C}}$}\\
+\multicolumn{3}{c}{$\rk{A \oder \rk{B \und C}} \Lra \rk{\rk{A \oder B} \und \rk{A \oder C}}$}\\
 \midrule
 
-\multicolumn{2}{c}{\emph{Idempotenzgesetze}}\\
-$A \cap A = A$ & $A \cup A = A$\\
+\multicolumn{3}{c}{\emph{Idempotenzgesetze}}\\
+$\rk{A \und A} \Lra A$ & & $\rk{A \oder A} \Lra A$\\
 \midrule
 
-\multicolumn{2}{c}{\emph{Absorptionsgesetze}}\\
-$A \cap \rk{B \cup A} = A$ & $A \cup \rk{B \cap A} = A$\\
+\multicolumn{3}{c}{\emph{Absorptionsgesetze}}\\
+$\ub{\rk{A \und \rk{A \oder B}}}{\Lra \rk{\rk{A \und A} \oder \rk{A \und B}}} \Lra A$ & & $\rk{A \oder \rk{A \oder B}} \Lra A$\\
 \midrule
 
-\multicolumn{2}{c}{\emph{Regeln von de' Morgan}}\\
-$A \cap \emptyset = \emptyset$ & $A \cup \emptyset = A$\\
-$A \cap M = A$ & $A \cup M = M$\\
+\multicolumn{3}{c}{\emph{Regeln von de' Morgan}}\\
+$\rk{\neg \rk{A \und B}} \Lra \rk{\neg A \oder \neg B}$ & & $\rk{\neg \rk{A \oder B}} \Lra \rk{\neg A \und \neg B}$\\
 \midrule
 
-\multicolumn{2}{c}{\emph{Kontraposition}}\\
-$A \cap \bar{A} = \emptyset$ & $A \cup \bar{A} = M$\\
+\multicolumn{3}{c}{\emph{Kontraposition}}\\
+\multicolumn{3}{c}{$\rk{A \Ra B} \Lra \rk{\neg B \Ra \neg A}$}\\
 \bottomrule
 \end{tabular}
 \label{tab:Rechenregeln_fuer_und_oder_neg_Lra_Ra}
 \caption{Rechenregeln für $\und$, $\oder$, $\neg$, $\Lra$, $\Ra$}
 \end{table}
 \end{theorem}
+
+\begin{proof}[Beweis des Assoziativgesetzes über Wahrheitstabellen]
+zu zeigen \[\rk{\rk{A \Lra B} \Lra C} \Lra \rk{A \Lra \rk{B \Lra C}}\] (siehe Tabelle~\vref{tab:Logik_Assoziativgesetz}).
+\begin{table}[htb]
+\center
+\begin{tabular}{c|c|c||c|c|c|c||c}
+$A$ & $B$ & $C$ & $A \Lra B$ & $\rk{A \Lra B} \Lra C$ & $B \Lra C$ & $A \Lra \rk{B \Lra C}$ & \small{$\rk{\rk{A \Lra B} \Lra C} \Lra$}\\
+&&&&&&& $\rk{A \Lra \rk{B \Lra C}}$\\\hline
+$w$ & $w$ & $w$ & $w$ & $w$ & $w$ & $w$ & $w$\\
+$w$ & $w$ & $f$ & $w$ & $f$ & $f$ & $f$ & $w$\\
+$w$ & $f$ & $w$ & $f$ & $f$ & $f$ & $f$ & $w$\\
+$w$ & $f$ & $f$ & $f$ & $w$ & $w$ & $w$ & $w$\\\hline
+$f$ & $w$ & $w$ & $f$ & $f$ & $w$ & $f$ & $w$\\
+$f$ & $w$ & $f$ & $f$ & $w$ & $f$ & $w$ & $w$\\
+$f$ & $f$ & $w$ & $w$ & $w$ & $f$ & $w$ & $w$\\
+$f$ & $f$ & $f$ & $w$ & $f$ & $w$ & $f$ & $w$
+\end{tabular}
+\caption{Wahrheitstabelle zum Assoziativgesetz der Logik}
+\label{tab:Logik_Assoziativgesetz}
+\end{table}
+\end{proof}
+
+\begin{proof}[Beweis des Assoziativgesetzes über Wahrheitstabellen]
+zu zeigen \[\rk{A \Ra B} \Lra \rk{\neg B \Ra \neg A}\] (siehe Tabelle~\vref{tab:Logik_Kontraposition}).
+\begin{table}[htb]
+\center
+\begin{tabular}{c|c||c||c|c|c||c}
+$A$ & $B$ & $A \Ra B$ & $\neg B$ & $\neg A$ & $\neg B \Ra \neg A$ & $\rk{A \Ra B} \Lra \rk{\neg B \Ra \neg A}$\\\hline
+$w$ & $w$ & $w$ & $f$ & $f$ & $w$ & $w$\\
+$w$ & $f$ & $f$ & $w$ & $f$ & $f$ & $w$\\
+$f$ & $w$ & $w$ & $f$ & $w$ & $w$ & $w$\\
+$f$ & $f$ & $w$ & $w$ & $w$ & $w$ & $w$
+\end{tabular}
+\caption{Wahrheitstabelle zur Kontraposition in der Logik}
+\label{tab:Logik_Kontraposition}
+\end{table}
+\end{proof}
+
+\begin{definition}[Allquantor und Existenzquantor]~
+\begin{enumerate}
+\item Gilt eine Aussage $A(x)$ für alle $x$ aus $\mathbb{X}$, so schreibt man \[\forall x \in \mathbb{X} : A(x)\] \enq{für alle $x$ aus $\mathbb{X}$ gilt $A(x)$}. $\forall$ nennt man hierbei den \emph{Allquantor}.
+\item Gilt eine Aussage $A(x)$ für mindestens ein $x$ aus $\mathbb{X}$, so schreibt man \[\exists x \in \mathbb{X} : A(x)\] \enq{es existiert mindestens eine $x$ aus $\mathbb{X}$, für das $A(x)$ gilt}. $\exists$ nennt man hierbei den \emph{Existenzquantor}.
+\item Gilt die Aussage $A(x)$ für genau ein $x$ aus $\mathbb{X}$, so schreibt man
+	\begin{align*}
+	\exists^1 &x \in \mathbb{X} : A(x)\\
+	\exists_1 &x \in \mathbb{X} : A(x)\\
+	\exists^! &x \in \mathbb{X} : A(x)\\
+	\stackrel{!}{\exists} &x \in \mathbb{X} : A(x)
+	\end{align*}
+	\enq{es exisitert genau ein $x$ aus $\mathbb{X}$, für das $A(x)$ gilt}.
+\end{enumerate}
+\end{definition}
+
+\begin{example}~
+\begin{enumerate}
+\item $\forall x \in \R : x^2 > 0$
+\item $\exists x \in \mathbb{P} : x \tx{ gerade}$
+\item $\exists^1 x \in \mathbb{P} : x \tx{ gerade}$
+\end{enumerate}
+\end{example}
+
+\begin{note}~
+\begin{itemize}
+\item Die Aussage $\forall x \in \mathbb{X} : A(x)$ entspricht der Konjunktion(\enq{-Verknüpfung}) der $A(x)$ für alle $x$ aus $\mathbb{X}$ \[\bigund_{x \in \mathbb{X}} A(x) = A\rk{x_1} \und A\rk{x_2} \und \dots\]
+\item Die Aussage $\exists x \in \mathbb{X} : A(x)$ entspricht der Disjunktion(\enq{-Verknüpfung}) der $A(x)$ für alle $x$ aus $\mathbb{X}$ \[\bigoder_{x \in \mathbb{X}} A(x) = A\rk{x_1} \oder A\rk{x_2} \oder \dots\]
+\end{itemize}
+\end{note}
+
+\begin{theorem}[Verneinung von Quantoren]~
+\begin{enumerate}
+\item $\rk{\neg \rk{\forall x \in \mathbb{X} : A(x)}} \Lra \rk{\exists x \in \mathbb{X} : \neg A(x)}$
+\item $\rk{\neg \rk{\exists x \in \mathbb{X} : A(x)}} \Lra \rk{\forall x \in \mathbb{X} : \neg A(x)}$
+\end{enumerate}
+\label{the:Satz_1_12}
+\end{theorem}
+
+\begin{proof}
+--
+\end{proof}
+
+\begin{note}
+Satz~\vref{the:Satz_1_12} entspricht einer Erweiterung der Regeln von de' Morgan.
+\begin{enumerate}
+\item $\neg \rk{\bigund_{x \in \mathbb{X}} A(x)} \Lra \bigoder_{x \in \mathbb{X}} \rk{\neg A(x)}$
+\item $\neg \rk{\bigoder_{x \in \mathbb{X}} A(x)} \Lra \bigund_{x \in \mathbb{X}} \rk{\neg A(x)}$
+\end{enumerate}
+\end{note}
