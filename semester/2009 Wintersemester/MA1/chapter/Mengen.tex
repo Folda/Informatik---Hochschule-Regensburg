@@ -74,7 +74,7 @@ Seien $A$ und $B$ beliebige Mengen und $M$ eine Menge mit $A \subseteq M$ und $B
 	\end{figure}
 
 \item Die \emph{Differenz} von $A$ und $B$ (siehe Abbildung~\vref{fig:Beispiel_fuer_Differenz_zweier_Mengen}) wird definiert durch:
-	\[A \backslash B \ceq \gk{x \vert x \in A \tx{ und } x \notin B}\]
+	\[A \setminus B \ceq \gk{x \vert x \in A \tx{ und } x \notin B}\]
 	\begin{figure}[htb]
 	\centering
 	\input{pictures/2009.10.06-IMG3.tex}
@@ -83,7 +83,7 @@ Seien $A$ und $B$ beliebige Mengen und $M$ eine Menge mit $A \subseteq M$ und $B
 	\end{figure}
 
 \item Die \emph{symmetrische Differenz} von $A$ und $B$ (siehe Abbildung~\vref{fig:Beispiel_fuer_symmetrische_Differenz_zweier_Mengen}) wird definiert durch:
-	\[A \triangle B \ceq \rk{A \backslash B} \cup \rk{B \backslash A} = \rk{A \cup B} \backslash \rk{A \cap B}\]
+	\[A \triangle B \ceq \rk{A \setminus B} \cup \rk{B \setminus A} = \rk{A \cup B} \setminus \rk{A \cap B}\]
 	\begin{figure}[htb]
 	\centering
 	\input{pictures/2009.10.06-IMG4.tex}
@@ -92,7 +92,7 @@ Seien $A$ und $B$ beliebige Mengen und $M$ eine Menge mit $A \subseteq M$ und $B
 	\end{figure}
 
 \item Das \emph{Komplement} von $A$ bezüglich $M$ (siehe Abbildung~\vref{fig:Beispiel_fuer_Komplement_zweier_Mengen}) wird definiert durch:
-	\[\bar{A} \tx{ oder } A^{\mathcal{C}} \ceq \gk{x \in M \vert x \notin A} = \gk{x \vert x \in M \tx{ und } x \notin A} = M \backslash A\]
+	\[\bar{A} \tx{ oder } A^{\mathcal{C}} \ceq \gk{x \in M \vert x \notin A} = \gk{x \vert x \in M \tx{ und } x \notin A} = M \setminus A\]
 	\begin{figure}[htb]
 	\centering
 	\input{pictures/2009.10.06-IMG5.tex}
@@ -211,7 +211,7 @@ Für die Zugehörigen Venn-Diagramme siehe Abbildungen~\vref{fig:2009.10.07-IMG3
 
 \item Es muss beachtet werden, dass $\gk{\emptyset}$ oder $\gk{\gk{}} \neq \emptyset$.
 \item Falls $A \cap B = \emptyset$ mit $A$, $B$ endlich, gilt: \[\betrag{A \cup B} = \betrag{A} + \betrag{B}\]
-\item Falls $B \subseteq A$ mit $A$, $B$ endlich, gilt: \[\betrag{A \backslash B} = \betrag{A} - \betrag{B}\]
+\item Falls $B \subseteq A$ mit $A$, $B$ endlich, gilt: \[\betrag{A \setminus B} = \betrag{A} - \betrag{B}\]
 \end{enumerate}
 \end{definition}
 

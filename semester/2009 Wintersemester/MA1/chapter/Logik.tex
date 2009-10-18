@@ -251,6 +251,7 @@ $\rk{\neg \rk{A \und B}} \Lra \rk{\neg A \oder \neg B}$ & & $\rk{\neg \rk{A \ode
 \label{tab:Rechenregeln_fuer_und_oder_neg_Lra_Ra}
 \caption{Rechenregeln für $\und$, $\oder$, $\neg$, $\Lra$, $\Ra$}
 \end{table}
+\label{the:Satz_1_10}
 \end{theorem}
 
 \begin{proof}[Beweis des Assoziativgesetzes über Wahrheitstabellen]
@@ -293,14 +294,14 @@ $f$ & $f$ & $w$ & $w$ & $w$ & $w$ & $w$
 \begin{definition}[Allquantor und Existenzquantor]~
 \begin{enumerate}
 \item Gilt eine Aussage $A(x)$ für alle $x$ aus $\mathbb{X}$, so schreibt man \[\forall x \in \mathbb{X} : A(x)\] \enq{für alle $x$ aus $\mathbb{X}$ gilt $A(x)$}. $\forall$ nennt man hierbei den \emph{Allquantor}.
-\item Gilt eine Aussage $A(x)$ für mindestens ein $x$ aus $\mathbb{X}$, so schreibt man \[\exists x \in \mathbb{X} : A(x)\] \enq{es existiert mindestens eine $x$ aus $\mathbb{X}$, für das $A(x)$ gilt}. $\exists$ nennt man hierbei den \emph{Existenzquantor}.
+\item Gilt eine Aussage $A(x)$ für mindestens ein $x$ aus $\mathbb{X}$, so schreibt man \[\exists x \in \mathbb{X} : A(x)\] \enq{es \ac{ex.} mindestens eine $x$ aus $\mathbb{X}$, für das $A(x)$ gilt}. $\exists$ nennt man hierbei den \emph{Existenzquantor}.
 \item Gilt die Aussage $A(x)$ für genau ein $x$ aus $\mathbb{X}$, so schreibt man
-	\begin{align*}
-	\exists^1 &x \in \mathbb{X} : A(x)\\
-	\exists_1 &x \in \mathbb{X} : A(x)\\
-	\exists^! &x \in \mathbb{X} : A(x)\\
-	\stackrel{!}{\exists} &x \in \mathbb{X} : A(x)
-	\end{align*}
+	\begin{multicols}{2}
+	$\exists^1 x \in \mathbb{X} : A(x)$\\
+	$\exists_1 x \in \mathbb{X} : A(x)$\\
+	$\exists^! x \in \mathbb{X} : A(x)$\\
+	$\stackrel{!}{\exists} x \in \mathbb{X} : A(x)$
+	\end{multicols}
 	\enq{es exisitert genau ein $x$ aus $\mathbb{X}$, für das $A(x)$ gilt}.
 \end{enumerate}
 \end{definition}
@@ -339,3 +340,85 @@ Satz~\vref{the:Satz_1_12} entspricht einer Erweiterung der Regeln von de' Morgan
 \item $\neg \rk{\bigoder_{x \in \mathbb{X}} A(x)} \Lra \bigund_{x \in \mathbb{X}} \rk{\neg A(x)}$
 \end{enumerate}
 \end{note}
+
+\begin{example}
+$M \ceq$ Menge aller Musiker eines bestimmten Orchesters, $A_m = A(m) =$ Musiker $m \rk{\in M}$ spielt falsch.
+\begin{itemize}
+\item $\forall m \in M : A_m = $ Alle Musiker spielen falsch
+\item $\neg \rk{\forall m \in M : A_m} = $ Es \ac{ex.} mindestens ein Musiker der richtig Spielt = nicht alle Musiker spielen falsch
+\item $\exists m \in M: A_m = $ Es \ac{ex.} mindestens ein Musiker der falsch spielt
+\item $\neg \rk{\exists m \in M: A_m} = $ Alle Musiker spielen richtig = es \ac{ex.} nicht ein Musiker der falsch spielt
+\end{itemize}
+\end{example}
+
+\section{\texorpdfstring{Beweisstrategien für Sätze der Form $A \Ra B$}{Beweisstrategien für Sätze der Form aus A folgt B}}
+\begin{table}[htb]
+\centering
+\begin{tabular}{c|c||c}
+$A$ & $B$ & $A \Ra B$\\\hline
+$w$ & $w$ & $w$\\
+$w$ & $f$ & \textcolor{red}{$f$}\\
+$f$ & $w$ & $w$\\
+$f$ & $f$ & $w$
+\end{tabular}
+\caption{Wahrheitstabelle $A \Ra B$}
+\label{tab:Wahrheitstabelle_A_Ra_B}
+\end{table}
+
+\subsection{Direkter Beweis}
+Da falls $A$ falsch ist, die Aussage $A \Ra B$ (unabhängig vom Wahrheitswert von $B$) immer wahr ist (siehe Tabelle~\vref{tab:Wahrheitstabelle_A_Ra_B}), reicht es den Fall $A$ wahr zu betrachten. Wir zeigen, dass falls $A$ wahr ist, $B$ auch wahr sein muss (damit \ac{ex.} Zeile 2 nicht).
+
+\begin{example}
+$\ub{x \tx{ durch } 4 \tx{ teilbar}}{A(x)} \Ra \ub{x \tx{ durch } 2 \tx{ teilbar}}{B(x)}$
+\end{example}
+
+\begin{proof}
+Annahme: $A(x)$ ist wahr.
+\begin{itemize}[label=$\Lra$]
+\item $x$ durch 4 teilbar
+\item es exisitert ein $c \in \Z$ mit $\frac{x}{4} = c$
+\end{itemize}
+
+\begin{align*}
+&\frac{x}{4} = c \Vert \mal 2\\
+\Lra &\frac{x}{2} = \ub{2c}{\in \Z}\\
+\Lra &x \tx{ ist durch 2 teilbar}
+\end{align*}
+\end{proof}
+
+\subsection{Indirekter Beweis \Rm{1}: Kontraposition}
+Nach Satz~\vref{the:Satz_1_10} gilt $\rk{A \Ra B} \Lra \rk{\neg B \Ra \neg A}$. Daher zeigen wir statt der Aussage $A \Ra B$ die Aussage $\neg B \Ra \neg A$. $\neg B$ übernimmt also die Rolle von $A$. Wir nehmen also an $\neg B$ sei wahr ($= B$ falsch) und zeigen, dass dann auch $A$ falsch sein muss.
+
+\begin{example}
+Behauptung: $n^2$ gerade \Ra $n$ gerade, $n \in N$ \Lra\ ($n$ ungerade \Ra\ $n^2$ ungerade).
+\end{example}
+
+\begin{proof}
+Annahme $n$ ungerade \Lra\ es \ac{ex.} ein $m \in \N_0 : n = 2m + 1$.
+\begin{align*}
+n^2 &= \rk{2m + 1}^2 = \rk{2m}^2 + 2 \mal 2m \mal 1 + 1^2\\
+&= 4m^2 + 4m + 1\\
+&= 4 \ub{\rk{m^2 + m}}{\tx{gerade}} + 1 \tx{ ungerade}
+\end{align*}
+\end{proof}
+
+\subsection{Induktiver Beweis \Rm{2}: Widerspruchsbeweis (Reductio ad absurdum)}
+Man nimmt an $A$ sei wahr und $B$ sei falsch (einziger Fall in dem $A \Ra B$ falsch wird) und zeigt, dass diese Annahmen zu einem Widerspruch führen.
+
+\begin{example}
+Behauptung: $\sqrt{2}$ ist irrational (also $\sqrt{2} \in \R \setminus \Q$) \[\Lra \rk{\ub{x^2 = 2}{=A} \Ra \ub{x \in \R \setminus \Q}{=B}}\]
+\end{example}
+
+\begin{proof}
+Annahme: $x^2 = 2$ ist wahr und $x \in \R \setminus \Q$ falsch \[\Lra x^2 = 2 \tx{ wahr und } x \in \Q \tx{ wahr}\]
+da $x \in \Q$ \ac{ex.} $p, q \in \Z \setminus \gk{0}$, $p, q$ teilfremd, $x = \frac{p}{q}$ (\ra\ gekürzer Bruch)
+\begin{align*}
+&\Ra x^2 = \rk{\frac{p}{q}}^2 = 2 \Vert \mal q^2\\
+&\Lra p^2 = 2q^2 \Ra p^2 \tx{ gerade} \Ra p \tx{ gerade} \Ra \tx{ es \ac{ex.} } m \in \N: p = 2m\\
+&\Ra \rk{2m}^2 = 2q^2\\
+&\Lra 4m^2 = 2q^2 \Vert \div 2\\
+&\Lra 2m^2 = q^2 \Ra q^2 \tx{ gerade} \Ra q \tx{ gerade \Lightning}
+\end{align*}
+
+Das Zeichen \Lightning\ bedeutet Widerspruch, hier $p$ gerade und $q$ gerade, \ac{d.h.} $\frac{p}{q}$ ist nicht gekürzt, damit ergibt sich ein Widerspruch zu der Annahmen, \ac{d.h.} die Kombination der Annahmen ist nicht möglich, \ac{d.h.} Zeile 2 aus Tabelle~\vref{tab:Wahrheitstabelle_A_Ra_B} nicht existent.
+\end{proof}
