@@ -1,0 +1,14 @@
+\begin{automat}
+\node[state] (2) {$2$};
+\node[state, right of=2] (3) {$3$};
+\node[state, above right of=2] (1) {$1$};
+
+\path[->] (2) edge (1);
+\path[->] (2) edge[loop left] ();
+
+\path[->] (3) edge (1);
+\path[->] (3) edge (2);
+\path[->] (3) edge[loop right] ();
+
+\path[->] (1) edge[loop right] ();
+\end{automat}

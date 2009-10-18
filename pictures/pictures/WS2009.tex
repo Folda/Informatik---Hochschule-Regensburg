@@ -97,200 +97,45 @@
 \chapter{Mathematik 1 (MA1)}
 \section{2009.10.05}
 \subsection{IMG1}
-\begin{tikzpicture}
-\def\firstcircle{(0,0) circle (1)}
-\def\secondcircle{(1.5,0) circle (1)}
-
-\draw \firstcircle;
-\draw \secondcircle;
-
-\node at (-1,0) [left] {$A$};
-\node at (2.5,0) [right] {$B$};
-
-\begin{scope}
-\clip \firstcircle;
-\fill[gray] \secondcircle;
-\end{scope}
-
-\node[color=gray] at (0.75,-1) [below] {$A \cap B$};
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.05-IMG1.tex}
 
 \subsection{IMG2}
-\begin{tikzpicture}
-\def\firstcircle{(0,0) circle (1)}
-\def\secondcircle{(1.5,0) circle (1)}
-
-\draw \firstcircle;
-\draw \secondcircle;
-
-\node at (-1,0) [left] {$A$};
-\node at (2.5,0) [right] {$B$};
-
-\begin{scope}
-\fill[gray] \firstcircle;
-\fill[gray] \secondcircle;
-\end{scope}
-
-\node[color=gray] at (0.75,-1) [below] {$A \cup B$};
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.05-IMG2.tex}
 
 \subsection{IMG3}
-\begin{tikzpicture}
-\def\firstcircle{(0,0) circle (1)}
-\def\secondcircle{(1.5,0) circle (1)}
-
-\draw \firstcircle;
-\draw \secondcircle;
-
-\node at (-1,0) [left] {$A$};
-\node at (2.5,0) [right] {$B$};
-
-\begin{scope}[even odd rule]% first circle without the second
-\clip \secondcircle (-1,1) rectangle (2.5,-1);
-\fill[gray] \firstcircle;
-\end{scope}
-
-\node[color=gray] at (0.75,-1) [below] {$A \setminus B$};
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.05-IMG3.tex}
 
 \subsection{IMG4}
-\begin{tikzpicture}
-\def\firstcircle{(0,0) circle (1)}
-\def\secondcircle{(1.5,0) circle (1)}
-
-\draw[fill=gray] \firstcircle;
-\draw[fill=gray] \secondcircle;
-
-\node at (-1,0) [left] {$A$};
-\node at (2.5,0) [right] {$B$};
-
-\begin{scope}
-\clip \firstcircle;
-\fill[white] \secondcircle;
-\end{scope}
-
-\node[color=gray] at (0.75,-1) [below] {$A \triangle B$};
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.05-IMG4.tex}
 
 \subsection{IMG5}
-\begin{tikzpicture}
-\def\firstcircle{(0,0) circle (1)}
-
-\draw[fill=gray] (-2,-1.5) rectangle (2,1.5) node[right] {$M$};
-\draw[fill=white] \firstcircle;
-
-\node at (-1,0) [left] {$A$};
-
-\node[color=gray] at (0,-1.5) [below] {$\neg A$};
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.05-IMG5.tex}
 
 \section{2009.10.07}
 \subsection{IMG1}
-\begin{tabular}{ccccccc}
-&&& \large{$B = $} &&\\
-&& $b_1$ & $b_2$ & \dots & $b_n$\\
-&$a_1$& \textcolor{gray}{$\rk{a_1, b_1}$} & \textcolor{gray}{$\rk{a_1, b_2}$} & \textcolor{gray}{\dots} & \textcolor{gray}{$\rk{a_1, b_n}$}\\
-\large{$A =$} &$a_2$   & \textcolor{gray}{$\rk{a_2, b_1}$} & \textcolor{gray}{$\rk{a_2, b_2}$} & \textcolor{gray}{\dots} & \textcolor{gray}{$\rk{a_2, b_n}$} & \textcolor{gray}{\large{$= A \times B$}}\\
-&\vdots & \textcolor{gray}{\vdots}& \textcolor{gray}{\vdots}& \textcolor{gray}{\vdots}& \textcolor{gray}{\vdots}\\
-&$a_n$& \textcolor{gray}{$\rk{a_n, b_1}$} & \textcolor{gray}{$\rk{a_n, b_2}$} & \textcolor{gray}{\dots} & \textcolor{gray}{$\rk{a_n, b_n}$}
-\end{tabular}
+\input{pictures/WS2009/MA1/2009.10.07-IMG1.tex}
 
 \subsection{IMG2}
-\begin{tikzpicture}
-\draw (0,0) node[left] {$1$} -- (4,0);
-\draw (0,2) node[left] {$2$} -- (4,2);
-\draw (0,0) node[below] {$0$} -- (0,2);
-\draw (2,0) node[below] {$1$} -- (2,2);
-\draw (4,0) node[below] {$2$} -- (4,2);
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.07-IMG2.tex}
 
 \subsection{IMG3}
-\begin{tikzpicture}
-\def\firstcircle{(0,0) circle (1)}
-\def\secondcircle{(1.5,0) circle (1)}
-\def\thirdcircle{(0.75,-1) circle (1)}
-
-\node at (-1,0) [left] {$A$};
-\node at (2.5,0) [right] {$B$};
-\node at (0.75,-2) [below] {$C$};
-
-\draw \firstcircle;
-\draw[fill=gray] \secondcircle;
-\draw[fill=gray] \thirdcircle;
-
-\begin{scope}
-\clip \firstcircle;
-\clip \secondcircle;
-\fill[semitransparent,blue] \secondcircle;
-\end{scope}
-\begin{scope}
-\clip \firstcircle;
-\clip \thirdcircle;
-\fill[semitransparent,blue] \thirdcircle;
-\end{scope}
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.07-IMG3.tex}
 
 \subsection{IMG4}
-\begin{tikzpicture}
-\begin{scope}
-\def\firstcircle{(0,0) circle (1)}
-\def\secondcircle{(1.5,0) circle (1)}
-\def\thirdcircle{(0.75,-1) circle (1)}
-
-\node at (-1,0) [left] {$A$};
-\node at (2.5,0) [right] {$B$};
-\node at (0.75,-2) [below] {$C$};
-
-\draw \firstcircle;
-\draw \secondcircle;
-\draw \thirdcircle;
-
-\begin{scope}
-\clip \firstcircle;
-\clip \secondcircle;
-\fill[gray] \secondcircle;
-\end{scope}
-\begin{scope}
-\clip \firstcircle;
-\clip \thirdcircle;
-\fill[semitransparent,green] \thirdcircle;
-\end{scope}
-\end{scope}
-
-\node at (3.25,-0.75) {\Large \Ra};
-
-\begin{scope}
-\def\firstcircle{(5,0) circle (1)}
-\def\secondcircle{(6.5,0) circle (1)}
-\def\thirdcircle{(5.75,-1) circle (1)}
-
-\node at (4,0) [left] {$A$};
-\node at (7.5,0) [right] {$B$};
-\node at (5.75,-2) [below] {$C$};
-
-\draw \firstcircle;
-\draw \secondcircle;
-\draw \thirdcircle;
-
-\begin{scope}
-\clip \firstcircle;
-\clip \secondcircle;
-\fill[blue] \secondcircle;
-\end{scope}
-\begin{scope}
-\clip \firstcircle;
-\clip \thirdcircle;
-\fill[blue] \thirdcircle;
-\end{scope}
-\end{scope}
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.07-IMG4.tex}
 
 \subsection{IMG5}
-\begin{tikzpicture}
-\draw[color=gray] (0,0) rectangle (6,4) node[right] {$V$};
-\draw[color=blue] (0,0) -- (0,4) node[left,midway] {$E$} -- (3.5,4) to[out=-45, in=45] (3.5,0) -- (0,0);
-\draw[color=red,dashed] (0,0) -- (0,4) -- (3.5,4) to[out=-30, in=30] (3.5,0) -- (0,0) node[below,midway] {$F$};
-\draw[color=green] (6,4) -- (3.5,4) to[out=180+45, in=180-45] (3.5,0) -- (6,0) -- (6,4) node[right,midway] {$S$};
-\draw[color=orange] (5.25,2) circle(0.5) node {$H$};
-\node at (3,-1) {\large $\textcolor{orange}{H} \klgl \textcolor{green}{S}$};
-\end{tikzpicture}
+\input{pictures/WS2009/MA1/2009.10.07-IMG5.tex}
+
+\section{2009.10.15}
+\subsection{IMG1}
+\input{pictures/WS2009/MA1/2009.10.15-IMG1.tex}
+
+\subsection{IMG2}
+\input{pictures/WS2009/MA1/2009.10.15-IMG2.tex}
+
+\subsection{IMG3}
+\input{pictures/WS2009/MA1/2009.10.15-IMG3.tex}
+
+\subsection{IMG4}
+\input{pictures/WS2009/MA1/2009.10.15-IMG4.tex}
