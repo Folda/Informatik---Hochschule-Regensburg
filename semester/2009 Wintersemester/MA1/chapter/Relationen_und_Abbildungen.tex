@@ -85,3 +85,20 @@ Es sei $R$ die Relation auf $A \ceq \gk{1, 2, 3, 4}$, die dadurch definiert ist,
 Für die Lösung siehe \vref{loe:Aufgabe_1_4}.
 \label{exc:Aufgabe_1_4}
 \end{exercise}
+
+\begin{definition}[Eigenschaften von Relationen]
+Sei $R$ eine Relation auf der nichtleeren Menge $A$. Die Relation $R$ heißt
+\begin{description}
+\item[reflexiv] wenn $\forall x \in A : xRx$
+\item[symmetrisch] wenn $\forall x \in A: xRy \Ra yRx$
+\item[antisymmetrisch] wenn $\forall x, y \in A: \rk{xRy \und yRx} \Ra x = y$
+\item[transitiv] wenn $\forall x, y, z \in A: \rk{xRy \und yRz} \Ra xRz$
+\item[vollständig] wenn $\forall x, y \in A: xRy \oder yRx$
+\end{description}
+\end{definition}
+
+\begin{example}
+Die Produktion einer Maschine erfordert 6 Produktionsschritte:\\
+Zuerst muss 1 ausgeführt werden, dann in beliebiger Reihenfolge 2, 3, 4 und schließlich die Schritte 5 und 6 in beliebiger Reihenfolge.
+\[A_1 \ceq \gk{1, 2, 3, 4, 5, 6}, R_1 \ceq \gk{\rk{x,y} \in A_1 \times A_1 \vert y \tx{ kann nicht vor } x \tx{ ausgeführt werden}}\]
+\end{example}

@@ -2,9 +2,10 @@
 *.aux
 *.log
 *.out
-*.pdf
 *.thm
 *.toc
 *.dvi
 *.xml
 *.ps
+
+/semester/2009 Wintersemester/MA1/Informatik - WS09 - Mathematik 1.pdf
